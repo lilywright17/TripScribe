@@ -11,7 +11,7 @@ function App() {
         <ul>
           <li>
             <h2>Precious</h2>
-            <p>FILL IN TRIP DETAILS HERE</p>
+            <p>I was able to travel quite a lot before uni! I visited various countries in Europe, Asia and America but my most memorable would be a family cruise from US to Mexico where I got my first tattoo.</p>
           </li>
           <li>
             <h2>Krystal</h2>

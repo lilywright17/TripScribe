@@ -31,7 +31,7 @@ function App() {
             </li>
             <li>
               <h2>Katie</h2>
-              <p>FILL IN TRIP DETAILS HERE</p>
+              <p>My favourite trip was my first ever solo trip abroad! I went to Oslo, in Norway, just for 3 days, to celebrate my career change! I developed a taste for Brunost!</p>
             </li>
             <li>
               <h2>Lily</h2>

@@ -27,7 +27,7 @@ function App() {
             </li>
             <li>
               <h2>Marta</h2>
-              <p>FILL IN TRIP DETAILS HERE</p>
+              <p>Travelling is a big part of my life. I love it and travel quite often. One of my favourite trips ever was when I went to Sri Lanka. It was my first time visiting Asia and everyting seemed so exotic and exciting. The wildlife was spectacular. I loved going on safaris and seeing elephants, leopards, wild beasts and even a sloth bear! I got to see baby turtles hatching on a beach below a starry, stormy sky. And let's not forget the whale watching. It was a truly memeorable experience. </p>
             </li>
             <li>
               <h2>Katie</h2>

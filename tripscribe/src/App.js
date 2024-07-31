@@ -23,7 +23,7 @@ function App() {
             </li>
             <li>
               <h2>Victoria</h2>
-              <p>FILL IN TRIP DETAILS HERE</p>
+              <p>My most memorable trip was to Cartagena, Colombia, an unforgettable adventure filled with vibrant culture, stunning architecture, and breathtaking coastal views. A highlight was sailing to the Rosario Islands, where I snorkeled in crystal-clear waters and relaxed on pristine beaches.</p>
             </li>
             <li>
               <h2>Marta</h2>

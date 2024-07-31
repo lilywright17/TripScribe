@@ -19,7 +19,7 @@ function App() {
             </li>
             <li>
               <h2>Mediha</h2>
-              <p>FILL IN TRIP DETAILS HERE</p>
+              <p>The most memorable trip I had so far was my holiday in Crete, Greece. I still remember the pink sand and blue water in Elafonissi Beach. I enjoyed the food, wine and sunny weather for five days. Definitely, a place I will visit again.</p>
             </li>
             <li>
               <h2>Victoria</h2>

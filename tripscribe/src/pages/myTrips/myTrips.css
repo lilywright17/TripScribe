@@ -1,0 +1,6 @@
+.card-container {
+	flex: 0 0 auto;         /* ADD */
+    display: flex;          /* ADD */
+    flex-direction: row; /* ADD */
+    position: relative;
+}

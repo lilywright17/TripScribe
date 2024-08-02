@@ -55,7 +55,7 @@ In the tables below, you can see the allocation of roles and tasks.
 
 |  | Katie Williams | Krystal Lake | Lily Wright | Marta Walters | Mediha Mustafova | Precious Joveres | Victoria Proaño |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-|**GitHub Repo creation & organisation**|-|☑️|-|-|-|-|-|
+|**GitHub Repo creation & organisation**|-|-|☑️|-|-|-|-|
 |**Compilation of README.md**|-|☑️|-|-|-|-|-|
 |**PR Reviewers**    |-|-|☑️|-|-|☑️|☑️|
 |**Testing**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|

@@ -1,6 +1,13 @@
 .card-container {
-	flex: 0 0 auto;         /* ADD */
-    display: flex;          /* ADD */
-    flex-direction: row; /* ADD */
-    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
+    gap: 40px;
+    justify-content: center;
+    padding: 0 20px; /* Adjust padding on left and right */
+    max-width: 100%; /* Ensure the container does not exceed the viewport width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    margin: 0 auto; /* Center the container */
+    /* margin: 10px; */
 }
+
+

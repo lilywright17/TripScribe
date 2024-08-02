@@ -1,7 +1,7 @@
 import React from "react";
 import './navbar.css';
 
-export const Navbar = () => {
+const Navbar = () => {
   return (
     <div className="navbar">
       <h1 className="nameLogo">TripScribe</h1>
@@ -15,6 +15,7 @@ export const Navbar = () => {
   );
 }
 
+export default Navbar;
 /* Will replace emojis with icons when we have chosen an icons library! 
  eg import {Eye, PlusSquare, MapTrifold, User} from '@phosphor-icons/react';
 */

@@ -1,12 +1,12 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ location, city, startDate, endDate, description, imageUrl }) =>{
+const Card = ({ country, city, startDate, endDate, description, imageUrl }) =>{
 
     return (
         <div className="card">
-            <img src={imageUrl} alt={city || 'photo of city'} width={200} />
-            <h1>{location || 'location'}</h1>
+            <img src={imageUrl} alt={city || 'photo of city'} width={200} className="card-img"/>
+            <h1>{country || 'country'}</h1>
             <h2>{city || 'town/city'}</h2>
             <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
             <p>{description || 'description of trip'}</p>

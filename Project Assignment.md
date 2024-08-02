@@ -2,7 +2,7 @@
 
 |  | |  |  |
 |----------|----------|----------|----------|
- |🧁 Katie Williams | Krystal Lake |🌸 Lily Wright  | Marta Walters  |
+ |🧁 Katie Williams |💎 Krystal Lake |🌸 Lily Wright  | Marta Walters  |
 | 🐣Mediha Mustafova | Precious Joveres | 🎃 Victoria Proaño  |
 
 

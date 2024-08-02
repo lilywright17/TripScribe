@@ -6,8 +6,29 @@
     padding: 0 20px; /* Adjust padding on left and right */
     max-width: 100%; /* Ensure the container does not exceed the viewport width */
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    margin: 0 auto; /* Center the container */
-    /* margin: 10px; */
+    margin: 0 auto; 
+}
+
+.filters-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    height: 50px; /* Set a consistent height for the container */
+}
+.country-filter{
+    width: 200px;
+}
+.city-filter{
+    width: 200px;
+}
+.date-picker-container {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    gap: 10px;
 }
 
 

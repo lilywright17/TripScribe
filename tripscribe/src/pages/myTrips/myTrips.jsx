@@ -2,71 +2,12 @@ import React, { useState, useEffect } from 'react';
 import Navbar from "../../components/navbar/navbar.jsx"
 import Card from "../../components/card/card.jsx";
 // import Footer from...
-import NewYork from "./images/newyork.jpg"
-import Paris from "./images/paris.jpg"
-import Lisbon from "./images/Lisbon.jpg"
-import Berlin from "./images/Berlin.jpg"
 import './myTrips.css';
 import DatePick from '../../components/datepicker/datepicker.jsx';
 import CountryFilter from '../../components/filterByCountry/countryFilter.jsx';
 import CityFilter from '../../components/filterByCity/cityFilter.jsx';
+import tripsArray from './tripsArray.js';
 
-const tripsArray = [
-	{
-	  image: Paris,
-	  city: 'Paris',
-	  country: 'France',
-	  title: 'Trip to Paris',
-	  startDate: '2024-06-01',
-	  endDate: '2024-06-10',
-	  description: 'A wonderful trip to Paris with visits to the Eiffel Tower and the Louvre.'
-	},
-	{
-	  image: NewYork,
-	  city: 'New York',
-	  country: 'USA',
-	  title: 'Trip to New York',
-	  startDate: '2024-07-15',
-	  endDate: '2024-07-20',
-	  description: 'Exploring the city that never sleeps, including Times Square and Central Park.'
-	},
-	{
-		image: Lisbon,
-		city: 'Lisbon',
-		country: 'Spain',
-		title: 'Trip to Lisbon',
-		startDate: '2024-07-15',
-		endDate: '2024-07-20',
-		description: 'Exploring the city that never sleeps, including Times Square and Central Park.'
-	},
-	{
-		image: Lisbon,
-		city: 'Lisbon',
-		country: 'Spain',
-		title: 'Trip to Lisbon',
-		startDate: '2024-07-15',
-		endDate: '2024-07-20',
-		description: 'Exploring the city that never sleeps, including Times Square and Central Park.'
-	},
-	{
-		image: NewYork,
-		city: 'New York',
-		country: 'USA',
-		title: 'Trip to New York',
-		startDate: '2024-05-15',
-		endDate: '2024-05-20',
-		description: 'Exploring the city that never sleeps, including Times Square and Central Park.'
-	  },
-	  {
-		image: Berlin,
-		city: 'Berlin',
-		country: 'Germany',
-		title: 'Trip to Lisbon',
-		startDate: '2024-07-15',
-		endDate: '2024-07-20',
-		description: 'Exploring the city that never sleeps, including Times Square and Central Park.'
-	}
-];
 //Get trips data from SQL database, get user ID and return rows where user ID matches, store in an array of object
 
 // Card should have a delete button. We'll need to make a modal for deleting the trip
@@ -78,7 +19,7 @@ const MyTrips = () => {
 
 	const formatDate = date => {
 		date = new Date(date);
-		return `${date.getMonth() + 1}/${date.getDate() + 1}/${date.getFullYear()}`;
+		return `${date.getDate() + 1}/${date.getMonth() + 1}/${date.getFullYear()}`;
 	};	
 	
 	const [startDate, setStartDate] = useState(null);
@@ -122,14 +63,14 @@ const MyTrips = () => {
         			<DatePick
          				selected={startDate}
          				onChange={(date) => setStartDate(date)}
-         				dateFormat="MM/dd/yyyy"
+         				dateFormat="dd/MM/yyyy"
           				placeholderText="Start date"
         			/>
         		<label>End Date:</label>
         			<DatePick
           				selected={endDate}
         				onChange={(date) => setEndDate(date)}
-          				dateFormat="MM/dd/yyyy"
+          				dateFormat="dd/MM/yyyy"
           				placeholderText="End date"
         			/>
       			</div>

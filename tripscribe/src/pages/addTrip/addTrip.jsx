@@ -1,9 +1,13 @@
-import React from "react";
+import React from 'react';
+import {Navbar} from '../../components/navbar/navbar';
+import {AddTripForm} from './addTripForm';
 
-export const AddTrip = () => {
+export const AddTrip = () => { 
     return (
-        <div>
-            <h1>This is AddTrip page</h1>
-        </div>
+        <>
+            <Navbar />
+            <AddTripForm/>
+        </>
+        
     );
-}
+    }

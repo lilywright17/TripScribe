@@ -1,0 +1,50 @@
+.addTripForm {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.formContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Adjust the gap between the columns as needed */
+    width: 100%;
+    max-width: 800px; /* Adjust the max width as needed */
+}
+
+.inputColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.textAreaContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    
+}
+
+.textAreaContainer label {
+    margin-bottom: 5px;
+    color: #476a6f;
+    font-weight: bold;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(244, 241, 241);
+    border-radius: 8px;
+    border: 2px solid #476a6f;
+
+}
+
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 100px;
+}

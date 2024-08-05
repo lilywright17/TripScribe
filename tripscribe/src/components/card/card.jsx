@@ -9,7 +9,7 @@ const Card = ({ country, city, startDate, endDate, description, imageUrl,editBut
             <h1>{country || 'country'}</h1>
             <h2>{city || 'town/city'}</h2>
             <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
-            <p>{description || 'description of trip'}</p>
+            <p>{description || 'description of trip'}...</p>
             <img 
                 src={editButton} 
                 alt="Edit button" 

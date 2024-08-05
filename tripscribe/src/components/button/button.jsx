@@ -5,7 +5,9 @@ const Button = ({text, handleClick, style }) => {
   return (
     <div>
       <button 
-        className={`buttonPrimary`} onClick={handleClick} style={style}>
+        className="buttonPrimary" 
+        onClick={handleClick} 
+        style={style}>
           {text}
       </button>
     </div>

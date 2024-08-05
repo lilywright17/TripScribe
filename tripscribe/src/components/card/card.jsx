@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ country, city, startDate, endDate, description, imageUrl }) =>{
+const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit }) =>{
 
     return (
         <div className="card">
@@ -10,8 +10,13 @@ const Card = ({ country, city, startDate, endDate, description, imageUrl }) =>{
             <h2>{city || 'town/city'}</h2>
             <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
             <p>{description || 'description of trip'}</p>
-
-
+            <img 
+                src={editButton} 
+                alt="Edit button" 
+                className="edit-button" 
+                onClick={onEdit}
+                style={{ cursor: 'pointer' }}
+            />
         </div>
     )
 }

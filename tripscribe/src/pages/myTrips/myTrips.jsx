@@ -7,6 +7,8 @@ import DatePick from '../../components/datepicker/datepicker.jsx';
 import CountryFilter from '../../components/filterByCountry/countryFilter.jsx';
 import CityFilter from '../../components/filterByCity/cityFilter.jsx';
 import tripsArray from './tripsArray.js';
+import Button from '../../components/button/button.jsx';
+import editButtonImage from './images/edit_button.png';
 
 //Get trips data from SQL database, get user ID and return rows where user ID matches, store in an array of object
 
@@ -26,10 +28,12 @@ const MyTrips = () => {
     const [endDate, setEndDate] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState('');
 	const [selectedCity, setSelectedCity] = useState('');
+	
 
     const countries = [...new Set(tripsArray.map(trip => trip.country))];
 	const cities = [...new Set(tripsArray.map(trip => trip.city))];
 
+	// Logic to combine and apply the filters
     const filteredTrips = tripsArray.filter((trip) => {
         const tripStart = new Date(trip.startDate);
         const tripEnd = new Date(trip.endDate);
@@ -41,6 +45,22 @@ const MyTrips = () => {
         return matchesDateRange && matchesCountry && matchesCity;
     });
 
+	// To clear the filters
+	const clearFilters = () => {
+		setStartDate(null);
+        setEndDate(null);
+        setSelectedCountry('');
+        setSelectedCity('');
+	}
+	// Checking if the filter is applied
+	const isFilterApplied = startDate || endDate || selectedCountry || selectedCity;
+
+	// Edit button handler
+    const handleEdit = (trip) => {
+        // Navigation to Edit Trips page to be added
+		// For now console logging it to see if clicking works
+        console.log('Edit trip:', trip);
+    };
 	return (
 	  <div>
 		<Navbar></Navbar>
@@ -74,6 +94,9 @@ const MyTrips = () => {
           				placeholderText="End date"
         			/>
       			</div>
+				{isFilterApplied &&(<Button className="clear-button" handleClick={clearFilters}
+					text="Clear Filters"
+				/>)}
 			</div>
 		</div>
 		<div className="card-container">
@@ -86,6 +109,8 @@ const MyTrips = () => {
 			endDate={formatDate(trip.endDate)}
 			imageUrl={trip.image} 
 			description={trip.description} // The text will need to be limited to a certain number of characters to fit in the card component
+			editButton={editButtonImage}
+            onEdit={() => handleEdit(trip)}
 			/> 
 		))}
 		</div>

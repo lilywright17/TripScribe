@@ -1,12 +1,9 @@
 .card-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
-    gap: 40px;
-    justify-content: center;
-    padding: 0 20px; /* Adjust padding on left and right */
-    max-width: 100%; /* Ensure the container does not exceed the viewport width */
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-    margin: 0 auto; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards horizontally */
+    gap: 20px; /* Add spacing between cards */
+    padding: 20px;
 }
 
 .filters-container{
@@ -17,7 +14,7 @@
     justify-content: center;
     margin-bottom: 20px;
     padding: 20px;
-    height: 50px; /* Set a consistent height for the container */
+    height: 50px; 
 }
 .country-filter{
     width: 200px;
@@ -27,8 +24,30 @@
 }
 .date-picker-container {
     display: flex;
-    align-items: center; /* Center items vertically */
+    align-items: center; 
     gap: 10px;
 }
 
+/* CSS for responsive design */
+@media (max-width: 768px) {
+    .filters-container {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto; /* Adjust height for smaller screens */
+    }
 
+    .country-filter,
+    .city-filter,
+    .date-picker-container {
+        width: 100%; /* Make filters full width on small screens */
+        margin-bottom: 10px;
+    }
+
+    .card-container {
+        justify-content: center; /* Center cards on small screens */
+    }
+
+    .card {
+        width: 90%; /* Make cards take up more space on small screens */
+    }
+}

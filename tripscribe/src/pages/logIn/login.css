@@ -67,6 +67,7 @@
     border: 2px solid #476A6F;
     width: 15%;
     margin-top: 0;
+    position: fixed ;
 }
 
 .login-container {
@@ -75,6 +76,7 @@
 
 h1 {
     align-self: center;
+    font-size: 300%;
 }
 
 form {

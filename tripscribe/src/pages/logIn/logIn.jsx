@@ -8,15 +8,15 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const [isVisible, setIsVisible] = useState(false);
+    const [loginVisibility, setLoginVisibility] = useState(false);
 
     useEffect(() => {
         // Triggers animation when login page loads
-        setIsVisible(true);
+        setLoginVisibility(true);
     }, [])
 
     function validateForm() {
-        // function to validate user inputs
+        // function to validate user inputs for email and password
         return email.length > 5 && password.length > 7 && validateEmail(email);
     }
 
@@ -31,7 +31,7 @@ export default function Login() {
     }
 
     const toRegister = () => {
-        setIsVisible(false);
+        setLoginVisibility(false);
     }
 
     return (
@@ -52,7 +52,7 @@ export default function Login() {
             </div>
             {/* <img src={require("./travel_bg.jpg")} alt="background_travel_image"/> */}
 
-            <div className={`login-box login-animation ${isVisible ? 'visible' : 'hidden'}`}>
+            <div className={`login-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
                 <div className='login-container'>
                     <h1>Sign In</h1>
@@ -85,8 +85,8 @@ export default function Login() {
 
                     <div className='button-container'>
                     <button 
-                        type="submit" disabled={!validateForm()
-                    }>
+                        type="submit" disabled={!validateForm()}
+                    >
                         LOG IN
                     </button>
                     </div>

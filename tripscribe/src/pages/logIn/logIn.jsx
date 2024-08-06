@@ -1,13 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 // import Form from 'react-bootstrap/Form';
 // import Button from 'react-bootstap/Button';
 
 import './login.css';
 
 export const LogIn = () => {
+    // for react hooks
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
     const [loginVisibility, setLoginVisibility] = useState(false);
 
     useEffect(() => {
@@ -26,9 +26,25 @@ export const LogIn = () => {
         );
     };
 
-    function handleSubmit(event) {
-        event.preventDefault();
-    }
+    const handleSubmit = useCallback(async (event) => {
+            event.preventDefault();
+
+            try {
+                const response = await fetch('/api/submit-form', {
+                    method: 'POST',
+                    body: JSON.stringify({email, password}),
+                    headers: {
+                        "Content-Type": 'application/json',
+                    },
+                });
+
+                const result = await response.json();
+                console.log('Success: ', result);
+            } catch (error) {
+                console.error('Error: ', error);
+            }
+        }
+    );
 
     const toRegister = () => {
         setLoginVisibility(false);
@@ -85,7 +101,8 @@ export const LogIn = () => {
 
                     <div className='button-container'>
                     <button 
-                        type="submit" disabled={!validateForm()}
+                        type="submit" 
+                        disabled={!validateForm()}
                     >
                         LOG IN
                     </button>
@@ -96,4 +113,3 @@ export const LogIn = () => {
     );
 
 }
-import React from "react";

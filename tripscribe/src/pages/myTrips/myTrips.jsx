@@ -95,7 +95,13 @@ const MyTrips = () => {
         console.log('Edit trip:', trip);
     };
 
+	const handleAddTrip=() =>{
+		console.log("Add trip");
+	}
+
 	const tripsToRender = searchResults.length > 0 ? searchResults : filteredTrips;
+
+	const isInitialTripsEmpty = tripsArray.length === 0;
 
 	return (
 	  <div>
@@ -132,10 +138,27 @@ const MyTrips = () => {
 					handleKeyDown={handleKeyDown} 
 					onChange={(e) => setSearchQuery(e.target.value)} 
 					searchQuery={searchQuery}/>
-
 		</div>
+		{ /* if there is no trips display message otherwise display trip cards*/}
+		{tripsToRender.length === 0 ? (
+			isInitialTripsEmpty ? (
+				<div className="no-trips-container">
+					<h2>Welcome!</h2>
+					<p>Lools like you have no scribles(trips) yet.<br />Click on the botton bellow and make some memories!</p>
+					<Button 
+						className="add-trip-button" 
+						handleClick={handleAddTrip}
+						text="Add Trip"
+					/>
+				</div>
+			) : (
+				<div className="no-results-container">
+					<h2>No trips match your filter choices!</h2>
+				</div>
+			)             
+        ) : (
 		<div className="card-container">
-		{tripsToRender.map((trip, index) => (
+			{tripsToRender.map((trip, index) => (
 		  <Card 
 		  	key={index}
 			city={trip.city}
@@ -147,9 +170,9 @@ const MyTrips = () => {
 			editButton={editButtonImage}
             onEdit={() => handleEdit(trip)}
 			/> 
-		))}
+		))} 
 		</div>
-		
+       )}
 	  </div>
 	  </div>
 	);

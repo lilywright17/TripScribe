@@ -3,11 +3,12 @@
     border: none;
     border-radius: 10px;
     padding: 0 15px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 8px #ddd;
     background-color: white;
     display: flex;
     align-items: center;
     position: relative;
+    width: 200px;
 }
 
 .date-picker {
@@ -15,6 +16,6 @@
     border: none;
     height: 100%;
     font-size: 1.25rem;
-    width: 100%;
+    width: 100%;   
     margin-left: 5px;
 }

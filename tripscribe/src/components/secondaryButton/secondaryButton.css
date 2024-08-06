@@ -1,0 +1,29 @@
+.buttonSecondary{
+    font-weight: bold;
+    background-color: white;
+    color: #476a6f;
+    border: 5px solid #476a6f;
+    border-radius: 20px;
+    font-size: large;
+    padding-inline: 20px;
+    width: 250px;
+    font-family: Arial, Helvetica, sans-serif;
+    /* replace above with google font */ 
+}
+
+.buttonSecondary:hover{
+    background-color: #476a6f;
+    color: white;
+    border: 5px solid #476a6f;
+    border-radius: 20px;
+    font-size: large;
+    cursor: pointer; 
+}
+
+.buttonSecondary:active{
+    background-color: white;
+    color: #476a6f;
+    border: 5px solid #476a6f;
+    border-radius: 20px;
+    font-size: large;
+}

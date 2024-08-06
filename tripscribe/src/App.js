@@ -1,9 +1,41 @@
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { LogIn } from './pages/logIn/logIn';
+import { Register } from './pages/register/register';
+import { MyTrips } from './pages/myTrips/myTrips';
+import { AddTrip } from './pages/addTrip/addTrip';
+import { EditTrip } from './pages/editTrip/editTrip';
+import { UserProfile } from './pages/userProfile/userProfile';
+import { AboutUs } from './pages/aboutUs/aboutUs';
+import {Map} from './pages/map/map';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <Router>
+        <Routes>
+          <Route path="/" element={<LogIn/>}/>
+          <Route path="/register" element={<Register/>}/>
+          <Route path="/mytrips" element={<MyTrips/>}/>
+          <Route path="/addtrip" element={<AddTrip/>}/>
+          <Route path="/edittrip" element={<EditTrip/>}/>
+          <Route path="/map" element={<Map/>}/>
+          <Route path="/userprofile" element={<UserProfile/>}/>
+          <Route path="/aboutus" element={<AboutUs/>}/>
+        </Routes>
+      </Router>
+  
+    </div>
+    );
+  }
+
+export default App;
+
+
+/*
+
+<header className="App-header">
           
         <h1>Welcome to our Travel App!</h1>
       </header>
@@ -38,8 +70,10 @@ function App() {
               <p>My favourite trip was when I backpacked South East Asia solo after uni. I did Thailand, Vietnam, Cambodia, Laos, Bali and the Philippines. It took 5 months and it was so much fun, I met so many amazing people. My favourite country was Vietnam!</p>
             </li>
         </ul>
+  
+  
       </div>
     );
   }
 
-export default App;
+export default App; */

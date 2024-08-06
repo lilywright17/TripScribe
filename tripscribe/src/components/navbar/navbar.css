@@ -20,7 +20,24 @@
     margin-left: 10px;
 }
 
-.nav-links > p:hover{
+.nav-link {
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-link svg {
+    margin-right: 8px;
+  }
+
+  .nav-link:hover {
+    font-weight: bold;
     text-decoration: underline;
     font-weight: bold;
 }
+
+.nav-link:hover svg {
+    transform: scale(1.1);
+}
+

@@ -15,7 +15,7 @@ function App() {
           </li>
           <li>
             <h2>Krystal</h2>
-              <p>Hi travellers! My favourite trip was when I went to Brazil. I ate so much and explored all over the country.</p>
+              <p>Hey poo bums! My favourite trip was when I went to Brazil. I ate soooo much.</p>
             </li>
             <li>
               <h2>Mediha</h2>

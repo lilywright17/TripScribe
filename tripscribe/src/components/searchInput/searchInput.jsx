@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import tripsArray from '../../pages/myTrips/tripsArray';
 
-const SearchInput = ({ handleKeyDown, onChange, searchQuery }) => {
+export const SearchInput = ({ handleKeyDown, onChange, searchQuery }) => {
 
 	return (
 		<div className="search-container">
@@ -20,5 +20,3 @@ const SearchInput = ({ handleKeyDown, onChange, searchQuery }) => {
 			</div>
 	)
 }
-
-export default SearchInput;

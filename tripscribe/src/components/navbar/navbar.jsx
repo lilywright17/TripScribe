@@ -3,7 +3,7 @@ import './navbar.css';
 import { Link } from 'react-router-dom';
 import {Eye, PlusSquare, MapTrifold, User} from '@phosphor-icons/react';
 
-const Navbar = () => {
+export const Navbar = () => {
   return (
     <div className="navbar">
       <h1 className="nameLogo">TripScribe</h1>

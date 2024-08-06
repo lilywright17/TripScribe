@@ -1,11 +1,11 @@
-import React, { useState,useRef } from "react";
+import React, { useState, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "./datepicker.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendar } from '@fortawesome/free-solid-svg-icons'
 
-const DatePick = ({ selected, startDate, endDate, onChange, dateFormat, placeholderText }) => {
+export const DatePick = ({ selected, startDate, endDate, onChange, dateFormat, placeholderText }) => {
   const inputRef = useRef(null);
 
   // Function to handle icon click
@@ -35,5 +35,3 @@ const DatePick = ({ selected, startDate, endDate, onChange, dateFormat, placehol
     </div>  
   );
 };
-
-export default DatePick;

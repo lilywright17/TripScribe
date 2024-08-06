@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from "../../components/navbar/navbar.jsx"
+import { Navbar } from "../../components/navbar/navbar.jsx"
 import Card from "../../components/card/card.jsx";
 // import Footer from...
 import './myTrips.css';
-import DatePick from '../../components/datepicker/datepicker.jsx';
-import CountryFilter from '../../components/filterByCountry/countryFilter.jsx';
-import CityFilter from '../../components/filterByCity/cityFilter.jsx';
-import SearchInput from '../../components/searchInput/searchInput.jsx';
+import { DatePick } from '../../components/datepicker/datepicker.jsx';
+import { CountryFilter } from '../../components/filterByCountry/countryFilter.jsx';
+import { CityFilter } from '../../components/filterByCity/cityFilter.jsx';
+import { SearchInput } from '../../components/searchInput/searchInput.jsx';
 import tripsArray from './tripsArray.js';
 import Button from '../../components/button/button.jsx';
 import editButtonImage from './images/edit_button.png';
@@ -19,7 +19,7 @@ import editButtonImage from './images/edit_button.png';
 
   
 
-const MyTrips = () => {
+export const MyTrips = () => {
 
 	const formatDate = date => {
 		date = new Date(date);
@@ -178,5 +178,4 @@ const MyTrips = () => {
 	);
   };
 
-  export default MyTrips;
 // When we click on a card we want to bring up the full post page - how?

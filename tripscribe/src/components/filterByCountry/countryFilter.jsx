@@ -3,7 +3,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 import "./countryFilter.css"
 
-const CountryFilter = ({ countries,selectedCountry, onFilterChange }) => {
+export const CountryFilter = ({ countries,selectedCountry, onFilterChange }) => {
     return (
         <div className="country-filter">
         <Autocomplete
@@ -20,5 +20,3 @@ const CountryFilter = ({ countries,selectedCountry, onFilterChange }) => {
         </div>
     );
 };
-
-export default CountryFilter;

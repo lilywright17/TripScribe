@@ -43,16 +43,18 @@ const MyTrips = () => {
         // You can now use searchResults as needed, e.g., update state, display results, etc.
     };
 	
-	
-	const [startDate, setStartDate] = useState(null);
-    const [endDate, setEndDate] = useState(null);
+	const [rangeDate, setRangeDate] = useState([null,null]);
+	const [startDate,endDate] = rangeDate;
     const [selectedCountry, setSelectedCountry] = useState('');
 	const [selectedCity, setSelectedCity] = useState('');
 	const [searchQuery, setSearchQuery] = useState('');
 	const [searchResults, setSearchResults] = useState([]);
 
     const countries = [...new Set(tripsArray.map(trip => trip.country))];
-	const cities = [...new Set(tripsArray.map(trip => trip.city))];
+	//Only the cities from the selected county will will be displayed
+	const cities = selectedCountry
+        ? [...new Set(tripsArray.filter(trip => trip.country === selectedCountry).map(trip => trip.city))]
+        : [...new Set(tripsArray.map(trip => trip.city))];
 
 	// Logic to combine and apply the filters
     const filteredTrips = tripsArray.filter((trip) => {
@@ -66,10 +68,20 @@ const MyTrips = () => {
         return matchesDateRange && matchesCountry && matchesCity;
     });
 
+	//handling the selection of the country
+	const handleSelectCountry = (country) => {
+		setSelectedCountry(country)
+		setSelectedCity('') 
+	}
+
+	//handling the selection of the country
+	const handleSelectCity = (city) => {
+		setSelectedCity(city)
+	}
+
 	// To clear the filters
 	const clearFilters = () => {
-		setStartDate(null);
-        setEndDate(null);
+		setRangeDate([null,null]);
         setSelectedCountry('');
         setSelectedCity('');
 	}
@@ -93,38 +105,33 @@ const MyTrips = () => {
 				<div className="country-filter">
 					<CountryFilter
                     	countries={countries}
-                    	onFilterChange={(country) => setSelectedCountry(country)}
+						onFilterChange={handleSelectCountry}
+						selectedCountry={selectedCountry}
                 	/>
 				</div>
 				<div className="city-filter">
 					<CityFilter
                     	cities={cities}
-                    	onFilterChange={(city) => setSelectedCity(city)}
+						onFilterChange={handleSelectCity}
+						selectedCity={selectedCity}
                 	/>
 				</div>
 				<div className="date-picker-container">
-        		<label>Start Date:</label>
-        			<DatePick
-         				selected={startDate}
-         				onChange={(date) => setStartDate(date)}
-         				dateFormat="dd/MM/yyyy"
-          				placeholderText="Start date"
-        			/>
-        		<label>End Date:</label>
-        			<DatePick
-          				selected={endDate}
-        				onChange={(date) => setEndDate(date)}
-          				dateFormat="dd/MM/yyyy"
-          				placeholderText="End date"
-        			/>
-      			</div>
+					<DatePick
+                        startDate={startDate}
+                        endDate={endDate}
+                        onChange={(update) => setRangeDate(update)}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="dd/mm/yyyy-dd/mm/yyyy"
+                    />
+      			</div> 
 				{isFilterApplied &&(<Button className="clear-button" handleClick={clearFilters}
 					text="Clear Filters"
 				/>)}
-			<SearchInput 
-				handleKeyDown={handleKeyDown} 
-				onChange={(e) => setSearchQuery(e.target.value)} 
-				searchQuery={searchQuery}/>
+				<SearchInput 
+					handleKeyDown={handleKeyDown} 
+					onChange={(e) => setSearchQuery(e.target.value)} 
+					searchQuery={searchQuery}/>
 
 		</div>
 		<div className="card-container">

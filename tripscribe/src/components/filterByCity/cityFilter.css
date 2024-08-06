@@ -1,0 +1,12 @@
+.city-filter{	
+    border-radius: 6px;
+    box-shadow: 0px 0px 8px #ddd;
+}
+
+.city-filter .MuiAutocomplete-root {
+    width: 100%; /* Ensure the Autocomplete takes full width of parent */
+}
+
+.city-filter .MuiTextField-root {
+    width: 100%; /* Ensure the TextField takes full width of parent */
+}

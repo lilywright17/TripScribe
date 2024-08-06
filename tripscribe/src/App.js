@@ -1,5 +1,4 @@
 import './App.css';
-import MyTrips from './pages/myTrips/myTrips';
 
 function App() {
   return (
@@ -39,9 +38,6 @@ function App() {
               <p>My favourite trip was when I backpacked South East Asia solo after uni. I did Thailand, Vietnam, Cambodia, Laos, Bali and the Philippines. It took 5 months and it was so much fun, I met so many amazing people. My favourite country was Vietnam!</p>
             </li>
         </ul>
-        <div>
-          <MyTrips />
-        </div>
       </div>
     );
   }

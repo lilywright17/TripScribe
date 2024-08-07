@@ -54,8 +54,8 @@ export const LogIn = () => {
         <div className="login">
             <div className="register-box">
                 <div className="register-container">
-                    <h1 className='register-text'>New here?</h1>
-                    <h2 className='register-text'>Lorem Ipsum...</h2>
+                    <h1 className='register-text'>Welcome to TripScribe!</h1>
+                    <h2 className='register-text'>Start your journey</h2>
                 </div>
                 <div className="button-container">
                     <button 

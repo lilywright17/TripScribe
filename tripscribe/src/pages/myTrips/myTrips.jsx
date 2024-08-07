@@ -11,6 +11,7 @@ import { SearchInput } from '../../components/searchInput/searchInput.jsx';
 import tripsArray from './tripsArray.js';
 import Button from '../../components/button/button.jsx';
 import editButtonImage from './images/edit_button.png';
+import Standing from './images/Standing.png';
 
 //Get trips data from SQL database, get user ID and return rows where user ID matches, store in an array of object
 
@@ -143,13 +144,18 @@ export const MyTrips = () => {
 		{tripsToRender.length === 0 ? (
 			isInitialTripsEmpty ? (
 				<div className="no-trips-container">
+					<div className="no-trips-image">
+						<img src={Standing} alt="Standing girl" />
+					</div>
+					<div className="no-trips-message">
 					<h2>Welcome!</h2>
 					<p>Lools like you have no scribles(trips) yet.<br />Click on the botton bellow and make some memories!</p>
 					<Button 
 						className="add-trip-button" 
 						handleClick={handleAddTrip}
-						text="Add Trip"
+						text="+ New Trip"
 					/>
+					</div>
 				</div>
 			) : (
 				<div className="no-results-container">

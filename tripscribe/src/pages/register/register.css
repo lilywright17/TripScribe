@@ -1,0 +1,149 @@
+.register {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.register-box, .login-box {
+    width: 50%;
+    height: 100%;
+}
+
+.register-box {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 5% 10%;
+    box-shadow: 1px 0 5px;
+    position: relative;
+    left: 0;
+}
+
+.login-box {
+    background-color: rgba(255, 255, 255, 1);
+    padding: 5% 10%;
+    box-shadow: -1px 0 5px;
+    position: relative;
+    right: 0;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    } 
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    } 
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slideInLogin {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutLogin {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.register-animation {
+    transform: translateX(-100%);
+}
+
+.register-animation.visible {
+    animation: slideIn 1s forwards;
+}
+
+.register-animation.hidden {
+    animation: slideOut 1s forwards;
+}
+
+.login-animation {
+    transform: translateX(100%);
+}
+
+.login-animation.visible {
+    animation: slideInLogin 1s forwards;
+}
+
+.login-animation.hidden {
+    animation: slideOutLogin 1s forwards;
+}
+
+.register-container, .login-container {
+    text-align: center;
+}
+
+h1 {
+    align-self: center;
+}
+
+form {
+    margin-top: 10%;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #DDDD;
+    border: none;
+}
+
+label {
+    margin-left: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: small;
+}
+
+.button-container {
+    text-align: center;
+}
+
+button {
+    margin-top: 10%;
+    border: none;
+    width: 50%;
+    padding: 15px;
+    background-color: #476A6F;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+button:hover {
+    filter: brightness(85%);
+}
+
+button:disabled {
+    opacity: 50%;
+}

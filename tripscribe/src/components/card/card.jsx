@@ -1,10 +1,18 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit }) =>{
+const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit,onClick }) =>{
+    const handleCardClick = () => {
+        onClick(); // Trigger the navigation to ViewTrip
+    };
+
+    const handleEditClick = (e) => {
+        e.stopPropagation(); // Prevents the click from propagating to the card's onClick
+        onEdit(); // Trigger the edit functionality
+    };
 
     return (
-        <div className="card">
+        <div className="card" onClick={handleCardClick}>
             <img src={imageUrl} alt={city || 'photo of city'} width={200} className="card-img"/>
             <h1>{country || 'country'}</h1>
             <h2>{city || 'town/city'}</h2>
@@ -14,7 +22,7 @@ const Card = ({ country, city, startDate, endDate, description, imageUrl,editBut
                 src={editButton} 
                 alt="Edit button" 
                 className="edit-button" 
-                onClick={onEdit}
+                onClick={handleEditClick}
                 style={{ cursor: 'pointer' }}
             />
         </div>

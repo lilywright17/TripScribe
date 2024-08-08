@@ -108,6 +108,12 @@ export const MyTrips = () => {
     navigate("/addtrip");
   };
 
+  // Viewtrip handler
+	const handleViewTrip = (trip) => {
+    console.log('View trip');
+    navigate("/viewtrip", { state: { trip } });
+  };
+
   const tripsToRender =
     searchResults.length > 0 ? searchResults : filteredTrips;
 
@@ -196,6 +202,7 @@ export const MyTrips = () => {
                 description={trip.description.substring(0, 250)} // The text will need to be limited to a certain number of characters to fit in the card component
                 editButton={editButtonImage}
                 onEdit={() => handleEdit(trip)}
+				onClick={() => handleViewTrip(trip)}
               />
             ))}
           </div>

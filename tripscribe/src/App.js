@@ -8,6 +8,7 @@ import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import {Map} from './pages/map/map';
+import { ViewTrip } from './pages/viewTrip/viewTrip';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<LogIn/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/mytrips" element={<MyTrips/>}/>
+          <Route path="/viewtrip" element={<ViewTrip />} />
           <Route path="/addtrip" element={<AddTrip/>}/>
           <Route path="/edittrip" element={<EditTrip/>}/>
           <Route path="/map" element={<Map/>}/>

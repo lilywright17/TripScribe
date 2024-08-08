@@ -1,13 +1,13 @@
 import React from 'react';
 import {Navbar} from '../../components/navbar/navbar';
 import {AddTripForm} from './addTripForm';
-import { AddTripImgUpload } from './addTripImgUpload';
+import AddTripWidget from './addTripWidget';
 
 export const AddTrip = () => { 
     return (
         <>
             <Navbar />
-            <AddTripImgUpload / >
+            <AddTripWidget />
             <AddTripForm/>
         </>
         

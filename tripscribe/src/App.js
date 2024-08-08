@@ -8,6 +8,7 @@ import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import {Map} from './pages/map/map';
+import {Footer} from './components/footer/footer';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/userprofile" element={<UserProfile/>}/>
           <Route path="/aboutus" element={<AboutUs/>}/>
         </Routes>
+          <Footer/>
       </Router>
   
     </div>

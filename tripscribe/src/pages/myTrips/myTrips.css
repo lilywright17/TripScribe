@@ -19,10 +19,15 @@
 }
 .country-filter {
   width: 200px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px #ddd;
 }
 .city-filter {
   width: 200px;
+  border-radius: 6px;
+  box-shadow: 0px 0px 8px #ddd;
 }
+
 .date-picker-container {
   display: flex;
   align-items: center;

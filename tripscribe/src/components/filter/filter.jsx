@@ -1,21 +1,22 @@
 import React from 'react';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
-import "./countryFilter.css"
+// import "./countryFilter.css"
 
-export const CountryFilter = ({ countries,selectedCountry, onFilterChange }) => {
+export const Filter = ({ choice,selectedOption, onFilterChange, label }) => {
     return (
-        <div className="country-filter">
+        <div className="filter">
         <Autocomplete
-            options={countries}
+            options={choice}
             getOptionLabel={(option) => option}
-            value={selectedCountry || null}
+            value={selectedOption || null}
             onChange={(_, value) => onFilterChange(value)}
             renderInput={(params) => (
                 <TextField {...params} 
-                    label="Country" 
+                    label={label} 
                     variant="outlined" 
-                    />)}
+                    />
+                )}
         />
         </div>
     );

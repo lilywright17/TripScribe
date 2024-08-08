@@ -9,6 +9,7 @@ import { UserProfile } from './pages/userProfile/userProfile';
 import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import {Map} from './pages/map/map';
+import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
 import {Footer} from './components/footer/footer';
 
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<LogIn/>}/>
           <Route path="/register" element={<Register/>}/>
           <Route path="/mytrips" element={<MyTrips/>}/>
+          <Route path="/tripdetails" element={<TripDetails />} />
           <Route path="/addtrip" element={<AddTrip/>}/>
           <Route path="/edittrip" element={<EditTrip/>}/>
           <Route path="/map" element={<Map/>}/>
@@ -75,4 +77,9 @@ export default App;
             </li>
         </ul>
   
-*/
+  
+      </div>
+    );
+  }
+
+export default App; */

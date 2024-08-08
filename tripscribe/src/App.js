@@ -9,6 +9,7 @@ import { UserProfile } from './pages/userProfile/userProfile';
 import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import {Map} from './pages/map/map';
+import {Footer} from './components/footer/footer';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
           <Route path="/userProfileEdit" element={<UserProfileEdit />}/>
           <Route path="/aboutus" element={<AboutUs/>}/>
         </Routes>
+          <Footer/>
       </Router>
   
     </div>

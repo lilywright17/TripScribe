@@ -9,7 +9,8 @@ import { UserProfile } from './pages/userProfile/userProfile';
 import {Map} from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
 import {Footer} from './components/footer/footer';
-
+import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
+import { AboutUs } from './pages/aboutUs/aboutUs';
 
 function App() {
   return (

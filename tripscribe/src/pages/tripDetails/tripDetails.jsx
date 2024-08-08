@@ -1,12 +1,12 @@
 import React from "react";
 import { useLocation } from 'react-router-dom';
 
-export const ViewTrip = () => {
+export const TripDetails = () => {
     const location = useLocation();
     
     return (
         <div>
-            <h1>This is ViewTrip page</h1>
+            <h1>This is Trip Details page</h1>
         </div>
     );
 }

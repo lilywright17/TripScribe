@@ -6,7 +6,7 @@ import {XLogo, FacebookLogo,InstagramLogo } from '@phosphor-icons/react';
 export const Footer = () => {
     return (
         <div className="footer">
-            <p> <Link to="/aboutUs" className="footer-link"> ABOUT US </Link> </p>
+            <p className="p-about-us"> <Link to="/aboutUs" className="footer-link"> ABOUT US </Link> </p>
             
             <div className="footer-links"> 
                 <Link to="https://x.com/home" className="footer-link"><XLogo size={32} /></Link>
@@ -14,7 +14,7 @@ export const Footer = () => {
                 <Link to="https://www.instagram.com/" className="footer-link"><InstagramLogo size={32} /></Link>
             </div>
 
-            <p>Copyright © 2024 Team5</p> 
+            <p className="p-copyright">Copyright © 2024 Team5</p> 
 
         </div>
     );

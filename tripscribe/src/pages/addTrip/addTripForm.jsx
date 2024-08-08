@@ -119,7 +119,7 @@ export const AddTripForm = () => {
                         
                         <div className="textAreaContainer">
                             <label htmlFor="description">Description</label>
-                            <textarea 
+                            <textarea className="text-description"
                                 id="description" 
                                 name="description" 
                                 rows="8" 

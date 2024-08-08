@@ -30,12 +30,12 @@ export const LogIn = () => {
             event.preventDefault();
 
             try {
-                const response = await fetch('/api/submit-form', {
+                const response = await fetch('/api/login', {
                     method: 'POST',
                     body: JSON.stringify({email, password}),
                     headers: {
                         "Content-Type": 'application/json',
-                    },
+                    }
                 });
 
                 const result = await response.json();
@@ -103,6 +103,7 @@ export const LogIn = () => {
                     <button 
                         type="submit" 
                         disabled={!validateForm()}
+                        // onClick={handleSubmit}
                     >
                         LOG IN
                     </button>

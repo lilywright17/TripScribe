@@ -1,4 +1,7 @@
-.buttonPrimary{
+.buttonPrimary {
+    display: flex;  /* Flexbox for alignment */
+    align-items: center;  /* Center items vertically */
+    justify-content: center;  /* Center items horizontally */
     font-weight: bold;
     background-color: #476a6f;
     color: white;
@@ -8,24 +11,25 @@
     padding-inline: 20px;
     width: 250px;
     font-family: Arial, Helvetica, sans-serif;
-    /* replace above with google font */ 
+    text-decoration: none;  
 }
 
-.buttonPrimary:hover{
+.buttonPrimary:hover {
     background-color: white;
     color: #476a6f;
     border: 5px solid #476a6f;
-    border-radius: 20px;
-    font-size: large;
     cursor: pointer; 
 }
 
-.buttonPrimary:active{
+.buttonPrimary:active {
     background-color: #476a6f;
     color: white;
     border: 5px solid #476a6f;
-    border-radius: 20px;
-    font-size: large;
-    font-family: Arial, Helvetica, sans-serif;
-    /* replace above with google font */ 
 }
+
+.button-icon {
+    margin-right: 8px;  
+    display: flex;
+    align-items: center;
+}
+

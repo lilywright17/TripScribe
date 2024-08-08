@@ -1,9 +1,13 @@
 import React from "react";
+import { Navbar } from "../../components/navbar/navbar";
+import { UserProfileView } from "./userProfileView";
+
 
 export const UserProfile = () => {
     return (
-        <div>
-            <h1>This is UserProfile page</h1>
-        </div>
-    );
-}
+        <>
+            <Navbar />
+            <UserProfileView />
+        </>
+    )
+};

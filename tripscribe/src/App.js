@@ -6,41 +6,8 @@ import { MyTrips } from './pages/myTrips/myTrips';
 import { AddTrip } from './pages/addTrip/addTrip';
 import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
-import { Map } from './pages/map/map';
-
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Register />} />
-          <Route path="/login" element={<LogIn />} />
-          <Route path="/mytrips" element={<MyTrips />} />
-          <Route path="/addtrip" element={<AddTrip />} />
-          <Route path="/edittrip" element={<EditTrip />} />
-          <Route path="/map" element={<Map />} />
-          <Route path="/userprofile" element={<UserProfile />} />
-        </Routes>
-      </Router>
-    </div>
-  );
-}
-
-export default App;
-
-
-
-
-/*
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { LogIn } from './pages/logIn/logIn';
-import { Register } from './pages/register/register';
-import { MyTrips } from './pages/myTrips/myTrips';
-import { AddTrip } from './pages/addTrip/addTrip';
-import { EditTrip } from './pages/editTrip/editTrip';
-import { UserProfile } from './pages/userProfile/userProfile';
 import {Map} from './pages/map/map';
+import {Footer} from './components/footer/footer';
 
 
 function App() {
@@ -55,77 +22,10 @@ function App() {
           <Route path="/edittrip" element={<EditTrip/>}/>
           <Route path="/map" element={<Map/>}/>
           <Route path="/userprofile" element={<UserProfile/>}/>
+          <Route path="/userProfileEdit" element={<UserProfileEdit />}/>
+          <Route path="/aboutus" element={<AboutUs/>}/>
         </Routes>
-      </Router>
-  
-    </div>
-    );
-  }
-
-export default App;
-
-/*
-import React, { useState } from 'react';
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { LogIn } from './pages/logIn/logIn';
-import { Register } from './pages/register/register';
-import { MyTrips } from './pages/myTrips/myTrips';
-import { AddTrip } from './pages/addTrip/addTrip';
-import { EditTrip } from './pages/editTrip/editTrip';
-import { UserProfile } from './pages/userProfile/userProfile';
-import { Map } from './pages/map/map';
-
-function App() {
-    const [isRegisterVisible, setIsRegisterVisible] = useState(false);
-
-    const showRegister = () => setIsRegisterVisible(true);
-    const showLogin = () => setIsRegisterVisible(false);
-
-    return (
-        <div className="App">
-            <Router>
-                <Routes>
-                    <Route path="/" element={isRegisterVisible ? <Register toLogin={showLogin} /> : <LogIn toRegister={showRegister} />} />
-                    <Route path="/mytrips" element={<MyTrips />} />
-                    <Route path="/addtrip" element={<AddTrip />} />
-                    <Route path="/edittrip" element={<EditTrip />} />
-                    <Route path="/map" element={<Map />} />
-                    <Route path="/userprofile" element={<UserProfile />} />
-                </Routes>
-            </Router>
-        </div>
-    );
-}
-
-export default App;
-
-
-/*
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { LogIn } from './pages/logIn/logIn';
-import { Register } from './pages/register/register';
-import { MyTrips } from './pages/myTrips/myTrips';
-import { AddTrip } from './pages/addTrip/addTrip';
-import { EditTrip } from './pages/editTrip/editTrip';
-import { UserProfile } from './pages/userProfile/userProfile';
-import {Map} from './pages/map/map';
-
-
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<LogIn/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/mytrips" element={<MyTrips/>}/>
-          <Route path="/addtrip" element={<AddTrip/>}/>
-          <Route path="/edittrip" element={<EditTrip/>}/>
-          <Route path="/map" element={<Map/>}/>
-          <Route path="/userprofile" element={<UserProfile/>}/>
-        </Routes>
+          <Footer/>
       </Router>
   
     </div>

@@ -12,16 +12,16 @@ export const AboutUs = () => {
             id:1,
             firstName: "Precious",
             lastName: "Joveres",
-            info: "Precious info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "Hey, I'm Precious from Littlehampton, UK. When I was younger I was able to road-trip around the US and Europe, as well as visit Hong Kong and the Philippines, my home country. Now that I'm older, I'm hoping to collect a tattoo from every country I visit!",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-            emoji: "🌟"
+            emoji: "🤠"
 
         },
         {
             id:2,
             firstName: "Krystal",
             lastName: "Lake",
-            info: "Krystal info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "Hi, I'm Krystal. I love traveling because it lets me experience different cultures and meet new people. Exploring new places, whether it's nature or historic sites, broadens my perspective and adds excitement to my life. Traveling offers both adventure and relaxation, helping me grow personally and appreciate the world’s beauty.",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
             emoji: "💎"
         },
@@ -29,7 +29,7 @@ export const AboutUs = () => {
             id:3,
             firstName: "Mediha",
             lastName: "Mustafova",
-            info: "Mediha info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "Hi, I'm Mediha. I recently escaped the busy life of London and moved to Essex. Growing up in the countryside, I love spending time in nature, having picnics, and gardening. When I travel I never miss an opportunity to visit the local botanical garden, try the local cuisine and gather cooking inspirations.",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
             emoji: "🐣"
         },
@@ -37,7 +37,7 @@ export const AboutUs = () => {
             id:4,
             firstName: "Victoria",
             lastName: "Proano",
-            info: "Victoria info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "¡Hola mundo! I live in Madrid with my beloved dog, Llum. I enjoy traveling, discovering new cuisines, and meeting diverse cultures. I prefer the countryside for its nature and fresh air, but if I am visiting a city, I love exploring its museums and libraries.",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
             emoji: "🎃"
         },
@@ -53,7 +53,7 @@ export const AboutUs = () => {
             id:6,
             firstName: "Katie",
             lastName: "Williams",
-            info: "Katie info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "Hi, I'm Katie! I live in the a quiet little town in the North West of England! I love to travel, bake and decorate my house with my latest lego builds! I can often be found out on a walk in the countryside with friends or curled up on the sofa with a good book!",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
             emoji: "🧁"
         },
@@ -61,7 +61,7 @@ export const AboutUs = () => {
             id:7,
             firstName: "Lily",
             lastName: "Wright",
-            info: "Lily info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "Hi I'm Lily, I live in Manchester with my 2 cats Dotty and Teddy. I love travelling and experiencing new cultures, and have spent time backpacking around Europe and Asia, as well as living in Australia for 3 years. When I'm not working or travelling, I enjoy knitting, reading, eating out with friends, and yoga.",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
             emoji: "🌸"
         }

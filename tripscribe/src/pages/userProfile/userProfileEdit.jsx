@@ -1,9 +1,19 @@
-//import React
-//mport Input from "../../components/input/input";
+import React from 'react';
+//Import Input from "../../components/input/input";
 //import Button from "../../components/button/button";
 //import "./userProfile.css";
 
-   
+
+
+export const UserProfileEdit = () => {
+    return (
+        <div>
+            <h1>Edit Profile Page</h1>
+           
+        </div>
+    );
+}; 
+
 //export const UserProfileEdit = () => {
 /*const [isEditing, setIsEditing] = useState(false);
   

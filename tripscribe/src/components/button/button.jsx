@@ -1,12 +1,14 @@
 import React from 'react';
 import './button.css';
 
-const Button = ({text, handleClick, style }) => {
+const Button = ({text, handleClick, style, icon }) => {
   return (
     <div>
       <button 
         className={`buttonPrimary`} onClick={handleClick} style={style}>
-          {text}
+         
+         {icon && <span className="button-icon">{icon}</span>}
+         {text}
       </button>
     </div>
   );

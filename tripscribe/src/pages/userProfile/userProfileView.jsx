@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../../components/input/input";
 import Button from "../../components/button/button";
 import Standing from "./Standing.svg";
 import Humaaan from "./Humaaan.svg";
-import "./userProfile.css";
+import { NotePencil } from "@phosphor-icons/react";
+import './userProfile.css'
 
 export const UserProfileView = () => {
     //TODO: enable edit view- review value - replace with data form userTables
+    const navigate = useNavigate();
+
+    const handleEditProfileClick = () => {
+        navigate('/userProfileEdit');
+    };
+    
     return (
       <>
         <div className="userProfilePage">
@@ -19,11 +27,14 @@ export const UserProfileView = () => {
                   <Input id= 'emailUserProfileView' labelText='Email'  value='janedo@travelscribe.com' readOnly />
                   <Input id= 'passwordUserProfileView' labelText='Password'  value='********' readOnly /> 
                   <div className='buttonContainer'>
-                      <Button text="EDIT"  />
+                      <Button 
+                      icon={<NotePencil size={24} weight='bold' padding='' />} 
+                      text='EDIT PROFILE'
+                      handleEditProfileClick={handleEditProfileClick}  
+                      />
                   </div>
                 </div>
               </div>
-  
             </div>
           <div className='userProfileLeftSection'>
               <div className='userProfileIllustration'>

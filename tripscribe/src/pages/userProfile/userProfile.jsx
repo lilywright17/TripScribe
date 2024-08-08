@@ -8,8 +8,6 @@ export const UserProfile = () => {
         <>
             <Navbar />
             <UserProfileView />
-
-            
         </>
     )
 };

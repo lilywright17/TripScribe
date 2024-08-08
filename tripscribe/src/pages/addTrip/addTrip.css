@@ -51,12 +51,15 @@ textarea {
 
 
 
-
 /* Img Uploader */
 .cardImgUpload {
-    padding: 10px;
-    box-shadow: 0 0 5px #ffdfdf;
     overflow: hidden;
+    margin: 0 auto;
+    padding: 10px;
+    width: calc(100% - 160px); /* Calculate width based on viewport width */
+    max-width: 500px; 
+    height: calc(100% - 160px); /* Calculate height based on viewport height */
+    max-height: 500px; 
 }
 
 .cardImgUpload p {
@@ -82,7 +85,7 @@ textarea {
     align-items: center;
 }
 
-.iconArea img{
+.iconArea {
     width: 28px;
     height: 28px;
 }
@@ -161,3 +164,4 @@ textarea {
     z-index: 999;
     color: #0086fe;
 }
+

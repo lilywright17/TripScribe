@@ -6,6 +6,7 @@ import SecondaryButton from "../../components/secondaryButton/secondaryButton";
 import { ArrowLeft } from '@phosphor-icons/react';
 import Modal from 'react-modal';
 import "./addTrip.css";
+import { AddTripImgUpload } from "./addTripImgUpload";
 
 Modal.setAppElement('#root');
 
@@ -13,8 +14,9 @@ export const AddTripForm = () => {
     const [descriptionLength, setDescriptionLength] = useState(0);
     const [errors, setErrors] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [images, setImages] = useState([]); // State to hold images
     const maxLength = 200;
-    const navigate = useNavigate();  // Initialize the useNavigate hook
+    const navigate = useNavigate();// Initialize the useNavigate hook
 
     const handleDescriptionChange = (e) => {
         setDescriptionLength(e.target.value.length);
@@ -55,8 +57,9 @@ export const AddTripForm = () => {
             return;
         }
 
-        // NEEED TO SEND FORM DATA TO THE DATABASE
-    
+        uploadImages();
+        console.log(data)        // NEEED TO SEND FORM DATA TO THE DATABASE
+
         setModalIsOpen(true);
         e.target.reset();
 
@@ -67,9 +70,15 @@ export const AddTripForm = () => {
         navigate("/mytrips");
     };
 
+    const uploadImages = () => {
+        console.log('Images: ', images);
+        //TODO: (Vic) need to research on how to add the logic to upload images cloudinary
+    };
+
     return (
         <>
             <form onSubmit={handleSubmit}>
+            <AddTripImgUpload images={images} setImages={setImages} />
                 <div className='addTripForm'>
                     <div className="formContainer">
                         <div className="inputColumn">
@@ -127,7 +136,6 @@ export const AddTripForm = () => {
                         </div>
                     </div>
                 </div>
-                
                 <div className="buttonContainer">
                     <SecondaryButton 
                         text="MY TRIPS" 

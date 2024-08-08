@@ -1,22 +1,15 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import './register.css';
 
-export const Register = ({ toLogin }) => {
+export const Register = () => {
+    const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [registerVisibility, setRegisterVisibility] = useState(false);
-
-    useEffect(() => {
-        setRegisterVisibility(true);
-    }, []);
+    const [isRegistering, setIsRegistering] = useState(false);
 
     function validateForm() {
-        return email.length > 5 && password.length > 7 && validateEmail(email);
-    }
-
-    function validateRegisterForm() {
-        return validateForm() && password === confirmPassword;
+        return username.length > 0 && email.length > 5 && password.length > 7 && password === confirmPassword && validateEmail(email);
     }
 
     const validateEmail = (email) => {
@@ -26,84 +19,135 @@ export const Register = ({ toLogin }) => {
     };
 
     const handleSubmit = useCallback(async (event) => {
-            event.preventDefault();
+        event.preventDefault();
 
-            try {
-                const response = await fetch('/api/register', {
-                    method: 'POST',
-                    body: JSON.stringify({ email, password }),
-                    headers: {
-                        "Content-Type": 'application/json',
-                    },
-                });
+        try {
+            const response = await fetch('/api/register', {
+                method: 'POST',
+                body: JSON.stringify({ username, email, password }),
+                headers: {
+                    "Content-Type": 'application/json',
+                },
+            });
 
-                const result = await response.json();
-                console.log('Register Success: ', result);
-            } catch (error) {
-                console.error('Register Error: ', error);
-            }
-        }, [email, password]);
+            const result = await response.json();
+            console.log('Success: ', result);
+        } catch (error) {
+            console.error('Error: ', error);
+        }
+    }, [username, email, password]);
+
+    const toggleForm = () => {
+        setIsRegistering(!isRegistering);
+    }
 
     return (
         <div className="register">
-            <div className={`register-box register-animation ${registerVisibility ? 'visible' : 'hidden'}`}>
+            <div className={`register-box register-animation ${isRegistering ? 'visible' : 'hidden'}`}>
                 <div className='register-container'>
                     <h1>Sign Up</h1>
-                </div>
-                
-                <form onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="register-email">Email</label>
-                        <input
-                            autoFocus
-                            type="email"
-                            id="register-email"
-                            placeholder="Enter your email here"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <input
+                                autoFocus
+                                type="text"
+                                id="username"
+                                placeholder="Enter your username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="register-password">Password</label>
-                        <input
-                            type="password"
-                            id="register-password"
-                            placeholder="Enter your password here"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
 
-                    <div className="form-group">
-                        <label htmlFor="confirm-password">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirm-password"
-                            placeholder="Confirm your password here"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                    </div>
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
 
+                        <div className="form-group">
+                            <label htmlFor="confirmPassword">Confirm Password</label>
+                            <input
+                                type="password"
+                                id="confirmPassword"
+                                placeholder="Confirm your password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                            />
+                        </div>
+
+                        <div className='button-container'>
+                            <button
+                                type="submit"
+                                disabled={!validateForm()}
+                            >
+                                REGISTER
+                            </button>
+                        </div>
+                    </form>
                     <div className='button-container'>
-                        <button type="submit" disabled={!validateRegisterForm()}>
-                            REGISTER
-                        </button>
+                        <button onClick={toggleForm}>Back to Login</button>
                     </div>
-                </form>
+                </div>
             </div>
 
-            <div className="login-box">
-                <div className="login-container">
-                    <h1>Welcome to TripScribe!</h1>
-                </div>
-                <div className="button-container">
-                    <button className='login-button' onClick={toLogin}>
-                        LOG IN
-                    </button>
+            <div className={`login-box login-animation ${isRegistering ? 'hidden' : 'visible'}`}>
+                <div className='login-container'>
+                    <h1>Sign In</h1>
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            <label htmlFor="email">Email</label>
+                            <input
+                                autoFocus
+                                type="email"
+                                id="email"
+                                placeholder="Enter your email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="password">Password</label>
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                            />
+                        </div>
+
+                        <div className='button-container'>
+                            <button
+                                type="submit"
+                                disabled={!validateForm()}
+                            >
+                                LOG IN
+                            </button>
+                        </div>
+                    </form>
+                    <div className='button-container'>
+                        <button onClick={toggleForm}>REGISTER</button>
+                    </div>
                 </div>
             </div>
         </div>
     );
-};
+}

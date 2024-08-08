@@ -61,7 +61,7 @@
     font-size: 300%;
 }
 
-.register-button {
+.login .register-button {
     background-color: white;
     color: #476A6F;
     border: 2px solid #476A6F;
@@ -74,11 +74,11 @@
     text-align: center;
 }
 
-h1 {
+.h-signin {
     align-self: center;
 }
 
-form {
+.form-submit {
     margin-top: 10%;
     flex-direction: column;
     width: 300px;
@@ -88,11 +88,14 @@ form {
     margin-bottom: 15px;
 }
 
-label {
+.label-input {
     margin-bottom: 5px;
+    margin-left: 10px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: small;
 }
 
-input {
+.input {
     width : 100%;
     padding: 15px;
     box-sizing: border-box;
@@ -101,17 +104,11 @@ input {
     border: none;
 }
 
-label {
-    margin-left: 10px;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: small;
-}
-
 .button-container {
     text-align: center;
 }
 
-button {
+ .login button{
     margin-top: 10%;
     border: none;
     width: 50%;
@@ -124,10 +121,10 @@ button {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-button:hover {
+.login button:hover {
     filter: brightness(85%);
 }
 
-button:disabled {
+.login button:disabled {
     opacity: 50%;
 }

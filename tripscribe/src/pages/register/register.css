@@ -89,11 +89,11 @@
     text-align: center;
 }
 
-h1 {
+.register h1 {
     align-self: center;
 }
 
-form {
+.register form {
     margin-top: 10%;
     flex-direction: column;
     width: 300px;
@@ -104,11 +104,11 @@ form {
     margin-bottom: 15px;
 }
 
-label {
+.register label {
     margin-bottom: 5px;
 }
 
-input {
+.register input {
     width: 100%;
     padding: 15px;
     box-sizing: border-box;
@@ -117,7 +117,7 @@ input {
     border: none;
 }
 
-label {
+.register label {
     margin-left: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: small;
@@ -127,7 +127,7 @@ label {
     text-align: center;
 }
 
-button {
+.register button {
     margin-top: 10%;
     border: none;
     width: 50%;
@@ -140,10 +140,10 @@ button {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-button:hover {
+.register button:hover {
     filter: brightness(85%);
 }
 
-button:disabled {
+.register button:disabled {
     opacity: 50%;
 }

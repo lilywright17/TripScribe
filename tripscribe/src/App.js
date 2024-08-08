@@ -6,8 +6,6 @@ import { MyTrips } from './pages/myTrips/myTrips';
 import { AddTrip } from './pages/addTrip/addTrip';
 import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
-import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
-import { AboutUs } from './pages/aboutUs/aboutUs';
 import {Map} from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
 import {Footer} from './components/footer/footer';
@@ -37,6 +35,9 @@ function App() {
   }
 
 export default App;
+
+
+
 
 
 /*

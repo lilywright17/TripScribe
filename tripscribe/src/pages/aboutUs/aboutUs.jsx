@@ -45,9 +45,9 @@ export const AboutUs = () => {
             id:5,
             firstName: "Marta",
             lastName: "Walters",
-            info: "Marta info here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.",
+            info: "Hi, I'm Marta. I live in London with my two kids and a husband. I’ve always loved travelling and having kids didn’t stop me from exploring the world. When my daughter was one we went on a sabbatical to South America! I love learning about new cultures, tasting local dishes and observing the flora and fauna.",
             imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-            emoji: "🌍"
+            emoji: "🐙"
         },
         {
             id:6,

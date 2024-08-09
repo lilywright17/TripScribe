@@ -10,7 +10,7 @@ import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import tripsArray from "./tripsArray.js";
 import Button from "../../components/button/button.jsx";
-import editButtonImage from "./images/edit_button.png";
+import editButtonImage from "./images/edit_button.png"
 import Standing from "./images/Standing.png";
 
 //Get trips data from SQL database, get user ID and return rows where user ID matches, store in an array of object
@@ -111,7 +111,7 @@ export const MyTrips = () => {
   // Viewtrip handler
 	const handleTripDetails = (trip) => {
     console.log('Trip Details');
-    navigate("/tripdetails", { state: { trip } });
+    navigate("/tripdetails", { state: { country: trip.country, city: trip.city,startDate:trip.startDate,endDate: trip.endDate, images: trip.image || [], description: trip.description }});
   };
 
   const tripsToRender =
@@ -198,11 +198,11 @@ export const MyTrips = () => {
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.image}
+                imageUrl={trip.image[0]}
                 description={trip.description.substring(0, 250)} // The text will need to be limited to a certain number of characters to fit in the card component
                 editButton={editButtonImage}
                 onEdit={() => handleEdit(trip)}
-				onClick={() => handleTripDetails(trip)}
+				        onClick={() => handleTripDetails(trip)}
               />
             ))}
           </div>

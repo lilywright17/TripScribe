@@ -10,8 +10,8 @@ export const CustomPhoto = ({ url }) => {
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
   // Determine the size of the CustomPhoto based on screen size using ternary logic
-  const photoWidth = isSm ? "200px" : isMd ? "300px" : "350px";
-  const photoHeight = isSm ? "180px" : isMd ? "220px" : "280px";
+   const photoWidth = isSm ? '60%' : isMd ? '80%' : '60%';
+   const photoHeight = isSm ? "180px" : isMd ? "220px" : "280px";
 
   return (
     <Paper
@@ -19,7 +19,7 @@ export const CustomPhoto = ({ url }) => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        height: photoHeight,
+        height: "100%",
         width: photoWidth,
         borderRadius: "12px",
         overflow: "hidden",
@@ -32,7 +32,7 @@ export const CustomPhoto = ({ url }) => {
           width: "100%",
           objectFit: "cover",
           borderRadius: "12px",
-          height: "100%",
+          height: photoHeight,
           objectFit: "cover",
           display: "block",
         }}

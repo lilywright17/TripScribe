@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
 import Box from "@mui/material/Box";
@@ -6,6 +6,7 @@ import { Navbar } from "../../components/navbar/navbar.jsx";
 import Button from "../../components/button/button.jsx";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
+import { PopDialog } from "../../components/dialog/dialog.jsx";
 import "./tripDetails.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import editButtonImage from "../myTrips/images/edit_button.png";
@@ -23,11 +24,24 @@ export const TripDetails = ({ trip }) => {
     description,
   } = location.state || {};
 
+  const [dialogOpen,setDialogOpen] = useState(false);
+
+  const handleDeleteIconClick = () => {
+    setDialogOpen(true);
+    console.log("Delete Icon!");
+  }
   //console.log("Images:", images);
+  
   // TO BE COMPLETED!
   const handleDelete = () => {
-    console.log("Delete!");
+    console.log("Delete button!");
+    setDialogOpen(false);
   };
+
+  const handleCancel = () => {
+    setDialogOpen(false);
+    console.log("Cancel button!");
+  }
 
   const handleEdit = () => {
     console.log("Edit!");
@@ -74,7 +88,16 @@ export const TripDetails = ({ trip }) => {
       </div>
       <p className="description">{description}</p>
       <div className="delete-icon">
-        <DeleteIcon onClick={handleDelete} />
+        <DeleteIcon onClick={handleDeleteIconClick} />
+          <PopDialog
+          open={dialogOpen}
+          handleClose = {handleCancel}
+          handleDelete = {handleDelete}
+          title="Delete file?"
+          content = "Deleting this trip will be be permanent?"
+          agreeBtnText ="DELETE"
+          disagreeBtnText="CANCEL"
+          />
       </div>
       <div className="button-container">
         <Button
@@ -86,7 +109,7 @@ export const TripDetails = ({ trip }) => {
             height: "50px",
             borderRadius: "26px",
             backgroundColor: "white",
-            color: "black",
+            color: "#476A6F",
             borderWidth: "2px",
             borderStyle: "solid",
             borderColor: "#476A6F",

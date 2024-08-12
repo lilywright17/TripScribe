@@ -1,11 +1,16 @@
 import React from 'react';
 import './input.css';
 
-const Input = ({ labelText, inputType, placeholderText, name, style}) =>{
+const Input = ({ labelText, inputType, placeholderText, name, className, style}) =>{
   return (
     <div className='labelAndInputDiv'>
       <label className='labelText'>{labelText}</label>
-      <input className="inputField" type={inputType} placeholder={placeholderText} name={name} style={style}/>
+      <input 
+      className={`inputField ${className}`}   
+      type={inputType} 
+      placeholder={placeholderText} 
+      name={name} 
+      style={style}/>
     </div>
   );
 }

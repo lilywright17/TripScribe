@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+/*import React, { useEffect, useRef } from 'react';
 import { Cloudinary as CoreCloudinary } from 'cloudinary-core';
 
 const UploadWidgetCloudinary = ({ onUpload }) => {
@@ -41,4 +41,4 @@ const UploadWidgetCloudinary = ({ onUpload }) => {
 };
 
 
-export default UploadWidgetCloudinary;
+export default UploadWidgetCloudinary;*/

@@ -1,21 +1,35 @@
+.addTripContainer{
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
 .addTripForm {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    width: 100%;
     padding: 20px;
 }
 
 .formContainer {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 20px; /* Adjust the gap between the columns as needed */
+    gap: 100px; /* Adjust the gap between the columns as needed */
     width: 100%;
-    max-width: 800px; /* Adjust the max width as needed */
+    max-width: 800px; /* Set max width similar to cardImgUpload */
+    height: auto; /* Adjust height based on content */
 }
 
 .inputColumn {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
 }
 
 .textAreaContainer {
@@ -23,146 +37,80 @@
     flex-direction: column;
     justify-content: flex-start;
     text-align: left;
-    
 }
 
 .textAreaContainer label {
     margin-bottom: 5px;
     color: #476a6f;
-    font-weight: bold;
+    font-weight: 600;
+    padding-left: 8px;
+    padding-bottom: 8px;
 }
 
 .text-description {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgb(244, 241, 241);
-    border-radius: 8px;
-    border: 2px solid #476a6f;
-
+    font-family: inherit;
+    border-radius: 10px;
+    border: 0.5px solid #eae9e9;
+    background: rgba(221, 221, 221, 0.60); 
+    height: 80%;
+    padding-left: 8px; 
+    padding-top: 8px;
+    flex-shrink: 0;
 }
 
+.text-description::placeholder {
+    font-family: inherit;
+    font-size: 14px;
+    text-align: left;
+    padding: 8px; 
+    color: rgba(0, 0, 0, 0.5); 
+}
+
+.characterCount {
+    color: rgba(0, 0, 0, 0.5); 
+    font-size: 14px; 
+    font-family: inherit;
+    padding-left: 8px;
+    margin-top: 5px; 
+    font-style: italic; 
+    text-align: right;
+    width: 100%;
+    box-sizing: border-box;
+}
 
 .buttonContainer {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
     gap: 100px;
-    padding: 10px;
+    padding: 32px;
 }
 
 
-
-/* Img Uploader */
-.cardImgUpload {
-    overflow: hidden;
-    margin: 0 auto;
-    padding: 10px;
-    width: calc(100% - 160px); /* Calculate width based on viewport width */
-    max-width: 500px; 
-    height: calc(100% - 160px); /* Calculate height based on viewport height */
-    max-height: 500px; 
+/* Media query for tablets and small desktops */
+@media (max-width: 1024px) {
+    .formContainer {
+        gap: 40px; 
+    }
 }
 
-.cardImgUpload p {
-    font-weight: bold;
-    color: #0086fe;
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    .formContainer {
+        grid-template-columns: 1fr; /* Stack columns on top of each other */
+        gap: 20px; 
+    }
+
+    .cardImgUpload {
+        margin-bottom: 20px; 
+    }
 }
 
-.cardImgUpload button{
-    outline: 0;
-    border: 0;
-    color: #fff;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 8px 13px;
-    width: 100%;
-    background: #476A6F;
-}
+/* Media query for very small devices */
+@media (max-width: 480px) {
+    .formContainer, .cardImgUpload {
+        padding: 0 10px; 
+    }
 
-.cardImgUpload .dragArea .iconArea{
-    display: flex;
-    flex-direction:column;
-    align-items: center;
+    .formContainer {
+        gap: 10px; 
+    }
 }
-
-.iconArea {
-    width: 28px;
-    height: 28px;
-}
-.cardImgUpload .dragArea{
-    height: 150px;
-    border-radius: 5px;
-    border: 2px dashed #92C7CF;
-    color: #92C7CF;
-    font-size: 16px;
-    background: #f4f3f9;
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    -webkit-user-select: none;
-    margin-top: 10px;
-}
-
-.cardImgUpload .dragArea .visible{
-    font-size: 18px;
-}
-
-.cardImgUpload .selectImg{
-    color: #0086fe;
-    margin-left: 5px;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-.cardImgUpload .selectImg:hover{
-    opacity: 0.6;
-}
-
-.cardImgUpload .containerImg{
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    max-height: 200px;
-    overflow-y: auto;
-    margin-top: 10px;
-}
-
-.cardImgUpload .containerImg .image{
-    width: 75px;
-    margin-right: 5px;
-    height: 75px;
-    position: relative;
-    margin-bottom: 8px;
-}
-
-.cardImgUpload .containerImg .image img{
-    width: 100%;
-    height: 100%;
-    border-radius: 5px;
-}
-
-.cardImgUpload .containerImg .image span{
-    position: absolute;
-    top: -2px;
-    right: 9px;
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.cardImgUpload input, 
-.cardImgUpload .dragArea .on-drop, 
-.cardImgUpload .dragArea.dragOver .visible{
-    display: none;
-}
-
-.deleteImg{
-    z-index: 999;
-    color: #0086fe;
-}
-

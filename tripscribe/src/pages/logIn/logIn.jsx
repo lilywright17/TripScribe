@@ -1,6 +1,5 @@
 import React, {useState, useEffect, useCallback} from 'react';
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstap/Button';
+import travelBG from './travel_bg.jpg';
 
 import './login.css';
 
@@ -13,6 +12,10 @@ export const LogIn = () => {
     useEffect(() => {
         // Triggers animation when login page loads
         setLoginVisibility(true);
+
+        document.body.style.backgroundImage = `url(${travelBG})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
     }, [])
 
     function validateForm() {

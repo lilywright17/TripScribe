@@ -55,7 +55,7 @@ export const LogIn = () => {
 
     return (
         <div className="login">
-            <div className="register-box">
+            <div className="side-box">
                 <div className="register-container">
                     <h1 className='register-text'>Welcome to TripScribe!</h1>
                     <h2 className='register-text'>Start your journey</h2>
@@ -71,7 +71,7 @@ export const LogIn = () => {
             </div>
             {/* <img src={require("./travel_bg.jpg")} alt="background_travel_image"/> */}
 
-            <div className={`login-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
+            <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
                 <div className='login-container'>
                     <h1 className="h-signin">Sign In</h1>

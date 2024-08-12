@@ -4,28 +4,20 @@
     height: 100vh;
 }
 
-.register-box, .login-box {
-    width: 50%;
-    height: 100%;
-}
-
 .register-box {
-    background-color: rgba(255, 255, 255, 0.5);
-    padding: 5% 10%;
-    box-shadow: 1px 0 5px;
-    position: relative;
+    height: 100%;
+    background-color: white;
+    padding: 20%;
+    box-shadow: -1px 0 5px;   
     left: 0;
 }
 
 .login-box {
-    background-color: rgba(255, 255, 255, 1);
     padding: 5% 10%;
-    box-shadow: -1px 0 5px;
-    position: relative;
     right: 0;
 }
 
-@keyframes slideIn {
+@keyframes slideInReg {
     from {
         transform: translateX(-100%);
     } 
@@ -34,30 +26,12 @@
     }
 }
 
-@keyframes slideOut {
+@keyframes slideOutReg {
     from {
         transform: translateX(0);
     } 
     to {
         transform: translateX(-100%);
-    }
-}
-
-@keyframes slideInLogin {
-    from {
-        transform: translateX(100%);
-    }
-    to {
-        transform: translateX(0);
-    }
-}
-
-@keyframes slideOutLogin {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(100%);
     }
 }
 
@@ -66,23 +40,11 @@
 }
 
 .register-animation.visible {
-    animation: slideIn 1s forwards;
+    animation: slideInReg 1s forwards;
 }
 
 .register-animation.hidden {
-    animation: slideOut 1s forwards;
-}
-
-.login-animation {
-    transform: translateX(100%);
-}
-
-.login-animation.visible {
-    animation: slideInLogin 1s forwards;
-}
-
-.login-animation.hidden {
-    animation: slideOutLogin 1s forwards;
+    animation: slideOutReg 1s forwards;
 }
 
 .register-container, .login-container {

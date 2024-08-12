@@ -14,7 +14,8 @@ CREATE TABLE Users (
 CREATE TABLE Trips (
 	tripID INT AUTO_INCREMENT primary KEY,
     userID INT NOT NULL,
-    title VARCHAR(30) NOT NULL,
+    city VARCHAR(60) NOT NULL,
+    country VARCHAR(60) NOT NULL,
     description VARCHAR(255) NOT NULL,
     date_from DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_to DATETIME,

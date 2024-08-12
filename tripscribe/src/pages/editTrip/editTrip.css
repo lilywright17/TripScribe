@@ -1,0 +1,49 @@
+.editTripForm {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.editTripFormContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px; /* Adjust the gap between the columns as needed */
+    width: 100%;
+    max-width: 800px; /* Adjust the max width as needed */
+}
+
+.editTripInputColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.editTripTextAreaContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+}
+
+.editTripTextAreaContainer label {
+    margin-bottom: 5px;
+    color: #476a6f;
+    font-weight: bold;
+}
+
+.editTripTextDescription {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgb(244, 241, 241);
+    border-radius: 8px;
+    border: 2px solid #476a6f;
+}
+
+.editTripButtonContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 100px;
+    padding: 10px;
+}
+

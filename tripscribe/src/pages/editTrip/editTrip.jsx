@@ -1,9 +1,15 @@
 import React from "react";
+import {Navbar} from '../../components/navbar/navbar';
+import { EditTripForm } from "./editTripForm";
+
+
 
 export const EditTrip = () => {
     return (
-        <div>
-            <h1>This is EditTrip page</h1>
-        </div>
+        <>
+            <Navbar />
+            <h2>Edit Trip</h2>
+            <EditTripForm />
+        </>
     );
 }

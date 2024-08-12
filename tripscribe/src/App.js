@@ -11,6 +11,7 @@ import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
 import {Footer} from './components/footer/footer';
 import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
+import ResponsiveFooter from './components/footer/responsiveFooter';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="/userProfileEdit" element={<UserProfileEdit />}/>
           <Route path="/aboutus" element={<AboutUs/>}/>
         </Routes>
-          <Footer/>
+          <ResponsiveFooter/>
       </Router>
   
     </div>

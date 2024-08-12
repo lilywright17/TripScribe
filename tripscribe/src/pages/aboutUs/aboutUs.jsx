@@ -2,7 +2,6 @@ import React from "react";
 import './aboutUs.css';
 import linkedInLogo from './linkedInLogo.png';
 import githubLogo from './githubLogo.png';
-import ResponsiveNavbar from '../../components/responsiveNavbar/responsiveNavbar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
@@ -78,7 +77,6 @@ const usData = [
 export const AboutUs = () => {
   return (
     <>
-      <ResponsiveNavbar />
       <div className="aboutUs">
         <h1 className="aboutUsTitle">About Us</h1>
         <p className="aboutUsText">

@@ -46,6 +46,7 @@ export const LogIn = () => {
 
                 const result = await response.json();
                 console.log('Success: ', result);
+                navigate('/mytrips');
             } catch (error) {
                 console.error('Error: ', error);
             }
@@ -64,16 +65,13 @@ export const LogIn = () => {
                     <h1 className='register-text'>Welcome to TripScribe!</h1>
                     <h2 className='register-text'>Start your journey</h2>
                 </div>
-                <div className="button-container">
-                    <button 
-                        className='register-button'
-                        onClick={toRegister}
-                    >
-                        REGISTER
-                    </button>
-                </div>
+                <button 
+                    className='register-button'
+                    onClick={toRegister}
+                >
+                    REGISTER
+                </button>
             </div>
-            {/* <img src={require("./travel_bg.jpg")} alt="background_travel_image"/> */}
 
             <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
@@ -106,15 +104,12 @@ export const LogIn = () => {
                         />
                     </div>
 
-                    <div className='button-container'>
-                    <button className='button-submit'
-                        type="submit" 
-                        disabled={!validateForm()}
-                        // onClick={handleSubmit}
-                    >
-                        LOG IN
-                    </button>
-                    </div>
+                <button className='button-submit'
+                    type="submit" 
+                    disabled={!validateForm()}
+                >
+                    LOG IN
+                </button>
                 </form>
             </div>
         </div>

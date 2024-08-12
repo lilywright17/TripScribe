@@ -11,14 +11,13 @@
 }
 
 .main-box {
-    height: 100%;
+    min-height: 100%;
     background-color: white;
-    padding-top: 30%;
-    padding-right: 16%;
-    padding-left: 16%;
+    padding-right: 16vw;
+    padding-left: 16vw;
     box-shadow: -1px 0 5px;
-    position: fixed;
     right: 0;
+    position: relative;
 }
 
 @keyframes slideIn {
@@ -49,10 +48,8 @@
     animation: slideOut 1s forwards; 
 }
 
-.register-container {
-    text-align: start;
-    padding-top: 10%;
-    text-shadow: 1px 1px 2px #DDDD;
+.register-container  {
+    padding-top: 15vh;
 }
 
 .register-text {
@@ -66,11 +63,11 @@
     border: 2px solid #476A6F;
     width: 15%;
     margin-top: 0;
-    position: fixed ;
 }
 
 .login-container {
     text-align: center;
+    margin-top: 30vh;
 }
 
 .h-signin {

@@ -136,7 +136,7 @@ export const EditTripForm = () => {
                 />
                 <Button text="SAVE MY CHANGES" type="submit" />
 
-// toDo: add a delete icon/button
+{/* toDo: add a delete icon/button */}
 
             </div>
             </form>

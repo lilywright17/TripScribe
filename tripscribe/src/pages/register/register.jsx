@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './register.css';
 import travelBG from '../logIn/travel_bg.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
     const [username, setUsername] = useState('');
@@ -8,6 +9,7 @@ export const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Triggers animation when login page loads
@@ -51,6 +53,7 @@ export const Register = () => {
 
     const toLogin = () => {
         setIsRegistering(false);
+        navigate('/');
     }
 
     return (

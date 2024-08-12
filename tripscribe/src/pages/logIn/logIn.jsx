@@ -2,12 +2,15 @@ import React, {useState, useEffect, useCallback} from 'react';
 import travelBG from './travel_bg.jpg';
 
 import './login.css';
+import { useNavigate } from 'react-router-dom';
 
 export const LogIn = () => {
     // for react hooks
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginVisibility, setLoginVisibility] = useState(false);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Triggers animation when login page loads
@@ -51,6 +54,7 @@ export const LogIn = () => {
 
     const toRegister = () => {
         setLoginVisibility(false);
+        navigate('/register');
     }
 
     return (

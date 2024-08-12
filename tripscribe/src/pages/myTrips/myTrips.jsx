@@ -84,7 +84,7 @@ export const MyTrips = () => {
     setSelectedCity("");
   };
 
-  //handling the selection of the country
+  //handling the selection of the city
   const handleSelectCity = (city) => {
     setSelectedCity(city);
   };

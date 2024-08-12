@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
 import Box from "@mui/material/Box";
-import { Navbar } from "../../components/navbar/navbar.jsx";
 import Button from "../../components/button/button.jsx";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { useNavigate } from "react-router-dom";
@@ -55,7 +54,6 @@ export const TripDetails = ({ trip }) => {
 
   return (
     <div className="tripdetails">
-      <Navbar />
       <div className="title">
         <div className="title-container">
           <h1>

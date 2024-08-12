@@ -49,173 +49,166 @@ function ResponsiveNavbar() {
   };
 
   return (
-    <AppBar position="static" sx={{ bgcolor: '#476a6f' }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 20,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            TRIPSCRIBE
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+    <>
+      <AppBar position="fixed" sx={{ bgcolor: '#476a6f' }}>
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <Typography
+              variant="h6"
+              noWrap
+              component={Link}
+              to="/mytrips"
               sx={{
-                display: { xs: 'block', md: 'none' },
+                mr: 20,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography
-                    textAlign="center"
-                    component={Link}
-                    to={pageLinks[page]} 
-                    sx={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    {page}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
+              TRIPSCRIBE
+            </Typography>
 
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 4,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            TRIPSCRIBE
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                component={Link}
-                to={pageLinks[page]} 
-                onClick={handleCloseNavMenu}
-                sx={{ 
-                  my: 2, 
-                  color: 'white', 
-                  display: 'flex',
-                  alignItems: 'center',
-                  mx: 2, 
-                  fontSize: '1.2rem', 
+            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+                size="large"
+                aria-label="navigation menu"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
+              >
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
                 }}
               >
-                {page === 'My Trips' && (
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <WorkOutlineIcon sx={{ mr: 1 }} />
-                    <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                {pages.map((page) => (
+                  <MenuItem key={page} onClick={handleCloseNavMenu} component={Link} to={pageLinks[page]}>
+                    <Typography textAlign="center" sx={{ textDecoration: 'none', color: 'inherit' }}>
                       {page}
                     </Typography>
-                  </Box>
-                )}
-                {page === 'Add Trip' && (
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <AddBoxIcon sx={{ mr: 1 }} />
-                    <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
-                      {page}
-                    </Typography>
-                  </Box>
-                )}
-                {page === 'Map View' && (
-                  <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                    <MapIcon sx={{ mr: 1 }} />
-                    <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
-                      {page}
-                    </Typography>
-                  </Box>
-                )}
-              </Button>
-            ))}
-          </Box>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
 
-          <Box sx={{ flexGrow: 0, ml: 'auto' }}>
-            <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'white' }}>
-  <PersonIcon />
-</IconButton>
-
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
+            <Typography
+              variant="h5"
+              noWrap
+              component={Link}
+              to="/mytrips"
+              sx={{
+                mr: 4,
+                display: { xs: 'flex', md: 'none' },
+                flexGrow: 1,
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
               }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography
-                    textAlign="center"
-                    component={Link}
-                    to={settingsLinks[setting]} // Use the mapping object
-                    sx={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    {setting}
-                  </Typography>
-                </MenuItem>
+              TRIPSCRIBE
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  component={Link}
+                  to={pageLinks[page]} 
+                  onClick={handleCloseNavMenu}
+                  sx={{ 
+                    my: 2, 
+                    color: 'white', 
+                    display: 'flex',
+                    alignItems: 'center',
+                    mx: 2, 
+                    fontSize: '1.2rem', 
+                  }}
+                >
+                  {page === 'My Trips' && (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <WorkOutlineIcon sx={{ mr: 1 }} />
+                      <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                        {page}
+                      </Typography>
+                    </Box>
+                  )}
+                  {page === 'Add Trip' && (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <AddBoxIcon sx={{ mr: 1 }} />
+                      <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                        {page}
+                      </Typography>
+                    </Box>
+                  )}
+                  {page === 'Map View' && (
+                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                      <MapIcon sx={{ mr: 1 }} />
+                      <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                        {page}
+                      </Typography>
+                    </Box>
+                  )}
+                </Button>
               ))}
-            </Menu>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
+            </Box>
+
+            <Box sx={{ flexGrow: 0, ml: 'auto' }}>
+              <Tooltip title="Open settings">
+                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0, color: 'white' }}>
+                  <PersonIcon />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: '45px' }}
+                id="menu-appbar-user"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {settings.map((setting) => (
+                  <MenuItem key={setting} onClick={handleCloseUserMenu} component={Link} to={settingsLinks[setting]}>
+                    <Typography textAlign="center" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                      {setting}
+                    </Typography>
+                  </MenuItem>
+                ))}
+              </Menu>
+            </Box>
+          </Toolbar>
+        </Container>
+      </AppBar>
+      {/* Placeholder div to prevent content from being hidden under the fixed navbar */}
+      <div style={{ marginTop: '64px' }}></div>
+    </>
   );
 }
 

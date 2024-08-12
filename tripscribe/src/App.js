@@ -8,33 +8,43 @@ import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
 import {Map} from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
-import {Footer} from './components/footer/footer';
 import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import ResponsiveFooter from './components/footer/responsiveFooter';
+import ResponsiveNavbar from './components/responsiveNavbar/responsiveNavbar';
 
 function App() {
   return (
-    <div className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<LogIn/>}/>
-          <Route path="/register" element={<Register/>}/>
-          <Route path="/mytrips" element={<MyTrips/>}/>
-          <Route path="/tripdetails" element={<TripDetails />} />
-          <Route path="/addtrip" element={<AddTrip/>}/>
-          <Route path="/edittrip" element={<EditTrip/>}/>
-          <Route path="/map" element={<Map/>}/>
-          <Route path="/userprofile" element={<UserProfile/>}/>
-          <Route path="/userProfileEdit" element={<UserProfileEdit />}/>
-          <Route path="/aboutus" element={<AboutUs/>}/>
-        </Routes>
-          <ResponsiveFooter/>
-      </Router>
-  
-    </div>
-    );
-  }
+    <Router>
+      <Routes>
+        <Route path="/" element={<PageWithNavbarExcluded component={<LogIn />} />} />
+        <Route path="/register" element={<PageWithNavbarExcluded component={<Register />} />} />
+        <Route path="/mytrips" element={<PageWithNavbar component={<MyTrips />} />} />
+        <Route path="/tripdetails" element={<PageWithNavbar component={<TripDetails />} />} />
+        <Route path="/addtrip" element={<PageWithNavbar component={<AddTrip />} />} />
+        <Route path="/edittrip" element={<PageWithNavbar component={<EditTrip />} />} />
+        <Route path="/map" element={<PageWithNavbar component={<Map />} />} />
+        <Route path="/userprofile" element={<PageWithNavbar component={<UserProfile />} />} />
+        <Route path="/userProfileEdit" element={<PageWithNavbar component={<UserProfileEdit />} />} />
+        <Route path="/aboutus" element={<PageWithNavbar component={<AboutUs />} />} />
+      </Routes>
+      <ResponsiveFooter />
+    </Router>
+  );
+}
+
+function PageWithNavbar({ component }) {
+  return (
+    <>
+      <ResponsiveNavbar />
+      {component}
+    </>
+  );
+}
+
+function PageWithNavbarExcluded({ component }) {
+  return component;
+}
 
 export default App;
 

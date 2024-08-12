@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
-import { Navbar } from "../../components/navbar/navbar.jsx";
 import Card from "../../components/card/card.jsx";
 // import Footer from...
 import "./myTrips.css";
@@ -121,7 +120,6 @@ export const MyTrips = () => {
 
   return (
     <div>
-      <Navbar></Navbar>
       <div>
         <div className="filters-container">
           <div></div>

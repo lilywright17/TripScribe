@@ -74,14 +74,14 @@ export const LogIn = () => {
             <div className={`login-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
                 <div className='login-container'>
-                    <h1>Sign In</h1>
+                    <h1 className="h-signin">Sign In</h1>
                 </div>
                 
                 
-                <form onSubmit={handleSubmit}>
+                <form className="form-submit" onSubmit={handleSubmit}>
                     <div className = "form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
+                        <label className="label-input" htmlFor="email">Email</label>
+                        <input className="input"
                             autoFocus
                             type="email"
                             id="email"
@@ -92,8 +92,8 @@ export const LogIn = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
+                        <label className="label-input" htmlFor="password">Password</label>
+                        <input className="input"
                             type="password"
                             id="password"
                             placeholder="Enter your password here"
@@ -103,7 +103,7 @@ export const LogIn = () => {
                     </div>
 
                     <div className='button-container'>
-                    <button 
+                    <button className='button-submit'
                         type="submit" 
                         disabled={!validateForm()}
                         // onClick={handleSubmit}

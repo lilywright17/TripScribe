@@ -32,7 +32,7 @@
     font-weight: bold;
 }
 
-textarea {
+.text-description {
     width: 100%;
     box-sizing: border-box;
     background-color: rgb(244, 241, 241);
@@ -47,6 +47,7 @@ textarea {
     justify-content: center;
     margin-top: 20px;
     gap: 100px;
+    padding: 10px;
 }
 
 

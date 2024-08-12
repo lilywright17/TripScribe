@@ -15,7 +15,7 @@ CREATE TABLE Trips (
 	tripID INT AUTO_INCREMENT primary KEY,
     userID INT NOT NULL,
     title VARCHAR(30) NOT NULL,
-    content VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
     date_from DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_to DATETIME,
     FOREIGN KEY (userID) REFERENCES Users(userID)
@@ -33,9 +33,11 @@ CREATE TABLE Locations (
 CREATE TABLE Photos (
 	photoID INT AUTO_INCREMENT PRIMARY KEY,
     tripID INT NOT NULL,
-    photo_url VARCHAR(255) NOT NULL,
-    description VARCHAR(255),
-    FOREIGN KEY (tripID) REFERENCES Trips(tripID)
+    userID INT NOT NULL,
+    secure_url VARCHAR(255) NOT NULL,
+    alt_text VARCHAR(255),
+    FOREIGN KEY (tripID) REFERENCES Trips(tripID),
+    FOREIGN KEY (userID) REFERENCES Users(userID)
 );
 
 -- Trips-Location joining table

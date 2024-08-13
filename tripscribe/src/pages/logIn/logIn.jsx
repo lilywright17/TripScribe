@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useCallback} from 'react';
-// import Form from 'react-bootstrap/Form';
-// import Button from 'react-bootstap/Button';
+import travelBG from './travel_bg.jpg';
 
 import './login.css';
+import { useNavigate } from 'react-router-dom';
 
 export const LogIn = () => {
     // for react hooks
@@ -10,9 +10,15 @@ export const LogIn = () => {
     const [password, setPassword] = useState('');
     const [loginVisibility, setLoginVisibility] = useState(false);
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         // Triggers animation when login page loads
         setLoginVisibility(true);
+
+        document.body.style.backgroundImage = `url(${travelBG})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
     }, [])
 
     function validateForm() {
@@ -40,6 +46,7 @@ export const LogIn = () => {
 
                 const result = await response.json();
                 console.log('Success: ', result);
+                navigate('/mytrips');
             } catch (error) {
                 console.error('Error: ', error);
             }
@@ -48,37 +55,35 @@ export const LogIn = () => {
 
     const toRegister = () => {
         setLoginVisibility(false);
+        navigate('/register');
     }
 
     return (
         <div className="login">
-            <div className="register-box">
+            <div className="side-box">
                 <div className="register-container">
                     <h1 className='register-text'>Welcome to TripScribe!</h1>
                     <h2 className='register-text'>Start your journey</h2>
                 </div>
-                <div className="button-container">
-                    <button 
-                        className='register-button'
-                        onClick={toRegister}
-                    >
-                        REGISTER
-                    </button>
-                </div>
+                <button 
+                    className='register-button'
+                    onClick={toRegister}
+                >
+                    REGISTER
+                </button>
             </div>
-            {/* <img src={require("./travel_bg.jpg")} alt="background_travel_image"/> */}
 
-            <div className={`login-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
+            <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
                 <div className='login-container'>
-                    <h1>Sign In</h1>
+                    <h1 className="h-signin">Sign In</h1>
                 </div>
                 
                 
-                <form onSubmit={handleSubmit}>
+                <form className="form-submit" onSubmit={handleSubmit}>
                     <div className = "form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
+                        <label className="label-input" htmlFor="email">Email</label>
+                        <input className="input"
                             autoFocus
                             type="email"
                             id="email"
@@ -89,8 +94,8 @@ export const LogIn = () => {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
+                        <label className="label-input" htmlFor="password">Password</label>
+                        <input className="input"
                             type="password"
                             id="password"
                             placeholder="Enter your password here"
@@ -99,15 +104,12 @@ export const LogIn = () => {
                         />
                     </div>
 
-                    <div className='button-container'>
-                    <button 
-                        type="submit" 
-                        disabled={!validateForm()}
-                        // onClick={handleSubmit}
-                    >
-                        LOG IN
-                    </button>
-                    </div>
+                <button className='button-submit'
+                    type="submit" 
+                    disabled={!validateForm()}
+                >
+                    LOG IN
+                </button>
                 </form>
             </div>
         </div>

@@ -1,5 +1,7 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import './register.css';
+import travelBG from '../logIn/travel_bg.jpg';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
     const [username, setUsername] = useState('');
@@ -7,6 +9,16 @@ export const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // Triggers animation when login page loads
+        setIsRegistering(true);
+
+        document.body.style.backgroundImage = `url(${travelBG})`;
+        document.body.style.backgroundSize = 'cover';
+        document.body.style.backgroundRepeat = 'no-repeat';
+    }, [])
 
     function validateForm() {
         return username.length > 0 && email.length > 5 && password.length > 7 && password === confirmPassword && validateEmail(email);
@@ -18,6 +30,7 @@ export const Register = () => {
         );
     };
 
+    // api stuff
     const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
 
@@ -36,9 +49,11 @@ export const Register = () => {
             console.error('Error: ', error);
         }
     }, [username, email, password]);
+    // end of api stuff
 
-    const toggleForm = () => {
-        setIsRegistering(!isRegistering);
+    const toLogin = () => {
+        setIsRegistering(false);
+        navigate('/');
     }
 
     return (
@@ -92,62 +107,17 @@ export const Register = () => {
                             />
                         </div>
 
-                        <div className='button-container'>
-                            <button
-                                type="submit"
-                                disabled={!validateForm()}
-                            >
-                                REGISTER
-                            </button>
-                        </div>
+                        <button
+                            type="submit"
+                            disabled={!validateForm()}
+                        >
+                            REGISTER
+                        </button>
                     </form>
-                    <div className='button-container'>
-                        <button onClick={toggleForm}>Back to Login</button>
-                    </div>
+                    <button onClick={toLogin}>Back to Login</button>
                 </div>
             </div>
 
-            <div className={`login-box login-animation ${isRegistering ? 'hidden' : 'visible'}`}>
+            <div className={`login-box`}>
                 <div className='login-container'>
-                    <h1>Sign In</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                autoFocus
-                                type="email"
-                                id="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-
-                        <div className='button-container'>
-                            <button
-                                type="submit"
-                                disabled={!validateForm()}
-                            >
-                                LOG IN
-                            </button>
-                        </div>
-                    </form>
-                    <div className='button-container'>
-                        <button onClick={toggleForm}>REGISTER</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
+                    {

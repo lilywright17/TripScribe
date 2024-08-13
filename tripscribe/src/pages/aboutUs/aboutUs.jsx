@@ -88,7 +88,7 @@ export const AboutUs = () => {
         </p>
       </div>
       <Box sx={{ flexGrow: 1 }} className="aboutUsContainer">
-      <Grid container spacing={8} alignItems="stretch">
+      <Grid container spacing={6} alignItems="stretch">
     {usData.map((user) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={user.id}>
             <Item className="userCard">

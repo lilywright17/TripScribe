@@ -1,14 +1,17 @@
 import React from 'react';
 import './button.css';
 
-const Button = ({text, handleClick, style, icon }) => {
+const Button = ({ text, handleClick, style, icon, className = '', ...props }) => {
   return (
     <div>
       <button 
-        className={`buttonPrimary`} onClick={handleClick} style={style}>
-         
-         {icon && <span className="button-icon">{icon}</span>}
-         {text}
+        className={`buttonPrimary ${className}`} 
+        onClick={handleClick} 
+        style={style}
+        {...props} // Spreads any other props that are passed to the component
+      >
+        {icon && <span className="button-icon">{icon}</span>}
+        {text}
       </button>
     </div>
   );

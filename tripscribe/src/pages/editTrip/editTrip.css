@@ -1,3 +1,9 @@
+.uploadImgContainer {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
 .editTripForm {
     display: flex;
     justify-content: center;

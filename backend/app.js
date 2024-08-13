@@ -5,7 +5,11 @@ const uploadImages = require('./config/uploadImages');
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000', 
+    optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

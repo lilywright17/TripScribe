@@ -2,7 +2,7 @@
 INSERT INTO Users (userID, fullname, username, email, pword_hash)
 VALUES 
 (1, 'Ada Lovelace', 'adalovelace', 'ada.lovelace@example.com', '$2y$10$7eL1g5J23M/Nq3PvKT/vfOd41n/M1Ox7dR/Lk6Rjlt9UMPa7s6EWS'),
-(2, 'Rosalind Franklin', 'rosalindf', 'rosalind.franklin@example.com', '$2y$10$F7GHb43MQU9B/VxK0mvOUuCRQnNV/s6WRGpFi5i9R2s/zDeRExQ72'),
+(2, 'Rosalind Franklin', 'rosalindf', 'rosalind.franklin@example.com', '$2y$10$EfBJ3R41X/0kLc2N6GghPurlWcuF5U9QiAe/hSKUHiUouzyDRsXsS'),
 (3, 'Lise Meitner', 'lisemeitner', 'lise.meitner@example.com', '$2y$10$T9zXnRZb.xS4G6HGi21O6ujm8IaUM5K4/1T/QF2bqW1aUIRbMqTAJ');
 
 INSERT INTO Trips (tripID, userID, city, country, description, date_from, date_to)

@@ -1,35 +1,40 @@
 .buttonSecondary{
-    font-weight: bold;
-    background-color: white;
-    color: #476a6f;
-    border: 5px solid #476a6f;
-    border-radius: 20px;
+    display: flex;  /* Flexbox for alignment */
+    flex: 1 0 0;
+    align-items: center;  /* Center items vertically */
+    justify-content: center;  /* Center items horizontally */
+    align-self: stretch;
+    text-align: center;
+    font-family: inherit;
     font-size: large;
-    padding-inline: 20px;
-    width: 250px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* replace above with google font */ 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    gap: 10px;
-
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    background-color: white;
+    line-height: 142.857%;
+    color: #476a6f;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    gap: 0.5px;
+    cursor: pointer;
+    border: 2px solid #476a6f;
 }
 
 .buttonSecondary:hover{
     background-color: #476a6f;
-    color: white;
-    border: 5px solid #476a6f;
-    border-radius: 20px;
-    font-size: large;
+    color: #FFF;
     cursor: pointer; 
 }
 
 .buttonSecondary:active{
-    background-color: white;
-    color: #476a6f;
-    border: 5px solid #476a6f;
-    border-radius: 20px;
-    font-size: large;
+    background-color: #283c40;
+    color: white;
+    transition: 0.05s;
 }
 
+.button-icon {
+    margin-right: 8px;  
+    display: flex;
+    align-items: center;
+}

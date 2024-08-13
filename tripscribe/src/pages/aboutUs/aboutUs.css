@@ -13,13 +13,6 @@
     margin-bottom: 6px;
 }
 
-.aboutUsContainer {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-    padding-inline: 20px;
-}
-
 .userCard {
     background: #f9f9f9;
     border: 1px solid #ddd;
@@ -27,6 +20,10 @@
     padding: 20px;
     text-align: left;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .userCard h2 {
@@ -42,22 +39,40 @@
 .userCard p {
     font-size: 12px;
     margin: 10px 0;
+    flex-grow: 1;
 }
 
-.teamMemberImage{
-    background-color: #476a6f ;
+.teamMemberImage {
+    background-color: #476a6f;
     border: 8px solid #92c7cf;
     border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
 }
 
-
-.socialsContainer{
+.socialsContainer {
     text-align: right;
+    margin-top: auto;
 }
 
-
-.socialsContainer img{
+.socialsContainer img {
     height: 20px;
     text-align: right;
     padding-inline-start: 10px;
+}
+
+.aboutUsContainer .MuiGrid-root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.MuiGrid2-item {
+    padding-bottom: 16px; 
+}
+
+.aboutUsContainer {
+    min-height: 100vh; 
+    padding-bottom: 150px; 
 }

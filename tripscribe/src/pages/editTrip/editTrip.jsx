@@ -1,9 +1,13 @@
 import React from "react";
+import { EditTripForm } from "./editTripForm";
+
+
 
 export const EditTrip = () => {
     return (
-        <div>
-            <h1>This is EditTrip page</h1>
-        </div>
+        <>
+            <h2>Edit Trip</h2>
+            <EditTripForm />
+        </>
     );
 }

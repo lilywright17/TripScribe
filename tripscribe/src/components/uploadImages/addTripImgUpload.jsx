@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
 import { UploadSimple } from '@phosphor-icons/react';
-import "./addTrip.css";
+import './addTripImgUpload.css';
 
-export const AddTripImgUpload = ({ images, setImages }) => {
+const AddTripImgUpload = ({ images, setImages }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
     const fileInputRef = useRef(null); 
-
+   
     const selectFiles = () => {
         fileInputRef.current.click();
     };
@@ -35,8 +35,8 @@ export const AddTripImgUpload = ({ images, setImages }) => {
                 continue;
             }
 
-            if (fileSize > 10) {
-                errorMessage = "Each image must be less than 10MB.";
+            if (fileSize > 5) {
+                errorMessage = "Each image must be less than 5MB.";
                 continue;
             }
 
@@ -116,3 +116,5 @@ export const AddTripImgUpload = ({ images, setImages }) => {
         </div>
     );
 };
+
+export default AddTripImgUpload;

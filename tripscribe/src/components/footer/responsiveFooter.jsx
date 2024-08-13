@@ -74,7 +74,10 @@ export default function ResponsiveFooter() {
           icon={<LinkedinLogo size={isLargeScreen ? 32 : 24} />} 
           style={{ color: 'white' }}
         />
+        <p style={{ color: 'white' }}>© 2024 Team-5</p>
+
       </BottomNavigation>
+      
     </Box>
   );
 }

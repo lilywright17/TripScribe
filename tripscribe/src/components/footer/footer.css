@@ -29,7 +29,7 @@
 
 .footer-link:hover {
     font-weight: bold;
-    font-weight: bold;
+    /* font-weight: bold; remove this line */
 }
 
 .footer-link:hover svg {

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`input matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="labelAndInputDiv"
+  >
+    <label
+      class="labelText"
+    >
+      Email
+    </label>
+    <input
+      class="inputField undefined"
+      placeholder="Enter your email"
+      type="email"
+    />
+  </div>
+</DocumentFragment>
+`;

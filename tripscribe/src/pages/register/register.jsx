@@ -4,6 +4,7 @@ import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
+    const [fullName, setFullName] = useState(''); // State for full name
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,10 +19,10 @@ export const Register = () => {
         document.body.style.backgroundImage = `url(${travelBG})`;
         document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundRepeat = 'no-repeat';
-    }, [])
+    }, []);
 
     function validateForm() {
-        return username.length > 0 && email.length > 5 && password.length > 7 && password === confirmPassword && validateEmail(email);
+        return fullName.length > 0 && username.length > 0 && email.length > 5 && password.length > 7 && password === confirmPassword && validateEmail(email);
     }
 
     const validateEmail = (email) => {
@@ -37,7 +38,7 @@ export const Register = () => {
         try {
             const response = await fetch('/api/register', {
                 method: 'POST',
-                body: JSON.stringify({ username, email, password }),
+                body: JSON.stringify({ fullName, username, email, password }), // Added fullName
                 headers: {
                     "Content-Type": 'application/json',
                 },
@@ -48,7 +49,7 @@ export const Register = () => {
         } catch (error) {
             console.error('Error: ', error);
         }
-    }, [username, email, password]);
+    }, [fullName, username, email, password]); // Added fullName to dependency array
     // end of api stuff
 
     const toLogin = () => {
@@ -63,9 +64,20 @@ export const Register = () => {
                     <h1>Sign Up</h1>
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="username">Username</label>
+                            <label htmlFor="fullName">Full Name</label>
                             <input
                                 autoFocus
+                                type="text"
+                                id="fullName"
+                                placeholder="Enter your full name"
+                                value={fullName}
+                                onChange={(e) => setFullName(e.target.value)}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="username">Username</label>
+                            <input
                                 type="text"
                                 id="username"
                                 placeholder="Enter your username"
@@ -114,49 +126,12 @@ export const Register = () => {
                             REGISTER
                         </button>
                     </form>
-                    <button onClick={toLogin}>Back to Login</button>
                 </div>
             </div>
 
             <div className={`login-box`}>
                 <div className='login-container'>
-                    {/* <h1>Sign In</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="email">Email</label>
-                            <input
-                                autoFocus
-                                type="email"
-                                id="email"
-                                placeholder="Enter your email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="password">Password</label>
-                            <input
-                                type="password"
-                                id="password"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                            />
-                        </div>
-
-                        <div className='button-container'>
-                            <button
-                                type="submit"
-                                disabled={!validateForm()}
-                            >
-                                LOG IN
-                            </button>
-                        </div>
-                    </form>
-                    <div className='button-container'>
-                        <button onClick={toggleForm}>REGISTER</button>
-                    </div> */}
+                    <button className="back-to-login" onClick={toLogin}>Back to Login</button>
                 </div>
             </div>
         </div>

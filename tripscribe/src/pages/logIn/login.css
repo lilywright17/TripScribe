@@ -100,6 +100,10 @@
     border: none;
 }
 
+.button-container {
+    text-align: center;
+}
+
  .login button{
     margin-top: 10%;
     border: none;

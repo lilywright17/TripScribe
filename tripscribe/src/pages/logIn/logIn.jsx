@@ -104,12 +104,15 @@ export const LogIn = () => {
                         />
                     </div>
 
-                <button className='button-submit'
-                    type="submit" 
-                    disabled={!validateForm()}
-                >
-                    LOG IN
-                </button>
+                    <div className='button-container'>
+                    <button className='button-submit'
+                        type="submit" 
+                        disabled={!validateForm()}
+                        // onClick={handleSubmit}
+                    >
+                        LOG IN
+                    </button>
+                    </div>
                 </form>
             </div>
         </div>

@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-p {
+.p-about-us, .p-copyright {
     white-space: nowrap;
     padding: 20px;
 }
@@ -29,7 +29,7 @@ p {
 
 .footer-link:hover {
     font-weight: bold;
-    font-weight: bold;
+    /* font-weight: bold; remove this line */
 }
 
 .footer-link:hover svg {

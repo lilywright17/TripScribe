@@ -1,17 +1,30 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ location, city, startDate, endDate, description, imageUrl }) =>{
+const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit,onClick }) =>{
+    const handleCardClick = () => {
+        onClick(); // Trigger the navigation to ViewTrip
+    };
+
+    const handleEditClick = (e) => {
+        e.stopPropagation(); // Prevents the click from propagating to the card's onClick
+        onEdit(); // Trigger the edit functionality
+    };
 
     return (
-        <div className="card">
-            <img src={imageUrl} alt={city || 'photo of city'} width={200} />
-            <h1>{location || 'location'}</h1>
+        <div className="card" onClick={handleCardClick}>
+            <img src={imageUrl} alt={city || 'photo of city'} width={200} className="card-img"/>
+            <h1>{country || 'country'}</h1>
             <h2>{city || 'town/city'}</h2>
             <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
-            <p>{description || 'description of trip'}</p>
-
-
+            <p>{description || 'description of trip'}...</p>
+            <img 
+                src={editButton} 
+                alt="Edit button" 
+                className="edit-button" 
+                onClick={handleEditClick}
+                style={{ cursor: 'pointer' }}
+            />
         </div>
     )
 }

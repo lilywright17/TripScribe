@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import UploadWidgetCloudinary from '../../components/uploadWidgetCloudinary/uploadWidget';
+/*import React, { useState } from 'react';
+import UploadWidgetCloudinary from './uploadWidget';
 
 const AddTripWidget = () => {
     const [images, setImages] = useState([]);
@@ -26,4 +26,4 @@ const AddTripWidget = () => {
     );
   };
   
-export default AddTripWidget;
+export default AddTripWidget;*/

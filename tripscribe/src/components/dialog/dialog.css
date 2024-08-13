@@ -1,0 +1,17 @@
+
+.MuiDialogActions-root {
+    padding: 16px 24px;   /* Increase the padding */
+    min-height: 44px;     /* Ensure a minimum height */
+    display: flex;        /* Ensure buttons are properly spaced */
+    align-items: center;  /* Center align items vertically */
+    justify-content: space-between; /* Space out the buttons */
+}
+
+.custom-dialog-actions {
+    padding: 16px 24px;   /* Increase the padding */
+    min-height: 64px;     /* Ensure a minimum height */
+    display: flex;
+    align-items: center;  /* Center align items vertically */
+    justify-content: space-between; /* Space out the buttons */
+}
+

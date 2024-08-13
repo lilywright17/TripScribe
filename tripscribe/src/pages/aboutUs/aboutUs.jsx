@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
+import { Helmet } from 'react-helmet';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -77,6 +78,9 @@ const usData = [
 export const AboutUs = () => {
   return (
     <>
+        <Helmet>
+            <title>TripScribe - About Us</title>
+        </Helmet>
       <div className="aboutUs">
         <h1 className="aboutUsTitle">About Us</h1>
         <p className="aboutUsText">
@@ -84,7 +88,7 @@ export const AboutUs = () => {
         </p>
       </div>
       <Box sx={{ flexGrow: 1 }} className="aboutUsContainer">
-      <Grid container spacing={8} alignItems="stretch">
+      <Grid container spacing={6} alignItems="stretch">
     {usData.map((user) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={user.id}>
             <Item className="userCard">

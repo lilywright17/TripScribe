@@ -4,8 +4,8 @@
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "test": "jest"
+    "test": "jest",
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -13,6 +13,7 @@
   "description": "",
   "dependencies": {
     "axios": "^1.7.3",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cloudinary": "^2.4.0",
     "cors": "^2.8.5",

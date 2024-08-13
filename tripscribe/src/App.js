@@ -48,6 +48,9 @@ function PageWithNavbarExcluded({ component }) {
 
 export default App;
 
+/* krystal note: i commented out the TripDetails route because it keeps causing an error. Ask for help. The location used to be in 23, between myTrip and AddTrip routes.
+          <Route path="/tripdetails" element={<TripDetails />}/> /*
+
 
 
 

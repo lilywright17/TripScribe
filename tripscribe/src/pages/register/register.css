@@ -101,3 +101,34 @@
 .register button:disabled {
     opacity: 50%;
 }
+
+/* Added style for back-to-login button */
+.login-box {
+    width: 25%;
+    margin-top: -33%;    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+}
+
+.login-container {
+    width: 100%;
+    text-align: right;
+}
+
+.back-to-login {
+    border: none;
+    width: 50%;
+    padding: 5px;
+    background-color: #476A6F;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.back-to-login:hover {
+    filter: brightness(85%);
+}

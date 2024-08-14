@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders card component correctly with country, city passed by props 1`] = `
+<div
+  className="card"
+  onClick={[Function]}
+>
+  <img
+    alt="Madrid"
+    className="card-img"
+    width={200}
+  />
+  <h1>
+    Spain
+  </h1>
+  <h2>
+    Madrid
+  </h2>
+  <p>
+    start date
+     - 
+    end date
+  </p>
+  <p>
+    description of trip
+    ...
+  </p>
+  <img
+    alt="Edit button"
+    className="edit-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`renders card component correctly with image passed by props 1`] = `
+<div
+  className="card"
+  onClick={[Function]}
+>
+  <img
+    alt="photo of city"
+    className="card-img"
+    width={200}
+  />
+  <h1>
+    country
+  </h1>
+  <h2>
+    town/city
+  </h2>
+  <p>
+    start date
+     - 
+    end date
+  </p>
+  <p>
+    description of trip
+    ...
+  </p>
+  <img
+    alt="Edit button"
+    className="edit-button"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  />
+</div>
+`;

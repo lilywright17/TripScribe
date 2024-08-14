@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './register.css';
-import travelBG from '../logIn/travel_bg.jpg';
+// import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
 
@@ -15,9 +15,9 @@ export const Register = () => {
 
     useEffect(() => {
         setIsRegistering(true);
-        document.body.style.backgroundImage = `url(${travelBG})`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
+        // document.body.style.backgroundImage = `url(${travelBG})`;
+        // document.body.style.backgroundSize = 'cover';
+        // document.body.style.backgroundRepeat = 'no-repeat';
     }, []);
 
     function validateForm() {

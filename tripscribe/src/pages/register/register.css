@@ -127,8 +127,8 @@
 }
 
 .login-box {
-    flex: 1;
-    display: flex;
+    /* flex: 1; */
+    display: grid;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -136,6 +136,7 @@
     position: relative;
     height: 100%;
     padding: 20px;
+    margin-top: 20px;
 }
 
 .login-container {

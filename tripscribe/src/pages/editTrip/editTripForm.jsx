@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/input/input";
 import Button from "../../components/button/button";
+import AddTripImgUpload from "../../components/uploadImages/addTripImgUpload";
 import SecondaryButton from "../../components/secondaryButton/secondaryButton";
 import { ArrowLeft } from '@phosphor-icons/react';
 import Modal from 'react-modal';
@@ -69,6 +70,11 @@ export const EditTripForm = () => {
     return (
         <>
         <form onSubmit={handleSubmit}>
+        <div className="uploadImgContainer">
+        {/* this is juts a shell component that needs to be connected to the API in order to fetch the exisiting photos and then change the photos that the user whats to edit */}
+            <AddTripImgUpload /> 
+        </div>
+
         <div className="editTripForm">
             <div className="editTripFormContainer">
                 <div className="editTripInputColumn">

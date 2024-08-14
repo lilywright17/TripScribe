@@ -1,7 +1,7 @@
 import React from 'react';
 import './button.css';
 
-const Button = ({ text, handleClick, style, icon, className = '', ...props }) => {
+export const Button = ({ text, handleClick, style, icon, className = '', ...props }) => {
   return (
     <div>
       <button 
@@ -16,8 +16,6 @@ const Button = ({ text, handleClick, style, icon, className = '', ...props }) =>
     </div>
   );
 }
-
-export default Button;
 
 
 

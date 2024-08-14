@@ -28,7 +28,7 @@ const settingsLinks = {
   'Logout': '/logout',
 };
 
-function ResponsiveNavbar() {
+export const ResponsiveNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -211,5 +211,3 @@ function ResponsiveNavbar() {
     </>
   );
 }
-
-export default ResponsiveNavbar;

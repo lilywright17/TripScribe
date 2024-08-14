@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactDOM from "react-dom";
-import Card from "../../components/card/card.jsx";
+import { Card } from "../../components/card/card.jsx";
 // import Footer from...
 import "./myTrips.css";
 import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import tripsArray from "./tripsArray.js";
-import Button from "../../components/button/button.jsx";
+import { Button } from "../../components/button/button.jsx";
 import editButtonImage from "./images/edit_button.png"
 import Standing from "./images/Standing.png";
 

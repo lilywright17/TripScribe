@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../components/input/input";
-import Button from "../../components/button/button";
-import SecondaryButton from "../../components/secondaryButton/secondaryButton";
-import AddTripImgUpload from "../../components/uploadImages/addTripImgUpload";
+import { Input } from "../../components/input/input";
+import { Button } from "../../components/button/button";
+import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
+import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
 import { ArrowLeft } from '@phosphor-icons/react';
 import axios from 'axios';
 import Modal from 'react-modal';

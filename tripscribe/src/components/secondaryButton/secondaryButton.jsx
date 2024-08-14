@@ -1,7 +1,7 @@
 import React from 'react';
 import './secondaryButton.css';
 
-const SecondaryButton = ({ text, handleClick, style, icon }) => {
+export const SecondaryButton = ({ text, handleClick, style, icon }) => {
   return (
     <div>
       <button 
@@ -15,5 +15,3 @@ const SecondaryButton = ({ text, handleClick, style, icon }) => {
     </div>
   );
 }
-
-export default SecondaryButton;

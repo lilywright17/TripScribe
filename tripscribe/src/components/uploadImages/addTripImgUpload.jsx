@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { UploadSimple } from '@phosphor-icons/react';
 import './addTripImgUpload.css';
 
-const AddTripImgUpload = ({ images, setImages }) => {
+export const AddTripImgUpload = ({ images, setImages }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
     const fileInputRef = useRef(null); 
@@ -116,5 +116,3 @@ const AddTripImgUpload = ({ images, setImages }) => {
         </div>
     );
 };
-
-export default AddTripImgUpload;

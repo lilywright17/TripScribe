@@ -1,7 +1,7 @@
 import React from "react";
 import "./card.css";
 
-const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit,onClick }) =>{
+export const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit,onClick }) =>{
     const handleCardClick = () => {
         onClick(); // Trigger the navigation to ViewTrip
     };
@@ -28,9 +28,6 @@ const Card = ({ country, city, startDate, endDate, description, imageUrl,editBut
         </div>
     )
 }
-
-export default Card;
-
 /* 
 NEED TO - ADD TRASHCAN & PENCIL ICONS TO THE CARD, ONCE CHOSEN ICON LIBRARY IS INSTALLED, 
 for deleting and editing the card respectively.

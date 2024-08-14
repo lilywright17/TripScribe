@@ -18,7 +18,7 @@ export const AddTripForm = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [images, setImages] = useState([]); // State to hold images
     const [urls, setUrls] = useState([]); // State to hold the uploaded image URLs
-    const maxLength = 200;
+    const maxLength = 500;
     const navigate = useNavigate();// Initialize the useNavigate hook
 
     const handleDescriptionChange = (e) => {

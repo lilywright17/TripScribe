@@ -1,22 +1,23 @@
 import React, { useState, useRef } from "react";
 import { UploadSimple } from '@phosphor-icons/react';
+import axios from 'axios';
 import './addTripImgUpload.css';
 
 export const AddTripImgUpload = ({ images, setImages }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
     const fileInputRef = useRef(null); 
-   
+
     const selectFiles = () => {
         fileInputRef.current.click();
     };
 
-    const onFileSelect = (event) => {
+    const onFileSelect = async (event) => {
         const files = event.target.files;
-        handleFiles(files);
+        await handleFiles(files);
     };
 
-    const handleFiles = (files) => {
+    const handleFiles = async (files) => {
         const newImages = [];
         let errorMessage = "";
 
@@ -40,11 +41,19 @@ export const AddTripImgUpload = ({ images, setImages }) => {
                 continue;
             }
 
-            if (!images.some((e) => e.name === file.name)) {
-                newImages.push({
-                    name: file.name,
-                    url: URL.createObjectURL(file),
-                });
+            try {
+                const base64 = await convertToBase64(file);
+                const response = await axios.post('http://localhost:5000/uploadImages', { images: [base64] });
+                const secureUrl = response.data.urls[0];
+
+                if (secureUrl) {
+                    newImages.push({
+                        name: file.name,
+                        url: secureUrl,
+                    });
+                }
+            } catch (err) {
+                console.error('Error uploading images:', err);
             }
         }
 
@@ -56,8 +65,25 @@ export const AddTripImgUpload = ({ images, setImages }) => {
         }
     };
 
+    const convertToBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+
+            reader.onloadend = () => {
+                resolve(reader.result);
+            };
+
+            reader.onerror = (error) => {
+                reject(error);
+            };
+        });
+    };
+
     const deleteImage = (index) => {
-        setImages((prevImages) => prevImages.filter((_, i) => i !== index));
+        setImages((prevImages) => {
+            return prevImages.filter((_, i) => i !== index);
+        });
     };
 
     const onDragOver = (event) => {
@@ -71,11 +97,11 @@ export const AddTripImgUpload = ({ images, setImages }) => {
         setIsDragging(false);
     };
 
-    const onDrop = (event) => {
+    const onDrop = async (event) => {
         event.preventDefault();
         setIsDragging(false);
         const files = event.dataTransfer.files;
-        handleFiles(files);
+        await handleFiles(files);
     };
 
     return (
@@ -91,7 +117,7 @@ export const AddTripImgUpload = ({ images, setImages }) => {
                         <br/>
                         Drag & Drop image(s) here or {" "}
                         <span className='selectImg' role='button' onClick={selectFiles}>
-                            Browse  
+                            Browse 
                         </span> 
                     </>
                 )}

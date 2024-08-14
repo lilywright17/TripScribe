@@ -13,7 +13,7 @@ export const EditTripForm = () => {
     const [errors, setErrors] = useState({});
     const [modalIsOpen, setModalIsOpen] = useState(false);
     //add state to hold images
-    const maxLength = 250;
+    const maxLength = 500;
     const navigate = useNavigate();// Initialize the useNavigate hook
 
     const handleDescriptionChange = (e) => {

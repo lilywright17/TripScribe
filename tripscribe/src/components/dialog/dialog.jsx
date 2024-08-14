@@ -1,7 +1,7 @@
 import { DialogActions, DialogContent } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import Button from "../button/button.jsx";
+import { Button } from "../button/button.jsx";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import "./dialog.css";

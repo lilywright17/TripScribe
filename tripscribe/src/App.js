@@ -6,12 +6,12 @@ import { MyTrips } from './pages/myTrips/myTrips';
 import { AddTrip } from './pages/addTrip/addTrip';
 import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
-import {Map} from './pages/map/map';
+import { MapPage } from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
 import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
-import ResponsiveFooter from './components/footer/responsiveFooter';
-import ResponsiveNavbar from './components/responsiveNavbar/responsiveNavbar';
+import { ResponsiveFooter } from './components/footer/responsiveFooter';
+import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route path="/tripdetails" element={<PageWithNavbar component={<TripDetails />} />} />
         <Route path="/addtrip" element={<PageWithNavbar component={<AddTrip />} />} />
         <Route path="/edittrip" element={<PageWithNavbar component={<EditTrip />} />} />
-        <Route path="/map" element={<PageWithNavbar component={<Map />} />} />
+        <Route path="/map" element={<PageWithNavbar component={<MapPage />} />} />
         <Route path="/userprofile" element={<PageWithNavbar component={<UserProfile />} />} />
         <Route path="/userProfileEdit" element={<PageWithNavbar component={<UserProfileEdit />} />} />
         <Route path="/aboutus" element={<PageWithNavbar component={<AboutUs />} />} />

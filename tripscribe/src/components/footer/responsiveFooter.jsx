@@ -7,7 +7,7 @@ import { FacebookLogo, XLogo, LinkedinLogo, InstagramLogo } from '@phosphor-icon
 import { Box } from '@mui/material';
 import { useMediaQuery, useTheme } from '@mui/material';
 
-export default function ResponsiveFooter() {
+export const ResponsiveFooter = () => {
   const [value, setValue] = React.useState('about');
   const navigate = useNavigate();
   const theme = useTheme();

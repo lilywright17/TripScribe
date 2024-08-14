@@ -3,7 +3,7 @@ import { UploadSimple } from '@phosphor-icons/react';
 import axios from 'axios';
 import './addTripImgUpload.css';
 
-const AddTripImgUpload = ({ images, setImages }) => {
+export const AddTripImgUpload = ({ images, setImages }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
     const fileInputRef = useRef(null); 
@@ -143,4 +143,3 @@ const AddTripImgUpload = ({ images, setImages }) => {
     );
 };
 
-export default AddTripImgUpload;

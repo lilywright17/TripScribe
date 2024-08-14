@@ -25,7 +25,7 @@ const pageLinks = {
 const settings = ['Profile', 'Logout'];
 const settingsLinks = {
   'Profile': '/userprofile',
-  'Logout': '/logout',
+  'Logout': '/',
 };
 
 function ResponsiveNavbar() {

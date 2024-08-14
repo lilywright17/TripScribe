@@ -1,9 +1,9 @@
 -- SQL script with mock data for the Users and Trips table
 INSERT INTO Users (userID, fullname, username, email, pword_hash)
 VALUES 
-(1, 'Ada Lovelace', 'adalovelace', 'ada.lovelace@example.com', '$2y$10$7eL1g5J23M/Nq3PvKT/vfOd41n/M1Ox7dR/Lk6Rjlt9UMPa7s6EWS'),
-(2, 'Rosalind Franklin', 'rosalindf', 'rosalind.franklin@example.com', '$2y$10$EfBJ3R41X/0kLc2N6GghPurlWcuF5U9QiAe/hSKUHiUouzyDRsXsS'),
-(3, 'Lise Meitner', 'lisemeitner', 'lise.meitner@example.com', '$2y$10$T9zXnRZb.xS4G6HGi21O6ujm8IaUM5K4/1T/QF2bqW1aUIRbMqTAJ');
+(1, 'Ada Lovelace', 'adalovelace', 'ada.lovelace@gmail.com', '$2b$10$A/FfTkuxVxuuzobymwpNCOzDLsctzpX3HN0KSmlOFKgjmF5YoLp9W'),
+(2, 'Rosalind Franklin', 'rosalindf', 'rosalind.franklin@gmail.com', '$2b$10$6sub3KkksQrBdy2VjpBTF.qK6F8XzsEhpqxXCV4kno.3s0L1To02W'),
+(3, 'Lise Meitner', 'lisemeitner', 'lise.meitner@gmail.com', '$2y$10$T9zXnRZb.xS4G6HGi21O6ujm8IaUM5K4/1T/QF2bqW1aUIRbMqTAJ');
 
 INSERT INTO Trips (tripID, userID, city, country, description, date_from, date_to)
 VALUES 

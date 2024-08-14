@@ -1,8 +1,10 @@
 const bcrypt = require('bcrypt');
 const db = require('../config/db');
+const jwt = require('jsonwebtoken');
+const jwtConfig = require('../config/jwt');
 
 // Controller for the register page
-//See of more HTTP res code are needed
+//See if more HTTP res code are needed
 const registerUser = async (req, res) => {
     const { fullname, username, email, password } = req.body;
 
@@ -46,7 +48,7 @@ const registerUser = async (req, res) => {
     }
 };
 // Controller for the login page
-//See of more HTTP res code are needed
+//See if more HTTP res code are needed
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const invalidMsg = {
@@ -68,9 +70,24 @@ const loginUser = async (req, res) => {
             return res.status(401).json(invalidMsg);
         }
 
+        // Generating the JWT token upon successful login
+        const token = jwt.sign(
+            { id: user.id, email: user.email },  // Payload
+            jwtConfig.secret,                   // Secret key from config
+            { expiresIn: '1h' }                 // Token expiry time
+        );
+        
+        // Sending the jwt token to the client
         res.status(200).json({
             success: true,
-            message: 'Login successful'
+            message: 'Login successful',
+            token, 
+            user: {
+                id: user.id,
+                fullname: user.fullname,
+                username: user.username,
+                email: user.email
+            }
         });
 
     } catch (error) {

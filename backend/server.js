@@ -2,8 +2,6 @@
 const express = require("express"), bodyParser = require("body-parser");
 require("dotenv").config();
 const cors = require("cors");
-const bcrypt = require("bcrypt"); 
-const db = require("./config/db.js");
 const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 
@@ -15,8 +13,8 @@ app.get("/", (req, res) => res.send("Server running"));
 app.use(express.json());
 
 // User routes
-app.use('/api', authRoutes);
-app.use('/api', tripRoutes);
+app.use('/api', authRoutes);// Use the link http://localhost:5000/api/register or http://localhost:5000/api/login
+app.use('/api', tripRoutes);// Use the link http://localhost:5000/api/trips
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

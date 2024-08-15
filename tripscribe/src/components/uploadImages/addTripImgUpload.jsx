@@ -141,4 +141,8 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             </div>
         </div>
     );
+<<<<<<< HEAD
 }
+=======
+};
+>>>>>>> dev

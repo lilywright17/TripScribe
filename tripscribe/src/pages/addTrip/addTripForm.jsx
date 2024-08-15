@@ -14,7 +14,7 @@ export const AddTripForm = () => {
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState(null); // State to hold success message
     const [images, setImages] = useState([]); // State to hold images
-    const maxLength = 200;
+    const maxLength = 500;
     const navigate = useNavigate(); // Initialize the useNavigate hook
 
     const handleDescriptionChange = (e) => {
@@ -60,7 +60,7 @@ export const AddTripForm = () => {
         }
 
         try {
-            await axios.post('http://localhost:5000/addTrip', data);
+            await axios.post('http://localhost:5000/api/addtrip', data);
             console.log('Trip data submitted successfully:', data);
     
             setSuccessMessage("Your trip has been saved successfully!");
@@ -146,17 +146,16 @@ export const AddTripForm = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="buttonContainer">
-                    <SecondaryButton 
-                        text="MY TRIPS" 
-                        icon={<ArrowLeft size={24} weight='bold' padding='' />} 
-                        handleClick={handleSecondaryButtonClick} 
-                    />
-                    <Button text="SAVE MY TRIP" type="submit" />
+                    <div className="buttonContainer">
+                        <SecondaryButton 
+                            text="MY TRIPS" 
+                            icon={<ArrowLeft size={24} weight='bold' padding='' />} 
+                            handleClick={handleSecondaryButtonClick} 
+                        />
+                        <Button text="SAVE MY TRIP" type="submit" />
+                    </div>
                 </div>
             </form>
-
             {successMessage && (
                 <Alert severity="success" onClose={() => setSuccessMessage(null)}>
                     {successMessage}

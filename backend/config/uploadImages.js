@@ -25,7 +25,7 @@ const uploadImages = (images) => {
                 console.log('Cloudinary Upload Result:', result);
                 
                 if (result && result.secure_url) {
-                    console.log('Cloudinary Upload Success:', result.secure_url);
+                    //console.log('Cloudinary Upload Success:', result.secure_url); //
                     return resolve(result.secure_url);
                 } else {
                     return reject(new Error("Upload failed, no secure URL returned."));

@@ -43,7 +43,7 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
             try {
                 const base64 = await convertToBase64(file);
-                const response = await axios.post('http://localhost:5000/uploadImages', { images: [base64] });
+                const response = await axios.post('http://localhost:5000/api/uploadImages', { images: [base64] });
                 const secureUrl = response.data.urls[0];
 
                 if (secureUrl) {
@@ -141,4 +141,4 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             </div>
         </div>
     );
-
+}

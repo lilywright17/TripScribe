@@ -2,8 +2,6 @@
 const express = require("express"), bodyParser = require("body-parser");
 require("dotenv").config();
 const cors = require("cors");
-const bcrypt = require("bcrypt"); 
-const db = require("./config/db.js");
 const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 

@@ -80,7 +80,9 @@
 
 .buttonContainer {
     display: flex;
-    gap: 100px;
+    width: 100%; /* Ensure the container takes up the full width */
+    box-sizing: border-box; /* Include padding in the width calculation */
+    justify-content: space-between;
     padding: 32px;
     padding-bottom: 150px;
 }

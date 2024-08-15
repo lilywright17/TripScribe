@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-// the trip related functions that interact with the models(database) goes here
+// Trip related functions that interact with the models(database) goes here
 const getTrips = async (req, res) => {
     const { userID } = req.body;
     //checks of the userId exists
@@ -30,3 +30,5 @@ const getTrips = async (req, res) => {
 };
 
 module.exports = { getTrips };
+
+

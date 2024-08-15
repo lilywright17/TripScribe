@@ -1,161 +1,175 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from "../../components/input/input";
-import { Button } from "../../components/button/button";
 import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
+import { Button } from "../../components/button/button";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
 import { ArrowLeft } from '@phosphor-icons/react';
-import Modal from 'react-modal';
-import './editTrip.css';
+import axios from 'axios';
+import { Alert } from '@mui/material';
+import './editTrip.css'; 
 
 export const EditTripForm = () => {
-    const [descriptionLength, setDescriptionLength] = useState(0);
-    const [errors, setErrors] = useState({});
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-    //add state to hold images
-    const maxLength = 250;
-    const navigate = useNavigate();// Initialize the useNavigate hook
+  const [images, setImages] = useState([]);
+  const [descriptionLength, setDescriptionLength] = useState(0);
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate(); // Initialize navigate
+  const maxLength = 500;
 
-    const handleDescriptionChange = (e) => {
-        setDescriptionLength(e.target.value.length);
-    };
+  const handleDescriptionChange = (e) => {
+    setDescriptionLength(e.target.value.length);
+};
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const data = {};
-        formData.forEach((value, key) => {
-            data[key] = value;
-        });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = {};
+    formData.forEach((value, key) => {
+      data[key] = value;
+    });
 
-        const newErrors = {};
-        const startDate = new Date(data.startDate);
-        const endDate = new Date(data.endDate);
+    // Attach the Cloudinary image URLs to the data object
+    data.imageUrls = images.map(image => image.url);
 
-        if (!data.startDate || !data.endDate) {
-            newErrors.date = "Date cannot be empty";
-        } else if (startDate > endDate) {
-            newErrors.date = "Start date cannot be greater than end date";
-        }
+    const newErrors = {};
+    const startDate = new Date(data.startDate);
+    const endDate = new Date(data.endDate);
 
-        if (!data.description) {
-            newErrors.description = "Description cannot be empty";
-        }
+    if (!data.startDate || !data.endDate) {
+      newErrors.date = "Date cannot be empty";
+    } else if (startDate > endDate) {
+      newErrors.date = "Start date cannot be greater than end date";
+    }
 
-        if (!data.country) {
-            newErrors.country = "Country cannot be empty";
-        }
+    if (!data.description) {
+      newErrors.description = "Description cannot be empty";
+    }
 
-        if (!data.city) {
-            newErrors.city = "City cannot be empty";
-        }
+    if (!data.country) {
+      newErrors.country = "Country cannot be empty";
+    }
 
-        if (Object.keys(newErrors).length > 0) {
-            setErrors(newErrors);
-            return;
-        }
+    if (!data.city) {
+      newErrors.city = "City cannot be empty";
+    }
 
-//toDo: add the uploaded images
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
 
-        setModalIsOpen(true);
-        e.target.reset();
+    try {
+      await axios.post('http://localhost:5000/api/addtrip', data);
+      console.log('Trip data submitted successfully:', data);
 
-        setTimeout(() => navigate("/tripDetails"), 3000);
-    };
+      setSuccessMessage("Your trip has been saved successfully!");
 
-    const handleSecondaryButtonClick = () => {
-        navigate("/tripDetails");
-    };
-    
-    return (
-        <>
-        <form onSubmit={handleSubmit}>
-        <div className="uploadImgContainer">
-        {/* this is juts a shell component that needs to be connected to the API in order to fetch the exisiting photos and then change the photos that the user whats to edit */}
-            <AddTripImgUpload /> 
+      e.target.reset();
+      setImages([]); // Clear images after successful submission
+
+      setTimeout(() => navigate("/mytrips"), 4000); // Navigate after 4 seconds
+    } catch (error) {
+      console.error('Error submitting trip data:', error);
+    }
+
+    console.log(data);
+  };
+
+  const handleSecondaryButtonClick = () => {
+    navigate("/mytrips");
+  };
+
+  return (
+    <>
+      <form onSubmit={handleSubmit} className="edit-trip-form">
+        <div className="form-row">
+          <div className='input-container'>
+            <Input 
+              labelText="Country" 
+              inputType="text" 
+              placeholderText="Enter the country" 
+              name="country"
+              className={`input ${errors.country ? 'input-error' : ''}`}
+            />
+            {errors.country && <div className="error">{errors.country}</div>}
+                                  
+            <Input 
+                labelText="City/Town" 
+                inputType="text" 
+                placeholderText="Enter the city or town" 
+                name="city"
+                className={`input ${errors.city ? 'input-error' : ''}`}
+            />
+            {errors.city && <div className="error">{errors.city}</div>}
+                  
+            <Input 
+              labelText="Start Date" 
+              inputType="date" 
+              name="startDate"
+              className={`input ${errors.date ? 'input-error' : ''}`}
+            />
+                                  
+            <Input 
+                labelText="End Date" 
+                inputType="date" 
+                name="endDate"
+                className={`input ${errors.date ? 'input-error' : ''}`}
+            />
+            
+          </div>
         </div>
 
-        <div className="editTripForm">
-            <div className="editTripFormContainer">
-                <div className="editTripInputColumn">
-                    <Input 
-                        labelText="Country"
-                        inputType="text"
-                        //call the inputted data from user
-                        name="country"
-                        style={{ borderColor: errors.country ? 'red' : '#ccc' }}    
-                    />
-                    {errors.country && <div className="error">{errors.country}</div>}
+        <div className="image-upload-container">
+          <div className="images-display">
+            {images.map((image, index) => (
+              <div key={index} className="image-item">
+                <img src={image.url} alt={`Uploaded preview ${index + 1}`} />
+              </div>
+            ))}
+          </div>
+          <div className="upload-section">
+            <AddTripImgUpload images={images} setImages={setImages} />
+          </div>
+      </div>
 
-                    <Input 
-                        labelText="City/Town"
-                        inputType="text"
-                        //call the inputted data from user
-                        name="city"
-                        style={{ borderColor: errors.city ? 'red' : '#ccc' }}   
-                    />
-                    {errors.city && <div className="error">{errors.city}</div>}
+        {errors.date && <p className="error-message">{errors.date}</p>}
+        {errors.description && <p className="error-message">{errors.description}</p>}
+        {errors.country && <p className="error-message">{errors.country}</p>}
+        {errors.city && <p className="error-message">{errors.city}</p>}
 
-                    <Input 
-                        labelText="Start Date"
-                        inputType="date"
-                        //call the inputted data from user
-                        name="startDate"
-                        style={{ borderColor: errors.date ? 'red' : '#ccc' }} 
-                    />
+        <div className="textAreaContainer">
+            <label htmlFor="description">Description</label>
+            <textarea 
+                className={`text-description ${errors.description ? 'input-error' : ''}`}
+                id="description" 
+                name="description" 
+                rows="8" 
+                cols="50" 
+                placeholder="Enter a description of the trip"
+                onChange={handleDescriptionChange}
+                maxLength={maxLength}
+            ></textarea>
+              {errors.description && <div className="error">{errors.description}</div>}
+              <div className="characterCount">
+                  {descriptionLength}/{maxLength} characters
+              </div>
+        </div>
+        <div className="buttonContainer">
+          <SecondaryButton 
+              text="MY TRIPS" 
+              icon={<ArrowLeft size={24} weight='bold' padding='' />} 
+              handleClick={handleSecondaryButtonClick} 
+          />
+          <Button text="SAVE MY TRIP" type="submit" />
+        </div>
+      </form>
 
-                    <Input 
-                        labelText="End Date"
-                        inputType="date"
-                        //call the inputted data from user
-                        name="endDate"
-                        style={{ borderColor: errors.date ? 'red' : '#ccc' }} 
-                    />
-                    {errors.date && <div className="error">{errors.date}</div>}
-                </div>
-
-                <div className="editTripTextAreaContainer">
-                    <label htmlFor="description">Description</label>
-                    <textarea className="editTripTextDescription"
-                                id="description" 
-                                name="description" 
-                                rows="8" 
-                                cols="50" 
-                                //call the inputted data from the user
-                                maxLength={maxLength}
-                                onChange={handleDescriptionChange}
-                                style={{ borderColor: errors.description ? 'red' : '#ccc' }}
-                        ></textarea>
-                        {errors.description && <div className="error">{errors.description}</div>}
-                        <div className="characterCount">
-                            {descriptionLength}/{maxLength} characters
-                        </div>
-                </div>
-                </div>
-            </div>
-
-            <div className="editTripButtonContainer">
-                <SecondaryButton 
-                    text="GO BACK"
-                    icon={<ArrowLeft size={20} />} 
-                    handleClick={handleSecondaryButtonClick}
-                />
-                <Button text="SAVE MY CHANGES" type="submit" />
-
-{/* toDo: add a delete icon/button */}
-
-            </div>
-            </form>
-
-            <Modal 
-                isOpen={modalIsOpen}
-                onRequestClose={() => setModalIsOpen(false)}
-                contentLabel="Form Submission Success"
-            >
-                <h1>Success!</h1>
-                <h2>Your trip has been updated!</h2>
-                <p>You will be redirected to your Trip Details...in 3, 2, 1!</p>
-            </Modal>
-        </>
-    )
+      {successMessage && (
+          <Alert severity="success" onClose={() => setSuccessMessage(null)}>
+              {successMessage}
+          </Alert>
+      )}
+    </>
+  );
 };

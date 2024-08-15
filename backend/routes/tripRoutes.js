@@ -6,6 +6,6 @@ const router = express.Router();
 
 // All the trip related routes will be included below and imported in server.js
 // Added jwtAuthentication to protect the route
-router.post('/trips', jwtAuthentication, getTrips);
+router.get('/trips', jwtAuthentication, getTrips);
 
 module.exports = router;

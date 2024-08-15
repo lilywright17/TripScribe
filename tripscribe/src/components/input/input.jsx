@@ -1,7 +1,7 @@
 import React from 'react';
 import './input.css';
 
-const Input = ({ labelText, inputType, placeholderText, name, className, style}) =>{
+export const Input = ({ labelText, inputType, placeholderText, name, className, style}) =>{
   return (
     <div className='labelAndInputDiv'>
       <label className='labelText'>{labelText}</label>
@@ -14,8 +14,6 @@ const Input = ({ labelText, inputType, placeholderText, name, className, style})
     </div>
   );
 }
-
-export default Input;
 
 /*
 

@@ -1,6 +1,6 @@
 const db = require('../config/db');
 
-// the trip related functions that interact with the models(database) goes here
+// the trip related functions that interact with the database goes here
 const getTrips = async (req, res) => {
     const { userID } = req.body;
     //checks of the userId exists
@@ -9,6 +9,7 @@ const getTrips = async (req, res) => {
     }
 
     try {
+        // the URL to be added in the database tables, trhen will update the SQL query
         const [result] = await db.query(
             `
             SELECT t.tripID, t.city, t.country, t.description, t.date_from, t.date_to

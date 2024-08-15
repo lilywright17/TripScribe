@@ -1,25 +1,21 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../components/input/input";
-import Button from "../../components/button/button";
-import SecondaryButton from "../../components/secondaryButton/secondaryButton";
-import AddTripImgUpload from "../../components/uploadImages/addTripImgUpload";
+import { Input } from "../../components/input/input";
+import { Button } from "../../components/button/button";
+import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
+import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
 import { ArrowLeft } from '@phosphor-icons/react';
 import axios from 'axios';
-import Modal from 'react-modal';
+import Alert from '@mui/material/Alert'; 
 import "./addTrip.css";
-
-Modal.setAppElement('#root');
-
 
 export const AddTripForm = () => {
     const [descriptionLength, setDescriptionLength] = useState(0);
     const [errors, setErrors] = useState({});
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [successMessage, setSuccessMessage] = useState(null); // State to hold success message
     const [images, setImages] = useState([]); // State to hold images
-    const [urls, setUrls] = useState([]); // State to hold the uploaded image URLs
     const maxLength = 200;
-    const navigate = useNavigate();// Initialize the useNavigate hook
+    const navigate = useNavigate(); // Initialize the useNavigate hook
 
     const handleDescriptionChange = (e) => {
         setDescriptionLength(e.target.value.length);
@@ -33,7 +29,8 @@ export const AddTripForm = () => {
             data[key] = value;
         });
 
-        data.imageUrls = urls;
+        // Attach the Cloudinary image URLs to the data object
+        data.imageUrls = images.map(image => image.url);
 
         const newErrors = {};
         const startDate = new Date(data.startDate);
@@ -65,62 +62,22 @@ export const AddTripForm = () => {
         try {
             await axios.post('http://localhost:5000/addTrip', data);
             console.log('Trip data submitted successfully:', data);
-
-            setModalIsOpen(true);
+    
+            setSuccessMessage("Your trip has been saved successfully!");
+    
             e.target.reset();
-            setUrls([]); 
-
+            setImages([]); // Clear images after successful submission
+    
             setTimeout(() => navigate("/mytrips"), 4000);
         } catch (error) {
             console.error('Error submitting trip data:', error);
         }
-
-        console.log(data)
+    
+        console.log(data);
     };
 
     const handleSecondaryButtonClick = () => {
         navigate("/mytrips");
-    };
-
-    const convertBase64 = (files) => {
-        return new Promise((resolve, reject) => {
-            const filesReader = new FileReader();
-            filesReader.readAsDataURL(files);
-
-            filesReader.onload = () => {
-                resolve(filesReader.result);
-            };
-
-            filesReader.onerror = (error) => {
-                reject(error);
-            };
-        });
-    };
-
-    const uploadImages = async (event) => {
-        const files = Array.from(event.target.files);
-        console.log(`Number of files selected: ${files.length}`); // Debugging line
-
-        const uploadPromises = files.map(async (file) => {
-            const base64 = await convertBase64(file);
-            return axios.post('http://localhost:5000/uploadImages', { image: base64 })
-                .then(res => {
-                    console.log(`Uploaded URL: ${res.data.url}`); // Debugging line
-                    return res.data.url;
-                })
-                .catch(err => {
-                    console.error('Error uploading image:', err);
-                    throw err;
-                });
-        });
-
-        try {
-            const uploadedUrls = await Promise.all(uploadPromises); 
-            setUrls(prevUrls => [...prevUrls, ...uploadedUrls]);
-            console.log('Images uploaded successfully:', uploadedUrls);
-        } catch (err) {
-            console.error('Error uploading images:', err);
-        }
     };
 
     return (
@@ -132,17 +89,16 @@ export const AddTripForm = () => {
                         images={images} 
                         setImages={setImages} 
                         multiple 
-                        onChange={uploadImages}
                     />
                     <div className='addTripForm'>
                         <div className="formContainer">
                             <div className="inputColumn">
                                 <Input 
-                                        labelText="Country" 
-                                        inputType="text" 
-                                        placeholderText="Enter the country" 
-                                        name="country"
-                                        className={errors.country ? 'input-error' : ''}
+                                    labelText="Country" 
+                                    inputType="text" 
+                                    placeholderText="Enter the country" 
+                                    name="country"
+                                    className={errors.country ? 'input-error' : ''}
                                 />
                                 {errors.country && <div className="error">{errors.country}</div>}
                                 
@@ -194,22 +150,18 @@ export const AddTripForm = () => {
                 <div className="buttonContainer">
                     <SecondaryButton 
                         text="MY TRIPS" 
-                        icon={<ArrowLeft size={24} weight='bold' padding= '' />} 
+                        icon={<ArrowLeft size={24} weight='bold' padding='' />} 
                         handleClick={handleSecondaryButtonClick} 
                     />
                     <Button text="SAVE MY TRIP" type="submit" />
                 </div>
             </form>
 
-            <Modal 
-                isOpen={modalIsOpen}
-                onRequestClose={() => setModalIsOpen(false)}
-                contentLabel="Form Submission Success"
-            >
-                <h1>Success!</h1>
-                <h2>Your trip has been saved!</h2>
-                <p>You will be redirected to My Trips...in 3, 2, 1!</p>
-            </Modal>
+            {successMessage && (
+                <Alert severity="success" onClose={() => setSuccessMessage(null)}>
+                    {successMessage}
+                </Alert>
+            )}
         </>
     );
 };

@@ -2,8 +2,8 @@ import React, {useState, useEffect, useCallback} from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import groupImage from '../register/Group 2.png';
-import Button from "../../components/button/button.jsx";
-import SecondaryButton from "../../components/secondaryButton/secondaryButton.jsx";
+import {Button} from '../../components/button/button.jsx';
+import {SecondaryButton} from "../../components/secondaryButton/secondaryButton.jsx";
 
 import './login.css';
 
@@ -46,12 +46,16 @@ export const LogIn = () => {
                 });
 
                 const result = await response.json();
-                console.log('Success: ', result);
-                navigate('/mytrips');
+                if (response.ok){
+                    console.log('Success: ', result);
+                    navigate('/mytrips');
+                }
+                else{console.error('Login failed: ', result.message);}
+                
             } catch (error) {
                 console.error('Error: ', error);
             }
-        }
+        }, [email, password]
     );
 
     const toRegister = () => {

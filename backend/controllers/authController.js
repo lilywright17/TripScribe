@@ -49,6 +49,7 @@ const registerUser = async (req, res) => {
 };
 // Controller for the login page
 //See if more HTTP res code are needed
+// Controller for the login page
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const invalidMsg = {
@@ -57,33 +58,45 @@ const loginUser = async (req, res) => {
     };
 
     try {
+        // Query to get the user by email
         const [results] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
 
+        // Log the results to check the output
+        console.log('Database query results:', results);
+
+        // Check if user exists
         if (results.length === 0) {
             return res.status(401).json(invalidMsg);
         }
 
         const user = results[0];
+        // Log the user object
+        console.log('User object:', user);
+        // Compare password with hashed password
         const pwMatch = await bcrypt.compare(password, user.pword_hash);
-
         if (!pwMatch) {
             return res.status(401).json(invalidMsg);
         }
 
-        // Generating the JWT token upon successful login
+        // Prepare JWT payload with userID and email
+        const payload = { userID: user.userID, email: user.email };
+
+        console.log('JWT Payload:', payload); // Log payload for debugging
+
+        // Generate JWT token
         const token = jwt.sign(
-            { id: user.id, email: user.email },  // Payload
-            jwtConfig.secret,                   // Secret key from config
-            { expiresIn: '1h' }                 // Token expiry time
+            payload,
+            jwtConfig.secret,
+            { expiresIn: '1h' }
         );
-        
-        // Sending the jwt token to the client
+
+        // Send response with token and user info
         res.status(200).json({
             success: true,
             message: 'Login successful',
-            token, 
+            token,
             user: {
-                id: user.id,
+                id: user.userID, // Ensure 'userID' is correct
                 fullname: user.fullname,
                 username: user.username,
                 email: user.email

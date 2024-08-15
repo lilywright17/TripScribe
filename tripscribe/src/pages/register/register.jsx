@@ -130,15 +130,13 @@ export const Register = () => {
             </div>
 
             <div className="login-box">
-                <div className="login-container">
+                <div className="login-content">
                     <div className="one-of-us-text">One of us?</div>
                     <div className="slogan-text">TripScribe is here to document your journey!</div>
                     <button className="back-to-login" onClick={toLogin}>
-                        <div className="button-icon">
-                        </div>
                         Login
                     </button>
-                    <img src={groupImage} alt="Group" />
+                    <img src={groupImage} alt="Group" className="group-image" />
                 </div>
             </div>
         </div>

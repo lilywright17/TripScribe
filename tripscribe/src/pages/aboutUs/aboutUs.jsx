@@ -23,7 +23,9 @@ const usData = [
         lastName: "Joveres",
         info: "Hey, I'm Precious from Littlehampton, UK. When I was younger I was able to road-trip around the US and Europe, as well as visit Hong Kong and the Philippines, my home country. Now that I'm older, I'm hoping to collect a tattoo from every country I visit!",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "🤠"
+        emoji: "🤠",
+        linkedInUrl: "https://www.linkedin.com/in/precious-joveres-2965a1231/",
+        githubUrl: "https://github.com/atepem"
     },
     {
         id:2,
@@ -31,7 +33,9 @@ const usData = [
         lastName: "Lake",
         info: "Hi, I'm Krystal. I love traveling because it lets me experience different cultures and meet new people. Exploring new places, whether it's nature or historic sites, broadens my perspective and adds excitement to my life. Traveling offers both adventure and relaxation, helping me grow personally and appreciate the world’s beauty.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "💎"
+        emoji: "💎",
+        linkedInUrl: "https://www.linkedin.com/in/krystal-lake/",
+        githubUrl: "https://github.com/klake10"
     },
     {
         id:3,
@@ -39,7 +43,9 @@ const usData = [
         lastName: "Mustafova",
         info: "Hi, I'm Mediha. I recently escaped the busy life of London and moved to Essex. Growing up in the countryside, I love spending time in nature, having picnics, and gardening. When I travel I never miss an opportunity to visit the local botanical garden, try the local cuisine and gather cooking inspirations.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "🐣"
+        emoji: "🐣",
+        linkedInUrl: "https://www.linkedin.com/in/mediha-mustafova-0a803296/",
+        githubUrl: "https://github.com/MedihaMustafova"
     },
     {
         id:4,
@@ -47,7 +53,9 @@ const usData = [
         lastName: "Proano",
         info: "¡Hola mundo! I live in Madrid with my beloved dog, Llum. I enjoy traveling, discovering new cuisines, and meeting diverse cultures. I prefer the countryside for its nature and fresh air, but if I am visiting a city, I love exploring its museums and libraries.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "🎃"
+        emoji: "🎃",
+        linkedInUrl: "https://www.linkedin.com/in/victoria-rosenthal-686a0b78/", //Hey Victoria, I couldnt find your LinkedIn but when you see this add your URL here. Thanks! - Krystal
+        githubUrl: "https://github.com/th4lesvic"
     },
     {
         id:5,
@@ -55,7 +63,9 @@ const usData = [
         lastName: "Walters",
         info: "Hi, I'm Marta. I live in London with my two kids and a husband. I’ve always loved travelling and having kids didn’t stop me from exploring the world. When my daughter was one we went on a sabbatical to South America! I love learning about new cultures, tasting local dishes and observing the flora and fauna.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "🐙"
+        emoji: "🐙",
+        linkedInUrl: "https://www.linkedin.com/in/marta-walters-692268296/",
+        githubUrl: "https://github.com/MartaWCodes"
     },
     {
         id:6,
@@ -63,7 +73,9 @@ const usData = [
         lastName: "Williams",
         info: "Hi, I'm Katie! I live in the a quiet little town in the North West of England! I love to travel, bake and decorate my house with my latest lego builds! I can often be found out on a walk in the countryside with friends or curled up on the sofa with a good book!",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "🧁"
+        emoji: "🧁",
+        linkedInUrl: "https://www.linkedin.com/in/katie-williams-b9652946/",
+        githubUrl: "https://github.com/Katie-W-22"
     },
     {
         id:7,
@@ -71,7 +83,9 @@ const usData = [
         lastName: "Wright",
         info: "Hi I'm Lily, I live in Manchester with my 2 cats Dotty and Teddy. I love travelling and experiencing new cultures, and have spent time backpacking around Europe and Asia, as well as living in Australia for 3 years. When I'm not working or travelling, I enjoy knitting, reading, eating out with friends, and yoga.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
-        emoji: "🌸"
+        emoji: "🌸",
+        linkedInUrl: "https://www.linkedin.com/in/lily-wright-893283104/",
+        githubUrl: "https://github.com/lilywright17"
     }
 ];
 
@@ -101,8 +115,12 @@ export const AboutUs = () => {
                 <h3>{user.lastName}</h3>
                 <p>{user.info}</p>
                 <div className="socialsContainer">
-                    <img className="linkedInIcon" src={linkedInLogo} alt="LinkedIn" />
-                    <img className="githubIcon" src={githubLogo} alt="GitHub" />
+                    <a href={user.linkedInUrl} target="_blank" rel="noopener noreferrer">
+                        <img className="linkedInIcon" src={linkedInLogo} alt="LinkedIn" />
+                    </a>
+                    <a href={user.githubUrl} target="_blank" rel="noopener noreferrer">
+                        <img className="githubIcon" src={githubLogo} alt="GitHub" />
+                    </a>
                 </div>
             </Item>
         </Grid>

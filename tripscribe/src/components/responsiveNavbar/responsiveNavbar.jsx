@@ -25,10 +25,10 @@ const pageLinks = {
 const settings = ['Profile', 'Logout'];
 const settingsLinks = {
   'Profile': '/userprofile',
-  'Logout': '/logout',
+  'Logout': '/',
 };
 
-function ResponsiveNavbar() {
+export const ResponsiveNavbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -211,5 +211,3 @@ function ResponsiveNavbar() {
     </>
   );
 }
-
-export default ResponsiveNavbar;

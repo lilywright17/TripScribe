@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import InfoIcon from '@mui/icons-material/Info';
@@ -7,29 +7,29 @@ import { FacebookLogo, XLogo, LinkedinLogo, InstagramLogo } from '@phosphor-icon
 import { Box } from '@mui/material';
 import { useMediaQuery, useTheme } from '@mui/material';
 
-export default function ResponsiveFooter() {
+export const ResponsiveFooter = () => {
   const [value, setValue] = React.useState('about');
   const navigate = useNavigate();
   const theme = useTheme();
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md')); 
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
     switch (newValue) {
       case 'about':
-        navigate('/aboutus'); 
+        navigate('/aboutus');
         break;
       case 'facebook':
-        window.location.href = 'https://www.facebook.com'; 
+        window.location.href = 'https://www.facebook.com';
         break;
       case 'instagram':
-        window.location.href = 'https://www.instagram.com'; 
+        window.location.href = 'https://www.instagram.com';
         break;
       case 'twitter':
-        window.location.href = 'https://twitter.com'; 
+        window.location.href = 'https://twitter.com';
         break;
       case 'linkedin':
-        window.location.href = 'https://www.linkedin.com'; 
+        window.location.href = 'https://www.linkedin.com';
         break;
       default:
         break;
@@ -37,47 +37,49 @@ export default function ResponsiveFooter() {
   };
 
   return (
-    <Box sx={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}> 
+    <Box sx={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
       <BottomNavigation
-        sx={{ width: '100%' }} 
+        sx={{ width: '100%' }}
         value={value}
         onChange={handleChange}
-        style={{ backgroundColor: '#476a6f' }}  
+        style={{ backgroundColor: '#476a6f', justifyContent: 'space-between' }} 
       >
         <BottomNavigationAction
           label="About Us"
           value="about"
-          icon={<InfoIcon fontSize={isLargeScreen ? 'medium' : 'small'} />} 
-          style={{ color: 'white' }}
+          icon={<InfoIcon fontSize={isLargeScreen ? 'medium' : 'small'} />}
+          style={{ color: 'white', marginRight: isLargeScreen ? '32px' : '16px' }} 
         />
-        <BottomNavigationAction
-          label="Facebook"
-          value="facebook"
-          icon={<FacebookLogo size={isLargeScreen ? 32 : 24} />} 
-          style={{ color: 'white' }}
-        />
-        <BottomNavigationAction
-          label="Instagram"
-          value="instagram"
-          icon={<InstagramLogo size={isLargeScreen ? 32 : 24} />} 
-          style={{ color: 'white' }}
-        />
-        <BottomNavigationAction
-          label="Twitter"
-          value="twitter"
-          icon={<XLogo size={isLargeScreen ? 32 : 24} />} 
-          style={{ color: 'white' }}
-        />
-        <BottomNavigationAction
-          label="LinkedIn"
-          value="linkedin"
-          icon={<LinkedinLogo size={isLargeScreen ? 32 : 24} />} 
-          style={{ color: 'white' }}
-        />
-        <p style={{ color: 'white' }}>© 2024 Team-5</p>
 
+        <Box sx={{ display: 'flex', gap: isLargeScreen ? 2 : 1 }}>
+          <BottomNavigationAction
+            label="Facebook"
+            value="facebook"
+            icon={<FacebookLogo size={isLargeScreen ? 32 : 24} />}
+            style={{ color: 'white' }}
+          />
+          <BottomNavigationAction
+            label="Instagram"
+            value="instagram"
+            icon={<InstagramLogo size={isLargeScreen ? 32 : 24} />}
+            style={{ color: 'white' }}
+          />
+          <BottomNavigationAction
+            label="Twitter"
+            value="twitter"
+            icon={<XLogo size={isLargeScreen ? 32 : 24} />}
+            style={{ color: 'white' }}
+          />
+          <BottomNavigationAction
+            label="LinkedIn"
+            value="linkedin"
+            icon={<LinkedinLogo size={isLargeScreen ? 32 : 24} />}
+            style={{ color: 'white' }}
+          />
+        </Box>
+
+        <p style={{ color: 'white', marginLeft: isLargeScreen ? '32px' : '16px', marginRight: '8px' }}>© 2024 Team5</p>
       </BottomNavigation>
-      
     </Box>
   );
 }

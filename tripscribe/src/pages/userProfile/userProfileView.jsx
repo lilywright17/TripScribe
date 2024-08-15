@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Input from "../../components/input/input";
-import Button from "../../components/button/button";
+import { Input } from "../../components/input/input";
+import { Button } from "../../components/button/button";
 import Standing from "./Standing.svg";
 import Humaaan from "./Humaaan.svg";
 import { NotePencil } from "@phosphor-icons/react";

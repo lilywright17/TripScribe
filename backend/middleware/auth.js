@@ -23,7 +23,7 @@ const jwtAthentication = (req, res, next) => {
           }
 
           // Log decoded token for debugging
-          console.log("Decoded token:", decoded);
+          //console.log("Decoded token:", decoded);
           
           // Assign the decoded token to req.user
           req.user = decoded;

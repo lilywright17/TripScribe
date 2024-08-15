@@ -62,7 +62,7 @@ const loginUser = async (req, res) => {
         const [results] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
 
         // Log the results to check the output
-        console.log('Database query results:', results);
+        //console.log('Database query results:', results);
 
         // Check if user exists
         if (results.length === 0) {
@@ -71,7 +71,7 @@ const loginUser = async (req, res) => {
 
         const user = results[0];
         // Log the user object
-        console.log('User object:', user);
+        //console.log('User object:', user);
         // Compare password with hashed password
         const pwMatch = await bcrypt.compare(password, user.pword_hash);
         if (!pwMatch) {
@@ -80,8 +80,9 @@ const loginUser = async (req, res) => {
 
         // Prepare JWT payload with userID and email
         const payload = { userID: user.userID, email: user.email };
-
-        console.log('JWT Payload:', payload); // Log payload for debugging
+        
+        // Logging payload for debugging
+        //console.log('JWT Payload:', payload); 
 
         // Generate JWT token
         const token = jwt.sign(

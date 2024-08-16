@@ -1,21 +1,13 @@
 const db = require('../config/db');
-const axios = require('axios');
 
 const addNewTrip = async (req, res) => {
     try {
-        // Make an internal API call to fetch the userID
-        const response = await axios.get('http://localhost:5000/api/userID', {
-            headers: {
-                // Pass the user's session cookie or any required headers if needed
-                'Cookie': req.headers.cookie
-            }
-        });
-
-        const userID = response.data.userID;
-
-        if (!userID) {
+        // Check if req.user is defined and has an id property
+        if (!req.user || !req.user.id) {
             return res.status(401).json({ error: 'User not authenticated' });
         }
+
+        const userID = req.user.id;  // Retrieve user ID from the JWT token stored in req.user
 
         const tripData = req.body;
         const { city, country, description, date_from, date_to, imgUrls } = tripData;

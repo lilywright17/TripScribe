@@ -9,7 +9,7 @@ const getTrips = async (req, res) => {
     }
 
     try {
-        // the URL to be added in the database tables, trhen will update the SQL query
+        // the URL to be added in the database tables, then will update the SQL query
         const [result] = await db.query(
             `
             SELECT t.tripID, t.city, t.country, t.description, t.date_from, t.date_to

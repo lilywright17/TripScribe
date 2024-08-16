@@ -13,6 +13,7 @@ export const AddTripForm = () => {
     const [descriptionLength, setDescriptionLength] = useState(0);
     const [errors, setErrors] = useState({});
     const [successMessage, setSuccessMessage] = useState(null); // State to hold success message
+    const [errorMessage, setErrorMessage] = useState(null); // State to hold error message
     const [images, setImages] = useState([]); // State to hold images
     const maxLength = 500;
     const navigate = useNavigate(); // Initialize the useNavigate hook
@@ -30,7 +31,7 @@ export const AddTripForm = () => {
         });
 
         // Attach the Cloudinary image URLs to the data object
-        data.imageUrls = images.map(image => image.url);
+        data.imgUrls = images.map(image => image.url);
 
         const newErrors = {};
         const startDate = new Date(data.startDate);
@@ -71,6 +72,7 @@ export const AddTripForm = () => {
             setTimeout(() => navigate("/mytrips"), 4000);
         } catch (error) {
             console.error('Error submitting trip data:', error);
+            setErrorMessage(error.response?.data?.error || "There was a problem saving your trip. Please try again.");
         }
     
         console.log(data);
@@ -159,6 +161,11 @@ export const AddTripForm = () => {
             {successMessage && (
                 <Alert severity="success" onClose={() => setSuccessMessage(null)}>
                     {successMessage}
+                </Alert>
+            )}
+            {errorMessage && (
+                <Alert severity="error" onClose={() => setErrorMessage(null)}>
+                    {errorMessage}
                 </Alert>
             )}
         </>

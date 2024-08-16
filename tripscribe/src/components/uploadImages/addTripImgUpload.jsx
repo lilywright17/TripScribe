@@ -26,6 +26,14 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             return;
         }
 
+            // Retrieve the token from storage (adjust the method based on where you store the token)
+    const token = localStorage.getItem('token'); // or sessionStorage.getItem('token')
+
+    if (!token) {
+        setError("Authentication token is missing. Please log in again.");
+        return;
+    }
+
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             const fileType = file.type.split('/')[1].toLowerCase();
@@ -43,9 +51,17 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
             try {
                 const base64 = await convertToBase64(file);
-                const response = await axios.post('http://localhost:5000/api/uploadImages', { images: [base64] });
+                const response = await axios.post('http://localhost:5000/api/uploadImages', 
+                    { images: [base64] },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`, // Add the token here
+                        }
+                    }
+                );
                 const secureUrl = response.data.urls[0];
-
+    
                 if (secureUrl) {
                     newImages.push({
                         name: file.name,
@@ -54,6 +70,7 @@ export const AddTripImgUpload = ({ images, setImages }) => {
                 }
             } catch (err) {
                 console.error('Error uploading images:', err);
+                errorMessage = "Error uploading images. Please try again.";
             }
         }
 
@@ -141,8 +158,4 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             </div>
         </div>
     );
-<<<<<<< HEAD
-}
-=======
 };
->>>>>>> dev

@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt.js'); 
 
-const jwtAthentication = (req, res, next) => {
+const jwtAuthentication = (req, res, next) => {
 
   const jwtToken = req.header("Authorization");
 
@@ -14,13 +14,18 @@ const jwtAthentication = (req, res, next) => {
     }
 
     jwt.verify(jwtToken.split(" ")[1], jwtConfig.secret, (err, user) => {
-      // Checking of invalid or expired jwt token
+      // Checking if the JWT token is invalid or expired
       if (err) {
-        return res.status(403).json({ error: "Forbidden,  invalid or expired token" });
+        return res.status(403).json({ error: "Forbidden, invalid or expired token" });
+      }
+
+      // Ensure that the decoded user information has an ID or essential property
+      if (!user || !user.id) {
+        return res.status(401).json({ error: "Unauthorized, invalid token payload" });
       }
 
       req.user = user;
-      next(); //contunie to the next route
+      next(); // Continue to the next route
     });
   } catch (error) {
     console.error("Error during JWT authentication:", error);
@@ -28,4 +33,4 @@ const jwtAthentication = (req, res, next) => {
   }
 };
 
-module.exports = jwtAthentication;
+module.exports = jwtAuthentication;

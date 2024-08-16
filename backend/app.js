@@ -1,4 +1,4 @@
-require("dotenv").config();
+/*require("dotenv").config();
 const express = require("express"), bodyParser = require("body-parser");
 const cors = require("cors");
 const newtripRoutes = require('./routes/newtripRoutes');
@@ -27,7 +27,7 @@ app.listen(PORT, () => {
 
 
 
-/*require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const uploadImages = require('./config/uploadImages'); 

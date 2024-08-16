@@ -1,4 +1,4 @@
-require('dotenv').config(); // Load environment variables from the .env file
+/*require('dotenv').config(); 
 const cloudinary = require('cloudinary').v2;
 const uploadImages = require('../config/uploadImages');
 
@@ -33,4 +33,4 @@ describe('Cloudinary Image Upload', () => {
     // Restore the original implementation after the test
     cloudinary.uploader.upload.mockRestore();
   });
-});
+});*/

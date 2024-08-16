@@ -106,7 +106,7 @@
 }
 
 .register-btn:disabled {
-    opacity: 100%;
+    opacity: 50%;
 }
 
 .register .terms {

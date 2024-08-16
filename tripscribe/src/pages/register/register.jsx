@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
 
 export const Register = () => {
-    const [fullName, setFullName] = useState('');
+    const [fullname, setfullname] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +23,7 @@ export const Register = () => {
     }, []);
 
     function validateForm() {
-        return fullName.length > 0 && username.length > 0 && email.length > 5 && password.length > 7 && password === confirmPassword && validateEmail(email);
+        return fullname.length > 0 && username.length > 0 && email.length > 5 && password.length >= 6 && password === confirmPassword && validateEmail(email);
     }
 
     const validateEmail = (email) => {
@@ -34,22 +34,34 @@ export const Register = () => {
 
     const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
+        console.log(
+            fullname, " ", username, " ",email," ","password: ", password, " ","confirm password: ",confirmPassword
+        );
 
         try {
-            const response = await fetch('/api/register', {
+            const response = await fetch('http://localhost:8000/api/register', {
                 method: 'POST',
-                body: JSON.stringify({ fullName, username, email, password }),
+                body: JSON.stringify({ fullname, username, email, password, confirmPassword }),
                 headers: {
                     "Content-Type": 'application/json',
                 },
             });
 
+            console.log(response.body);
+
             const result = await response.json();
-            console.log('Success: ', result);
+            console.log('User registration: ', result);
+
+            if (response.ok){
+                console.log('Success: ', result);
+                navigate('/');
+            }
+            else{console.error('Login failed: ', result.message);}
+
         } catch (error) {
             console.error('Error: ', error);
         }
-    }, [fullName, username, email, password]);
+    }, [fullname, username, email, password]);
 
     const toLogin = () => {
         setIsRegistering(false);
@@ -61,16 +73,17 @@ export const Register = () => {
             <div className={`register-box register-animation ${isRegistering ? 'visible' : 'hidden'}`}>
                 <div className='register-container'>
                     <h1>Sign Up</h1>
+                    
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="fullName">Full Name</label>
+                            <label htmlFor="fullname">Full Name</label>
                             <input
                                 autoFocus
                                 type="text"
-                                id="fullName"
+                                id="fullname"
                                 placeholder="Enter your full name"
-                                value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
+                                value={fullname}
+                                onChange={(e) => setfullname(e.target.value)}
                             />
                         </div>
 
@@ -125,9 +138,10 @@ export const Register = () => {
                         </div>
 
                         <button type="submit" className="register-btn" disabled={!validateForm()}>
-                            Register
+                            REGISTER
                         </button>
                     </form>
+                    
                 </div>
             </div>
 

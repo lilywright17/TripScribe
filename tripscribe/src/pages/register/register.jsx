@@ -2,9 +2,10 @@ import React, { useState, useCallback, useEffect } from 'react';
 import './register.css';
 import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
+import groupImage from './Group 2.png';
 
 export const Register = () => {
-    const [fullName, setFullName] = useState(''); // State for full name
+    const [fullName, setFullName] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -13,9 +14,7 @@ export const Register = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Triggers animation when login page loads
         setIsRegistering(true);
-
         document.body.style.backgroundImage = `url(${travelBG})`;
         document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundRepeat = 'no-repeat';
@@ -31,14 +30,13 @@ export const Register = () => {
         );
     };
 
-    // api stuff
     const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
 
         try {
             const response = await fetch('/api/register', {
                 method: 'POST',
-                body: JSON.stringify({ fullName, username, email, password }), // Added fullName
+                body: JSON.stringify({ fullName, username, email, password }),
                 headers: {
                     "Content-Type": 'application/json',
                 },
@@ -49,8 +47,7 @@ export const Register = () => {
         } catch (error) {
             console.error('Error: ', error);
         }
-    }, [fullName, username, email, password]); // Added fullName to dependency array
-    // end of api stuff
+    }, [fullName, username, email, password]);
 
     const toLogin = () => {
         setIsRegistering(false);
@@ -119,21 +116,29 @@ export const Register = () => {
                             />
                         </div>
 
-                        <button
-                            type="submit"
-                            disabled={!validateForm()}
-                        >
-                            REGISTER
+                        <div className="terms">
+                            <label>
+                                By creating an account you agree to our <a href="#">Terms and Privacy</a>
+                            </label>
+                        </div>
+
+                        <button type="submit" className="register-btn" disabled={!validateForm()}>
+                            Register
                         </button>
                     </form>
                 </div>
             </div>
 
-            <div className={`login-box`}>
-                <div className='login-container'>
-                    <button className="back-to-login" onClick={toLogin}>Back to Login</button>
+            <div className="login-box">
+                <div className="login-content">
+                    <div className="one-of-us-text">One of us?</div>
+                    <div className="slogan-text">TripScribe is here to document your journey!</div>
+                    <button className="back-to-login" onClick={toLogin}>
+                        Login
+                    </button>
+                    <img src={groupImage} alt="Group" className="group-image" />
                 </div>
             </div>
         </div>
     );
-}
+};

@@ -1,20 +1,20 @@
 .box-conteiner{
-    display: flex; /* Use Flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
     padding: 20px;
 }
 .title{
-    width: 80%; /* Take full width of the parent container */
-    text-align: left; /* Align text to the left */
+    width: 80%; 
+    text-align: left;
     padding-left: 100px;
     padding-top: 10px; 
 }
 
 .title-container {
     display: flex;
-    align-items: center; /* Vertically align h1 and edit button */
-    gap: 40px; /* Space between h1 and edit button */
+    align-items: center;
+    gap: 40px; 
 }
 
 .button-container{
@@ -44,7 +44,7 @@
 
 .delete-icon{
     position: absolute;
-    right: 100px; /* Aligns the icon to the right */
+    right: 100px; 
     transform: translateY(-50%); 
     cursor: pointer; 
 }

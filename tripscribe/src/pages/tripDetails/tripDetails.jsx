@@ -91,7 +91,7 @@ export const TripDetails = ({ trip }) => {
           open={dialogOpen}
           handleClose = {handleCancel}
           handleDelete = {handleDelete}
-          title="Delete file?"
+          title={`Delete trip "${country}, ${city}"?`}
           content = "Deleting this trip will be be permanent?"
           agreeBtnText ="DELETE"
           disagreeBtnText="CANCEL"

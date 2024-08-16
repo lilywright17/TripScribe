@@ -8,12 +8,21 @@ const getTrips = async (req, res) => {
     console.log(`UserID is: ${userID}`);
 
     try {
-        // the URL to be added in the database tables, trhen will update the SQL query
+        // JSON_OBJECT to combine photoID, secure_url, and alt_text into a JSON object for each photo
+        // JSON_ARRAYAGG used to combine the objects into a single JSON array(all the photos will be associated with a particular trip.)
         const [result] = await db.query(
             `
-            SELECT t.tripID, t.city, t.country, t.description, t.date_from, t.date_to
-            FROM Trips t
-            WHERE t.userID = ?
+            SELECT 
+                t.tripID, t.city, t.country, t.description, t.date_from AS startDate, t.date_to AS endDate,
+                JSON_ARRAYAGG(JSON_OBJECT('photoID', p.photoID, 'url', p.secure_url, 'alt_text', p.alt_text)) AS photos
+            FROM 
+                Trips t
+            LEFT JOIN 
+                Photos p ON t.tripID = p.tripID
+            WHERE 
+                t.userID = ?
+            GROUP BY 
+                t.tripID
             `,
             [userID]
         );

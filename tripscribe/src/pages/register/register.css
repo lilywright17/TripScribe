@@ -206,6 +206,7 @@
 }
 
 .error-text {
+    text-align: center;
     color: red;
     font-style: italic;
 }

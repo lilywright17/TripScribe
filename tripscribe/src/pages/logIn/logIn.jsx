@@ -12,15 +12,16 @@ export const LogIn = () => {
     // for react hooks
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const [loginFailure, isLoginFailure] = useState(false);
+    const [failMessage, setFailMessage] = useState('');
+
     const [loginVisibility, setLoginVisibility] = useState(false);
 
     const navigate = useNavigate();
 
     // Triggers animation when login page loads
-    useEffect(() => {
-        
-        setLoginVisibility(true);
-    }, [])
+    useEffect(() => {setLoginVisibility(true);}, [])
 
     function validateForm() {
         // function to validate user inputs for email and password
@@ -48,11 +49,16 @@ export const LogIn = () => {
                 });
 
                 const result = await response.json();
+
                 if (response.ok){
                     console.log('Success: ', result);
+                    isLoginFailure(false);
                     navigate('/mytrips');
                 }
-                else{console.error('Login failed: ', result.message);}
+                else{
+                    isLoginFailure(true);
+                    setFailMessage(result.message);
+                }
                 
             } catch (error) {
                 console.error('Error: ', error);
@@ -91,7 +97,7 @@ export const LogIn = () => {
                 </div>
                 
                 {/* Error message */}
-                <p></p>
+                {loginFailure && <p className='error-text'>{failMessage}</p>}
                 
                 <form className="form-submit" onSubmit={handleSubmit}>
                     <div className = "form-group">

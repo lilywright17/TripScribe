@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './register.css';
-import travelBG from '../logIn/travel_bg.jpg';
+// import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
 
@@ -15,9 +15,11 @@ export const Register = () => {
 
     useEffect(() => {
         setIsRegistering(true);
+
         document.body.style.backgroundImage = `url(${travelBG})`;
         document.body.style.backgroundSize = 'cover';
         document.body.style.backgroundRepeat = 'no-repeat';
+
     }, []);
 
     function validateForm() {
@@ -130,6 +132,7 @@ export const Register = () => {
             </div>
 
             <div className="login-box">
+
                 <div className="login-content">
                     <div className="one-of-us-text">One of us?</div>
                     <div className="slogan-text">TripScribe is here to document your journey!</div>
@@ -137,6 +140,7 @@ export const Register = () => {
                         Login
                     </button>
                     <img src={groupImage} alt="Group" className="group-image" />
+
                 </div>
             </div>
         </div>

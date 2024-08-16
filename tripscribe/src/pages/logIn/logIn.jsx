@@ -1,8 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import travelBG from './travel_bg.jpg';
+import { useNavigate } from 'react-router-dom';
+
+import groupImage from '../register/Group 2.png';
+import {Button} from '../../components/button/button.jsx';
+import {SecondaryButton} from "../../components/secondaryButton/secondaryButton.jsx";
 
 import './login.css';
-import { useNavigate } from 'react-router-dom';
+
 
 export const LogIn = () => {
     // for react hooks
@@ -12,18 +16,15 @@ export const LogIn = () => {
 
     const navigate = useNavigate();
 
+    // Triggers animation when login page loads
     useEffect(() => {
-        // Triggers animation when login page loads
+        
         setLoginVisibility(true);
-
-        document.body.style.backgroundImage = `url(${travelBG})`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
     }, [])
 
     function validateForm() {
         // function to validate user inputs for email and password
-        return email.length > 5 && password.length > 7 && validateEmail(email);
+        return email.length > 5 && password.length >= 6 && validateEmail(email);
     }
 
     const validateEmail = (email) => {
@@ -32,11 +33,12 @@ export const LogIn = () => {
         );
     };
 
+    //links to API
     const handleSubmit = useCallback(async (event) => {
             event.preventDefault();
 
             try {
-                const response = await fetch('/api/login', {
+                const response = await fetch('http://localhost:5000/api/login', {
                     method: 'POST',
                     body: JSON.stringify({email, password}),
                     headers: {
@@ -45,12 +47,16 @@ export const LogIn = () => {
                 });
 
                 const result = await response.json();
-                console.log('Success: ', result);
-                navigate('/mytrips');
+                if (response.ok){
+                    console.log('Success: ', result);
+                    navigate('/mytrips');
+                }
+                else{console.error('Login failed: ', result.message);}
+                
             } catch (error) {
                 console.error('Error: ', error);
             }
-        }
+        }, [email, password]
     );
 
     const toRegister = () => {
@@ -61,21 +67,25 @@ export const LogIn = () => {
     return (
         <div className="login">
             <div className="side-box">
-                <div className="register-container">
-                    <h1 className='register-text'>Welcome to TripScribe!</h1>
-                    <h2 className='register-text'>Start your journey</h2>
+                <div className='to-register-container'>
+                    <div className="new-here-text">New here?</div>
+                    <div className='to-register-text'>Start your journey!</div>
+                    
+                    
+                        <SecondaryButton
+                            text = "REGISTER"
+                            handleClick={toRegister}
+                        />
+                        
                 </div>
-                <button 
-                    className='register-button'
-                    onClick={toRegister}
-                >
-                    REGISTER
-                </button>
-            </div>
+                    <img src={groupImage} alt="Group" />
+            
 
+            </div>
+            
             <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
-                <div className='login-container'>
+                <div className='login-box'>
                     <h1 className="h-signin">Sign In</h1>
                 </div>
                 
@@ -105,15 +115,16 @@ export const LogIn = () => {
                     </div>
 
                     <div className='button-container'>
-                    <button className='button-submit'
-                        type="submit" 
-                        disabled={!validateForm()}
-                        // onClick={handleSubmit}
-                    >
-                        LOG IN
-                    </button>
+                        <Button
+                            className='button-submit'
+                            text='LOG IN'
+                            type='submit'
+                            disabled={!validateForm()}
+                        />
                     </div>
+                
                 </form>
+                
             </div>
         </div>
     );

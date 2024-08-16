@@ -14,15 +14,11 @@ const corsOptions = {
     origin: "http://localhost:3000",
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
+    optionsSuccessStatus: 200
 }
 
 app.use(cors(corsOptions));
 
-const corsOptions = {
-    origin: 'http://localhost:3000', 
-    optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -32,12 +28,12 @@ app.get("/", (req, res) => res.send("Server running"));
 app.use(express.json());
 
 // User routes
-app.use('/api', authRoutes);// Use the link http://localhost:5000/api/register or http://localhost:5000/api/login
-app.use('/api', tripRoutes);// Use the link http://localhost:5000/api/trips
+app.use('/api', authRoutes);// Use the link http://localhost:8000/api/register or http://localhost:8000/api/login
+app.use('/api', tripRoutes);// Use the link http://localhost:8000/api/trips
 
-// New trip + getUser routes
+// New trip
 
-app.use('/api', newTripRoutes);
+app.use('/api', newTripRoutes); // Use the link http://localhost:8000/api/addtrip
 
 
 

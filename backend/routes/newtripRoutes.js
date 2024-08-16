@@ -5,9 +5,8 @@ const { addNewTrip } = require('../controllers/newTripController.js');
 
 const router = express.Router();
 
-// All the [new]trip related routes will be included below and the imported in server.js
-
-router.get('/uploadImages' , jwtAuthentication, handleUploadImages);
-router.get('/addtrip' , jwtAuthentication, addNewTrip);
+// Apply jwtAuthentication to protected routes
+router.post('/uploadImages' , jwtAuthentication, handleUploadImages);
+router.post('/addtrip' , jwtAuthentication, addNewTrip);
 
 module.exports = router;

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { jwtDecode } from 'jwt-decode';
 import { Input } from "../../components/input/input";
 import { Button } from "../../components/button/button";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
@@ -18,6 +19,19 @@ export const AddTripForm = () => {
     const maxLength = 500;
     const navigate = useNavigate(); // Initialize the useNavigate hook
 
+    const getUserIdFromToken = () => {
+        const token = sessionStorage.getItem('token');
+        if (!token) return null;
+
+        try {
+            const decoded = jwtDecode(token);
+            return decoded.id;
+        } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+        }
+    };    
+    
     const handleDescriptionChange = (e) => {
         setDescriptionLength(e.target.value.length);
     };
@@ -32,6 +46,12 @@ export const AddTripForm = () => {
 
         // Attach the Cloudinary image URLs to the data object
         data.imgUrls = images.map(image => image.url);
+
+        // Add the userID to the trip data
+        const userID = getUserIdFromToken();
+        if (userID) {
+            data.userID = userID;
+        }
 
         const newErrors = {};
         const startDate = new Date(data.startDate);
@@ -61,14 +81,18 @@ export const AddTripForm = () => {
         }
 
         try {
-            await axios.post('http://localhost:5000/api/addtrip', data);
+            const token = sessionStorage.getItem('token');; 
+
+            await axios.post('http://localhost:8000/api/addtrip', data, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+
             console.log('Trip data submitted successfully:', data);
-    
             setSuccessMessage("Your trip has been saved successfully!");
-    
+
             e.target.reset();
-            setImages([]); // Clear images after successful submission
-    
+            setImages([]); 
+
             setTimeout(() => navigate("/mytrips"), 4000);
         } catch (error) {
             console.error('Error submitting trip data:', error);

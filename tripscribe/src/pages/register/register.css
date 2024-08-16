@@ -200,3 +200,12 @@
     align-self: center; /* Keep the image centered horizontally */
 
 }
+
+.register-successful {
+    position: absolute;
+}
+
+.error-text {
+    color: red;
+    font-style: italic;
+}

@@ -86,10 +86,12 @@ export const LogIn = () => {
             
             <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
 
-                <div className='login-box'>
+                <div className='login-container'>
                     <h1 className="h-signin">Sign In</h1>
                 </div>
                 
+                {/* Error message */}
+                <p></p>
                 
                 <form className="form-submit" onSubmit={handleSubmit}>
                     <div className = "form-group">

@@ -3,6 +3,7 @@ import './register.css';
 // import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
+import { PopDialog } from '../../components/dialog/dialog';
 
 export const Register = () => {
     const [fullname, setfullname] = useState('');
@@ -11,7 +12,12 @@ export const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
+    const [registered, setRegistered] = useState(false);
+    const [emailExists, setEmailExists] = useState(false);
+
     const navigate = useNavigate();
+
+    
 
     useEffect(() => {
         setIsRegistering(true);
@@ -34,9 +40,6 @@ export const Register = () => {
 
     const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
-        console.log(
-            fullname, " ", username, " ",email," ","password: ", password, " ","confirm password: ",confirmPassword
-        );
 
         try {
             const response = await fetch('http://localhost:8000/api/register', {
@@ -47,21 +50,34 @@ export const Register = () => {
                 },
             });
 
-            console.log(response.body);
-
             const result = await response.json();
             console.log('User registration: ', result);
 
+            if (result.message = 'Email is already registered') {
+                setEmailExists(true);
+            }
+
             if (response.ok){
                 console.log('Success: ', result);
-                navigate('/');
+                setEmailExists(false)
+                setRegistered(true);
+                // navigate('/');
             }
+            
             else{console.error('Login failed: ', result.message);}
 
         } catch (error) {
             console.error('Error: ', error);
         }
-    }, [fullname, username, email, password]);
+    }, [fullname, username, email, password, confirmPassword]);
+
+    const handleOK = () => {
+        navigate('/');
+    }
+
+    const handleClose = () => {
+        setRegistered(false);
+    }
 
     const toLogin = () => {
         setIsRegistering(false);
@@ -70,6 +86,7 @@ export const Register = () => {
 
     return (
         <div className="register">
+            
             <div className={`register-box register-animation ${isRegistering ? 'visible' : 'hidden'}`}>
                 <div className='register-container'>
                     <h1>Sign Up</h1>
@@ -109,6 +126,9 @@ export const Register = () => {
                             />
                         </div>
 
+                        {emailExists && <p className='error-text'>This email already exists!</p>}
+
+
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
                             <input
@@ -139,6 +159,15 @@ export const Register = () => {
 
                         <button type="submit" className="register-btn" disabled={!validateForm()}>
                             REGISTER
+                            <PopDialog
+                                open={registered}
+                                handleClose={handleClose}
+                                handleDelete = {handleOK}
+                                title="Registered!"
+                                content = "Redirecting to login page..."
+                                agreeBtnText ="OK"
+                                disagreeBtnText="CANCEL"
+                            />  
                         </button>
                     </form>
                     

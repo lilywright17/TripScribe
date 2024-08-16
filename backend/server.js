@@ -6,7 +6,16 @@ const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
+
+const corsOptions = {
+    //change port to whatever frontend is being run on
+    origin: "http://localhost:3000",
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+}
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => res.send("Server running"));
 

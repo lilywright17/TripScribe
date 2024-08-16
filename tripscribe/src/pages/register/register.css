@@ -106,7 +106,7 @@
 }
 
 .register-btn:disabled {
-    opacity: 100%;
+    opacity: 50%;
 }
 
 .register .terms {
@@ -199,4 +199,14 @@
     height: auto;
     align-self: center; /* Keep the image centered horizontally */
 
+}
+
+.register-successful {
+    position: absolute;
+}
+
+.error-text {
+    text-align: center;
+    color: red;
+    font-style: italic;
 }

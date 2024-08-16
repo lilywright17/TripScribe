@@ -6,9 +6,9 @@ const jwtConfig = require('../config/jwt');
 // Controller for the register page
 //See if more HTTP res code are needed
 const registerUser = async (req, res) => {
-    const { fullname, username, email, password } = req.body;
+    const { fullname, username, email, password, confirmPassword } = req.body;
 
-    if (!fullname || !username || !email || !password) {
+    if (!fullname || !username || !email || !password || !confirmPassword) {
         return res.status(400).json({ 
             success: false, 
             message: 'All fields are required' 

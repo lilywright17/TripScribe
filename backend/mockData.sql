@@ -22,4 +22,7 @@ VALUES
 (8, 3, 'Stockholm', 'Sweden', 'Received an honorary doctorate.', '2024-03-15 12:00:00', '2024-03-20 15:00:00'),
 (9, 3, 'Vienna', 'Austria', 'Presented research on nuclear fission.', '2024-05-10 09:00:00', '2024-05-14 16:00:00');
 
-select * from Users;
+-- For testing purposes 
+-- select * from Users;
+-- SET SQL_SAFE_UPDATES = 0;
+-- DELETE FROM Users WHERE username='Jsmith';

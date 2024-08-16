@@ -38,7 +38,8 @@ export const LogIn = () => {
             event.preventDefault();
 
             try {
-                const response = await fetch('http://localhost:5000/api/login', {
+                //change port to whatever backend is being run on
+                const response = await fetch('http://localhost:8000/api/login', {
                     method: 'POST',
                     body: JSON.stringify({email, password}),
                     headers: {

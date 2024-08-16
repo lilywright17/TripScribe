@@ -31,12 +31,6 @@ app.use(express.json());
 app.use('/api', authRoutes);// Use the link http://localhost:8000/api/register or http://localhost:8000/api/login
 app.use('/api', tripRoutes);// Use the link http://localhost:8000/api/trips
 
-// New trip
-
-app.use('/api', newTripRoutes); // Use the link http://localhost:8000/api/addtrip
-
-
-
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

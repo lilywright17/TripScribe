@@ -24,7 +24,7 @@ export const LogIn = () => {
 
     function validateForm() {
         // function to validate user inputs for email and password
-        return email.length > 5 && password.length > 7 && validateEmail(email);
+        return email.length > 5 && password.length >= 6 && validateEmail(email);
     }
 
     const validateEmail = (email) => {
@@ -38,7 +38,7 @@ export const LogIn = () => {
             event.preventDefault();
 
             try {
-                const response = await fetch('/api/login', {
+                const response = await fetch('http://localhost:5000/api/login', {
                     method: 'POST',
                     body: JSON.stringify({email, password}),
                     headers: {

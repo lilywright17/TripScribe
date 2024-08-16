@@ -1,27 +1,35 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import './register.css';
-import travelBG from '../logIn/travel_bg.jpg';
+// import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
+import { PopDialog } from '../../components/dialog/dialog';
 
 export const Register = () => {
-    const [fullName, setFullName] = useState('');
+    const [fullname, setfullname] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [isRegistering, setIsRegistering] = useState(false);
+    const [registered, setRegistered] = useState(false);
+    const [emailExists, setEmailExists] = useState(false);
+
     const navigate = useNavigate();
+
+    
 
     useEffect(() => {
         setIsRegistering(true);
-        document.body.style.backgroundImage = `url(${travelBG})`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
+
+        // document.body.style.backgroundImage = `url(${travelBG})`;
+        // document.body.style.backgroundSize = 'cover';
+        // document.body.style.backgroundRepeat = 'no-repeat';
+
     }, []);
 
     function validateForm() {
-        return fullName.length > 0 && username.length > 0 && email.length > 5 && password.length > 7 && password === confirmPassword && validateEmail(email);
+        return fullname.length > 0 && username.length > 0 && email.length > 5 && password.length >= 6 && password === confirmPassword && validateEmail(email);
     }
 
     const validateEmail = (email) => {
@@ -34,20 +42,42 @@ export const Register = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('/api/register', {
+            const response = await fetch('http://localhost:8000/api/register', {
                 method: 'POST',
-                body: JSON.stringify({ fullName, username, email, password }),
+                body: JSON.stringify({ fullname, username, email, password, confirmPassword }),
                 headers: {
                     "Content-Type": 'application/json',
                 },
             });
 
             const result = await response.json();
-            console.log('Success: ', result);
+            console.log('User registration: ', result);
+
+            if (result.message = 'Email is already registered') {
+                setEmailExists(true);
+            }
+
+            if (response.ok){
+                console.log('Success: ', result);
+                setEmailExists(false)
+                setRegistered(true);
+                // navigate('/');
+            }
+            
+            else{console.error('Login failed: ', result.message);}
+
         } catch (error) {
             console.error('Error: ', error);
         }
-    }, [fullName, username, email, password]);
+    }, [fullname, username, email, password, confirmPassword]);
+
+    const handleOK = () => {
+        navigate('/');
+    }
+
+    const handleClose = () => {
+        setRegistered(false);
+    }
 
     const toLogin = () => {
         setIsRegistering(false);
@@ -56,19 +86,21 @@ export const Register = () => {
 
     return (
         <div className="register">
+            
             <div className={`register-box register-animation ${isRegistering ? 'visible' : 'hidden'}`}>
                 <div className='register-container'>
                     <h1>Sign Up</h1>
+                    
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
-                            <label htmlFor="fullName">Full Name</label>
+                            <label htmlFor="fullname">Full Name</label>
                             <input
                                 autoFocus
                                 type="text"
-                                id="fullName"
+                                id="fullname"
                                 placeholder="Enter your full name"
-                                value={fullName}
-                                onChange={(e) => setFullName(e.target.value)}
+                                value={fullname}
+                                onChange={(e) => setfullname(e.target.value)}
                             />
                         </div>
 
@@ -93,6 +125,9 @@ export const Register = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
+
+                        {emailExists && <p className='error-text'>This email already exists!</p>}
+
 
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
@@ -123,13 +158,24 @@ export const Register = () => {
                         </div>
 
                         <button type="submit" className="register-btn" disabled={!validateForm()}>
-                            Register
+                            REGISTER
+                            <PopDialog
+                                open={registered}
+                                handleClose={handleClose}
+                                handleDelete = {handleOK}
+                                title="Registered!"
+                                content = "Redirecting to login page..."
+                                agreeBtnText ="OK"
+                                disagreeBtnText="CANCEL"
+                            />  
                         </button>
                     </form>
+                    
                 </div>
             </div>
 
             <div className="login-box">
+
                 <div className="login-content">
                     <div className="one-of-us-text">One of us?</div>
                     <div className="slogan-text">TripScribe is here to document your journey!</div>
@@ -137,6 +183,7 @@ export const Register = () => {
                         Login
                     </button>
                     <img src={groupImage} alt="Group" className="group-image" />
+
                 </div>
             </div>
         </div>

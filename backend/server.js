@@ -7,7 +7,16 @@ const newTripRoutes = require('./routes/newTripRoutes');
 
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
+
+const corsOptions = {
+    //change port to whatever frontend is being run on
+    origin: "http://localhost:3000",
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+}
+
+app.use(cors(corsOptions));
 
 const corsOptions = {
     origin: 'http://localhost:3000', 

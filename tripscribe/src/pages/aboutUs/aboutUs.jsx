@@ -50,11 +50,11 @@ const usData = [
     {
         id:4,
         firstName: "Victoria",
-        lastName: "Proano",
+        lastName: "Proaño",
         info: "¡Hola mundo! I live in Madrid with my beloved dog, Llum. I enjoy traveling, discovering new cuisines, and meeting diverse cultures. I prefer the countryside for its nature and fresh air, but if I am visiting a city, I love exploring its museums and libraries.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
         emoji: "🎃",
-        linkedInUrl: "https://www.linkedin.com/in/victoria-rosenthal-686a0b78/", //Hey Victoria, I couldnt find your LinkedIn but when you see this add your URL here. Thanks! - Krystal
+        linkedInUrl: "https://www.linkedin.com/in/victoriapbravo", //Hey Victoria, I couldnt find your LinkedIn but when you see this add your URL here. Thanks! - Krystal
         githubUrl: "https://github.com/th4lesvic"
     },
     {

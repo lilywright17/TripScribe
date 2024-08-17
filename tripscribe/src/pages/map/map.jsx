@@ -12,6 +12,17 @@ import {
   MapCameraChangedEvent,
   useAdvancedMarkerRef
 } from "@vis.gl/react-google-maps";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
 
 
 const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -29,9 +40,11 @@ export const MapPage = () => {
 
   // State for setting the user location
   const [userLocation, setUserLocation] = useState(null);
+
   // State to keep track of the currently active marker
   const [activeMarker, setActiveMarker] = useState(null);
   // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
+
   const [mapLoaded, setMapLoaded] = useState(false);
 
   // Function to handle marker click

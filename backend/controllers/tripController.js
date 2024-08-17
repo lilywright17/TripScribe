@@ -37,3 +37,5 @@ const getTrips = async (req, res) => {
 };
 
 module.exports = { getTrips };
+
+

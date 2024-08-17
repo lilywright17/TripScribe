@@ -12,7 +12,7 @@ CREATE TABLE Users (
 
 -- Trips table
 CREATE TABLE Trips (
-	tripID INT AUTO_INCREMENT primary KEY,
+	tripID INT AUTO_INCREMENT PRIMARY KEY,
     userID INT NOT NULL,
     city VARCHAR(60) NOT NULL,
     country VARCHAR(60) NOT NULL,

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react';
+import axios from 'axios';  // Import axios
 import './register.css';
-// import travelBG from '../logIn/travel_bg.jpg';
 import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
 import { PopDialog } from '../../components/dialog/dialog';
@@ -17,15 +17,8 @@ export const Register = () => {
 
     const navigate = useNavigate();
 
-    
-
     useEffect(() => {
         setIsRegistering(true);
-
-        // document.body.style.backgroundImage = `url(${travelBG})`;
-        // document.body.style.backgroundSize = 'cover';
-        // document.body.style.backgroundRepeat = 'no-repeat';
-
     }, []);
 
     function validateForm() {
@@ -42,32 +35,28 @@ export const Register = () => {
         event.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:8000/api/register', {
-                method: 'POST',
-                body: JSON.stringify({ fullname, username, email, password, confirmPassword }),
-                headers: {
-                    "Content-Type": 'application/json',
-                },
+            const response = await axios.post('http://localhost:8000/api/register', {
+                fullname,
+                username,
+                email,
+                password,
+                confirmPassword
             });
 
-            const result = await response.json();
-            console.log('User registration: ', result);
+            const { token } = response.data;
 
-            if (result.message = 'Email is already registered') {
+            if (response.data.message === 'Email is already registered') {
                 setEmailExists(true);
-            }
+            } else {
+                // Store the token in SessionStorage
+                sessionStorage.setItem('token', token);
 
-            if (response.ok){
-                console.log('Success: ', result);
-                setEmailExists(false)
+                setEmailExists(false);
                 setRegistered(true);
-                // navigate('/');
             }
-            
-            else{console.error('Login failed: ', result.message);}
-
         } catch (error) {
-            console.error('Error: ', error);
+            console.error('Registration error:', error);
+            setEmailExists(true);
         }
     }, [fullname, username, email, password, confirmPassword]);
 
@@ -86,11 +75,9 @@ export const Register = () => {
 
     return (
         <div className="register">
-            
             <div className={`register-box register-animation ${isRegistering ? 'visible' : 'hidden'}`}>
                 <div className='register-container'>
                     <h1>Sign Up</h1>
-                    
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="fullname">Full Name</label>
@@ -127,7 +114,6 @@ export const Register = () => {
                         </div>
 
                         {emailExists && <p className='error-text'>This email already exists!</p>}
-
 
                         <div className="form-group">
                             <label htmlFor="password">Password</label>
@@ -170,12 +156,10 @@ export const Register = () => {
                             />  
                         </button>
                     </form>
-                    
                 </div>
             </div>
 
             <div className="login-box">
-
                 <div className="login-content">
                     <div className="one-of-us-text">One of us?</div>
                     <div className="slogan-text">TripScribe is here to document your journey!</div>
@@ -183,7 +167,6 @@ export const Register = () => {
                         Login
                     </button>
                     <img src={groupImage} alt="Group" className="group-image" />
-
                 </div>
             </div>
         </div>

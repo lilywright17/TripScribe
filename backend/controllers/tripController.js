@@ -5,8 +5,6 @@ const getTrips = async (req, res) => {
     // get the UserID from the JWT token
     const userID = req.user.userID; 
 
-    console.log(`UserID is: ${userID}`);
-
     try {
         // JSON_OBJECT to combine photoID, secure_url, and alt_text into a JSON object for each photo
         // JSON_ARRAYAGG used to combine the objects into a single JSON array(all the photos will be associated with a particular trip.)
@@ -26,9 +24,9 @@ const getTrips = async (req, res) => {
             `,
             [userID]
         );
-
-        if (result.length === 0) {
-            return res.status(204).json({ message: 'No trips were found!' });
+        // To ensure that the result is an array
+        if (Array.isArray(result) && result.length === 0) {
+            return res.status(204).json({ message: 'No trips were found!' },[]);
         }
 
         res.status(200).json(result);

@@ -9,13 +9,14 @@ const app = express();
 const PORT = process.env.PORT || 8000;
 
 const corsOptions = {
-    //change port to whatever frontend is being run on
     origin: "http://localhost:3000",
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type'],
-}
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+};
 
 app.use(cors(corsOptions));
+ // Allows all routes to handle OPTIONS requests
+app.options('*', cors(corsOptions));
 
 app.get("/", (req, res) => res.send("Server running"));
 

@@ -84,16 +84,12 @@
   display: inline-block;
   padding: 10px 20px;
   font-size: 1rem;
-  background-color: #007bff;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
 }
 
-.add-trip-button:hover {
-  background-color: #0056b3;
-}
+
 /* CSS for responsive design */
 @media (max-width: 768px) {
   .filters-container {

@@ -21,9 +21,6 @@ const jwtAthentication = (req, res, next) => {
           if (err) {
               return res.status(403).json({ error: "Forbidden, invalid or expired token" });
           }
-
-          // Log decoded token for debugging
-          //console.log("Decoded token:", decoded);
           
           // Assign the decoded token to req.user
           req.user = decoded;

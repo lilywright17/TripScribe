@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt.js'); 
 
-const jwtAthentication = (req, res, next) => {
+const jwtAuthentication = (req, res, next) => {
   // Get token from Authorization header
   const jwtToken = req.header("Authorization");
 
@@ -35,4 +35,4 @@ const jwtAthentication = (req, res, next) => {
   }
 };
 
-module.exports = jwtAthentication;
+module.exports = jwtAuthentication;

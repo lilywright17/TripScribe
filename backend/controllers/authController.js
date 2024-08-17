@@ -6,9 +6,9 @@ const jwtConfig = require('../config/jwt');
 // Controller for the register page
 //See if more HTTP res code are needed
 const registerUser = async (req, res) => {
-    const { fullname, username, email, password } = req.body;
+    const { fullname, username, email, password, confirmPassword } = req.body;
 
-    if (!fullname || !username || !email || !password) {
+    if (!fullname || !username || !email || !password || !confirmPassword) {
         return res.status(400).json({ 
             success: false, 
             message: 'All fields are required' 
@@ -49,6 +49,7 @@ const registerUser = async (req, res) => {
 };
 // Controller for the login page
 //See if more HTTP res code are needed
+// Controller for the login page
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const invalidMsg = {
@@ -57,33 +58,46 @@ const loginUser = async (req, res) => {
     };
 
     try {
+        // Query to get the user by email
         const [results] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
 
+        // Log the results to check the output
+        //console.log('Database query results:', results);
+
+        // Check if user exists
         if (results.length === 0) {
             return res.status(401).json(invalidMsg);
         }
 
         const user = results[0];
+        // Log the user object
+        //console.log('User object:', user);
+        // Compare password with hashed password
         const pwMatch = await bcrypt.compare(password, user.pword_hash);
-
         if (!pwMatch) {
             return res.status(401).json(invalidMsg);
         }
 
-        // Generating the JWT token upon successful login
-        const token = jwt.sign(
-            { id: user.id, email: user.email },  // Payload
-            jwtConfig.secret,                   // Secret key from config
-            { expiresIn: '1h' }                 // Token expiry time
-        );
+        // Prepare JWT payload with userID and email
+        const payload = { userID: user.userID, email: user.email };
         
-        // Sending the jwt token to the client
+        // Logging payload for debugging
+        //console.log('JWT Payload:', payload); 
+
+        // Generate JWT token
+        const token = jwt.sign(
+            payload,
+            jwtConfig.secret,
+            { expiresIn: '1h' }
+        );
+
+        // Send response with token and user info
         res.status(200).json({
             success: true,
             message: 'Login successful',
-            token, 
+            token,
             user: {
-                id: user.id,
+                id: user.userID, // Ensure 'userID' is correct
                 fullname: user.fullname,
                 username: user.username,
                 email: user.email

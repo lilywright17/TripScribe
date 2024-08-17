@@ -6,15 +6,24 @@ const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8000;
+
+const corsOptions = {
+    //change port to whatever frontend is being run on
+    origin: "http://localhost:3000",
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+}
+
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => res.send("Server running"));
 
 app.use(express.json());
 
 // User routes
-app.use('/api', authRoutes);// Use the link http://localhost:5000/api/register or http://localhost:5000/api/login
-app.use('/api', tripRoutes);// Use the link http://localhost:5000/api/trips
+app.use('/api', authRoutes);// Use the link http://localhost:8000/api/register or http://localhost:8000/api/login
+app.use('/api', tripRoutes);// Use the link http://localhost:8000/api/trips
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

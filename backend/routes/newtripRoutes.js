@@ -9,4 +9,6 @@ const router = express.Router();
 router.post('/uploadImages' , jwtAuthentication, handleUploadImages);
 router.post('/addtrip' , jwtAuthentication, addNewTrip);
 
+
+
 module.exports = router;

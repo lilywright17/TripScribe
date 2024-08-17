@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { UploadSimple } from '@phosphor-icons/react';
 import axios from 'axios';
+import imageCompression from 'browser-image-compression';
 import './addTripImgUpload.css';
 
 export const AddTripImgUpload = ({ images, setImages }) => {
@@ -20,11 +21,13 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
     const getUserIdFromToken = () => {
         const token = sessionStorage.getItem('token');
+        //console.log('Retrieved Token:', token); // Debugging token retrieval
         if (!token) return null;
 
         try {
             const decoded = jwtDecode(token);
-            return decoded.id;  
+            //console.log('Decoded Token:', decoded); // Debugging token decoding
+            return decoded.userID;  
         } catch (error) {
             console.error('Error decoding token:', error);
             return null;
@@ -33,24 +36,26 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
     const handleFiles = async (files) => {
         if (images.length + files.length > 4) {
-            setError("You can only upload up to 4 images.");
+            setError('You can only upload up to 4 images.');
             return;
         }
 
         const token = sessionStorage.getItem('token'); 
         if (!token) {
-            setError("Authentication token is missing. Please log in again.");
+            setError('Authentication token is missing. Please log in again.');
             return;
         }
 
         const userID = getUserIdFromToken(); 
+        console.log('User ID:', userID); // Debug log
         if (!userID) {
-            setError("Unable to retrieve user information. Please log in again.");
+            setError('Unable to retrieve user information. Please log in again.');
             return;
         }
 
         const uploadPromises = Array.from(files).map(async (file) => {
-            const { fileType, base64 } = await processFile(file);
+            const compressedFile = await compressImage(file);
+            const { fileType, base64 } = await processFile(compressedFile);
             if (!fileType || !base64) return;
 
             return uploadImage(base64, token, userID, file.name);
@@ -67,17 +72,33 @@ export const AddTripImgUpload = ({ images, setImages }) => {
         }
     };
 
+    const compressImage = async (file) => {
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920, // Set max width/height
+            useWebWorker: true,
+        };
+        try {
+            const compressedFile = await imageCompression(file, options);
+            return compressedFile;
+        } catch (error) {
+            console.error('Error compressing the image', error);
+            setError('Error compressing the image. Please try again.');
+            throw error;
+        }
+    };    
+
     const processFile = async (file) => {
         const fileType = file.type.split('/')[1].toLowerCase();
         const fileSize = file.size / 1024 / 1024; // size in MB
 
         if (!['jpeg', 'png'].includes(fileType)) {
-            setError("Only JPEG and PNG formats are allowed.");
+            setError('Only JPEG and PNG formats are allowed.');
             return {};
         }
 
-        if (fileSize > 5) {
-            setError("Each image must be less than 5MB.");
+        if (fileSize > 10) {
+            setError('Each image must be less than 10MB.');
             return {};
         }
 
@@ -107,7 +128,7 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             }
         } catch (err) {
             console.error('Error uploading image:', err);
-            setError("Error uploading image. Please try again.");
+            setError('Error uploading image. Please try again.');
             return null;
         }
     };
@@ -136,7 +157,7 @@ export const AddTripImgUpload = ({ images, setImages }) => {
     const onDragOver = (event) => {
         event.preventDefault();
         setIsDragging(true);
-        event.dataTransfer.dropEffect = "copy";
+        event.dataTransfer.dropEffect = 'copy';
     };
 
     const onDragLeave = (event) => {

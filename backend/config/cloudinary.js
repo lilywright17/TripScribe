@@ -21,8 +21,7 @@ const uploadImages = (images) => {
                     return reject(new Error(error.message || "An unknown error occurred"));
                 }
                 
-                // Log the entire result to debug
-                console.log('Cloudinary Upload Result:', result);
+                //console.log('Cloudinary Upload Result:', result);// Log the entire result to debug
                 
                 if (result && result.secure_url) {
                     //console.log('Cloudinary Upload Success:', result.secure_url); //

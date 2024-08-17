@@ -7,7 +7,8 @@ import { SecondaryButton } from "../../components/secondaryButton/secondaryButto
 import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
 import { ArrowLeft } from '@phosphor-icons/react';
 import axios from 'axios';
-import Alert from '@mui/material/Alert'; 
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import "./addTrip.css";
 
 export const AddTripForm = () => {
@@ -25,7 +26,8 @@ export const AddTripForm = () => {
 
         try {
             const decoded = jwtDecode(token);
-            return decoded.id;
+            console.log("Decoded token:", decoded); // Debugging log
+            return decoded.userID;
         } catch (error) {
             console.error('Error decoding token:', error);
             return null;
@@ -40,12 +42,21 @@ export const AddTripForm = () => {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = {};
+
+        // Capture values from the form and map to the data object
         formData.forEach((value, key) => {
             data[key] = value;
         });
 
         // Attach the Cloudinary image URLs to the data object
         data.imgUrls = images.map(image => image.url);
+        //console.log("Image URLs:", images.map(image => image.url)); // Debugging log
+
+        // Map startDate and endDate to the correct field names for the backend
+        data.date_from = data.startDate;
+        data.date_to = data.endDate;
+        delete data.startDate;
+        delete data.endDate;
 
         // Add the userID to the trip data
         const userID = getUserIdFromToken();
@@ -53,11 +64,12 @@ export const AddTripForm = () => {
             data.userID = userID;
         }
 
+        // Validation logic
         const newErrors = {};
-        const startDate = new Date(data.startDate);
-        const endDate = new Date(data.endDate);
+        const startDate = new Date(data.date_from);
+        const endDate = new Date(data.date_to);
 
-        if (!data.startDate || !data.endDate) {
+        if (!data.date_from || !data.date_to) {
             newErrors.date = "Date cannot be empty";
         } else if (startDate > endDate) {
             newErrors.date = "Start date cannot be greater than end date";
@@ -81,10 +93,16 @@ export const AddTripForm = () => {
         }
 
         try {
-            const token = sessionStorage.getItem('token');; 
-
+            const token = sessionStorage.getItem('token');
+            
+            const decoded = jwtDecode(token);
+            console.log('Token expires at:', new Date(decoded.exp * 1000)); // Token expiration
+            
             await axios.post('http://localhost:8000/api/addtrip', data, {
-                headers: { Authorization: `Bearer ${token}` }
+                headers: { 
+                    'Authorization': `Bearer ${token}`, 
+                    'Content-Type': 'application/json' 
+                }
             });
 
             console.log('Trip data submitted successfully:', data);
@@ -93,13 +111,13 @@ export const AddTripForm = () => {
             e.target.reset();
             setImages([]); 
 
-            setTimeout(() => navigate("/mytrips"), 4000);
+            setTimeout(() => navigate("/mytrips"), 3000);
         } catch (error) {
             console.error('Error submitting trip data:', error);
             setErrorMessage(error.response?.data?.error || "There was a problem saving your trip. Please try again.");
         }
     
-        console.log(data);
+        console.log(data);// Debugging log
     };
 
     const handleSecondaryButtonClick = () => {
@@ -183,14 +201,28 @@ export const AddTripForm = () => {
                 </div>
             </form>
             {successMessage && (
-                <Alert severity="success" onClose={() => setSuccessMessage(null)}>
-                    {successMessage}
-                </Alert>
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert 
+                        variant="filled" 
+                        severity="success" 
+                        onClose={() => setSuccessMessage(null)}
+                        sx={{ fontSize: '1.25rem' }}
+                    >
+                        {successMessage}
+                    </Alert>
+                </Stack>
             )}
             {errorMessage && (
-                <Alert severity="error" onClose={() => setErrorMessage(null)}>
-                    {errorMessage}
-                </Alert>
+                <Stack sx={{ width: '100%' }} spacing={2}>
+                    <Alert 
+                        variant="filled" 
+                        severity="error" 
+                        onClose={() => setErrorMessage(null)}
+                        sx={{ fontSize: '1.25rem' }}
+                    >
+                        {errorMessage}
+                    </Alert>
+                </Stack>
             )}
         </>
     );

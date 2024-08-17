@@ -3,15 +3,30 @@ const db = require('../config/db');
 const addNewTrip = async (req, res) => {
     try {
         // Ensure the user is authenticated
-        if (!req.user || !req.user.id) {
+        if (!req.user || !req.user.userID) {
             return res.status(401).json({ error: 'User not authenticated' });
         }
 
-        const userID = req.user.id;
-        const { city, country, description, date_from, date_to, imgUrls } = req.body;
+        const userID = req.user.userID;
+        //console.log("User ID from req.user:", req.user.userID); // Debugging log for userID
+
+        // Destructure the request body and ensure imgUrls is always an array
+        const { city, country, description, date_from, date_to, imgUrls = [] } = req.body;
+
+        //console.log("Date From:", date_from); // Debugging log
+        //console.log("Date To:", date_to); // Debugging log
+        //console.log("imgUrls:", imgUrls);  // Debugging log
+
+        // Validate date fields
+        if (!date_from || !date_to) {
+            return res.status(400).json({ error: "Date fields cannot be null" });
+        }
+
+        // Get a connection from the pool
+        connection = await db.getConnection();
 
         // Start a transaction
-        await db.beginTransaction();
+        await connection.beginTransaction();
 
         // Insert the trip data
         const tripQuery = `
@@ -19,9 +34,12 @@ const addNewTrip = async (req, res) => {
             (userID, city, country, description, date_from, date_to) 
             VALUES (?, ?, ?, ?, ?, ?)
         `;
-        const [tripResult] = await db.query(tripQuery, [userID, city, country, description, date_from, date_to]);
+        //console.log("Executing Trip Query:", tripQuery);  // Debugging log for tripQuery
+        const [tripResult] = await connection.query(tripQuery, [userID, city, country, description, date_from, date_to]);
 
         const tripID = tripResult.insertId;
+        //console.log("Trip ID:", tripID);  // Debugging log for tripID
+        
         let photosSaved = false;
 
         // Insert the photos if any
@@ -32,15 +50,17 @@ const addNewTrip = async (req, res) => {
                 VALUES (?, ?, ?, ?)
             `;
 
-            const photoPromises = imgUrls.map((secure_url) =>
-                db.query(photoQuery, [tripID, userID, secure_url, null])
-            );
+            const photoPromises = imgUrls.map((url) => {
+                const secure_url = url; 
+                //console.log("Inserting photo with secure_url:", secure_url); // Debugging log for each photo
+                return connection.query(photoQuery, [tripID, userID, secure_url, null]);
+            });
 
             await Promise.all(photoPromises);
         }
 
         // Commit the transaction
-        await db.commit();
+        await connection.commit();
 
         // Send a success message
         const successMessage = photosSaved
@@ -49,11 +69,11 @@ const addNewTrip = async (req, res) => {
         res.status(200).json({ message: successMessage, tripID });
 
     } catch (error) {
-        await db.rollback();  // Ensure rollback on error
+        if (connection) await connection.rollback();  // Ensure rollback on error
         console.error('Error adding trip:', error);
-        
-        //console.log('Before res.json call'); // Debug log
         res.status(500).json({ error: 'Failed to add trip' });
+    } finally {
+        if (connection) connection.release();  // Release the connection back to the pool
     }
 };
 

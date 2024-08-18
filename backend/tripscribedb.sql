@@ -16,7 +16,7 @@ CREATE TABLE Trips (
     userID INT NOT NULL,
     city VARCHAR(60) NOT NULL,
     country VARCHAR(60) NOT NULL,
-    description VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
     date_from DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_to DATETIME,
     FOREIGN KEY (userID) REFERENCES Users(userID)
@@ -48,4 +48,15 @@ CREATE TABLE Trip_Location (
     FOREIGN KEY (tripID) REFERENCES Trips(tripID),
     FOREIGN KEY (locationID) REFERENCES Locations(locationID)
 );
-    
+
+SELECT 
+t.tripID, t.city, t.country, t.description, t.date_from AS startDate, t.date_to AS endDate,
+JSON_ARRAYAGG(JSON_OBJECT('photoID', p.photoID, 'url', p.secure_url, 'alt_text', p.alt_text)) AS photos
+FROM 
+  Trips t
+LEFT JOIN 
+  Photos p ON t.tripID = p.tripID
+WHERE 
+  t.tripID = 1 AND t.userID = 1
+GROUP BY 
+  t.tripID    

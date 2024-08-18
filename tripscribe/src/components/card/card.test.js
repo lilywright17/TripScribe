@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './Card';
+import Card from './card';
 import renderer from 'react-test-renderer';
 
 test('renders card component correctly with country, city passed by props', () => {

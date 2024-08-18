@@ -99,9 +99,8 @@
   }
 
   .country-filter,
-  .city-filter,
-  .date-picker-container {
-    width: 100%;
+  .city-filter {
+    width: 40%;
     margin-bottom: 10px;
   }
 

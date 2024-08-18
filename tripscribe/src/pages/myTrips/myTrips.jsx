@@ -9,7 +9,7 @@ import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import { Button } from "../../components/button/button.jsx";
 import editButtonImage from "./images/edit_button.png";
 import Standing from "./images/Standing.png";
-
+import axios from 'axios';
 
 export const MyTrips = () => {
   const [rangeDate, setRangeDate] = useState([null, null]);
@@ -20,34 +20,37 @@ export const MyTrips = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [tripsArray, setTripsArray] = useState([]);
   const navigate = useNavigate();
-
+  
+  // Using Axios to get the data form the back-end
   useEffect(() => {
-    const fetchTrips = async () => {
+    const getTrips = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/trips", {
-          method: "GET",
+        const response = await axios.get("http://localhost:8000/api/trips", {
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
           },
         });
-        if (response.ok) {
-          const tripData = await response.json();
-          // Ensure tripData is an array
+
+        if (response.status === 200) {
+          const tripData = response.data.map(trip => ({
+            ...trip,
+            tripID: Number(trip.tripID) // Ensure tripID is a number
+          }));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
-          console.log('Trip Data:', tripData); // Log the trip data
-        } else if (response.status === 204){
-            // When no content is found, set an empty array
-            setTripsArray([]);
+          //console.log('Trip Data:', tripData);
+        } else if (response.status === 204) {
+          setTripsArray([]);
         } else {
           console.error("Failed to get trips information");
         }
       } catch (error) {
         console.error("Error:", error);
       }
-    }; 
-    fetchTrips();
-  },[]);
+    };
+
+    getTrips();
+  }, []);
 
   // Formating the dates
   const formatDate = (date) => {
@@ -125,7 +128,7 @@ export const MyTrips = () => {
 
   // Edit button handler navigates to edittrip page
   const handleEdit = (trip) => {
-    navigate("/edittrip", { state: { trip } });
+    navigate("/edittrip", { state: { tripID: trip.tripID } });
   };
   // Addtrip handler navigates to Addtrip page
   const handleAddTrip = () => {
@@ -133,18 +136,9 @@ export const MyTrips = () => {
   };
 
   // Viewtrip handler
-  const handleTripDetails = (trip) => {
-    console.log("Trip Details");
-    navigate("/tripdetails", {
-      state: {
-        country: trip.country,
-        city: trip.city,
-        startDate: trip.startDate,
-        endDate: trip.endDate,
-        images: trip.image || [],
-        description: trip.description,
-      },
-    });
+  const handleTripDetails = (tripID) => {
+    console.log("Navigating to Trip Details with ID:", tripID);
+    navigate(`/tripdetails/${tripID}`); // Ensure tripID is passed directly
   };
 
   // To determine which will be rendered to the screen - If there is no serachResult then the filteredTrips will be rendered
@@ -227,20 +221,18 @@ export const MyTrips = () => {
         ) : (
           (
             <div className="card-container">
-              {tripsToRender.map((trip, index) => (
+              {tripsToRender.map((trip) => (
                 <Card
-                  key={index}
+                  key={trip.tripID}
                   city={trip.city}
                   country={trip.country}
                   startDate={formatDate(trip.startDate)}
                   endDate={formatDate(trip.endDate)}
-                  imageUrl={trip.photos[0].url} 
-                  //imageUrl={trip.image[0]}
-                  //imageUrl={trip.image && trip.image.length > 0 ? trip.image[0] : Standing}
+                  imageUrl={trip.photos[0]?.url} //handling missing photos for a trip
                   description={trip.description.substring(0, 250)} // The text will need to be limited to a certain number of characters to fit in the card component
                   editButton={editButtonImage}
                   onEdit={() => handleEdit(trip)}
-                  onClick={() => handleTripDetails(trip)}
+                  onClick={() => handleTripDetails(trip.tripID)}
                 />
               ))}
             </div>

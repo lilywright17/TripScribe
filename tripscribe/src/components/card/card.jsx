@@ -20,9 +20,9 @@ export const Card = ({ country, city, startDate, endDate, description, imageUrl,
             <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
             <p>{description.trim() || 'description of trip'}...</p>
             <img 
+                className="edit-button" 
                 src={editButton} 
                 alt="Edit button" 
-                className="edit-button" 
                 onClick={handleEditClick}
                 style={{ cursor: 'pointer' }}
             />

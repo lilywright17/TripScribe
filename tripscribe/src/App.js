@@ -22,7 +22,7 @@ function App() {
         <Route path="/" element={<PageWithNavbarExcluded component={<LogIn />} />} />
         <Route path="/register" element={<PageWithNavbarExcluded component={<Register />} />} />
         <Route path="/mytrips" element={<PageWithNavbar component={<MyTrips />} />} />
-        <Route path="/tripdetails" element={<PageWithNavbar component={<TripDetails />} />} />
+        <Route path="/tripdetails/:tripID" element={<PageWithNavbar component={<TripDetails />} />} />
         <Route path="/addtrip" element={<PageWithNavbar component={<AddTrip />} />} />
         <Route path="/edittrip" element={<PageWithNavbar component={<EditTrip />} />} />
         <Route path="/map" element={<PageWithNavbar component={<MapPage />} />} />

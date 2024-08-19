@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt.js'); 
 
-const jwtAthentication = (req, res, next) => {
+const jwtAuthentication = (req, res, next) => {
   // Get token from Authorization header
   const jwtToken = req.header("Authorization");
 
@@ -21,9 +21,6 @@ const jwtAthentication = (req, res, next) => {
           if (err) {
               return res.status(403).json({ error: "Forbidden, invalid or expired token" });
           }
-
-          // Log decoded token for debugging
-          //console.log("Decoded token:", decoded);
           
           // Assign the decoded token to req.user
           req.user = decoded;
@@ -35,4 +32,4 @@ const jwtAthentication = (req, res, next) => {
   }
 };
 
-module.exports = jwtAthentication;
+module.exports = jwtAuthentication;

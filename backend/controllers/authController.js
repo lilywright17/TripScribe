@@ -19,15 +19,15 @@ const registerUser = async (req, res) => {
         // Checking of the email exists in the database before registering
         const [existingUser] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
         if (existingUser.length > 0) {
-            return res.status(400).json({ 
+            return res.status(409).json({ 
                 success: false, 
                 message: 'Email is already registered' 
             });
         }
 
-        const saltRounds = 10; // This is needed for teh hashing of the password
+        const saltRounds = 10; // This is needed for the hashing of the password
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        // INserts the entry in teh database
+        // Inserts the entry in the database
         const result = await db.query(
             'INSERT INTO Users (fullname, username, email, pword_hash) VALUES (?, ?, ?, ?)',
             [fullname, username, email, hashedPassword]
@@ -47,6 +47,7 @@ const registerUser = async (req, res) => {
         });
     }
 };
+
 // Controller for the login page
 //See if more HTTP res code are needed
 // Controller for the login page
@@ -75,6 +76,7 @@ const loginUser = async (req, res) => {
         // Compare password with hashed password
         const pwMatch = await bcrypt.compare(password, user.pword_hash);
         if (!pwMatch) {
+            console.warn('Login failed: Incorrect password for user with email:', email);
             return res.status(401).json(invalidMsg);
         }
 
@@ -112,5 +114,7 @@ const loginUser = async (req, res) => {
         });
     }
 };
+
+
 
 module.exports = { registerUser, loginUser };

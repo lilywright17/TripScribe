@@ -1,19 +1,25 @@
 .box-conteiner{
     display: flex; 
-    justify-content: center; 
+    justify-content: flex-start; 
     align-items: center; 
     padding: 20px;
+    margin-left: 20px;
 }
 .title{
     width: 80%; 
+    display: flex; /* Align items in a row */
+    align-items: center;
     text-align: left;
+    
     padding-left: 100px;
     padding-top: 10px; 
+    gap: 20px;
 }
 
 .title-container {
-    display: flex;
-    align-items: center;
+    box-sizing: border-box;
+    text-align: left;
+    
     gap: 40px; 
 }
 
@@ -39,8 +45,9 @@
 
 .dates{
     margin:0;
+    padding-left: 100px;
+    padding-bottom: 30px;
 }
-
 
 .delete-icon{
     position: absolute;

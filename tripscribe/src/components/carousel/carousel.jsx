@@ -46,7 +46,7 @@ export const PhotoCarousel = ({ images }) => {
           }}
         >
           {slice.map((image, idx) => (
-            <CustomPhoto key={idx} url={image} />
+            <CustomPhoto key={idx} url={image.url} />
           ))}
         </div>
       ))}

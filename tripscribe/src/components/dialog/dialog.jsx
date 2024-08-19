@@ -47,6 +47,7 @@ export const PopDialog = ({
             text={disagreeBtnText}
             handleClick={handleClose}
             style = {{
+              height: "60px",
               paddingLeft: "30px",
               paddingRight: "30px",
               borderRadius: "30px"
@@ -56,6 +57,7 @@ export const PopDialog = ({
             handleClick={handleDelete} 
             text={agreeBtnText}
             style = {{
+              height: "60px",
               paddingLeft: "30px",
               paddingRight: "30px",
               borderRadius: "30px"

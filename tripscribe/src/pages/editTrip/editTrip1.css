@@ -1,29 +1,33 @@
-form {
+.editTripForm , .editTripTitle {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    margin: 20px;
+    padding: 20px;
 }
 
-.editTripTitle, .EditTripInputBoxes {
+.editTripFormContainer {
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    /* gap: 10px; Adjust the gap between the columns as needed */
+    /* width: 100%;
+    max-width: 800px; Adjust the max width as needed*/
+} 
+
+.editTripInputColumn {
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
-    width: 100%;
 }
 
-.editTripDescriptionContainer {
+.editTripTextAreaContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    max-width: 800px;
-    width: 100%;
+    justify-content: flex-start;
+    text-align: left;
 }
 
-.editTripDescriptionContainer label {
+.editTripTextAreaContainer label {
     margin-bottom: 5px;
     color: #476a6f;
     font-weight: bold;
@@ -40,6 +44,7 @@ form {
 .editTripButtonContainer {
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
     padding: 32px;
-    padding-bottom: 5%;
+    padding-bottom: 150px;
 }

@@ -37,7 +37,7 @@ export const ResponsiveFooter = () => {
   };
 
   return (
-    <Box sx={{ position: 'fixed', bottom: 0, left: 0, width: '100%' }}>
+    <Box sx={{ bottom: 0, left: 0, width: '100%' }}>
       <BottomNavigation
         sx={{ width: '100%' }}
         value={value}

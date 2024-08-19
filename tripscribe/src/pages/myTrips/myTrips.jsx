@@ -5,7 +5,6 @@ import "./myTrips.css";
 import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
-//import tripsArray from "./tripsArray.js";
 import { Button } from "../../components/button/button.jsx";
 import editButtonImage from "./images/edit_button.png";
 import Standing from "./images/Standing.png";
@@ -19,6 +18,7 @@ export const MyTrips = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [tripsArray, setTripsArray] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   
   // Using Axios to get the data form the back-end
@@ -46,13 +46,15 @@ export const MyTrips = () => {
         }
       } catch (error) {
         console.error("Error:", error);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
       }
     };
 
     getTrips();
   }, []);
 
-  // Formating the dates
+  // Formatting the dates
   const formatDate = (date) => {
     date = new Date(date);
     return `${date.getDate() + 1}/${date.getMonth() + 1}/${date.getFullYear()}`;
@@ -126,22 +128,22 @@ export const MyTrips = () => {
   const isFilterApplied =
     startDate || endDate || selectedCountry || selectedCity;
 
-  // Edit button handler navigates to edittrip page
+  // Edit button handler navigates to EditTrip page
   const handleEdit = (trip) => {
     navigate("/edittrip", { state: { tripID: trip.tripID } });
   };
-  // Addtrip handler navigates to Addtrip page
+  // AddTrip handler navigates to AddTrip page
   const handleAddTrip = () => {
     navigate("/addtrip");
   };
 
-  // Viewtrip handler
+  // TripDetails handler
   const handleTripDetails = (tripID) => {
     console.log("Navigating to Trip Details with ID:", tripID);
     navigate(`/tripdetails/${tripID}`); // Ensure tripID is passed directly
   };
 
-  // To determine which will be rendered to the screen - If there is no serachResult then the filteredTrips will be rendered
+  // To determine which will be rendered to the screen - If there is no 'searchResult' then the filteredTrips will be rendered
   const tripsToRender =
     searchResults.length > 0 ? searchResults : filteredTrips;
 
@@ -191,52 +193,48 @@ export const MyTrips = () => {
           />
         </div>
         {/* if there is no trips display message "Welcome, No trips yet" otherwise display trip cards*/}
-        {tripsToRender.length === 0 ? (
-          isInitialTripsEmpty ? (
-            <div className="no-trips-container">
-              <div className="no-trips-image">
-                <img src={Standing} alt="Standing girl" />
-              </div>
-              <div className="no-trips-message">
-                <h2>Welcome!</h2>
-                <p>
-                  Lools like you have no scribles(trips) yet.
-                  <br />
-                  Click on the botton bellow and make some memories!
-                </p>
-                <Button
-                  className="add-trip-button"
-                  handleClick={handleAddTrip}
-                  text="+ New Trip"
-                />
-              </div>
+        {loading ? (
+          <div>Loading trips...</div>
+        ) : isInitialTripsEmpty ? (
+          <div className="no-trips-container">
+            <div className="no-trips-image">
+              <img src={Standing} alt="Standing girl" />
             </div>
-          ) : (
-            (
-              <div className="no-results-container">
-                <h2>No trips match your filter choices!</h2>
-              </div>
-            )
-          )
+            <div className="no-trips-message">
+              <h2>Welcome!</h2>
+              <p>
+                Looks like you have no scribbles (trips) yet.
+                <br />
+                Click on the button below and make some memories!
+              </p>
+              <Button
+                className="add-trip-button"
+                handleClick={handleAddTrip}
+                text="+ New Trip"
+              />
+            </div>
+          </div>
+        ) : tripsToRender.length === 0 ? (
+          <div className="no-results-container">
+            <h2>No trips match your filter choices!</h2>
+          </div>
         ) : (
-          (
-            <div className="card-container">
-              {tripsToRender.map((trip) => (
-                <Card
-                  key={trip.tripID}
-                  city={trip.city}
-                  country={trip.country}
-                  startDate={formatDate(trip.startDate)}
-                  endDate={formatDate(trip.endDate)}
-                  imageUrl={trip.photos[0]?.url} //handling missing photos for a trip
-                  description={trip.description.substring(0, 250)} // The text will need to be limited to a certain number of characters to fit in the card component
-                  editButton={editButtonImage}
-                  onEdit={() => handleEdit(trip)}
-                  onClick={() => handleTripDetails(trip.tripID)}
-                />
-              ))}
-            </div>
-          )
+          <div className="card-container">
+            {tripsToRender.map((trip) => (
+              <Card
+                key={trip.tripID}
+                city={trip.city}
+                country={trip.country}
+                startDate={formatDate(trip.startDate)}
+                endDate={formatDate(trip.endDate)}
+                imageUrl={trip.photos[0]?.url} // Handling missing photos for a trip
+                description={trip.description.substring(0, 250)} // Limit text length
+                editButton={editButtonImage}
+                onEdit={() => handleEdit(trip)}
+                onClick={() => handleTripDetails(trip.tripID)}
+              />
+            ))}
+          </div>
         )}
       </div>
     </div>

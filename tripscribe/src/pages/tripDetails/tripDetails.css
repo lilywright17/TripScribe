@@ -1,16 +1,14 @@
-.box-conteiner{
+.box-container{
     display: flex; 
     justify-content: flex-start; 
     align-items: center; 
     padding: 20px;
-    margin-left: 20px;
 }
 .title{
     width: 80%; 
-    display: flex; /* Align items in a row */
+    display: flex; 
     align-items: center;
-    text-align: left;
-    
+    text-align: left;  
     padding-left: 100px;
     padding-top: 10px; 
     gap: 20px;

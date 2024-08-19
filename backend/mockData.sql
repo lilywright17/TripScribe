@@ -9,7 +9,7 @@ VALUES
 INSERT INTO Trips (tripID, userID, city, country, description, date_from, date_to)
 VALUES 
 -- Trips for Ada Lovelace (userID 1)
-(1, 1, 'Lisbon', 'Spain', 'Lisbon was a city that instantly felt like home. I loved getting lost in the narrow, winding streets of Alfama, where every corner revealed a new story. Riding the yellow trams was a delight, offering glimpses of the city’s beautiful hills and the shimmering Tagus River. The Jerónimos Monastery was a highlight, its intricate details leaving me speechless. The city’s viewpoints, or “miradouros,” offered stunning panoramas that made me fall in love with Lisbon all over again.', '2024-01-15 09:00:00', '2024-01-20'),
+(1, 1, 'Lisbon', 'Spain', 'Lisbon was a city that instantly felt like home. I loved getting lost in the narrow, winding streets of Alfama, where every corner revealed a new story. Riding the yellow trams was a delight, offering glimpses of the city’s beautiful hills and the shimmering Tagus River. The Jerónimos Monastery was a highlight, its intricate details leaving me speechless. The city’s viewpoints, or “miradouros,” offered stunning panoramas that made me fall in love with Lisbon all over again.', '2024-01-15 09:00:00', '2024-01-20 17:00:00'),
 (2, 1, 'Madrid', 'Spain', 'My trip to Madrid was a whirlwind of culture and excitement. I started at the Royal Palace, where the grandeur of Spanish history unfolded before my eyes. The Prado Museum was next, with its breathtaking art collection that left me in awe. Evenings were spent in bustling plazas, indulging in tapas and soaking up the vibrant atmosphere. Madrid energy is contagious, and I found myself lost in its rhythm, from peaceful moments in Retiro Park to late-night conversations over sangria. Madrid felt like the perfect blend of tradition and modern life.', '2024-03-05 10:00:00', '2024-03-07 17:00:00'),
 (3, 1, 'Berlin', 'Germany', 'Berlin was unlike any place I’ve ever been. The city’s history is palpable; standing before the Brandenburg Gate, I could feel the weight of its past. Visiting the Berlin Wall Memorial was deeply moving, reminding me of the city’s resilience and transformation. Yet, Berlin is also a hub of creativity and innovation. I wandered through eclectic neighborhoods, explored contemporary art galleries, and enjoyed the city’s vibrant street art scene. Berlin’s unique blend of old and new, along with its unpretentious charm, made it a place I won’t soon forget.', '2024-06-10 14:00:00', '2024-06-15 12:00:00'),
 (4, 1, 'Rome', 'Italy', 'Rome felt like walking through a living museum, every corner revealing a new piece of history. I started my days with a strong espresso before diving into ancient wonders like the Colosseum and the Roman Forum, where I could almost hear the echoes of gladiators. The Vatican left me speechless with its art, especially the Sistine Chapel’s ceiling—a masterpiece beyond words. I spent lazy afternoons in charming piazzas, tossing coins into the Trevi Fountain and indulging in creamy gelato. Rome’s energy is eternal, from the chaotic traffic to the quiet reverence of its many churches. It’s a city that captured my heart with its timeless beauty.', '2024-02-12 08:00:00', '2024-02-16 20:00:00'),
@@ -55,24 +55,26 @@ VALUES
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text)
 VALUES 
 -- Photos for Ada Lovelace's trips
-(16, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825894/samples/man-on-a-street.jpg', 'Just tired form walking'),
-(17, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/landscapes/nature-mountains.jpg', 'Enjoying the view'),
-(18, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/people/bicycle.jpg', 'The winner is clear'),
-(19, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/architecture-signs.jpg', 'Totaly lost'),
-(20, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/sheep.jpg', 'My daughter is a conquerror'),
-(21, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/girl-urban-view.jpg', 'Sheep on the road'),
-(22, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', 'At La Rouch restaurant'),
-(23, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910781/pexels-abdel-rahman-abu-baker-958112-1963081_skytxw.jpg', 'Just tired form walking'),
-(24, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', 'Enjoying the view'),
-(25, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', 'The winner is clear'),
-(26, 4, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', 'At La Rouch restaurant'),
-(27, 5, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample.jpg', 'Just tired form walking'),
-(28, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', 'Enjoying the view'),
-(29, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', 'The winner is clear');
-SELECT * FROM Photos;
+(16, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825894/samples/man-on-a-street.jpg', NULL),
+(17, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/landscapes/nature-mountains.jpg', NULL),
+(18, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/people/bicycle.jpg', NULL),
+(19, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/architecture-signs.jpg', NULL),
+(20, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/sheep.jpg', NULL),
+(21, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/girl-urban-view.jpg', NULL),
+(22, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
+(23, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910781/pexels-abdel-rahman-abu-baker-958112-1963081_skytxw.jpg', NULL),
+(24, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
+(25, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL),
+(26, 4, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
+(27, 5, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample.jpg', NULL),
+(28, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
+(29, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL);
+
+-- SELECT * FROM Photos;
 -- DELETE FROM Photos;
 
 -- For testing purposes 
 -- select * from Users;
 -- SET SQL_SAFE_UPDATES = 0;
 -- DELETE FROM Users WHERE username='Jsmith';
+-- SELECT * FROM Trips Where tripID=4;

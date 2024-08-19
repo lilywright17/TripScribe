@@ -10,6 +10,7 @@ export const Card = ({ country, city, startDate, endDate, description, imageUrl,
         e.stopPropagation(); // Prevents the click from propagating to the card's onClick
         onEdit(); // Trigger the edit functionality
     };
+      
 
     return (
         <div className="card" onClick={handleCardClick}>
@@ -17,7 +18,7 @@ export const Card = ({ country, city, startDate, endDate, description, imageUrl,
             <h1>{country || 'country'}</h1>
             <h2>{city || 'town/city'}</h2>
             <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
-            <p>{description || 'description of trip'}...</p>
+            <p>{description.trim() || 'description of trip'}...</p>
             <img 
                 className="edit-button" 
                 src={editButton} 

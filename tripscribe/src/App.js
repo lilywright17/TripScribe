@@ -1,3 +1,4 @@
+
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { LogIn } from './pages/logIn/logIn';
@@ -12,6 +13,7 @@ import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
+
 
 function App() {
   return (

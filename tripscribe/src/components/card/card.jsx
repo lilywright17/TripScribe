@@ -1,33 +1,50 @@
 import React from "react";
 import "./card.css";
 
-export const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit,onClick }) =>{
-    const handleCardClick = () => {
-        onClick(); // Trigger the navigation to ViewTrip
-    };
+export const Card = ({
+  country,
+  city,
+  startDate,
+  endDate,
+  description,
+  imageUrl,
+  editButton,
+  onEdit,
+  onClick,
+}) => {
+  const handleCardClick = () => {
+    onClick(); // Trigger the navigation to TripDetails page
+  };
 
-    const handleEditClick = (e) => {
-        e.stopPropagation(); // Prevents the click from propagating to the card's onClick
-        onEdit(); // Trigger the edit functionality
-    };
+  const handleEditClick = (e) => {
+    e.stopPropagation(); // Prevents the click from propagating to the card's onClick
+    onEdit();
+  };
 
-    return (
-        <div className="card" onClick={handleCardClick}>
-            <img src={imageUrl} alt={city || 'photo of city'} width={200} className="card-img"/>
-            <h1>{country || 'country'}</h1>
-            <h2>{city || 'town/city'}</h2>
-            <p>{startDate || 'start date'} - {endDate || 'end date'}</p>
-            <p>{description || 'description of trip'}...</p>
-            <img 
-                className="edit-button" 
-                src={editButton} 
-                alt="Edit button" 
-                onClick={handleEditClick}
-                style={{ cursor: 'pointer' }}
-            />
-        </div>
-    )
-}
+  return (
+    <div className="card" onClick={handleCardClick}>
+      <img
+        src={imageUrl}
+        alt={city || "photo of city"}
+        width={200}
+        className="card-img"
+      />
+      <h1>{country || "country"}</h1>
+      <h2>{city || "town/city"}</h2>
+      <p>
+        {startDate || "start date"} - {endDate || "end date"}
+      </p>
+      <p>{description || "description of trip"}...</p>
+      <img
+        className="edit-button"
+        src={editButton}
+        alt="Edit button"
+        onClick={handleEditClick}
+        style={{ cursor: "pointer" }}
+      />
+    </div>
+  );
+};
 /* 
 NEED TO - ADD TRASHCAN & PENCIL ICONS TO THE CARD, ONCE CHOSEN ICON LIBRARY IS INSTALLED, 
 for deleting and editing the card respectively.

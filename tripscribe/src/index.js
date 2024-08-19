@@ -7,11 +7,12 @@ import {Provider} from 'react-redux';
 import userReduxReducer from './features/userRedux';
 
 
-const store = configureStore(
-  {
-    reducer: userReduxReducer,
-  }
-);
+const store = configureStore({
+  reducer: {
+      userRedux: userReduxReducer,
+  },
+});
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

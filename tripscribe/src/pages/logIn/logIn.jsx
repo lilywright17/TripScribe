@@ -55,8 +55,10 @@ export const LogIn = () => {
            //added below for redux
            dispatch(loginRedux({name:'Tripscriber'}));
         
-           //possibly need to add in a setTimeout delay here?
-           navigate('/mytrips');
+           //add in timeout to allow state change
+           setTimeout(() => {
+            navigate('/mytrips');
+          }, 100);
 
         } catch (error) {
             setLoginFailure(true);

@@ -5,7 +5,8 @@ import { Button } from "../../components/button/button";
 import Standing from "./Standing.svg";
 import Humaaan from "./Humaaan.svg";
 import { NotePencil } from "@phosphor-icons/react";
-import './userProfile.css'
+import './userProfile.css';
+// import { useSelector } from "react-redux";
 
 export const UserProfileView = () => {
     //TODO: enable edit view- review value - replace with data form userTables
@@ -15,6 +16,10 @@ export const UserProfileView = () => {
         navigate('/userProfileEdit');
     };
     
+    // added for Redux work
+    // const userRedux = useSelector((state)=>
+    //   state.userRedux.value);
+    
     return (
       <>
         <div className="userProfilePage">
@@ -22,7 +27,7 @@ export const UserProfileView = () => {
               <div className='formContainer'>
                 
                 <div className='inputColumn'>
-                <h1>Hi USERNAME!</h1>
+                <h1>Hello</h1>
                   <Input id= 'fullNameUserProfile' labelText='Full Name'  value= 'Jane Doe' readOnly />                
                   <Input id= 'emailUserProfileView' labelText='Email'  value='janedo@travelscribe.com' readOnly />
                   <Input id= 'passwordUserProfileView' labelText='Password'  value='********' readOnly /> 

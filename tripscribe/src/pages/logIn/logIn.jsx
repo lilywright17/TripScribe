@@ -5,6 +5,8 @@ import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import './login.css';
+import { useDispatch } from 'react-redux';
+import { loginRedux } from '../../features/userRedux.js';
 
 
 
@@ -17,6 +19,9 @@ export const LogIn = () => {
     const [loginVisibility, setLoginVisibility] = useState(false);
 
     const navigate = useNavigate();
+
+    // redux work in progress
+    const dispatch = useDispatch();
 
     // Triggers animation when login page loads
     useEffect(() => {setLoginVisibility(true);}, []);
@@ -47,7 +52,12 @@ export const LogIn = () => {
             sessionStorage.setItem('token', token);
 
             setLoginFailure(false);
-            navigate('/mytrips');
+           //added below for redux
+           dispatch(loginRedux({name:'Tripscriber'}));
+        
+           //possibly need to add in a setTimeout delay here?
+           navigate('/mytrips');
+
         } catch (error) {
             setLoginFailure(true);
             setFailMessage(error.response?.data?.message || 'An unexpected error occurred. Please try again later.');

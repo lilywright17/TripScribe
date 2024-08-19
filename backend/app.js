@@ -5,9 +5,6 @@ const uploadImages = require('./config/uploadImages');
 const app = express();
 const PORT = 5000;
 
-
-const apiRoutes = require('./routes/googleapi');
-
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -48,15 +45,8 @@ app.post('/addTrip', (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Server is running on: http://localhost:${PORT}`)
-});
-
-// For Google Maps
-app.use('/api', apiRoutes);
-
 // Other configurations like middleware, routes, etc.
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 8000, () => {
   console.log(`Server running on port ${process.env.PORT || 5000}`);
 });
 const corsOptions = {

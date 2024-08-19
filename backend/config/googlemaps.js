@@ -1,5 +1,6 @@
-require('dotenv').config(); // Ensure you have dotenv installed
+require('dotenv').config(); 
 
-export const apiKey = process.env.GOOGLE_API_KEY;
-
-module.exports = { apiKey };
+module.exports = {
+	apiKey: process.env.GOOGLE_KEY
+  };
+  

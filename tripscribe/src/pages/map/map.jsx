@@ -9,23 +9,10 @@ import {
   Map,
   AdvancedMarker,
   InfoWindow,
-  MapCameraChangedEvent,
   useAdvancedMarkerRef
 } from "@vis.gl/react-google-maps";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
+import { fetchApiKey } from './googleapi.js'; 
 
-
-const apiKey = process.env.REACT_APP_GOOGLE_API_KEY;
 const mapId = 'a86e835a30ffed0';
 
 const formatDate = (date) => {
@@ -47,12 +34,7 @@ export const MapPage = () => {
 
   const [mapLoaded, setMapLoaded] = useState(false);
 
-  // Function to handle marker click
-  //  const handleMarkerClick = useCallback((trip) => {
-  //   setActiveMarker((prevActiveMarker) =>
-  //     prevActiveMarker === trip ? null : trip
-  //   );
-  // }, []);
+  const [apiKey, setApiKey] = useState(null);
 
   const handleMarkerClick = (trip) => {
     setActiveMarker(trip);
@@ -99,12 +81,6 @@ export const MapPage = () => {
                 onEdit={() => handleEdit(trip)}
 				        onClick={() => handleTripDetails(trip)}
               />
-            {/* <div>
-              <h2>{trip.title}</h2>
-              <p>{trip.description.substring(0, 100).trim()}...</p>
-              <p>{trip.startDate} to {trip.endDate}</p>
-              <a href="google.com">View full trip details</a>
-            </div> */}
           </InfoWindow>
         )}
       </>
@@ -127,9 +103,27 @@ export const MapPage = () => {
         }
       }, []);
 
+      useEffect(() => {
+        const loadApiKey = async () => {
+          console.log('Attempting to load API key...');
+          try {
+            const key = await fetchApiKey();
+            console.log('API key loaded successfully');
+            setApiKey(key);
+          } catch (error) {
+            console.error('Failed to load API key:', error);
+          }
+        };
+        loadApiKey();
+      }, []);
+
+      // Only render the map when API key is loaded - this was the cause of the map failing to load before
+  if (!apiKey) {
+    return <div>Loading map...</div>;
+  }
    return (
   <APIProvider
-    apiKey="AIzaSyDFL24r_ClK5U1jnYPXhDgIlPSoz7KYuqM"
+    apiKey={apiKey}
     onLoad={() => setMapLoaded(true)} 
   >
     <div className="map-div">
@@ -138,12 +132,6 @@ export const MapPage = () => {
         defaultZoom={13}
         center={userLocation || { lat: -33.860664, lng: 151.208138 }}
         onClick={handleMapClick} 
-        // onCameraChanged={(ev) =>
-        //   console.log(
-        //     "camera changed:",
-        //     ev.detail.center,
-        //     "zoom:",
-        //     ev.detail.zoom
       >{/* Render a Marker for each location */}
   {mapLoaded && tripsArray.map((trip) => (
             <MarkerWithInfoWindow

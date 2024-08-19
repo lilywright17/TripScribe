@@ -4,6 +4,7 @@ require("dotenv").config();
 const cors = require("cors");
 const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
+const googleRoute = require('./routes/googleRoute');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -24,6 +25,7 @@ app.use(express.json());
 // User routes
 app.use('/api', authRoutes);// Use the link http://localhost:8000/api/register or http://localhost:8000/api/login
 app.use('/api', tripRoutes);// Use the link http://localhost:8000/api/trips
+app.use('/api', googleRoute); // Use the link http://localhost:8000/api/google-maps-key
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

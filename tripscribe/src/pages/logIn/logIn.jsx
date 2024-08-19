@@ -3,18 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
+import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import './login.css';
 
 
-
 export const LogIn = () => {
-    // for react hooks
+    // React hooks for state management
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginFailure, setLoginFailure] = useState(false);
     const [failMessage, setFailMessage] = useState('');
     const [loginVisibility, setLoginVisibility] = useState(false);
+    const [openSnackbar, setOpenSnackbar] = useState(false);
 
     const navigate = useNavigate();
 
@@ -31,7 +33,28 @@ export const LogIn = () => {
         );
     };
 
-    //links to API
+    // Axios interceptor to handle 401 errors globally    
+    useEffect(() => {
+        const interceptor = axios.interceptors.response.use(
+            response => response,
+            error => {
+                if (error.response && error.response.status === 401) {
+                    // Token expired or unauthorized
+                    sessionStorage.removeItem('token');
+                    setOpenSnackbar(true); 
+
+                    // Delay before redirecting to login
+                    setTimeout(() => {
+                        navigate('/login');
+                    }, 3000); 
+                }
+                return Promise.reject(error);
+            }
+        );
+        return () => axios.interceptors.response.eject(interceptor);
+    }, [navigate]);    
+
+    // API call to handle login
     const handleSubmit = useCallback(async (event) => {
         event.preventDefault();
 
@@ -113,6 +136,19 @@ export const LogIn = () => {
                     </div>
                 </form>
             </div>
+            <Snackbar 
+                open={openSnackbar}
+                autoHideDuration={3000}
+                onClose={() => setOpenSnackbar(false)}
+                sx={{ width: '100%' }}
+                >
+                    <Alert 
+                    variant="filled"
+                    severity="warning"
+                    >
+                        Session expired. Redirecting to login...
+                </Alert>
+            </Snackbar>
         </div>
     );
 };

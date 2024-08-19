@@ -18,10 +18,13 @@ const jwtAuthentication = (req, res, next) => {
 
       // Verify and decode the token
       jwt.verify(token, jwtConfig.secret, (err, decoded) => {
-          if (err) {
-              return res.status(403).json({ error: "Forbidden, invalid or expired token" });
-          }
-          
+        if (err) {
+            if (err.name === 'TokenExpiredError') {
+                return res.status(401).json({ error: "Token expired, please log in again" });
+            }
+            return res.status(403).json({ error: "Forbidden, invalid token" });
+        }
+        
           // Assign the decoded token to req.user
           req.user = decoded;
           next(); // Continue to the next route

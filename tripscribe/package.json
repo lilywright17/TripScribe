@@ -19,10 +19,14 @@
     "browser-image-compression": "^2.0.2",
     "cloudinary-core": "^2.13.1",
     "cloudinary-react": "^1.8.1",
+    "crypto-browserify": "^3.12.0",
     "date-fns": "^3.6.0",
     "dotenv": "^16.4.5",
     "js-marker-clusterer": "github:googlemaps/markerclusterer",
     "jwt-decode": "^4.0.0",
+    "node-polyfill-webpack-plugin": "^4.0.0",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "react": "^18.3.1",
     "react-datepicker": "^7.3.0",
     "react-dom": "^18.3.1",
@@ -60,6 +64,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "webpack": "^5.93.0",
+    "webpack-cli": "^5.1.4"
   }
 }

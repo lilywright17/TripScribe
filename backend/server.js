@@ -4,7 +4,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
 const newTripRoutes = require('./routes/newTripRoutes');
-
+const deleteTripRoute = require('./routes/deleteTripRoute')
 const googleRoute = require('./routes/googleRoute');
 
 const app = express();
@@ -33,7 +33,7 @@ app.use('/api', authRoutes);// Use the link http://localhost:8000/api/register o
 app.use('/api', tripRoutes);// Use the link http://localhost:8000/api/trips
 app.use('/api', newTripRoutes); // Use the link http://localhost:8000/api/imagesUpload or http://localhost:8000/api/addtrips
 app.use('/api', googleRoute); // Use the link http://localhost:8000/api/google-maps-key
-
+app.use('/api', deleteTripRoute); 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });

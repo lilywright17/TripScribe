@@ -3,7 +3,6 @@ import { Card } from "../../components/card/card.jsx";
 import { useNavigate } from "react-router-dom";
 import './map.css';
 import editButtonImage from "./images/edit_button.png"
-import { tripsArray } from './tripsArray.js'
 import {
   APIProvider,
   Map,
@@ -12,6 +11,7 @@ import {
   useAdvancedMarkerRef
 } from "@vis.gl/react-google-maps";
 import { fetchApiKey } from './googleapi.js'; 
+import axios from 'axios';
 
 const mapId = 'a86e835a30ffed0';
 
@@ -22,6 +22,39 @@ const formatDate = (date) => {
 
 export const MapPage = () => {
 
+  useEffect(() => {
+    console.log('useEffect running');
+    const getTrips = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/trips", {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        });
+
+        if (response.status === 200) {
+          const tripData = response.data.map(trip => ({
+            ...trip,
+            latitude: parseFloat(trip.latitude),
+      longitude: parseFloat(trip.longitude),
+            tripID: Number(trip.tripID) // Ensure tripID is a number
+          }));
+          setTripsArray(Array.isArray(tripData) ? tripData : []);
+          console.log('Trip Data:', tripData);
+        } else if (response.status === 204) {
+          setTripsArray([]);
+        } else {
+          console.error("Failed to get trips information");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+    getTrips();
+  }, []);
+
+  console.log('MapPage component is rendering');
   // define navigate so that we can navigate to different pages on clicking
   const navigate = useNavigate();
 
@@ -35,6 +68,7 @@ export const MapPage = () => {
   const [mapLoaded, setMapLoaded] = useState(false);
 
   const [apiKey, setApiKey] = useState(null);
+  const [tripsArray, setTripsArray] = useState([]);
 
   const handleMarkerClick = (trip) => {
     setActiveMarker(trip);
@@ -58,6 +92,7 @@ export const MapPage = () => {
 
   // Creating the infowindow and marker as one component, with the infowindow only showing when the marker is clicked
    const MarkerWithInfoWindow = ({ trip, isActive, onClick }) => {
+    console.log('Rendering MarkerWithInfoWindow with trip:', trip);
     const [markerRef, marker] = useAdvancedMarkerRef();
   
     return (
@@ -121,6 +156,7 @@ export const MapPage = () => {
   if (!apiKey) {
     return <div>Loading map...</div>;
   }
+
    return (
   <APIProvider
     apiKey={apiKey}

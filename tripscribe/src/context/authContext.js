@@ -31,7 +31,7 @@ export const AuthProvider = ({ children }) => {
                     setTimeout(() => {
                         navigate('/login', { replace: true });
                         console.log('Navigating to login page'); // Debugging Log
-                    }, 1000);  // Adjust delay as needed
+                    }, 3000);  // Adjust delay as needed
                 }
                 return Promise.reject(error);
             }

@@ -4,9 +4,10 @@ import axios from 'axios';
 import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
-import './login.css';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../features/userRedux.js';
+import './login.css';
+
 
 export const LogIn = ({ checkAuth }) => {
     // React hooks
@@ -59,7 +60,6 @@ export const LogIn = ({ checkAuth }) => {
             // Store the token in SessionStorage
             sessionStorage.setItem('token', token);
 
-<<<<<<< HEAD
             // Immediately check if the token is set
             console.log('Token set in sessionStorage:', sessionStorage.getItem('token'));
 
@@ -68,7 +68,6 @@ export const LogIn = ({ checkAuth }) => {
                 checkAuth();
             }
 
-=======
             setLoginFailure(false);
 
             //added below for redux
@@ -76,7 +75,6 @@ export const LogIn = ({ checkAuth }) => {
         
            //add in timeout to allow state change
            setTimeout(() => {
->>>>>>> dev
             navigate('/mytrips');
           }, 100);
         } catch (error) {

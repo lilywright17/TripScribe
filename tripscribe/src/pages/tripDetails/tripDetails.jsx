@@ -1,38 +1,25 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-=======
-import { useParams } from "react-router-dom";
->>>>>>> dev
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { ArrowLeft } from "@phosphor-icons/react";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
 import DeleteIcon from "@mui/icons-material/Delete";
 import editButtonImage from "../myTrips/images/edit_button.png";
-<<<<<<< HEAD
-import Box from "@mui/material/Box";
-import "./tripDetails.css";
-
-export const TripDetails = () => {
-  const navigate = useNavigate();
-  const location = useLocation(); //TODO: maybe we should delete this since we are not including location (lang/long)
-  const { tripID: paramTripID } = useParams(); // Extract tripID from URL parameters
-  const tripID = paramTripID; // No need to check `location.state` if using URL parameters
-
-=======
-import axios from "axios";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
+import Box from '@mui/material/Box';
+import './tripDetails.css';
+
 
 export const TripDetails = () => {
   const navigate = useNavigate();
   const { tripID: paramTripID } = useParams();
-  const tripID = paramTripID;
+  const tripID = Number(paramTripID); // Convert tripID to number if necessary
+  
   // Used for troubleshooting to fix the passing of tripID in the FE
->>>>>>> dev
   console.log("tripID (from params):", tripID, "Type:", typeof tripID);
 
   const [trip, setTrip] = useState(null);
@@ -41,19 +28,13 @@ export const TripDetails = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   useEffect(() => {
-<<<<<<< HEAD
     const token = sessionStorage.getItem('token');
     if (!token) {
       navigate('/login'); // Log out and redirect if there's no token
+      return;
     }
-  }, [navigate]);
-  
-  useEffect(() => {
-    const token = sessionStorage.getItem('token');
-    const getTripdetails = async () => {
-=======
+
     const getTripDetails = async () => {
->>>>>>> dev
       try {
         const response = await axios.get(
           `http://localhost:8000/api/trips/${tripID}`,
@@ -73,22 +54,16 @@ export const TripDetails = () => {
         }
       }
     };
-<<<<<<< HEAD
+
     if (tripID && token) {
-      getTripdetails();
-=======
-    if (tripID) {
       getTripDetails();
->>>>>>> dev
     }
   }, [tripID, navigate]);
 
   const handleDeleteIconClick = () => {
     setDialogOpen(true);
-    //console.log("Delete Icon!");
   };
 
-  // Handler to delete a trip and trip related photos
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8000/api/trips/${tripID}`, {
@@ -101,8 +76,10 @@ export const TripDetails = () => {
         `The trip ${trip.country}, ${trip.city} was successfully deleted!`
       );
       setOpenSnackbar(true);
+      
+      setTrip(null); // Clear the trip data
 
-      // Wait 2 sec(2000 milliseconds) before navigating to MyTrips after the alert
+      // Wait 2 sec (2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
         navigate("/mytrips");
       }, 2000);
@@ -118,7 +95,6 @@ export const TripDetails = () => {
     console.log("Cancel button!");
   };
 
-  // TO BE COMPLETED!
   const handleEdit = () => {
     console.log("Edit!");
     navigate("/edittrip", { state: { trip } });
@@ -133,6 +109,13 @@ export const TripDetails = () => {
   if (!trip) {
     return <div>Loading Trip Details...</div>;
   }
+
+  const handleCloseSnackbar = (reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpenSnackbar(false);
+  };
 
   return (
     <div className="trip-details">
@@ -200,13 +183,13 @@ export const TripDetails = () => {
         <Snackbar
           open={openSnackbar}
           autoHideDuration={2000}
-          onClose={() => setOpenSnackbar(false)}
+          onClose={handleCloseSnackbar}
           message={successMessage}
         >
           <Alert
             variant="filled"
             severity="success"
-            onClose={() => setSuccessMessage(null)}
+            onClose={handleCloseSnackbar}
             sx={{ fontSize: "1.25rem" }}
           >
             {successMessage}

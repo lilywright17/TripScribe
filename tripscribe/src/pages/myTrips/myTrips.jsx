@@ -38,7 +38,7 @@ export const MyTrips = () => {
             tripID: Number(trip.tripID) // Ensure tripID is a number
           }));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
-          //console.log('Trip Data:', tripData);
+          console.log('Trip Data:', tripData);
         } else if (response.status === 204) {
           setTripsArray([]);
         } else {

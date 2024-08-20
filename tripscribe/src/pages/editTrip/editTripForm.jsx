@@ -1,43 +1,30 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/input/input";
 import { Button } from "../../components/button/button";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
 import { ArrowLeft } from '@phosphor-icons/react';
-import Modal from 'react-modal';
-import "./editTrip.css";
 import { ImgList } from "../../components/ImgList/ImgList";
+import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
+import "./editTrip.css";
 
-export const EditTripForm = ( { trip }) => {
+export const EditTripForm = () => {
     const [descriptionLength, setDescriptionLength] = useState(0);
-    const [modalIsOpen, setModalIsOpen] = useState(false);
     const maxLength = 500;
     const navigate = useNavigate();
 
-    const location = useLocation();
-    const {
-      country,
-      city,
-      startDate,
-      endDate,
-      images = [],
-      description,
-    } = location.state || {};
-    
+    const handleDescriptionChange = (e) => {
+        setDescriptionLength(e.target.value.length);
+    };
+
     const handleSecondaryButtonClick = () => {
         navigate("/tripDetails");
     };
 
-    const handleSubmit = (e) => {
-        setModalIsOpen(true);
-        e.target.reset();
-
-        setTimeout(() => navigate("/tripDetails"), 3000);
-    };
 
     return (
         <>
-        <form onSubmit={handleSubmit}>
+        <form className="editTripForm">
         <div className="EditTripInputBoxes">
             <h2 className="editTripTitle">Edit your trip</h2>
             <Input
@@ -57,15 +44,15 @@ export const EditTripForm = ( { trip }) => {
             <Input 
                 labelText="Start Date"
                 inputType="date"
-                //call the inputted data from user
                 name="startDate"
+                //call the inputted data from user
             />
 
             <Input 
                 labelText="End Date"
                 inputType="date"
-                //call the inputted data from user
                 name="endDate" 
+                //call the inputted data from user
             />                       
         </div>
 
@@ -76,7 +63,9 @@ export const EditTripForm = ( { trip }) => {
                 name="description"
                 rows="8"
                 cols="50"
+                placeholder="You can edit your trip details here..."
                 maxLength={maxLength}
+                onChange={handleDescriptionChange}
             ></textarea>
             <div className="characterCount">
                 {descriptionLength}/{maxLength} characters
@@ -85,6 +74,7 @@ export const EditTripForm = ( { trip }) => {
 
         <ImgList />
 
+        <AddTripImgUpload />
 
         </form>
 
@@ -96,16 +86,6 @@ export const EditTripForm = ( { trip }) => {
                 />
                 <Button text="SAVE MY CHANGES" type="submit" />
         </div>
-
-        <Modal 
-            isOpen={modalIsOpen}
-            onRequestClose={() => setModalIsOpen(false)}
-            contentLabel="Update Trip Form Submission Success"
-            >
-            <h1>Success!</h1>
-            <h2>Your trip has been updated!</h2>
-            <p>You will be redirected to your Trip Details...in 3, 2, 1!</p>
-        </Modal>
 
         </>
         

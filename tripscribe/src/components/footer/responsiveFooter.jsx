@@ -15,26 +15,14 @@ export const ResponsiveFooter = () => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    switch (newValue) {
-      case 'about':
-        navigate('/aboutus');
-        break;
-      case 'facebook':
-        window.location.href = 'https://www.facebook.com';
-        break;
-      case 'instagram':
-        window.location.href = 'https://www.instagram.com';
-        break;
-      case 'twitter':
-        window.location.href = 'https://twitter.com';
-        break;
-      case 'linkedin':
-        window.location.href = 'https://www.linkedin.com';
-        break;
-      default:
-        break;
+    if (newValue === 'about') {
+      navigate('/aboutus');
     }
   };
+
+  const handleLinkClick = (url) => {
+    window.open(url, '_blank');
+  }; 
 
   return (
     <Box sx={{ bottom: 0, left: 0, width: '100%' }}>
@@ -57,24 +45,28 @@ export const ResponsiveFooter = () => {
             value="facebook"
             icon={<FacebookLogo size={isLargeScreen ? 32 : 24} />}
             style={{ color: 'white' }}
+            onClick={() => handleLinkClick('https://www.facebook.com')}
           />
           <BottomNavigationAction
             label="Instagram"
             value="instagram"
             icon={<InstagramLogo size={isLargeScreen ? 32 : 24} />}
             style={{ color: 'white' }}
+            onClick={() => handleLinkClick('https://www.instagram.com')}
           />
           <BottomNavigationAction
             label="Twitter"
             value="twitter"
             icon={<XLogo size={isLargeScreen ? 32 : 24} />}
             style={{ color: 'white' }}
+            onClick={() => handleLinkClick('https://twitter.com')}
           />
           <BottomNavigationAction
             label="LinkedIn"
             value="linkedin"
             icon={<LinkedinLogo size={isLargeScreen ? 32 : 24} />}
             style={{ color: 'white' }}
+            onClick={() => handleLinkClick('https://www.linkedin.com')}
           />
         </Box>
 

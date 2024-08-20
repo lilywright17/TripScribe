@@ -1,6 +1,5 @@
-import React, { lazy, useState } from "react";
+import React from "react";
 import { ImageList, ImageListItem, Grid, Box } from "@mui/material";
-import { useLocation } from "react-router-dom";
 import "./ImgList.css";
 
 

@@ -9,10 +9,11 @@ import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
 import { MapPage } from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
-import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
+import { HelmetTitle } from './hoc/withTitle.jsx';
+
 
 import './App.css';
 
@@ -31,37 +32,96 @@ function App() {
   }, []);
 
   return (
-    <Router> {/* Move the Router up */}
+    <Router>
       <AuthProvider> {/* Wrap the application in the AuthProvider inside Router */}
         <Routes>
-          {/* Home route - Redirect based on authentication status */}
-          <Route path="/" element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <LogIn checkAuth={checkAuthentication} />} />
-          <Route path="/login" element={<LogIn checkAuth={checkAuthentication} />} />
+          <Route 
+            path="/" 
+            element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <PageWithNavbarExcluded 
+              component={<LogIn checkAuth={checkAuthentication} />} 
+              title="Login" />}  
+          />
+          <Route 
+            path="/login" 
+            element={<LogIn checkAuth={checkAuthentication} />} 
+          />
           {/* Registration route */}
-          <Route path="/register" element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <Register />} />
+          <Route 
+            path="/register" 
+            element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <PageWithNavbarExcluded
+              component={<Register />} 
+              title="Register" />}  
+          />
           {/* Authenticated routes */}
-          <Route path="/mytrips" element={isAuthenticated ? <PageWithNavbar component={<MyTrips />} /> : <Navigate to="/login" replace />} />
-          <Route path="/tripdetails/:tripID" element={isAuthenticated ? <PageWithNavbar component={<TripDetails />} /> : <Navigate to="/login" replace />} />
-          <Route path="/addtrip" element={isAuthenticated ? <PageWithNavbar component={<AddTrip />} /> : <Navigate to="/login" replace />} />
-          <Route path="/edittrip" element={isAuthenticated ? <PageWithNavbar component={<EditTrip />} /> : <Navigate to="/login" replace />} />
-          <Route path="/map" element={isAuthenticated ? <PageWithNavbar component={<MapPage />} /> : <Navigate to="/login" replace />} />
-          <Route path="/userprofile" element={isAuthenticated ? <PageWithNavbar component={<UserProfile />} /> : <Navigate to="/login" replace />} />
-          <Route path="/userProfileEdit" element={isAuthenticated ? <PageWithNavbar component={<UserProfileEdit />} /> : <Navigate to="/login" replace />} />
-          <Route path="/aboutus" element={<PageWithNavbar component={<AboutUs />} />} />
+          <Route 
+            path="/mytrips" 
+            element={isAuthenticated ? <Navigate to="/login" replace /> : <PageWithNavbar 
+              component={<MyTrips checkAuth={checkAuthentication} />} 
+              title="My Trips" />} 
+          />
+          <Route 
+            path="/tripdetails/:tripID" 
+            element={isAuthenticated ? <Navigate to="/login" replace /> : <PageWithNavbar 
+              component={<TripDetails checkAuth={checkAuthentication} />} 
+              title="Trip Details" />}   
+          />  
+          <Route 
+            path="/addtrip" 
+            element={isAuthenticated ? <Navigate to="/login" replace /> :<PageWithNavbar 
+              component={<AddTrip checkAuth={checkAuthentication} />} 
+              title="Add Trip" />}   
+          /> 
+          <Route 
+            path="/edittrip" 
+            element={isAuthenticated ? <Navigate to="/login" replace /> : <PageWithNavbar 
+              component={<EditTrip checkAuth={checkAuthentication} />} 
+              title="Edit Trip" />}   
+          />
+          <Route 
+            path="/map" 
+            element={isAuthenticated ? <Navigate to="/login" replace /> : <PageWithNavbar 
+              component={<MapPage checkAuth={checkAuthentication} />} 
+              title="Map View" />}   
+          />
+          <Route 
+            path="/userprofile" 
+            element={isAuthenticated ? <Navigate to="/login" replace /> : <PageWithNavbar 
+              component={<UserProfile checkAuth={checkAuthentication} />} 
+              title="User Profile" />}   
+          />
+          <Route 
+            path="/aboutus" 
+            element={<PageWithNavbar 
+              component={<AboutUs />}
+              title="About Us" />} 
+          />
         </Routes>
         <ResponsiveFooter />
-      </AuthProvider>
+      </AuthProvider>  
     </Router>
   );
 }
 
-function PageWithNavbar({ component }) {
+function PageWithNavbar({ component, title }) {
+  const componentName = title || component.type.displayName || component.type.name || 'Page';
+
   return (
     <>
+      <HelmetTitle title={componentName} />
       <ResponsiveNavbar />
       {component}
     </>
   );
+}
+
+function PageWithNavbarExcluded({ component, title }) {
+  const componentName = title || component.type.displayName || component.type.name || 'Page';
+  return (
+      <>
+        <HelmetTitle title={componentName} />
+        {component} 
+      </>
+  )
 }
 
 export default App;

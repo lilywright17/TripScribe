@@ -130,3 +130,4 @@ dist
 .pnp.*
 
 npm-cache/
+backend/UsersmedimAppDataRoamingnpm-cache/

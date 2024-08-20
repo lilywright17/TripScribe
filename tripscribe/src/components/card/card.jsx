@@ -1,10 +1,20 @@
 import React from "react";
 import "./card.css";
 
-export const Card = ({ country, city, startDate, endDate, description, imageUrl,editButton,onEdit,onClick }) =>{
-    const handleCardClick = () => {
-        onClick(); // Trigger the navigation to ViewTrip
-    };
+export const Card = ({
+  country,
+  city,
+  startDate,
+  endDate,
+  description,
+  imageUrl,
+  editButton,
+  onEdit,
+  onClick,
+}) => {
+  const handleCardClick = () => {
+    onClick(); // Trigger the navigation to TripDetails page
+  };
 
     const handleEditClick = (e) => {
         e.stopPropagation(); // Prevents the click from propagating to the card's onClick

@@ -38,7 +38,7 @@ const getTrips = async (req, res) => {
         if (Array.isArray(result) && result.length === 0) {
             return res.status(204).json({ message: 'No trips were found!' },[]);
         }
-
+        
         res.status(200).json(result);
     } catch (error) {
         console.error('Error fetching trips:', error);
@@ -67,17 +67,11 @@ const getTripByID = async(req, res) => {
             `,
             [tripID, userID]
         );
-        // To ensure that the result is an array
-        // if (Array.isArray(result) && result.length === 0) {
-        //     return res.status(204).json({ message: 'Trip was not found!' },[]);
-        // }
-        if (Array.isArray(result) && result.length === 0) {
-            // Respond with a 404 status code and an error message
+        // In case no trips are found
+        if (result.length === 0) {
             return res.status(404).json({ message: 'Trip was not found!' });
         }
-        if (!result.length) {
-            return res.status(204).json({ message: 'Trip was not found!' });
-        }
+        
         console.log("UserId is:", userID, "TripId is:",tripID)
         res.status(200).json(result[0]);
     } catch (error) {

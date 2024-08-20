@@ -38,19 +38,19 @@ export const ImgList = () => {
 
 const itemData = [
       {
-        img: 'https://images.unsplash.com/photo-1519262229618-980405fda403?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img: 'https://images.unsplash.com/photo-1519262229618-980405fda403',
         title: 'St Pauls Cathedral',
       },    
       {
-        img: 'https://images.unsplash.com/photo-1533929736458-ca588d08c8be?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img: 'https://images.unsplash.com/photo-1533929736458-ca588d08c8be',
         title: 'Tower Bridge',
       },
       {
-        img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383?q=80&w=1965&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img: 'https://images.unsplash.com/photo-1529655683826-aba9b3e77383',
         title: 'Big Ben',
       },
       {
-        img: 'https://images.unsplash.com/photo-1515508866870-7aa2a950a492?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        img: 'https://images.unsplash.com/photo-1515508866870-7aa2a950a492',
         title: 'The Shard',
       },
 

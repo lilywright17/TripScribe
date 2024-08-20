@@ -17,8 +17,9 @@ export const EditTripForm = () => {
         setDescriptionLength(e.target.value.length);
     };
 
-    const handleSecondaryButtonClick = () => {
-        navigate("/tripDetails");
+    const handleSecondaryButtonClick = (e) => {
+        e.preventDefault();
+        navigate("/myTrips");
     };
 
 

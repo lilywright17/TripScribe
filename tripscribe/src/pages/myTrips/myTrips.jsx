@@ -9,6 +9,7 @@ import { Button } from "../../components/button/button.jsx";
 import editButtonImage from "./images/edit_button.png";
 import Standing from "./images/Standing.png";
 import axios from 'axios';
+import { useSelector } from "react-redux";
 
 export const MyTrips = () => {
   const [rangeDate, setRangeDate] = useState([null, null]);
@@ -20,6 +21,10 @@ export const MyTrips = () => {
   const [tripsArray, setTripsArray] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+   // added for Redux work
+   const userRedux = useSelector((state)=>
+    state.userRedux.value);
   
   // Using Axios to get the data form the back-end
   useEffect(() => {
@@ -201,7 +206,7 @@ export const MyTrips = () => {
               <img src={Standing} alt="Standing girl" />
             </div>
             <div className="no-trips-message">
-              <h2>Welcome!</h2>
+              <h2>Welcome {userRedux?.name}!</h2>
               <p>
                 Looks like you have no scribbles (trips) yet.
                 <br />

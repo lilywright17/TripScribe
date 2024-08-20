@@ -1,27 +1,34 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
-import Alert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import './login.css';
 
 
-export const LogIn = () => {
-    // React hooks for state management
+export const LogIn = ({ checkAuth }) => {
+    // React hooks
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginFailure, setLoginFailure] = useState(false);
     const [failMessage, setFailMessage] = useState('');
-    const [loginVisibility, setLoginVisibility] = useState(false);
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [isLoginVisible, setIsLoginVisible] = useState(false);
 
     const navigate = useNavigate();
 
     // Triggers animation when login page loads
-    useEffect(() => {setLoginVisibility(true);}, []);
+    useEffect(() => {
+        setIsLoginVisible(true);
+    }, []);
+
+    // Clear error when user starts typing again
+    useEffect(() => {
+        if (loginFailure) {
+            setLoginFailure(false);
+            setFailMessage('');
+        }
+    }, [email, password, loginFailure]);
 
     function validateForm() {
         return email.length > 5 && password.length >= 6 && validateEmail(email);
@@ -33,29 +40,8 @@ export const LogIn = () => {
         );
     };
 
-    // Axios interceptor to handle 401 errors globally    
-    useEffect(() => {
-        const interceptor = axios.interceptors.response.use(
-            response => response,
-            error => {
-                if (error.response && error.response.status === 401) {
-                    // Token expired or unauthorized
-                    sessionStorage.removeItem('token');
-                    setOpenSnackbar(true); 
-
-                    // Delay before redirecting to login
-                    setTimeout(() => {
-                        navigate('/login');
-                    }, 3000); 
-                }
-                return Promise.reject(error);
-            }
-        );
-        return () => axios.interceptors.response.eject(interceptor);
-    }, [navigate]);    
-
-    // API call to handle login
-    const handleSubmit = useCallback(async (event) => {
+    //Handle API submission
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
@@ -69,17 +55,24 @@ export const LogIn = () => {
             // Store the token in SessionStorage
             sessionStorage.setItem('token', token);
 
-            setLoginFailure(false);
+            // Immediately check if the token is set
+            console.log('Token set in sessionStorage:', sessionStorage.getItem('token'));
+
+            // Call the checkAuth function passed from App.js
+            if (checkAuth) {
+                checkAuth();
+            }
+
             navigate('/mytrips');
         } catch (error) {
             setLoginFailure(true);
             setFailMessage(error.response?.data?.message || 'An unexpected error occurred. Please try again later.');
             console.error('Login error:', error);
         }
-    }, [email, password, navigate]);
+    };
 
     const toRegister = () => {
-        setLoginVisibility(false);
+        setIsLoginVisible(false);
         navigate('/register');
     };
 
@@ -97,7 +90,7 @@ export const LogIn = () => {
                 <img src={groupImage} alt="Group" />
             </div>
             
-            <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
+            <div className={`main-box login-animation ${isLoginVisible ? 'visible' : 'hidden'}`}>
                 <div className='login-container'>
                     <h1 className="h-signin">Sign In</h1>
                 </div>
@@ -136,19 +129,6 @@ export const LogIn = () => {
                     </div>
                 </form>
             </div>
-            <Snackbar 
-                open={openSnackbar}
-                autoHideDuration={3000}
-                onClose={() => setOpenSnackbar(false)}
-                sx={{ width: '100%' }}
-                >
-                    <Alert 
-                    variant="filled"
-                    severity="warning"
-                    >
-                        Session expired. Redirecting to login...
-                </Alert>
-            </Snackbar>
         </div>
     );
 };

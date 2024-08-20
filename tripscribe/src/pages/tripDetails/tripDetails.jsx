@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
-import Box from "@mui/material/Box";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { ArrowLeft } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
-import "./tripDetails.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import editButtonImage from "../myTrips/images/edit_button.png";
-import axios from "axios";
+import Box from "@mui/material/Box";
+import "./tripDetails.css";
 
 export const TripDetails = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  const location = useLocation(); //TODO: maybe we should delete this since we are not including location (lang/long)
   const { tripID: paramTripID } = useParams(); // Extract tripID from URL parameters
   const tripID = paramTripID; // No need to check `location.state` if using URL parameters
 
@@ -23,13 +23,21 @@ export const TripDetails = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    if (!token) {
+      navigate('/login'); // Log out and redirect if there's no token
+    }
+  }, [navigate]);
+  
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
     const getTripdetails = async () => {
       try {
         const response = await axios.get(
           `http://localhost:8000/api/trips/${tripID}`,
           {
             headers: {
-              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              Authorization: `Bearer ${token}`, // Use token from sessionStorage
             },
           }
         );
@@ -37,12 +45,16 @@ export const TripDetails = () => {
         setTrip(response.data);
       } catch (error) {
         console.error("Error fetching trip details:", error);
+        if (error.response && error.response.status === 401) {
+          sessionStorage.removeItem('token'); // Clear token from sessionStorage
+          navigate('/login'); // Force logout on 401 Unauthorized
+        }
       }
     };
-    if (tripID) {
+    if (tripID && token) {
       getTripdetails();
     }
-  }, [tripID]);
+  }, [tripID, navigate]);
 
   const handleDeleteIconClick = () => {
     setDialogOpen(true);

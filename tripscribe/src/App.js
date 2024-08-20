@@ -1,6 +1,6 @@
-
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/authContext'; 
 import { LogIn } from './pages/logIn/logIn';
 import { Register } from './pages/register/register';
 import { MyTrips } from './pages/myTrips/myTrips';
@@ -14,23 +14,43 @@ import { AboutUs } from './pages/aboutUs/aboutUs';
 import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
 
+import './App.css';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Function to check authentication state based on token
+  const checkAuthentication = () => {
+    const token = sessionStorage.getItem('token');
+    console.log('Token from sessionStorage:', token);
+    setIsAuthenticated(!!token); // Set authenticated state after getting the token
+  };
+
+  useEffect(() => {
+    checkAuthentication(); // Run this once when the component mounts
+  }, []);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<PageWithNavbarExcluded component={<LogIn />} />} />
-        <Route path="/register" element={<PageWithNavbarExcluded component={<Register />} />} />
-        <Route path="/mytrips" element={<PageWithNavbar component={<MyTrips />} />} />
-        <Route path="/tripdetails/:tripID" element={<PageWithNavbar component={<TripDetails />} />} />
-        <Route path="/addtrip" element={<PageWithNavbar component={<AddTrip />} />} />
-        <Route path="/edittrip" element={<PageWithNavbar component={<EditTrip />} />} />
-        <Route path="/map" element={<PageWithNavbar component={<MapPage />} />} />
-        <Route path="/userprofile" element={<PageWithNavbar component={<UserProfile />} />} />
-        <Route path="/userProfileEdit" element={<PageWithNavbar component={<UserProfileEdit />} />} />
-        <Route path="/aboutus" element={<PageWithNavbar component={<AboutUs />} />} />
-      </Routes>
-      <ResponsiveFooter />
+    <Router> {/* Move the Router up */}
+      <AuthProvider> {/* Wrap the application in the AuthProvider inside Router */}
+        <Routes>
+          {/* Home route - Redirect based on authentication status */}
+          <Route path="/" element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <LogIn checkAuth={checkAuthentication} />} />
+          <Route path="/login" element={<LogIn checkAuth={checkAuthentication} />} />
+          {/* Registration route */}
+          <Route path="/register" element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <Register />} />
+          {/* Authenticated routes */}
+          <Route path="/mytrips" element={isAuthenticated ? <PageWithNavbar component={<MyTrips />} /> : <Navigate to="/login" replace />} />
+          <Route path="/tripdetails/:tripID" element={isAuthenticated ? <PageWithNavbar component={<TripDetails />} /> : <Navigate to="/login" replace />} />
+          <Route path="/addtrip" element={isAuthenticated ? <PageWithNavbar component={<AddTrip />} /> : <Navigate to="/login" replace />} />
+          <Route path="/edittrip" element={isAuthenticated ? <PageWithNavbar component={<EditTrip />} /> : <Navigate to="/login" replace />} />
+          <Route path="/map" element={isAuthenticated ? <PageWithNavbar component={<MapPage />} /> : <Navigate to="/login" replace />} />
+          <Route path="/userprofile" element={isAuthenticated ? <PageWithNavbar component={<UserProfile />} /> : <Navigate to="/login" replace />} />
+          <Route path="/userProfileEdit" element={isAuthenticated ? <PageWithNavbar component={<UserProfileEdit />} /> : <Navigate to="/login" replace />} />
+          <Route path="/aboutus" element={<PageWithNavbar component={<AboutUs />} />} />
+        </Routes>
+        <ResponsiveFooter />
+      </AuthProvider>
     </Router>
   );
 }
@@ -44,17 +64,7 @@ function PageWithNavbar({ component }) {
   );
 }
 
-function PageWithNavbarExcluded({ component }) {
-  return component;
-}
-
 export default App;
-
-/* krystal note: i commented out the TripDetails route because it keeps causing an error. Ask for help. The location used to be in 23, between myTrip and AddTrip routes.
-          <Route path="/tripdetails" element={<TripDetails />}/> /*
-
-
-
 
 
 /*

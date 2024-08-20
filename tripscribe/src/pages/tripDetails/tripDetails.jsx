@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
 import "./tripDetails.css";
 import DeleteIcon from "@mui/icons-material/Delete";
-import editButtonImage from "../myTrips/images/edit_button.png";
+import editButtonImage from "./edit_button.png";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
 import { Stack } from "@mui/material";
@@ -129,7 +129,6 @@ export const TripDetails = () => {
             backgroundColor: "white",
             borderRadius: "10px",
             boxShadow: 2,
-            // ml: "90px",
           }}
         >
           <PhotoCarousel images={trip.photos || []} />

@@ -6,7 +6,6 @@ import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import { Button } from "../../components/button/button.jsx";
-import editButtonImage from "./images/edit_button.png";
 import Standing from "./images/Standing.png";
 import axios from 'axios';
 import { useSelector } from "react-redux";
@@ -133,10 +132,6 @@ export const MyTrips = () => {
   const isFilterApplied =
     startDate || endDate || selectedCountry || selectedCity;
 
-  // Edit button handler navigates to EditTrip page
-  const handleEdit = (trip) => {
-    navigate("/edittrip", { state: { tripID: trip.tripID } });
-  };
   // AddTrip handler navigates to AddTrip page
   const handleAddTrip = () => {
     navigate("/addtrip");
@@ -234,8 +229,6 @@ export const MyTrips = () => {
                 endDate={formatDate(trip.endDate)}
                 imageUrl={trip.photos[0]?.url} // Handling missing photos for a trip
                 description={trip.description.substring(0, 250)} // Limit text length
-                editButton={editButtonImage}
-                onEdit={() => handleEdit(trip)}
                 onClick={() => handleTripDetails(trip.tripID)}
               />
             ))}

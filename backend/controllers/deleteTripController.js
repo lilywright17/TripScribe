@@ -27,6 +27,8 @@ const deleteTrip = async(req,res) => {
 
          await db.query(`DELETE FROM Photos WHERE tripID = ? AND userID = ?`, [tripID, userID]);
 
+         await db.query(`DELETE FROM Trip_Location WHERE tripID = ?`, [tripID]);
+
          await db.query(`DELETE FROM Trips WHERE tripID = ? AND userID = ?`, [tripID, userID]);
 
          await db.query(`COMMIT`);

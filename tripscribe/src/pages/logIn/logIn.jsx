@@ -45,10 +45,18 @@ export const LogIn = () => {
                 password
             });
 
-            const { token } = response.data;
+            const { token, user } = response.data;
+            // Acquiring the userID from the response
+            const userID = user?.id; 
+            console.log("userID is:", userID);
+
+            if (!userID) {
+                throw new Error('User ID not found in response');
+            }
 
             // Store the token in SessionStorage
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userID', userID);
 
             setLoginFailure(false);
 

@@ -1,8 +1,7 @@
-import  {useState} from 'react';
+import  React from 'react';
 import './searchInput.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import tripsArray from '../../pages/myTrips/tripsArray';
 
 export const SearchInput = ({ handleKeyDown, onChange, searchQuery }) => {
 

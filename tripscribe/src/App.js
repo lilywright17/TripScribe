@@ -9,7 +9,6 @@ import { EditTrip } from './pages/editTrip/editTrip';
 import { UserProfile } from './pages/userProfile/userProfile';
 import { MapPage } from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
-import { UserProfileEdit } from './pages/userProfile/userProfileEdit';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
@@ -68,12 +67,6 @@ function App() {
           element={<PageWithNavbar 
           component={<UserProfile />} 
           title="User Profile" />} 
-        />
-        <Route 
-          path="/userProfileEdit" 
-          element={<PageWithNavbar 
-          component={<UserProfileEdit />} 
-          title="Edit User Profile" />} 
         />
         <Route 
           path="/aboutus" 

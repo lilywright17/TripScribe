@@ -1,6 +1,7 @@
 .buttonPrimary {
     display: flex;  /* Flexbox for alignment */
     flex: 1 0 0;
+    flex-shrink: 0;
     align-items: center;  /* Center items vertically */
     justify-content: center;  /* Center items horizontally */
     align-self: stretch;

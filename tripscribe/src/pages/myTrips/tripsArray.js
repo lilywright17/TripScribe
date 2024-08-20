@@ -27,8 +27,8 @@ const tripsArray = [
 	},
 	{
 		  image:[Lisbon,Lisbon2,Lisbon3,Lisbon4],
-		  city: 'Madrid',
-		  country: 'Spain',
+		  city: 'Lisbon',
+		  country: 'Portugal',
 		  title: 'Trip to Lisbon',
 		  startDate: '2024-07-15',
 		  endDate: '2024-07-20',
@@ -37,7 +37,7 @@ const tripsArray = [
 	{
 		  image: [Lisbon,Lisbon2,Lisbon3,Lisbon4],
 		  city: 'Lisbon',
-		  country: 'Spain',
+		  country: 'Portugal',
 		  title: 'Trip to Lisbon',
 		  startDate: '2024-07-15',
 		  endDate: '2024-07-20',

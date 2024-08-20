@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from "../../components/input/input";
 import { Button } from "../../components/button/button";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";

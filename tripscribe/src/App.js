@@ -1,3 +1,4 @@
+
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { LogIn } from './pages/logIn/logIn';
@@ -13,6 +14,7 @@ import { AboutUs } from './pages/aboutUs/aboutUs';
 import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
 
+
 function App() {
   return (
     <Router>
@@ -20,7 +22,7 @@ function App() {
         <Route path="/" element={<PageWithNavbarExcluded component={<LogIn />} />} />
         <Route path="/register" element={<PageWithNavbarExcluded component={<Register />} />} />
         <Route path="/mytrips" element={<PageWithNavbar component={<MyTrips />} />} />
-        <Route path="/tripdetails" element={<PageWithNavbar component={<TripDetails />} />} />
+        <Route path="/tripdetails/:tripID" element={<PageWithNavbar component={<TripDetails />} />} />
         <Route path="/addtrip" element={<PageWithNavbar component={<AddTrip />} />} />
         <Route path="/edittrip" element={<PageWithNavbar component={<EditTrip />} />} />
         <Route path="/map" element={<PageWithNavbar component={<MapPage />} />} />
@@ -69,7 +71,7 @@ export default App;
           </li>
           <li>
             <h2>Krystal</h2>
-              <p>FILL IN TRIP DETAILS HERE</p>
+              <p>Hey poo bums! My favourite trip was when I went to Brazil. I ate soooo much.</p>
             </li>
             <li>
               <h2>Mediha</h2>

@@ -12,11 +12,11 @@ CREATE TABLE Users (
 
 -- Trips table
 CREATE TABLE Trips (
-	tripID INT AUTO_INCREMENT primary KEY,
+	tripID INT AUTO_INCREMENT PRIMARY KEY,
     userID INT NOT NULL,
     city VARCHAR(60) NOT NULL,
     country VARCHAR(60) NOT NULL,
-    description VARCHAR(255) NOT NULL,
+    description TEXT NOT NULL,
     date_from DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_to DATETIME,
     FOREIGN KEY (userID) REFERENCES Users(userID)
@@ -48,4 +48,3 @@ CREATE TABLE Trip_Location (
     FOREIGN KEY (tripID) REFERENCES Trips(tripID),
     FOREIGN KEY (locationID) REFERENCES Locations(locationID)
 );
-    

@@ -29,12 +29,15 @@
     font-weight: bold;
 }
 
-.editTripTextDescription {
-    width: 100%;
-    box-sizing: border-box;
-    background-color: rgb(244, 241, 241);
-    border-radius: 8px;
-    border: 2px solid #476a6f;
+.text-description {
+  font-family: inherit;
+  border-radius: 10px;
+  border: 0.5px solid #eae9e9;
+  background: rgba(221, 221, 221, 0.60); 
+  height: 80%;
+  padding-left: 8px; 
+  padding-top: 8px;
+  flex-shrink: 0;
 }
 
 .editTripButtonContainer {

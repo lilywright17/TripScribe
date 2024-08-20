@@ -10,8 +10,8 @@ export const CustomPhoto = ({ url }) => {
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
   // Determine the size of the CustomPhoto based on screen size using ternary logic
-   const photoWidth = isSm ? '60%' : isMd ? '80%' : '60%';
-   const photoHeight = isSm ? "180px" : isMd ? "220px" : "280px";
+   const photoWidth = isSm ? '100%' : isMd ? '80%' : '60%';
+   const photoHeight = isSm ? "200px" : isMd ? "260px" : "320px";
 
   return (
     <Paper

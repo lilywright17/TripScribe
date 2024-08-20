@@ -1,20 +1,24 @@
-.box-conteiner{
-    display: flex; /* Use Flexbox for centering */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+.box-container{
+    display: flex; 
+    justify-content: flex-start; 
+    align-items: center; 
     padding: 20px;
 }
 .title{
-    width: 80%; /* Take full width of the parent container */
-    text-align: left; /* Align text to the left */
+    width: 80%; 
+    display: flex; 
+    align-items: center;
+    text-align: left;  
     padding-left: 100px;
     padding-top: 10px; 
+    gap: 20px;
 }
 
 .title-container {
-    display: flex;
-    align-items: center; /* Vertically align h1 and edit button */
-    gap: 40px; /* Space between h1 and edit button */
+    box-sizing: border-box;
+    text-align: left;
+    
+    gap: 40px; 
 }
 
 .button-container{
@@ -39,12 +43,13 @@
 
 .dates{
     margin:0;
+    padding-left: 100px;
+    padding-bottom: 30px;
 }
-
 
 .delete-icon{
     position: absolute;
-    right: 100px; /* Aligns the icon to the right */
+    right: 100px; 
     transform: translateY(-50%); 
     cursor: pointer; 
 }

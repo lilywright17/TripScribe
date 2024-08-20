@@ -1,85 +1,84 @@
-import React, {useState, useEffect, useCallback} from 'react';
-import travelBG from './travel_bg.jpg';
-
-import './login.css';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import groupImage from '../register/Group 2.png';
+import { Button } from '../../components/button/button.jsx';
+import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
+import './login.css';
+
+
 
 export const LogIn = () => {
     // for react hooks
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loginFailure, setLoginFailure] = useState(false);
+    const [failMessage, setFailMessage] = useState('');
     const [loginVisibility, setLoginVisibility] = useState(false);
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        // Triggers animation when login page loads
-        setLoginVisibility(true);
-
-        document.body.style.backgroundImage = `url(${travelBG})`;
-        document.body.style.backgroundSize = 'cover';
-        document.body.style.backgroundRepeat = 'no-repeat';
-    }, [])
+    // Triggers animation when login page loads
+    useEffect(() => {setLoginVisibility(true);}, []);
 
     function validateForm() {
-        // function to validate user inputs for email and password
-        return email.length > 5 && password.length > 7 && validateEmail(email);
+        return email.length > 5 && password.length >= 6 && validateEmail(email);
     }
 
     const validateEmail = (email) => {
         return email.match(
-             /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         );
     };
 
+    //links to API
     const handleSubmit = useCallback(async (event) => {
-            event.preventDefault();
+        event.preventDefault();
 
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    body: JSON.stringify({email, password}),
-                    headers: {
-                        "Content-Type": 'application/json',
-                    }
-                });
+        try {
+            const response = await axios.post('http://localhost:8000/api/login', {
+                email,
+                password
+            });
 
-                const result = await response.json();
-                console.log('Success: ', result);
-                navigate('/mytrips');
-            } catch (error) {
-                console.error('Error: ', error);
-            }
+            const { token } = response.data;
+
+            // Store the token in SessionStorage
+            sessionStorage.setItem('token', token);
+
+            setLoginFailure(false);
+            navigate('/mytrips');
+        } catch (error) {
+            setLoginFailure(true);
+            setFailMessage(error.response?.data?.message || 'An unexpected error occurred. Please try again later.');
+            console.error('Login error:', error);
         }
-    );
+    }, [email, password, navigate]);
 
     const toRegister = () => {
         setLoginVisibility(false);
         navigate('/register');
-    }
+    };
 
     return (
         <div className="login">
             <div className="side-box">
-                <div className="register-container">
-                    <h1 className='register-text'>Welcome to TripScribe!</h1>
-                    <h2 className='register-text'>Start your journey</h2>
+                <div className='to-register-container'>
+                    <div className="new-here-text">New here?</div>
+                    <div className='to-register-text'>Start your journey!</div>
+                        <SecondaryButton
+                            text = "REGISTER"
+                            handleClick={toRegister}
+                        />   
                 </div>
-                <button 
-                    className='register-button'
-                    onClick={toRegister}
-                >
-                    REGISTER
-                </button>
+                <img src={groupImage} alt="Group" />
             </div>
-
+            
             <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
-
                 <div className='login-container'>
                     <h1 className="h-signin">Sign In</h1>
                 </div>
-                
-                
+                {loginFailure && <p className='error-text'>{failMessage}</p>}
                 <form className="form-submit" onSubmit={handleSubmit}>
                     <div className = "form-group">
                         <label className="label-input" htmlFor="email">Email</label>
@@ -105,17 +104,15 @@ export const LogIn = () => {
                     </div>
 
                     <div className='button-container'>
-                    <button className='button-submit'
-                        type="submit" 
-                        disabled={!validateForm()}
-                        // onClick={handleSubmit}
-                    >
-                        LOG IN
-                    </button>
+                        <Button
+                            className='button-submit'
+                            text='LOG IN'
+                            type='submit'
+                            disabled={!validateForm()}
+                        />
                     </div>
                 </form>
             </div>
         </div>
     );
-
-}
+};

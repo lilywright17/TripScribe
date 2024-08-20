@@ -1,29 +1,66 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from "react-dom";
 import { Card } from "../../components/card/card.jsx";
-// import Footer from...
 import "./myTrips.css";
 import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
-import tripsArray from "./tripsArray.js";
 import { Button } from "../../components/button/button.jsx";
-import editButtonImage from "./images/edit_button.png"
+import editButtonImage from "./images/edit_button.png";
 import Standing from "./images/Standing.png";
-
-//Get trips data from SQL database, get user ID and return rows where user ID matches, store in an array of object
-
-// Card should have a delete button. We'll need to make a modal for deleting the trip
+import axios from 'axios';
 
 export const MyTrips = () => {
+  const [rangeDate, setRangeDate] = useState([null, null]);
+  const [startDate, endDate] = rangeDate;
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [tripsArray, setTripsArray] = useState([]);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  
+  // Using Axios to get the data form the back-end
+  useEffect(() => {
+    const getTrips = async () => {
+      try {
+        const response = await axios.get("http://localhost:8000/api/trips", {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
+          },
+        });
 
+        if (response.status === 200) {
+          const tripData = response.data.map(trip => ({
+            ...trip,
+            tripID: Number(trip.tripID) // Ensure tripID is a number
+          }));
+          setTripsArray(Array.isArray(tripData) ? tripData : []);
+          //console.log('Trip Data:', tripData);
+        } else if (response.status === 204) {
+          setTripsArray([]);
+        } else {
+          console.error("Failed to get trips information");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
+      }
+    };
+
+    getTrips();
+  }, []);
+
+  // Formatting the dates
   const formatDate = (date) => {
     date = new Date(date);
     return `${date.getDate() + 1}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
+  // Checking if the user presses 'Enter' to execute the Search
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       executeSearch();
@@ -31,6 +68,7 @@ export const MyTrips = () => {
     }
   };
 
+  //Filters the tripArray to match the user search entry to teh trip's description
   const executeSearch = () => {
     const results = tripsArray.filter((trip) => {
       const matchesSearchQuery =
@@ -42,15 +80,7 @@ export const MyTrips = () => {
     });
 
     setSearchResults(results);
-    // You can now use searchResults as needed, e.g., update state, display results, etc.
   };
-
-  const [rangeDate, setRangeDate] = useState([null, null]);
-  const [startDate, endDate] = rangeDate;
-  const [selectedCountry, setSelectedCountry] = useState("");
-  const [selectedCity, setSelectedCity] = useState("");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
 
   const countries = [...new Set(tripsArray.map((trip) => trip.country))];
   //Only the cities from the selected county will will be displayed
@@ -98,21 +128,22 @@ export const MyTrips = () => {
   const isFilterApplied =
     startDate || endDate || selectedCountry || selectedCity;
 
-  // Edit button handler navigates to edittrip page
+  // Edit button handler navigates to EditTrip page
   const handleEdit = (trip) => {
-    navigate("/edittrip", { state: { trip } });
+    navigate("/edittrip", { state: { tripID: trip.tripID } });
   };
-  // Addtrip handler navigates to Addtrip page
+  // AddTrip handler navigates to AddTrip page
   const handleAddTrip = () => {
     navigate("/addtrip");
   };
 
-  // Viewtrip handler
-	const handleTripDetails = (trip) => {
-    console.log('Trip Details');
-    navigate("/tripdetails", { state: { country: trip.country, city: trip.city,startDate:trip.startDate,endDate: trip.endDate, images: trip.image || [], description: trip.description }});
+  // TripDetails handler
+  const handleTripDetails = (tripID) => {
+    console.log("Navigating to Trip Details with ID:", tripID);
+    navigate(`/tripdetails/${tripID}`); // Ensure tripID is passed directly
   };
 
+  // To determine which will be rendered to the screen - If there is no 'searchResult' then the filteredTrips will be rendered
   const tripsToRender =
     searchResults.length > 0 ? searchResults : filteredTrips;
 
@@ -161,46 +192,46 @@ export const MyTrips = () => {
             searchQuery={searchQuery}
           />
         </div>
-        {/* if there is no trips display message otherwise display trip cards*/}
-        {tripsToRender.length === 0 ? (
-          isInitialTripsEmpty ? (
-            <div className="no-trips-container">
-              <div className="no-trips-image">
-                <img src={Standing} alt="Standing girl" />
-              </div>
-              <div className="no-trips-message">
-                <h2>Welcome!</h2>
-                <p>
-                  Lools like you have no scribles(trips) yet.
-                  <br />
-                  Click on the botton bellow and make some memories!
-                </p>
-                <Button
-                  className="add-trip-button"
-                  handleClick={handleAddTrip}
-                  text="+ New Trip"
-                />
-              </div>
+        {/* if there is no trips display message "Welcome, No trips yet" otherwise display trip cards*/}
+        {loading ? (
+          <div>Loading trips...</div>
+        ) : isInitialTripsEmpty ? (
+          <div className="no-trips-container">
+            <div className="no-trips-image">
+              <img src={Standing} alt="Standing girl" />
             </div>
-          ) : (
-            <div className="no-results-container">
-              <h2>No trips match your filter choices!</h2>
+            <div className="no-trips-message">
+              <h2>Welcome!</h2>
+              <p>
+                Looks like you have no scribbles (trips) yet.
+                <br />
+                Click on the button below and make some memories!
+              </p>
+              <Button
+                className="add-trip-button"
+                handleClick={handleAddTrip}
+                text="+ New Trip"
+              />
             </div>
-          )
+          </div>
+        ) : tripsToRender.length === 0 ? (
+          <div className="no-results-container">
+            <h2>No trips match your filter choices!</h2>
+          </div>
         ) : (
           <div className="card-container">
-            {tripsToRender.map((trip, index) => (
+            {tripsToRender.map((trip) => (
               <Card
-                key={index}
+                key={trip.tripID}
                 city={trip.city}
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.image[0]}
-                description={trip.description.substring(0, 250)} // The text will need to be limited to a certain number of characters to fit in the card component
+                imageUrl={trip.photos[0]?.url} // Handling missing photos for a trip
+                description={trip.description.substring(0, 250)} // Limit text length
                 editButton={editButtonImage}
                 onEdit={() => handleEdit(trip)}
-				        onClick={() => handleTripDetails(trip)}
+                onClick={() => handleTripDetails(trip.tripID)}
               />
             ))}
           </div>
@@ -209,5 +240,3 @@ export const MyTrips = () => {
     </div>
   );
 };
-
-// When we click on a card we want to bring up the full post page - how?

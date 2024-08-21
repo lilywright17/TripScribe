@@ -49,3 +49,9 @@
     transform: translateY(-50%); 
     cursor: pointer; 
 }
+
+.loading{
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}

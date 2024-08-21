@@ -38,8 +38,8 @@ export const AuthProvider = ({ children }) => {
 
                         // Redirect to login after a slight delay
                         setTimeout(() => {
-                            navigate('/login', { replace: true });
-                            console.log('Navigation to login initiated');
+                            navigate('/', { replace: true });
+                            console.log('Navigation to login initiated'); // Debugging Log
                         }, 100); 
                     }
                 }

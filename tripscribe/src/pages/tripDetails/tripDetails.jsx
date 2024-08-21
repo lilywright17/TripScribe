@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
@@ -25,14 +24,12 @@ export const TripDetails = () => {
   const [trip, setTrip] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); // New state for error message
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false); // State for error snackbar
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
-    if (!token) {
-      navigate('/login'); // Log out and redirect if there's no token
-      return;
-    }
 
     const getTripDetails = async () => {
       try {
@@ -40,17 +37,21 @@ export const TripDetails = () => {
           `http://localhost:8000/api/trips/${tripID}`,
           {
             headers: {
-              Authorization: `Bearer ${token}`, // Use token from sessionStorage
+              Authorization: `Bearer ${token}`,
             },
           }
         );
-        console.log("API Response:", response.data); // Logging response from BE
+        console.log("API Response:", response.data);
         setTrip(response.data);
       } catch (error) {
         console.error("Error fetching trip details:", error);
-        if (error.response && error.response.status === 401) {
-          sessionStorage.removeItem('token'); // Clear token from sessionStorage
-          navigate('/login'); // Force logout on 401 Unauthorized
+        const status = error.response?.status;
+        if (status === 401 || status === 403) {
+          sessionStorage.removeItem('token');
+          navigate('/login', { replace: true });
+        } else {
+          setErrorMessage('Failed to load trip details. Please try again later.');
+          setOpenErrorSnackbar(true); // Open error snackbar
         }
       }
     };
@@ -72,16 +73,14 @@ export const TripDetails = () => {
         },
       });
       // Display an alert "Successful deletion"
-      setSuccessMessage(
-        `The trip ${trip.country}, ${trip.city} was successfully deleted!`
-      );
+      setSuccessMessage(`The trip ${trip.country}, ${trip.city} was successfully deleted!`);
       setOpenSnackbar(true);
       
       setTrip(null); // Clear the trip data
 
       // Wait 2 sec (2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
-        navigate("/mytrips");
+        navigate("/mytrips", { replace: true });
       }, 2000);
     } catch (error) {
       console.error("Error deleting trip:", error);
@@ -97,7 +96,7 @@ export const TripDetails = () => {
 
   const handleEdit = () => {
     console.log("Edit!");
-    navigate("/edittrip", { state: { trip } });
+    navigate(`/edittrip?tripID=${tripID}`);
   };
 
   const handleGoBack = () => {
@@ -115,6 +114,7 @@ export const TripDetails = () => {
       return;
     }
     setOpenSnackbar(false);
+    setOpenErrorSnackbar(false); // Close error snackbar
   };
 
   return (
@@ -193,6 +193,22 @@ export const TripDetails = () => {
             sx={{ fontSize: "1.25rem" }}
           >
             {successMessage}
+          </Alert>
+        </Snackbar>
+      )}
+      {errorMessage && (
+        <Snackbar
+          open={openErrorSnackbar}
+          autoHideDuration={4000}
+          onClose={handleCloseSnackbar}
+        >
+          <Alert
+            variant="filled"
+            severity="error"
+            onClose={handleCloseSnackbar}
+            sx={{ fontSize: "1.25rem" }}
+          >
+            {errorMessage}
           </Alert>
         </Snackbar>
       )}

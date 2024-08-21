@@ -8,44 +8,55 @@ import Alert from '@mui/material/Alert';
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const navigate = useNavigate();
 
-    // Set up the Axios interceptor to handle 401 and 403 errors globally
     useEffect(() => {
+        const token = sessionStorage.getItem('token');
+        if (token) {
+            setIsAuthenticated(true); // Set initial authentication state based on token
+        } else {
+            setIsAuthenticated(false); // Ensure the user is marked as not authenticated if no token
+        }
+
         const interceptor = axios.interceptors.response.use(
             response => response,
             error => {
                 const status = error.response ? error.response.status : null;
-                
+    
                 if (status === 401 || status === 403) {
-                    console.log('Token expired or invalid - triggering logout'); // Debugging Log 
+                    if (isAuthenticated) { // Only trigger logout and snackbar if user was authenticated
+                        console.log('Token expired or invalid - triggering logout'); // Debugging Log 
 
-                    // Clear token from sessionStorage
-                    sessionStorage.removeItem('token');
+                        // Clear token from sessionStorage
+                        sessionStorage.removeItem('token');
+                        setIsAuthenticated(false); // Update authentication state
 
-                    setOpenSnackbar(true); // Trigger the snackbar
-                    console.log('Snackbar triggered'); // Debugging Log
+                        setOpenSnackbar(true); // Trigger the snackbar
+                        console.log('Snackbar triggered'); // Debugging Log
 
-                    // Redirect to login after a brief delay
-                    setTimeout(() => {
-                        navigate('/login', { replace: true });
-                        console.log('Navigating to login page'); // Debugging Log
-                    }, 3000);  // Adjust delay as needed
+                        // Redirect to login after a slight delay
+                        setTimeout(() => {
+                            navigate('/login', { replace: true });
+                            console.log('Navigation to login initiated');
+                        }, 100); 
+                    }
                 }
                 return Promise.reject(error);
             }
         );
-
+    
         return () => {
             axios.interceptors.response.eject(interceptor);
         };
-    }, [navigate]);
+    }, [navigate, isAuthenticated]);
 
     return (
-        <AuthContext.Provider value={{}}>
+        <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
             {children}
             <Snackbar
+                key={openSnackbar ? 'open' : 'closed'}
                 open={openSnackbar}
                 autoHideDuration={3000}
                 onClose={() => setOpenSnackbar(false)}
@@ -60,3 +71,4 @@ export const AuthProvider = ({ children }) => {
         </AuthContext.Provider>
     );
 };
+

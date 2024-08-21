@@ -1,7 +1,7 @@
 //  JWT secret key config file
 const jwtConfig = {
     secret: process.env.JWT_SECRET, 
-    expiresIn: '30min'
+    expiresIn: '4min'
 };
 
 module.exports = jwtConfig;

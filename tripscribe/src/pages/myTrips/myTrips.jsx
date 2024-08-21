@@ -25,13 +25,6 @@ export const MyTrips = () => {
   // added for Redux work
   const userRedux = useSelector((state) => state.userRedux.value);
 
-  useEffect(() => {
-    const token = sessionStorage.getItem('token');
-    if (!token) {
-      navigate('/login'); // Redirect to login if there's no token
-    }
-  }, [navigate]);
-
   // Using Axios to get the data from the back-end
   useEffect(() => {
     const token = sessionStorage.getItem('token');
@@ -48,20 +41,17 @@ export const MyTrips = () => {
           if (response.status === 200) {
             const tripData = response.data.map(trip => ({
               ...trip,
-              tripID: Number(trip.tripID) // Ensure tripID is a number
+              tripID: Number(trip.tripID), // Ensure tripID is a number
             }));
             setTripsArray(Array.isArray(tripData) ? tripData : []);
+            console.log('Trip Data:', tripData);
           } else if (response.status === 204) {
             setTripsArray([]);
           } else {
             console.error("Failed to get trips information");
           }
         } catch (error) {
-          console.error("Error:", error);
-          if (error.response && error.response.status === 401) {
-            sessionStorage.removeItem('token'); // Clear token from sessionStorage
-            navigate('/login'); // Force logout on 401 Unauthorized
-          }
+          console.error("Error fetching trips:", error);
         } finally {
           setLoading(false); // Set loading to false after data is fetched
         }
@@ -69,7 +59,7 @@ export const MyTrips = () => {
 
       getTrips();
     }
-  }, [navigate]);
+  }, []);
 
   // Formatting the dates
   const formatDate = (date) => {

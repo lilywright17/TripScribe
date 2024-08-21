@@ -1,7 +1,7 @@
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt'); 
-const jwtAuthentication  = require('../middleware/auth');
+const jwtAuthentication = require('../middleware/auth');
 
 describe('JWT Authentication Middleware', () => {
     let req, res, next;
@@ -40,9 +40,9 @@ describe('JWT Authentication Middleware', () => {
 
     it('should return 403 if the token is invalid', () => {
         req.header.mockReturnValue('Bearer invalidToken');
-
+    
         jwtAuthentication(req, res, next);
-
+    
         expect(res.status).toHaveBeenCalledWith(403);
         expect(res.json).toHaveBeenCalledWith({ error: "Forbidden, invalid token" });
         expect(next).not.toHaveBeenCalled();

@@ -4,6 +4,8 @@ import './register.css';
 import { useNavigate } from 'react-router-dom';
 import groupImage from './Group 2.png';
 import { PopDialog } from '../../components/dialog/dialog';
+import { useDispatch } from 'react-redux';
+import { loginRedux } from '../../features/userRedux';
 
 export const Register = () => {
     const [fullname, setfullname] = useState('');
@@ -16,6 +18,8 @@ export const Register = () => {
     const [emailExists, setEmailExists] = useState(false);
 
     const navigate = useNavigate();
+    //Redux work
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setIsRegistering(true);
@@ -43,16 +47,17 @@ export const Register = () => {
                 confirmPassword
             });
 
-            const { token } = response.data;
-
             if (response.data.message === 'Email is already registered') {
                 setEmailExists(true);
             } else {
-                // Store the token in SessionStorage
-                sessionStorage.setItem('token', token);
-
                 setEmailExists(false);
                 setRegistered(true);
+
+                //Redux work 
+                dispatch(loginRedux({name:'Tripscriber'}));
+
+                // Clear token if accidentally stored
+                sessionStorage.removeItem('token');
             }
         } catch (error) {
             console.error('Registration error:', error);

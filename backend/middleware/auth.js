@@ -18,18 +18,18 @@ const jwtAuthentication = (req, res, next) => {
     // Verify and decode the token
     jwt.verify(token, jwtConfig.secret, (err, decoded) => {
       if (err) {
-        return res.status(403).json({ error: "Forbidden, invalid or expired token" });
+        if (err.name === 'TokenExpiredError') {
+          // Handle token expiration specifically
+          return res.status(401).json({ error: "Token expired, please log in again" });
+        } else {
+          // Handle other token verification errors
+          return res.status(403).json({ error: "Forbidden, invalid token" });
+        }
       }
 
       // Log token expiration time in GMT
       const expirationTime = new Date(decoded.exp * 1000).toGMTString();
       console.log(`Token expires at (GMT): ${expirationTime}`);
-
-      // Check if the token is expired
-      const currentTime = Math.floor(Date.now() / 1000);
-      if (decoded.exp < currentTime) {
-        return res.status(403).json({ error: "Token has expired, please log in again." });
-      }
 
       // Assign the decoded token to req.user
       req.user = decoded;

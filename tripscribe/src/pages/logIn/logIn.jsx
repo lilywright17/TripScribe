@@ -6,6 +6,7 @@ import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../features/userRedux.js';
+import { useSelector } from 'react-redux';
 import './login.css';
 
 
@@ -19,8 +20,9 @@ export const LogIn = ({ checkAuth }) => {
 
     const navigate = useNavigate();
 
-     // redux work
-     const dispatch = useDispatch();
+     // added for Redux work
+     const userRedux = useSelector((state)=>
+        state.userRedux.value);
 
     // Triggers animation when login page loads
     useEffect(() => {
@@ -70,8 +72,6 @@ export const LogIn = ({ checkAuth }) => {
 
             setLoginFailure(false);
 
-            //added below for redux
-           dispatch(loginRedux({name:'Tripscriber'}));
         
            //add in timeout to allow state change
            setTimeout(() => {
@@ -105,7 +105,7 @@ export const LogIn = ({ checkAuth }) => {
             
             <div className={`main-box login-animation ${isLoginVisible ? 'visible' : 'hidden'}`}>
                 <div className='login-container'>
-                    <h1 className="h-signin">Sign In</h1>
+                    <h1 className="h-signin">Sign In {userRedux?.name}</h1>
                 </div>
                 {loginFailure && <p className='error-text'>{failMessage}</p>}
                 <form className="form-submit" onSubmit={handleSubmit}>

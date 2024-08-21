@@ -1,29 +1,39 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
+import { useSelector } from 'react-redux';
 import './login.css';
-import { useDispatch } from 'react-redux';
-import { loginRedux } from '../../features/userRedux.js';
 
 
-export const LogIn = () => {
-    // for react hooks
+export const LogIn = ({ checkAuth }) => {
+    // React hooks
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginFailure, setLoginFailure] = useState(false);
     const [failMessage, setFailMessage] = useState('');
-    const [loginVisibility, setLoginVisibility] = useState(false);
+    const [isLoginVisible, setIsLoginVisible] = useState(false);
 
     const navigate = useNavigate();
 
-     // redux work
-     const dispatch = useDispatch();
+     // added for Redux work
+     const userRedux = useSelector((state)=>
+        state.userRedux.value);
 
     // Triggers animation when login page loads
-    useEffect(() => {setLoginVisibility(true);}, []);
+    useEffect(() => {
+        setIsLoginVisible(true);
+    }, []);
+
+    // Clear error when user starts typing again
+    useEffect(() => {
+        if (loginFailure) {
+            setLoginFailure(false);
+            setFailMessage('');
+        }
+    }, [email, password, loginFailure]);
 
     function validateForm() {
         return email.length > 5 && password.length >= 6 && validateEmail(email);
@@ -35,8 +45,8 @@ export const LogIn = () => {
         );
     };
 
-    //links to API
-    const handleSubmit = useCallback(async (event) => {
+    //Handle API submission
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
@@ -58,24 +68,26 @@ export const LogIn = () => {
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('userID', userID);
 
+            // Immediately check if the token is set
+            console.log('Token set in sessionStorage:', sessionStorage.getItem('token'));
+
+            // Call the checkAuth function passed from App.js
+            if (checkAuth) {
+                checkAuth();
+            }
+
             setLoginFailure(false);
 
-            //added below for redux
-           dispatch(loginRedux({name:'Tripscriber'}));
-        
-           //add in timeout to allow state change
-           setTimeout(() => {
             navigate('/mytrips');
-          }, 100);
         } catch (error) {
             setLoginFailure(true);
             setFailMessage(error.response?.data?.message || 'An unexpected error occurred. Please try again later.');
             console.error('Login error:', error);
         }
-    }, [email, password, navigate]);
+    };
 
     const toRegister = () => {
-        setLoginVisibility(false);
+        setIsLoginVisible(false);
         navigate('/register');
     };
 
@@ -93,9 +105,9 @@ export const LogIn = () => {
                 <img src={groupImage} alt="Group" />
             </div>
             
-            <div className={`main-box login-animation ${loginVisibility ? 'visible' : 'hidden'}`}>
+            <div className={`main-box login-animation ${isLoginVisible ? 'visible' : 'hidden'}`}>
                 <div className='login-container'>
-                    <h1 className="h-signin">Sign In</h1>
+                    <h1 className="h-signin">Sign In {userRedux?.name}</h1>
                 </div>
                 {loginFailure && <p className='error-text'>{failMessage}</p>}
                 <form className="form-submit" onSubmit={handleSubmit}>

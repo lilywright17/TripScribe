@@ -73,7 +73,9 @@ export const EditTripForm = () => {
             </div>
         </div>
 
-        <ImgList />
+        <p className="editPhotosTag">Edit your photos</p>
+
+        {/* <ImgList /> removing this for demo purpose*/} 
 
         <AddTripImgUpload />
 

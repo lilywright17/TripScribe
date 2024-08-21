@@ -39,12 +39,6 @@ function AppContent() {
           title="Login" />}  
       />
       <Route 
-        path="/login" 
-        element={<PageWithNavbarExcluded 
-          component={<LogIn />} 
-          title="Login" />}  
-      />
-      <Route 
         path="/register" 
         element={<PageWithNavbarExcluded
           component={<Register />} 
@@ -54,37 +48,37 @@ function AppContent() {
         path="/mytrips" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<MyTrips />} 
-          title="My Trips" /> : <Navigate to="/login" replace />} 
+          title="My Trips" /> : <Navigate to="/" replace />} 
       />
       <Route 
         path="/tripdetails/:tripID" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<TripDetails />} 
-          title="Trip Details" /> : <Navigate to="/login" replace />}   
+          title="Trip Details" /> : <Navigate to="/" replace />}   
       />  
       <Route 
         path="/addtrip" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<AddTrip />} 
-          title="Add Trip" /> : <Navigate to="/login" replace />}   
+          title="Add Trip" /> : <Navigate to="/" replace />}   
       /> 
       <Route 
         path="/edittrip" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<EditTrip />} 
-          title="Edit Trip" /> : <Navigate to="/login" replace />}   
+          title="Edit Trip" /> : <Navigate to="/" replace />}   
       />
       <Route 
         path="/map" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<MapPage />} 
-          title="Map View" /> : <Navigate to="/login" replace />}   
+          title="Map View" /> : <Navigate to="/" replace />}   
       />
       <Route 
         path="/userprofile" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<UserProfile />} 
-          title="User Profile" /> : <Navigate to="/login" replace />}   
+          title="User Profile" /> : <Navigate to="/" replace />}   
       />
       <Route 
         path="/aboutus" 

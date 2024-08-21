@@ -15,6 +15,7 @@ export const LogIn = ({ checkAuth }) => {
     const [loginFailure, setLoginFailure] = useState(false);
     const [failMessage, setFailMessage] = useState('');
     const [isLoginVisible, setIsLoginVisible] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false); 
 
     const navigate = useNavigate();
 
@@ -139,7 +140,7 @@ export const LogIn = ({ checkAuth }) => {
                             className='button-submit'
                             text='LOG IN'
                             type='submit'
-                            disabled={!validateForm()}
+                            disabled={!validateForm() || isSubmitting} // Disable if form is invalid or submitting
                         />
                     </div>
                 </form>

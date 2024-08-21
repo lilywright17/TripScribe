@@ -84,7 +84,9 @@ export const LogIn = () => {
             <div className="side-box">
                 <div className='to-register-container'>
                     <div className="new-here-text">New here?</div>
-                    <div className='to-register-text'>Start your journey!</div>
+                    <div className='to-register-text'>
+                        <h2>TRIPSCRIBE</h2> Start your digital journey
+                    </div>
                         <SecondaryButton
                             text = "REGISTER"
                             handleClick={toRegister}

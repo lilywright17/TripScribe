@@ -74,7 +74,15 @@
     font-size: large; /* Increase the size */
     color: #000000;
     margin-top: 15px;
+    margin-left: 50px;
     margin-bottom: 15px;
+    font-style: italic;
+}
+
+.to-register-text h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    margin-left: -20px;
 }
 
 .h-signin {

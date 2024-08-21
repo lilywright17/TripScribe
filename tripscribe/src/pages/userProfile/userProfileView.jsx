@@ -1,38 +1,67 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/input/input";
-import { Button } from "../../components/button/button";
 import Standing from "./Standing.svg";
 import Humaaan from "./Humaaan.svg";
-import { NotePencil } from "@phosphor-icons/react";
-import './userProfile.css'
+import './userProfile.css';
+import { useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+import axios from 'axios';
 
 export const UserProfileView = () => {
     //TODO: enable edit view- review value - replace with data form userTables
-    const navigate = useNavigate();
+    const [userProfile, setUserProfile] = useState(null);
+    const [error, setError] = useState(null);
 
-    const handleEditProfileClick = () => {
-        navigate('/userProfileEdit');
-    };
-    
+    // added for Redux work
+    const userRedux = useSelector((state)=>
+      state.userRedux.value);
+
+    // Acquiring the UserID from the sessionStorage
+    const userID = sessionStorage.getItem("userID");
+
+    useEffect(() => {
+      const getUserProfile = async () => {
+        try {
+          if (userID){
+            const response = await axios.get(
+              `http://localhost:8000/api/user/${userID}`,
+              {
+                headers: {
+                  Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+                },
+              }
+            );
+            // Logging response from BE
+            console.log("API Response:", response.data); 
+            setUserProfile(response.data);
+          }else {
+            setError('User ID is missing');
+          }
+        } catch (error) {
+          console.error("Error fetching User details:", error);
+          setError(error.response?.data?.message || 'Error fetching user profile');
+        }
+      };
+
+      getUserProfile();
+    }, [userID]);
+
+    // Get the User's first name from fullname 
+    const getFirstName = (fullname) => fullname.split(' ')[0];
+
+    if (error) {
+      return <div>Error: {error}</div>;
+    }
     return (
       <>
         <div className="userProfilePage">
           <div className="userProfileViewForm">
               <div className='formContainer'>
-                
                 <div className='inputColumn'>
-                <h1>Hi USERNAME!</h1>
-                  <Input id= 'fullNameUserProfile' labelText='Full Name'  value= 'Jane Doe' readOnly />                
-                  <Input id= 'emailUserProfileView' labelText='Email'  value='janedo@travelscribe.com' readOnly />
-                  <Input id= 'passwordUserProfileView' labelText='Password'  value='********' readOnly /> 
-                  <div className='buttonContainer'>
-                      <Button 
-                      icon={<NotePencil size={24} weight='bold' padding='' />} 
-                      text='EDIT PROFILE'
-                      handleEditProfileClick={handleEditProfileClick}  
-                      />
-                  </div>
+                <h1>Hello {userRedux?.name || getFirstName(userProfile?.fullname || 'Guest')}!</h1>
+                  <Input id= 'fullNameUserProfile' labelText='Full Name'  value={userProfile?.fullname} readOnly={true} />                
+                  <Input id= 'emailUserProfileView' labelText='Email'  value={userProfile?.email} readOnly={true}  />
+                  <Input id= 'passwordUserProfileView' labelText='Password'  value={'********'} readOnly={true}  />    
                 </div>
               </div>
             </div>

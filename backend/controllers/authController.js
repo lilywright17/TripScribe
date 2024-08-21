@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt');
 
 // Controller for the register page
-//See if more HTTP res code are needed
 const registerUser = async (req, res) => {
     const { fullname, username, email, password, confirmPassword } = req.body;
 
@@ -16,7 +15,7 @@ const registerUser = async (req, res) => {
     }
 
     try {
-        // Checking of the email exists in the database before registering
+        // Checking if the email exists in the database before registering
         const [existingUser] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
         if (existingUser.length > 0) {
             return res.status(409).json({ 
@@ -48,8 +47,6 @@ const registerUser = async (req, res) => {
     }
 };
 
-// Controller for the login page
-//See if more HTTP res code are needed
 // Controller for the login page
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
@@ -99,7 +96,7 @@ const loginUser = async (req, res) => {
             message: 'Login successful',
             token,
             user: {
-                id: user.userID, // Ensure 'userID' is correct
+                id: user.userID,
                 fullname: user.fullname,
                 username: user.username,
                 email: user.email

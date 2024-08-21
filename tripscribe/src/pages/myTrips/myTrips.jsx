@@ -6,9 +6,9 @@ import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import { Button } from "../../components/button/button.jsx";
-import editButtonImage from "./images/edit_button.png";
 import Standing from "./images/Standing.png";
 import axios from 'axios';
+import { useSelector } from "react-redux";
 
 export const MyTrips = () => {
   const [rangeDate, setRangeDate] = useState([null, null]);
@@ -20,6 +20,10 @@ export const MyTrips = () => {
   const [tripsArray, setTripsArray] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+   // added for Redux work
+   const userRedux = useSelector((state)=>
+    state.userRedux.value);
   
   // Using Axios to get the data form the back-end
   useEffect(() => {
@@ -38,7 +42,7 @@ export const MyTrips = () => {
             tripID: Number(trip.tripID) // Ensure tripID is a number
           }));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
-          //console.log('Trip Data:', tripData);
+          console.log('Trip Data:', tripData);
         } else if (response.status === 204) {
           setTripsArray([]);
         } else {
@@ -128,10 +132,6 @@ export const MyTrips = () => {
   const isFilterApplied =
     startDate || endDate || selectedCountry || selectedCity;
 
-  // Edit button handler navigates to EditTrip page
-  const handleEdit = (trip) => {
-    navigate("/edittrip", { state: { tripID: trip.tripID } });
-  };
   // AddTrip handler navigates to AddTrip page
   const handleAddTrip = () => {
     navigate("/addtrip");
@@ -201,7 +201,7 @@ export const MyTrips = () => {
               <img src={Standing} alt="Standing girl" />
             </div>
             <div className="no-trips-message">
-              <h2>Welcome!</h2>
+              <h2>Welcome {userRedux?.name}!</h2>
               <p>
                 Looks like you have no scribbles (trips) yet.
                 <br />
@@ -229,8 +229,6 @@ export const MyTrips = () => {
                 endDate={formatDate(trip.endDate)}
                 imageUrl={trip.photos[0]?.url} // Handling missing photos for a trip
                 description={trip.description.substring(0, 250)} // Limit text length
-                editButton={editButtonImage}
-                onEdit={() => handleEdit(trip)}
                 onClick={() => handleTripDetails(trip.tripID)}
               />
             ))}

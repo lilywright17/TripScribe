@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
 import "./tripDetails.css";
 import DeleteIcon from "@mui/icons-material/Delete";
-import editButtonImage from "../myTrips/images/edit_button.png";
+import editButtonImage from "./edit_button.png";
 import axios from "axios";
 import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
+import { Stack } from "@mui/material";
 
 export const TripDetails = () => {
   const navigate = useNavigate();
@@ -23,7 +23,6 @@ export const TripDetails = () => {
   const [trip, setTrip] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-  const [openSnackbar, setOpenSnackbar] = useState(false);
 
   useEffect(() => {
     const getTripDetails = async () => {
@@ -62,9 +61,8 @@ export const TripDetails = () => {
       });
       // Display an alert "Successful deletion"
       setSuccessMessage(
-        `The trip ${trip.country}, ${trip.city} was successfully deleted!`
+        `The trip "${trip.country}, ${trip.city}" was successfully deleted!`
       );
-      setOpenSnackbar(true);
 
       // Wait 2 sec(2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
@@ -127,11 +125,10 @@ export const TripDetails = () => {
           sx={{
             padding: "20px",
             justifyContent: "center",
-            width: "85%",
+            width: "95%",
             backgroundColor: "white",
             borderRadius: "10px",
             boxShadow: 2,
-            ml: "90px",
           }}
         >
           <PhotoCarousel images={trip.photos || []} />
@@ -161,10 +158,7 @@ export const TripDetails = () => {
         />
       </div>
       {successMessage && (
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={2000}
-          onClose={() => setOpenSnackbar(false)}
+        <Stack sx={{ width: '100%' }} spacing={2}
           message={successMessage}
         >
           <Alert
@@ -175,7 +169,7 @@ export const TripDetails = () => {
           >
             {successMessage}
           </Alert>
-        </Snackbar>
+        </Stack>
       )}
     </div>
   );

@@ -48,10 +48,6 @@ const registerUser = async (req, res) => {
 };
 
 // Controller for the login page
-<<<<<<< HEAD
-//See if more HTTP res code are needed
-=======
->>>>>>> dev
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const invalidMsg = {

@@ -6,19 +6,11 @@ import { SecondaryButton } from "../../components/secondaryButton/secondaryButto
 import { ArrowLeft } from "@phosphor-icons/react";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
 import DeleteIcon from "@mui/icons-material/Delete";
-<<<<<<< HEAD
-import editButtonImage from "../myTrips/images/edit_button.png";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
-import Box from '@mui/material/Box';
-import './tripDetails.css';
-
-=======
 import editButtonImage from "./edit_button.png";
-import axios from "axios";
 import Alert from "@mui/material/Alert";
 import { Stack } from "@mui/material";
->>>>>>> dev
+import Box from "@mui/material/Box";
+import './tripDetails.css';
 
 export const TripDetails = () => {
   const navigate = useNavigate();
@@ -31,12 +23,7 @@ export const TripDetails = () => {
   const [trip, setTrip] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
-<<<<<<< HEAD
-  const [errorMessage, setErrorMessage] = useState(""); // New state for error message
-  const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false); // State for error snackbar
-=======
->>>>>>> dev
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
@@ -61,7 +48,6 @@ export const TripDetails = () => {
           navigate('/login', { replace: true });
         } else {
           setErrorMessage('Failed to load trip details. Please try again later.');
-          setOpenErrorSnackbar(true); // Open error snackbar
         }
       }
     };
@@ -83,16 +69,9 @@ export const TripDetails = () => {
         },
       });
       // Display an alert "Successful deletion"
-<<<<<<< HEAD
-      setSuccessMessage(`The trip ${trip.country}, ${trip.city} was successfully deleted!`);
-      setOpenSnackbar(true);
-      
-      setTrip(null); // Clear the trip data
-=======
       setSuccessMessage(
         `The trip "${trip.country}, ${trip.city}" was successfully deleted!`
       );
->>>>>>> dev
 
       // Wait 2 sec (2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
@@ -124,14 +103,6 @@ export const TripDetails = () => {
   if (!trip) {
     return <div>Loading Trip Details...</div>;
   }
-
-  const handleCloseSnackbar = (reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpenSnackbar(false);
-    setOpenErrorSnackbar(false); // Close error snackbar
-  };
 
   return (
     <div className="trip-details">
@@ -195,20 +166,13 @@ export const TripDetails = () => {
         />
       </div>
       {successMessage && (
-<<<<<<< HEAD
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={2000}
-          onClose={handleCloseSnackbar}
-=======
         <Stack sx={{ width: '100%' }} spacing={2}
->>>>>>> dev
           message={successMessage}
         >
           <Alert
             variant="filled"
             severity="success"
-            onClose={handleCloseSnackbar}
+            onClose={() => setSuccessMessage(null)}
             sx={{ fontSize: "1.25rem" }}
           >
             {successMessage}
@@ -216,20 +180,19 @@ export const TripDetails = () => {
         </Stack>
       )}
       {errorMessage && (
-        <Snackbar
-          open={openErrorSnackbar}
-          autoHideDuration={4000}
-          onClose={handleCloseSnackbar}
+        <Stack
+          sx={{ width: '100%' }} spacing={2}
+          message={successMessage}
         >
           <Alert
             variant="filled"
             severity="error"
-            onClose={handleCloseSnackbar}
+            onClose={() => setErrorMessage(null)}
             sx={{ fontSize: "1.25rem" }}
           >
             {errorMessage}
           </Alert>
-        </Snackbar>
+        </Stack>
       )}
     </div>
   );

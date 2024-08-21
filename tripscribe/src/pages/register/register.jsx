@@ -53,8 +53,6 @@ export const Register = () => {
                 setEmailExists(false);
                 setRegistered(true);
 
-                //Redux work 
-                dispatch(loginRedux({name:'Tripscriber'}));
 
                 // Clear token if accidentally stored
                 sessionStorage.removeItem('token');
@@ -66,7 +64,10 @@ export const Register = () => {
     }, [fullname, username, email, password, confirmPassword]);
 
     const handleOK = () => {
+        //Redux work 
+        dispatch(loginRedux({name:'Tripscriber'}));
         navigate('/');
+
     }
 
     const handleClose = () => {

@@ -1,15 +1,17 @@
+.trip-details{
+    padding: 50px;
+}
+
 .box-container{
     display: flex; 
     justify-content: flex-start; 
     align-items: center; 
-    padding: 20px;
 }
 .title{
     width: 80%; 
     display: flex; 
     align-items: center;
     text-align: left;  
-    padding-left: 100px;
     padding-top: 10px; 
     gap: 20px;
 }
@@ -17,20 +19,15 @@
 .title-container {
     box-sizing: border-box;
     text-align: left;
-    
-    gap: 40px; 
 }
 
 .button-container{
-    padding-left: 100px;
-    padding-bottom: 150px;
+    padding-bottom: 50px;
     padding-top: 20px;
 }
 
 .description{
-    padding-left: 100px;
     padding-top: 20px;
-    padding-right: 100px;
     padding-bottom: 20px;
     text-align: justify;
 }
@@ -43,7 +40,6 @@
 
 .dates{
     margin:0;
-    padding-left: 100px;
     padding-bottom: 30px;
 }
 

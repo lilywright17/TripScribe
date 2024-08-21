@@ -4,8 +4,6 @@ import axios from 'axios';
 import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
-import { useDispatch } from 'react-redux';
-import { loginRedux } from '../../features/userRedux.js';
 import { useSelector } from 'react-redux';
 import './login.css';
 
@@ -57,10 +55,18 @@ export const LogIn = ({ checkAuth }) => {
                 password
             });
 
-            const { token } = response.data;
+            const { token, user } = response.data;
+            // Acquiring the userID from the response
+            const userID = user?.id; 
+            console.log("userID is:", userID);
+
+            if (!userID) {
+                throw new Error('User ID not found in response');
+            }
 
             // Store the token in SessionStorage
             sessionStorage.setItem('token', token);
+            sessionStorage.setItem('userID', userID);
 
             // Immediately check if the token is set
             console.log('Token set in sessionStorage:', sessionStorage.getItem('token'));
@@ -72,11 +78,7 @@ export const LogIn = ({ checkAuth }) => {
 
             setLoginFailure(false);
 
-        
-           //add in timeout to allow state change
-           setTimeout(() => {
             navigate('/mytrips');
-          }, 100);
         } catch (error) {
             setLoginFailure(true);
             setFailMessage(error.response?.data?.message || 'An unexpected error occurred. Please try again later.');

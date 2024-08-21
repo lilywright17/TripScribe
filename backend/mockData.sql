@@ -46,7 +46,11 @@ VALUES
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text )
 VALUES 
+<<<<<<< HEAD
 -- Photos for userID=4 // tripID= 10, 11, 13, 14, 15
+=======
+-- Photos for userID=4 // tripID= 10, 11, 13, ,14
+>>>>>>> dev
 (1, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898930/hsp9umyioxxlkvcnmmux.png', NULL),
 (2, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898933/cwqdgzlvml95zmntkqzj.png', NULL),
 (3, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898932/kbg7xrtiwtybtensfmnk.png', NULL),
@@ -61,10 +65,14 @@ VALUES
 (12, 13, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723899688/epmazjwpazugaixmi7yz.png', NULL),
 (13, 14, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723900899/jrgaoyckwtniuemthtgo.png', NULL),
 (14, 14, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723900899/pezhjnx4azgrolhhjdvo.png', NULL),
+<<<<<<< HEAD
 (15, 14, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723900905/nwikftoiyd8fqudgr22u.png', NULL),
 (16, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/rzmzljarevcl7xtlo0sz.jpg', NULL),
 (17, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/sjcgq1ogr1sjtk73fapk.jpg', NULL),
 (18, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/yedhvmb3houezptoojs8.jpg', NULL);
+=======
+(15, 14, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723900905/nwikftoiyd8fqudgr22u.png', NULL);
+>>>>>>> dev
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text)
 VALUES 

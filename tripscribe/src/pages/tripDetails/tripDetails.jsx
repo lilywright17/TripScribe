@@ -6,12 +6,19 @@ import { SecondaryButton } from "../../components/secondaryButton/secondaryButto
 import { ArrowLeft } from "@phosphor-icons/react";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
 import DeleteIcon from "@mui/icons-material/Delete";
+<<<<<<< HEAD
 import editButtonImage from "../myTrips/images/edit_button.png";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
 import Box from '@mui/material/Box';
 import './tripDetails.css';
 
+=======
+import editButtonImage from "./edit_button.png";
+import axios from "axios";
+import Alert from "@mui/material/Alert";
+import { Stack } from "@mui/material";
+>>>>>>> dev
 
 export const TripDetails = () => {
   const navigate = useNavigate();
@@ -24,9 +31,12 @@ export const TripDetails = () => {
   const [trip, setTrip] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+<<<<<<< HEAD
   const [errorMessage, setErrorMessage] = useState(""); // New state for error message
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [openErrorSnackbar, setOpenErrorSnackbar] = useState(false); // State for error snackbar
+=======
+>>>>>>> dev
 
   useEffect(() => {
     const token = sessionStorage.getItem('token');
@@ -73,10 +83,16 @@ export const TripDetails = () => {
         },
       });
       // Display an alert "Successful deletion"
+<<<<<<< HEAD
       setSuccessMessage(`The trip ${trip.country}, ${trip.city} was successfully deleted!`);
       setOpenSnackbar(true);
       
       setTrip(null); // Clear the trip data
+=======
+      setSuccessMessage(
+        `The trip "${trip.country}, ${trip.city}" was successfully deleted!`
+      );
+>>>>>>> dev
 
       // Wait 2 sec (2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
@@ -146,11 +162,10 @@ export const TripDetails = () => {
           sx={{
             padding: "20px",
             justifyContent: "center",
-            width: "85%",
+            width: "95%",
             backgroundColor: "white",
             borderRadius: "10px",
             boxShadow: 2,
-            ml: "90px",
           }}
         >
           <PhotoCarousel images={trip.photos || []} />
@@ -180,10 +195,14 @@ export const TripDetails = () => {
         />
       </div>
       {successMessage && (
+<<<<<<< HEAD
         <Snackbar
           open={openSnackbar}
           autoHideDuration={2000}
           onClose={handleCloseSnackbar}
+=======
+        <Stack sx={{ width: '100%' }} spacing={2}
+>>>>>>> dev
           message={successMessage}
         >
           <Alert
@@ -194,7 +213,7 @@ export const TripDetails = () => {
           >
             {successMessage}
           </Alert>
-        </Snackbar>
+        </Stack>
       )}
       {errorMessage && (
         <Snackbar

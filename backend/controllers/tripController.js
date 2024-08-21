@@ -36,7 +36,7 @@ const getTrips = async (req, res) => {
 
         // To handle the case where no trips are found
         if (result.length === 0) {
-            return res.status(204).json(); // No content, but no need for a message
+            return res.status(204).end(); // No content, but no need for a message
         }
         
         res.status(200).json(result);

@@ -3,12 +3,14 @@
     align-items: center;
     height: 100vh;
     background-color: #92C7CF;
+    flex-direction: row-reverse;
 }
 
 .side-box {
+    position: relative;
+    overflow: hidden;
     width: 55%;
     height: 100%;
-    flex-direction: column;
 }
 
 .main-box {
@@ -104,6 +106,12 @@
     margin-left: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: small;
+}
+
+.login .button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    width: 100%;
 }
 
 .input {

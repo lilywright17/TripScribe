@@ -1,6 +1,6 @@
-
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/authContext'; 
 import { LogIn } from './pages/logIn/logIn';
 import { Register } from './pages/register/register';
 import { MyTrips } from './pages/myTrips/myTrips';
@@ -14,71 +14,88 @@ import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
 import { HelmetTitle } from './hoc/withTitle.jsx';
 
-
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <Routes>
-      <Route 
-          path="/" 
-          element={<PageWithNavbarExcluded 
-          component={<LogIn />} 
-          title="Log In" />} 
-        />
-        <Route 
-          path="/register" 
-          element={<PageWithNavbarExcluded 
-          component={<Register />} 
-          title="Register" />} 
-        />
-        <Route 
-          path="/mytrips" 
-          element={<PageWithNavbar 
-          component={<MyTrips />} 
-          title="My Trips" />} 
-        />
-        <Route 
-          path="/tripdetails/:tripID" 
-          element={<PageWithNavbar 
-          component={<TripDetails />} 
-          title="Trip Details" />} 
-        />
-        <Route 
-          path="/addtrip" 
-          element={<PageWithNavbar 
-          component={<AddTrip />} 
-          title="Add Trip" />} 
-        />
-        <Route 
-          path="/edittrip" 
-          element={<PageWithNavbar 
-          component={<EditTrip />} 
-          title="Edit Trip" />} 
-        />
-        <Route 
-          path="/map" 
-          element={<PageWithNavbar 
-          component={<MapPage />} 
-          title="Map View" />} 
-        />
-        <Route 
-          path="/userprofile" 
-          element={<PageWithNavbar 
-          component={<UserProfile />} 
-          title="User Profile" />} 
-        />
-        <Route 
-          path="/aboutus" 
-          element={<PageWithNavbar 
-          component={<AboutUs />} 
-          title="About Us" />} 
-        />
-      </Routes>
-      <ResponsiveFooter />
+      <AuthProvider> 
+        <AppContent />
+        <ResponsiveFooter />
+      </AuthProvider>
     </Router>
   );
 }
+
+function AppContent() {
+  const { isAuthenticated } = useContext(AuthContext); // Use AuthContext to track authentication state
+
+  return (
+    <Routes>
+      <Route 
+        path="/" 
+        element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <PageWithNavbarExcluded 
+          component={<LogIn />} 
+          title="Login" />}  
+      />
+      <Route 
+        path="/login" 
+        element={<PageWithNavbarExcluded 
+          component={<LogIn />} 
+          title="Login" />}  
+      />
+      <Route 
+        path="/register" 
+        element={<PageWithNavbarExcluded
+          component={<Register />} 
+          title="Register" />}  
+      />
+      <Route 
+        path="/mytrips" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<MyTrips />} 
+          title="My Trips" /> : <Navigate to="/login" replace />} 
+      />
+      <Route 
+        path="/tripdetails/:tripID" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<TripDetails />} 
+          title="Trip Details" /> : <Navigate to="/login" replace />}   
+      />  
+      <Route 
+        path="/addtrip" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<AddTrip />} 
+          title="Add Trip" /> : <Navigate to="/login" replace />}   
+      /> 
+      <Route 
+        path="/edittrip" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<EditTrip />} 
+          title="Edit Trip" /> : <Navigate to="/login" replace />}   
+      />
+      <Route 
+        path="/map" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<MapPage />} 
+          title="Map View" /> : <Navigate to="/login" replace />}   
+      />
+      <Route 
+        path="/userprofile" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<UserProfile />} 
+          title="User Profile" /> : <Navigate to="/login" replace />}   
+      />
+      <Route 
+        path="/aboutus" 
+        element={<PageWithNavbar 
+          component={<AboutUs />}
+          title="About Us" />} 
+      />
+    </Routes>
+  );
+}
+
 
 function PageWithNavbar({ component, title }) {
   const componentName = title || component.type.displayName || component.type.name || 'Page';
@@ -92,67 +109,14 @@ function PageWithNavbar({ component, title }) {
   );
 }
 
-
 function PageWithNavbarExcluded({ component, title }) {
   const componentName = title || component.type.displayName || component.type.name || 'Page';
   return (
-      <>
-        <HelmetTitle title={componentName} />
-        {component} 
-      </>
-  )
+    <>
+      <HelmetTitle title={componentName} />
+      {component} 
+    </>
+  );
 }
 
 export default App;
-
-/* krystal note: i commented out the TripDetails route because it keeps causing an error. Ask for help. The location used to be in 23, between myTrip and AddTrip routes.
-          <Route path="/tripdetails" element={<TripDetails />}/> /*
-
-
-
-
-
-/*
-
-<header className="App-header">
-          
-        <h1>Welcome to our Travel App!</h1>
-      </header>
-        <h2>Our Favourite Trips</h2>
-        <ul>
-          <li>
-            <h2>Precious</h2>
-            <p>I was able to travel quite a lot before uni! I visited various countries in Europe, Asia and America but my most memorable would be a family cruise from US to Mexico where I got my first tattoo.</p>
-          </li>
-          <li>
-            <h2>Krystal</h2>
-              <p>FILL IN TRIP DETAILS HERE</p>
-            </li>
-            <li>
-              <h2>Mediha</h2>
-              <p>The most memorable trip I had so far was my holiday in Crete, Greece. I still remember the pink sand and blue water in Elafonissi Beach. I enjoyed the food, wine and sunny weather for five days. Definitely, a place I will visit again.</p>
-            </li>
-            <li>
-              <h2>Victoria</h2>
-              <p>My most memorable trip was to Cartagena, Colombia, an unforgettable adventure filled with vibrant culture, stunning architecture, and breathtaking coastal views. A highlight was sailing to the Rosario Islands, where I snorkeled in crystal-clear waters and relaxed on pristine beaches.</p>
-            </li>
-            <li>
-              <h2>Marta</h2>
-              <p>Travelling is a big part of my life. I love it and travel quite often. One of my favourite trips ever was when I went to Sri Lanka. It was my first time visiting Asia and everyting seemed so exotic and exciting. The wildlife was spectacular. I loved going on safaris and seeing elephants, leopards, wild beasts and even a sloth bear! I got to see baby turtles hatching on a beach below a starry, stormy sky and making their way to the sea. And let's not forget the whale watching. It was a truly memeorable experience. </p>
-            </li>
-            <li>
-              <h2>Katie</h2>
-              <p>My favourite trip was my first ever solo trip abroad! I went to Oslo, in Norway, just for 3 days, to celebrate my career change! I developed a taste for Brunost!</p>
-            </li>
-            <li>
-              <h2>Lily</h2>
-              <p>My favourite trip was when I backpacked South East Asia solo after uni. I did Thailand, Vietnam, Cambodia, Laos, Bali and the Philippines. It took 5 months and it was so much fun, I met so many amazing people. My favourite country was Vietnam!</p>
-            </li>
-        </ul>
-  
-  
-      </div>
-    );
-  }
-
-export default App; */

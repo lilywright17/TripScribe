@@ -1,57 +1,66 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
-import Box from "@mui/material/Box";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { ArrowLeft } from "@phosphor-icons/react";
-import { useNavigate } from "react-router-dom";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
-import "./tripDetails.css";
 import DeleteIcon from "@mui/icons-material/Delete";
 import editButtonImage from "./edit_button.png";
-import axios from "axios";
 import Alert from "@mui/material/Alert";
 import { Stack } from "@mui/material";
+import Box from "@mui/material/Box";
+import './tripDetails.css';
 
 export const TripDetails = () => {
   const navigate = useNavigate();
   const { tripID: paramTripID } = useParams();
-  const tripID = paramTripID;
+  const tripID = Number(paramTripID); // Convert tripID to number if necessary
+  
   // Used for troubleshooting to fix the passing of tripID in the FE
   console.log("tripID (from params):", tripID, "Type:", typeof tripID);
 
   const [trip, setTrip] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
+    const token = sessionStorage.getItem('token');
+
     const getTripDetails = async () => {
       try {
         const response = await axios.get(
           `http://localhost:8000/api/trips/${tripID}`,
           {
             headers: {
-              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+              Authorization: `Bearer ${token}`,
             },
           }
         );
-        console.log("API Response:", response.data); // Logging response from BE
+        console.log("API Response:", response.data);
         setTrip(response.data);
       } catch (error) {
         console.error("Error fetching trip details:", error);
+        const status = error.response?.status;
+        if (status === 401 || status === 403) {
+          sessionStorage.removeItem('token');
+          navigate('/login', { replace: true });
+        } else {
+          setErrorMessage('Failed to load trip details. Please try again later.');
+        }
       }
     };
-    if (tripID) {
+
+    if (tripID && token) {
       getTripDetails();
     }
-  }, [tripID]);
+  }, [tripID, navigate]);
 
   const handleDeleteIconClick = () => {
     setDialogOpen(true);
-    //console.log("Delete Icon!");
   };
 
-  // Handler to delete a trip and trip related photos
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:8000/api/trips/${tripID}`, {
@@ -64,9 +73,9 @@ export const TripDetails = () => {
         `The trip "${trip.country}, ${trip.city}" was successfully deleted!`
       );
 
-      // Wait 2 sec(2000 milliseconds) before navigating to MyTrips after the alert
+      // Wait 2 sec (2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
-        navigate("/mytrips");
+        navigate("/mytrips", { replace: true });
       }, 2000);
     } catch (error) {
       console.error("Error deleting trip:", error);
@@ -80,10 +89,9 @@ export const TripDetails = () => {
     console.log("Cancel button!");
   };
 
-  // TO BE COMPLETED!
   const handleEdit = () => {
     console.log("Edit!");
-    navigate("/edittrip", { state: { trip } });
+    navigate(`/edittrip?tripID=${tripID}`);
   };
 
   const handleGoBack = () => {
@@ -168,6 +176,21 @@ export const TripDetails = () => {
             sx={{ fontSize: "1.25rem" }}
           >
             {successMessage}
+          </Alert>
+        </Stack>
+      )}
+      {errorMessage && (
+        <Stack
+          sx={{ width: '100%' }} spacing={2}
+          message={successMessage}
+        >
+          <Alert
+            variant="filled"
+            severity="error"
+            onClose={() => setErrorMessage(null)}
+            sx={{ fontSize: "1.25rem" }}
+          >
+            {errorMessage}
           </Alert>
         </Stack>
       )}

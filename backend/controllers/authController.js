@@ -68,8 +68,7 @@ const loginUser = async (req, res) => {
         }
 
         const user = results[0];
-        // Log the user object
-        //console.log('User object:', user);
+
         // Compare password with hashed password
         const pwMatch = await bcrypt.compare(password, user.pword_hash);
         if (!pwMatch) {
@@ -81,13 +80,13 @@ const loginUser = async (req, res) => {
         const payload = { userID: user.userID, email: user.email };
         
         // Logging payload for debugging
-        //console.log('JWT Payload:', payload); 
-
+        console.log('JWT Payload:', payload);
+        
         // Generate JWT token
         const token = jwt.sign(
             payload,
             jwtConfig.secret,
-            { expiresIn: '1h' }
+            { expiresIn: jwtConfig.expiresIn }
         );
 
         // Send response with token and user info
@@ -111,7 +110,6 @@ const loginUser = async (req, res) => {
         });
     }
 };
-
 
 
 module.exports = { registerUser, loginUser };

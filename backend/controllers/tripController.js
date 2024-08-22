@@ -34,9 +34,9 @@ const getTrips = async (req, res) => {
             [userID]
         );
 
-        // To ensure that the result is an array
-        if (Array.isArray(result) && result.length === 0) {
-            return res.status(204).json({ message: 'No trips were found!' },[]);
+        // To handle the case where no trips are found
+        if (result.length === 0) {
+            return res.status(204).end(); // No content, but no need for a message
         }
         
         res.status(200).json(result);

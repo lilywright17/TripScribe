@@ -3,8 +3,8 @@ require('dotenv').config();
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');
 const tripRoutes = require('./routes/tripRoutes');
-const newTripRoutes = require('./routes/newtripRoutes');
-const deleteTripRoute = require('./routes/deleteTripRoute');
+const newTripRoutes = require('./routes/newtTripRoutes');
+const deleteTripRoute = require('./routes/deleteTripRoute')
 const googleRoute = require('./routes/googleRoute');
 const userProfileRoutes = require('./routes/userProfileRoutes');
 

@@ -1,6 +1,6 @@
-
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { AuthProvider, AuthContext } from './context/authContext'; 
 import { LogIn } from './pages/logIn/logIn';
 import { Register } from './pages/register/register';
 import { MyTrips } from './pages/myTrips/myTrips';
@@ -14,71 +14,88 @@ import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
 import { HelmetTitle } from './hoc/withTitle.jsx';
 
-
+import './App.css';
 
 function App() {
   return (
     <Router>
-      <Routes>
-      <Route 
-          path="/" 
-          element={<PageWithNavbarExcluded 
-          component={<LogIn />} 
-          title="Log In" />} 
-        />
-        <Route 
-          path="/register" 
-          element={<PageWithNavbarExcluded 
-          component={<Register />} 
-          title="Register" />} 
-        />
-        <Route 
-          path="/mytrips" 
-          element={<PageWithNavbar 
-          component={<MyTrips />} 
-          title="My Trips" />} 
-        />
-        <Route 
-          path="/tripdetails/:tripID" 
-          element={<PageWithNavbar 
-          component={<TripDetails />} 
-          title="Trip Details" />} 
-        />
-        <Route 
-          path="/addtrip" 
-          element={<PageWithNavbar 
-          component={<AddTrip />} 
-          title="Add Trip" />} 
-        />
-        <Route 
-          path="/edittrip" 
-          element={<PageWithNavbar 
-          component={<EditTrip />} 
-          title="Edit Trip" />} 
-        />
-        <Route 
-          path="/map" 
-          element={<PageWithNavbar 
-          component={<MapPage />} 
-          title="Map View" />} 
-        />
-        <Route 
-          path="/userprofile" 
-          element={<PageWithNavbar 
-          component={<UserProfile />} 
-          title="User Profile" />} 
-        />
-        <Route 
-          path="/aboutus" 
-          element={<PageWithNavbar 
-          component={<AboutUs />} 
-          title="About Us" />} 
-        />
-      </Routes>
-      <ResponsiveFooter />
+      <AuthProvider> 
+        <AppContent />
+        <ResponsiveFooter />
+      </AuthProvider>
     </Router>
   );
 }
+
+function AppContent() {
+  const { isAuthenticated } = useContext(AuthContext); // Use AuthContext to track authentication state
+
+  return (
+    <Routes>
+      <Route 
+        path="/" 
+        element={isAuthenticated ? <Navigate to="/mytrips" replace /> : <PageWithNavbarExcluded 
+          component={<LogIn />} 
+          title="Login" />}  
+      />
+      <Route 
+        path="/login" 
+        element={<PageWithNavbarExcluded 
+          component={<LogIn />} 
+          title="Login" />}  
+      />
+      <Route 
+        path="/register" 
+        element={<PageWithNavbarExcluded
+          component={<Register />} 
+          title="Register" />}  
+      />
+      <Route 
+        path="/mytrips" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<MyTrips />} 
+          title="My Trips" /> : <Navigate to="/login" replace />} 
+      />
+      <Route 
+        path="/tripdetails/:tripID" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<TripDetails />} 
+          title="Trip Details" /> : <Navigate to="/login" replace />}   
+      />  
+      <Route 
+        path="/addtrip" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<AddTrip />} 
+          title="Add Trip" /> : <Navigate to="/login" replace />}   
+      /> 
+      <Route 
+        path="/edittrip" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<EditTrip />} 
+          title="Edit Trip" /> : <Navigate to="/login" replace />}   
+      />
+      <Route 
+        path="/map" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<MapPage />} 
+          title="Map View" /> : <Navigate to="/login" replace />}   
+      />
+      <Route 
+        path="/userprofile" 
+        element={isAuthenticated ? <PageWithNavbar 
+          component={<UserProfile />} 
+          title="User Profile" /> : <Navigate to="/login" replace />}   
+      />
+      <Route 
+        path="/aboutus" 
+        element={<PageWithNavbar 
+          component={<AboutUs />}
+          title="About Us" />} 
+      />
+    </Routes>
+  );
+}
+
 
 function PageWithNavbar({ component, title }) {
   const componentName = title || component.type.displayName || component.type.name || 'Page';
@@ -92,15 +109,14 @@ function PageWithNavbar({ component, title }) {
   );
 }
 
-
 function PageWithNavbarExcluded({ component, title }) {
   const componentName = title || component.type.displayName || component.type.name || 'Page';
   return (
-      <>
-        <HelmetTitle title={componentName} />
-        {component} 
-      </>
-  )
+    <>
+      <HelmetTitle title={componentName} />
+      {component} 
+    </>
+  );
 }
 
 export default App;

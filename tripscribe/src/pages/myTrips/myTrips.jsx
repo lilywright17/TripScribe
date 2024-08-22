@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import axios from 'axios';
 import { Card } from "../../components/card/card.jsx";
-import "./myTrips.css";
 import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import { Button } from "../../components/button/button.jsx";
 import Standing from "./images/Standing.png";
-import axios from 'axios';
-import { useSelector } from "react-redux";
+import './myTrips.css';
 
 export const MyTrips = () => {
   const [rangeDate, setRangeDate] = useState([null, null]);
@@ -21,41 +21,43 @@ export const MyTrips = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-   // added for Redux work
-   const userRedux = useSelector((state)=>
-    state.userRedux.value);
-  
-  // Using Axios to get the data form the back-end
+  // added for Redux work
+  const userRedux = useSelector((state) => state.userRedux.value);
+
+  // Using Axios to get the data from the back-end
   useEffect(() => {
-    const getTrips = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/trips", {
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": `Bearer ${sessionStorage.getItem("token")}`,
-          },
-        });
+    const token = sessionStorage.getItem('token');
+    if (token) {
+      const getTrips = async () => {
+        try {
+          const response = await axios.get("http://localhost:8000/api/trips", {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+          });
 
-        if (response.status === 200) {
-          const tripData = response.data.map(trip => ({
-            ...trip,
-            tripID: Number(trip.tripID) // Ensure tripID is a number
-          }));
-          setTripsArray(Array.isArray(tripData) ? tripData : []);
-          console.log('Trip Data:', tripData);
-        } else if (response.status === 204) {
-          setTripsArray([]);
-        } else {
-          console.error("Failed to get trips information");
+          if (response.status === 200) {
+            const tripData = response.data.map(trip => ({
+              ...trip,
+              tripID: Number(trip.tripID), // Ensure tripID is a number
+            }));
+            setTripsArray(Array.isArray(tripData) ? tripData : []);
+            console.log('Trip Data:', tripData);
+          } else if (response.status === 204) {
+            setTripsArray([]);
+          } else {
+            console.error("Failed to get trips information");
+          }
+        } catch (error) {
+          console.error("Error fetching trips:", error);
+        } finally {
+          setLoading(false); // Set loading to false after data is fetched
         }
-      } catch (error) {
-        console.error("Error:", error);
-      } finally {
-        setLoading(false); // Set loading to false after data is fetched
-      }
-    };
+      };
 
-    getTrips();
+      getTrips();
+    }
   }, []);
 
   // Formatting the dates
@@ -72,7 +74,7 @@ export const MyTrips = () => {
     }
   };
 
-  //Filters the tripArray to match the user search entry to teh trip's description
+  //Filters the tripArray to match the user search entry to the trip's description
   const executeSearch = () => {
     const results = tripsArray.filter((trip) => {
       const matchesSearchQuery =
@@ -87,7 +89,7 @@ export const MyTrips = () => {
   };
 
   const countries = [...new Set(tripsArray.map((trip) => trip.country))];
-  //Only the cities from the selected county will will be displayed
+  //Only the cities from the selected county will be displayed
   const cities = selectedCountry
     ? [
         ...new Set(

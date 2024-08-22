@@ -1,5 +1,4 @@
 import React from "react";
-import './aboutUs.css';
 import linkedInLogo from './linkedInLogo.png';
 import githubLogo from './githubLogo.png';
 import Box from '@mui/material/Box';
@@ -7,6 +6,8 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
 import { Helmet } from 'react-helmet';
+import './aboutUs.css';
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',

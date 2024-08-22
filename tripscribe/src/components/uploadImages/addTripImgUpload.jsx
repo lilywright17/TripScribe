@@ -3,11 +3,15 @@ import { jwtDecode } from 'jwt-decode';
 import { UploadSimple } from '@phosphor-icons/react';
 import axios from 'axios';
 import imageCompression from 'browser-image-compression';
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
 import './addTripImgUpload.css';
 
 export const AddTripImgUpload = ({ images, setImages }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
+    const [uploadProgress, setUploadProgress] = useState(0); // State to track upload progress
+    const [isUploading, setIsUploading] = useState(false); // State to track if uploading
     const fileInputRef = useRef(null); 
 
     const selectFiles = () => {
@@ -53,12 +57,20 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             return;
         }
 
-        const uploadPromises = Array.from(files).map(async (file) => {
+        setIsUploading(true);
+        setUploadProgress(0); // Reset progress 
+
+        const uploadPromises = Array.from(files).map(async (file, index) => {
             const compressedFile = await compressImage(file);
             const { fileType, base64 } = await processFile(compressedFile);
             if (!fileType || !base64) return;
 
-            return uploadImage(base64, token, userID, file.name);
+            const uploadedImage = await uploadImage(base64, token, userID, file.name);
+
+            // Update progress
+            setUploadProgress(((index + 1) / files.length) * 100);
+
+            return uploadedImage;
         });
 
         try {
@@ -69,6 +81,8 @@ export const AddTripImgUpload = ({ images, setImages }) => {
         } catch (error) {
             console.error('Error uploading images:', error);
             setError("Error uploading images. Please try again.");
+        } finally {
+            setIsUploading(false); // Hide progress bar after upload
         }
     };
 
@@ -199,6 +213,16 @@ export const AddTripImgUpload = ({ images, setImages }) => {
                 />
             </div>
             {error && <div className="error">{error}</div>}
+
+            {isUploading && (
+                <Box sx={{ width: '100%', mt: 2 }}>
+                    <LinearProgress variant="determinate" value={uploadProgress} />
+                    <div style={{ textAlign: 'center', marginTop: '10px' }}>
+                        {Math.round(uploadProgress)}%
+                    </div>
+                </Box>
+            )} 
+
             <div className='containerImg'>
                 {images && images.map((image, index) => (
                     <div className='image' key={index}>

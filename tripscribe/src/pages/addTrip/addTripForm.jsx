@@ -19,6 +19,12 @@ export const AddTripForm = () => {
     const [images, setImages] = useState([]); // State to hold images
     const maxLength = 500;
     const navigate = useNavigate(); // Initialize the useNavigate hook
+    const [formValues, setFormValues] = useState({
+        country: '',
+        city: '',
+        startDate: '',
+        endDate: ''
+    });
 
     const getUserIdFromToken = () => {
         const token = sessionStorage.getItem('token');
@@ -32,8 +38,16 @@ export const AddTripForm = () => {
             console.error('Error decoding token:', error);
             return null;
         }
-    };    
-    
+    }; 
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormValues(prevValues => ({
+            ...prevValues,
+            [name]: value,
+        }));
+    };
+
     const handleDescriptionChange = (e) => {
         setDescriptionLength(e.target.value.length);
     };
@@ -111,6 +125,14 @@ export const AddTripForm = () => {
             e.target.reset();
             setImages([]); 
 
+            setFormValues({
+                country: '',
+                city: '',
+                startDate: '',
+                endDate: '',
+                description: '',
+            });
+
             setTimeout(() => navigate("/mytrips"), 3000);
         } catch (error) {
             console.error('Error submitting trip data:', error);
@@ -143,6 +165,8 @@ export const AddTripForm = () => {
                                     placeholderText="Enter the country" 
                                     name="country"
                                     className={errors.country ? 'input-error' : ''}
+                                    value={formValues.country}
+                                    onChange={handleInputChange}
                                 />
                                 {errors.country && <div className="error">{errors.country}</div>}
                                 
@@ -152,6 +176,8 @@ export const AddTripForm = () => {
                                     placeholderText="Enter the city or town" 
                                     name="city"
                                     className={errors.city ? 'input-error' : ''}
+                                    value={formValues.city}
+                                    onChange={handleInputChange}
                                 />
                                 {errors.city && <div className="error">{errors.city}</div>}
                                 
@@ -160,6 +186,8 @@ export const AddTripForm = () => {
                                     inputType="date" 
                                     name="startDate"
                                     className={errors.date ? 'input-error' : ''}
+                                    value={formValues.startDate}
+                                    onChange={handleInputChange}
                                 />
                                 
                                 <Input 
@@ -167,6 +195,8 @@ export const AddTripForm = () => {
                                     inputType="date" 
                                     name="endDate"
                                     className={errors.date ? 'input-error' : ''}
+                                    value={formValues.endDate}
+                                    onChange={handleInputChange}
                                 />
                                 {errors.date && <div className="error">{errors.date}</div>}
                             </div>

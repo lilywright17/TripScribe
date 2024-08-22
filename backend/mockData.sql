@@ -35,13 +35,28 @@ VALUES
 (13, 4, 'Rio de Janeiro', 'Brazil', 'Enjoying the vibrant culture of Carnival, lounging on Copacabana Beach, and taking in the stunning views from Sugarloaf Mountain.', '2024-03-10 00:00:00', '2024-08-29 00:00:00'),
 (14, 4, 'Bilbao', 'Spain', 'Exploring the rich Basque culture, visiting the iconic Guggenheim Museum, and enjoying pintxos in the old town.', '2024-08-01 00:00:00', '2024-09-07 00:00:00'),
 (15, 4, 'Vancuver', 'Canada', 'Exploring the breathtaking landscapes of the Pacific Northwest, with hikes in the mountains and visits to vibrant local markets.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
--- Trips for Lily testing map page
+-- Trips for Lily
 (16, 5, 'Marrakech', 'Morocco', 'Exploring the vibrant souks, tasting exotic spices, and experiencing the rich history of this ancient city.', '2024-09-10 00:00:00', '2024-09-20 00:00:00'),
 (17, 5, 'Cairo', 'Egypt', 'Standing in awe of the Pyramids of Giza, cruising the Nile, and discovering ancient Egyptian history.', '2024-10-01 00:00:00', '2024-10-15 00:00:00'),
 (18, 5, 'Kyoto', 'Japan', 'Wandering through serene temples, admiring the beauty of cherry blossoms, and soaking in traditional hot springs.', '2024-11-05 00:00:00', '2024-11-20 00:00:00'),
 (19, 5, 'Lisbon', 'Portugal', 'Enjoying the picturesque views from Alfama, tasting delicious pastel de nata, and listening to fado music.', '2024-12-01 00:00:00', '2024-12-10 00:00:00'),
 (23, 5, 'Cape Town', 'South Africa', 'Experiencing the stunning views from Table Mountain, exploring vibrant neighborhoods, and enjoying local wines.', '2024-11-25 00:00:00', '2024-12-05 00:00:00'),
-(24, 5, 'Queenstown', 'New Zealand', 'Thrilling adventure sports in the adventure capital of the world, surrounded by breathtaking landscapes.', '2024-12-15 00:00:00', '2024-12-30 00:00:00');
+(24, 5, 'Queenstown', 'New Zealand', 'Thrilling adventure sports in the adventure capital of the world, surrounded by breathtaking landscapes.', '2024-12-15 00:00:00', '2024-12-30 00:00:00'),
+(25, 5, 'Santorini', 'Greece', 'Admiring the iconic white-washed buildings, enjoying stunning sunsets over the caldera, and indulging in Mediterranean cuisine.', '2024-09-25 00:00:00', '2024-10-05 00:00:00'),
+(26, 5, 'Reykjavik', 'Iceland', 'Chasing the Northern Lights, exploring volcanic landscapes, and relaxing in geothermal hot springs.', '2024-10-20 00:00:00', '2024-10-30 00:00:00'),
+(27, 5, 'Rome', 'Italy', 'Walking through ancient history at the Colosseum, marveling at Renaissance art in Vatican City, and savoring authentic Italian gelato.', '2024-11-10 00:00:00', '2024-11-20 00:00:00'),
+(28, 5, 'Hanoi', 'Vietnam', 'Exploring the bustling streets of the Old Quarter, tasting pho and banh mi, and cruising through Ha Long Bay.', '2024-11-25 00:00:00', '2024-12-05 00:00:00'),
+(29, 5, 'Sydney', 'Australia', 'Visiting the iconic Sydney Opera House, relaxing on Bondi Beach, and taking in the views from the Sydney Harbour Bridge.', '2024-12-10 00:00:00', '2024-12-20 00:00:00'),
+(30, 5, 'Machu Picchu', 'Peru', 'Trekking through the Andes to reach the ancient Inca citadel, discovering the Sacred Valley, and exploring Cusco.', '2024-12-25 00:00:00', '2025-01-05 00:00:00'),
+(31, 5, 'Buenos Aires', 'Argentina', 'Dancing the tango, exploring vibrant neighborhoods like La Boca, and enjoying a traditional Argentine asado.', '2025-01-10 00:00:00', '2025-01-20 00:00:00'),
+(32, 5, 'Istanbul', 'Turkey', 'Experiencing the crossroads of East and West, visiting the Blue Mosque, and shopping in the Grand Bazaar.', '2025-02-01 00:00:00', '2025-02-10 00:00:00'),
+(33, 5, 'Petra', 'Jordan', 'Walking through the ancient rock-carved city, exploring the Treasury, and hiking to the Monastery.', '2025-02-15 00:00:00', '2025-02-25 00:00:00'),
+(34, 5, 'Banff', 'Canada', 'Exploring the stunning Canadian Rockies, hiking through Banff National Park, and relaxing in natural hot springs.', '2025-03-05 00:00:00', '2025-03-15 00:00:00'),
+(35, 5, 'Barcelona', 'Spain', 'Marveling at Gaudi’s architecture, strolling along La Rambla, and enjoying tapas and sangria.', '2025-03-20 00:00:00', '2025-03-30 00:00:00'),
+(36, 5, 'Dubai', 'United Arab Emirates', 'Experiencing modern luxury, visiting the Burj Khalifa, and exploring the vast desert landscape.', '2025-04-05 00:00:00', '2025-04-15 00:00:00'),
+(37, 5, 'Moscow', 'Russia', 'Exploring the Red Square, visiting the Kremlin, and experiencing the culture of this historic city.', '2025-04-20 00:00:00', '2025-04-30 00:00:00'),
+(38, 5, 'Bali', 'Indonesia', 'Relaxing on beautiful beaches, visiting ancient temples, and immersing in the island’s rich culture.', '2025-05-05 00:00:00', '2025-05-15 00:00:00'),
+(39, 5, 'Edinburgh', 'Scotland', 'Exploring historic castles, strolling through the medieval Old Town, and experiencing the local whisky culture.', '2025-05-20 00:00:00', '2025-05-30 00:00:00');
 
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text )

@@ -55,7 +55,7 @@ const usData = [
         info: "¡Hola mundo! I live in Madrid with my beloved dog, Llum. I enjoy traveling, discovering new cuisines, and meeting diverse cultures. I prefer the countryside for its nature and fresh air, but if I am visiting a city, I love exploring its museums and libraries.",
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Sample_User_Icon.png/100px-Sample_User_Icon.png",
         emoji: "🎃",
-        linkedInUrl: "https://www.linkedin.com/in/victoriapbravo", //Hey Victoria, I couldnt find your LinkedIn but when you see this add your URL here. Thanks! - Krystal
+        linkedInUrl: "https://www.linkedin.com/in/victoriapbravo",
         githubUrl: "https://github.com/th4lesvic"
     },
     {
@@ -98,8 +98,21 @@ export const AboutUs = () => {
         </Helmet>
       <div className="aboutUs">
         <h1 className="aboutUsTitle">About Us</h1>
+        <h2>Welcome to TRIPSCRIBE - Your new travel diary app! </h2>
         <p className="aboutUsText">
-          Welcome to TripScribe, your go-to travel diary app! Here's a little info about each member of our team!
+          <p>The Tripscribe application is designed to provide users with a personalised and organised way to 
+          document and visualise their travel experiences.</p>
+          <p>To access the app's features, users must first register and log in. 
+          The application includes several key features that allow users to manage their travel records effectively:</p>
+          
+          <ul>
+            <li>Trip Management -  The app allows users to view, edit, and delete their trips, 
+                making it easy to manage their travel history!</li>
+            <li>Map View - provides a visual representation of all the locations users have visited.</li>
+            <li>User Profile - view your profile details, including their name and email address.</li>
+          </ul>
+          <br></br>
+          <p>Here's a little info about each member of our development team!</p>
         </p>
       </div>
       <Box sx={{ flexGrow: 1 }} className="aboutUsContainer">

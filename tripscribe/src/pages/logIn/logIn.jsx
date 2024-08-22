@@ -5,6 +5,8 @@ import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { loginRedux } from '../../features/userRedux';
 import './login.css';
 
 
@@ -18,6 +20,8 @@ export const LogIn = ({ checkAuth }) => {
     const [isSubmitting, setIsSubmitting] = useState(false); 
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
      // added for Redux work
      const userRedux = useSelector((state)=>
@@ -79,6 +83,8 @@ export const LogIn = ({ checkAuth }) => {
 
             setLoginFailure(false);
 
+            dispatch(loginRedux({name:'Tripscriber'}));
+
             navigate('/mytrips');
         } catch (error) {
             setLoginFailure(true);
@@ -94,17 +100,6 @@ export const LogIn = ({ checkAuth }) => {
 
     return (
         <div className="login">
-            <div className="side-box">
-                <div className='to-register-container'>
-                    <div className="new-here-text">New here?</div>
-                    <div className='to-register-text'>Start your journey!</div>
-                        <SecondaryButton
-                            text = "REGISTER"
-                            handleClick={toRegister}
-                        />   
-                </div>
-                <img src={groupImage} alt="Group" />
-            </div>
             
             <div className={`main-box login-animation ${isLoginVisible ? 'visible' : 'hidden'}`}>
                 <div className='login-container'>
@@ -142,8 +137,31 @@ export const LogIn = ({ checkAuth }) => {
                             type='submit'
                             disabled={!validateForm() || isSubmitting} // Disable if form is invalid or submitting
                         />
+                        
                     </div>
+                    <div className='click-to'>
+                        <p onClick={toRegister}>Click here to register</p>
+                    </div>
+                    
                 </form>
+            </div>
+
+            <div className="side-box">
+                <div className='to-register-container'>
+                    <div className="new-here-text">New here?</div>
+                    <div className='to-register-text'>
+                        <h2>TRIPSCRIBE</h2> Start your digital journey
+                    </div>
+                        <SecondaryButton
+                            text = "REGISTER"
+                            handleClick={toRegister}
+                        />
+                    <div>
+                        <img src={groupImage} alt="Group" className='group-image'/>  
+                    </div>
+
+                </div>
+                
             </div>
         </div>
     );

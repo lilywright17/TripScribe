@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken');
 const jwtConfig = require('../config/jwt');
 
 // Controller for the register page
-//See if more HTTP res code are needed
 const registerUser = async (req, res) => {
     const { fullname, username, email, password, confirmPassword } = req.body;
 
@@ -16,7 +15,7 @@ const registerUser = async (req, res) => {
     }
 
     try {
-        // Checking of the email exists in the database before registering
+        // Checking if the email exists in the database before registering
         const [existingUser] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
         if (existingUser.length > 0) {
             return res.status(409).json({ 
@@ -49,8 +48,6 @@ const registerUser = async (req, res) => {
 };
 
 // Controller for the login page
-//See if more HTTP res code are needed
-// Controller for the login page
 const loginUser = async (req, res) => {
     const { email, password } = req.body;
     const invalidMsg = {
@@ -71,8 +68,7 @@ const loginUser = async (req, res) => {
         }
 
         const user = results[0];
-        // Log the user object
-        //console.log('User object:', user);
+
         // Compare password with hashed password
         const pwMatch = await bcrypt.compare(password, user.pword_hash);
         if (!pwMatch) {
@@ -84,13 +80,13 @@ const loginUser = async (req, res) => {
         const payload = { userID: user.userID, email: user.email };
         
         // Logging payload for debugging
-        //console.log('JWT Payload:', payload); 
-
+        console.log('JWT Payload:', payload);
+        
         // Generate JWT token
         const token = jwt.sign(
             payload,
             jwtConfig.secret,
-            { expiresIn: '1h' }
+            { expiresIn: jwtConfig.expiresIn }
         );
 
         // Send response with token and user info
@@ -99,7 +95,7 @@ const loginUser = async (req, res) => {
             message: 'Login successful',
             token,
             user: {
-                id: user.userID, // Ensure 'userID' is correct
+                id: user.userID,
                 fullname: user.fullname,
                 username: user.username,
                 email: user.email
@@ -114,7 +110,6 @@ const loginUser = async (req, res) => {
         });
     }
 };
-
 
 
 module.exports = { registerUser, loginUser };

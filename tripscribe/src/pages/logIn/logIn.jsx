@@ -137,7 +137,12 @@ export const LogIn = ({ checkAuth }) => {
                             type='submit'
                             disabled={!validateForm() || isSubmitting} // Disable if form is invalid or submitting
                         />
+                        
                     </div>
+                    <div className='click-to'>
+                        <p onClick={toRegister}>Click here to register</p>
+                    </div>
+                    
                 </form>
             </div>
 
@@ -152,7 +157,7 @@ export const LogIn = ({ checkAuth }) => {
                             handleClick={toRegister}
                         />
                     <div>
-                        <img src={groupImage} alt="Group" />  
+                        <img src={groupImage} alt="Group" className='group-image'/>  
                     </div>
 
                 </div>

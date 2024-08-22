@@ -112,6 +112,25 @@
     display: flex;
     justify-content: center; /* Center the button horizontally */
     width: 100%;
+    padding-bottom: 10px;
+}
+
+.click-to {
+    text-align: center;
+}
+
+.click-to p {
+    font-size: large;
+    font-style: italic;
+    text-decoration: underline;
+    color: #92C7CF;
+    filter: brightness(50%);
+    cursor: pointer;
+}
+
+.click-to p:hover {
+    color: #92C7CF;
+    filter: brightness(100%);
 }
 
 .input {

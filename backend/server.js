@@ -7,6 +7,7 @@ const newTripRoutes = require('./routes/newtTripRoutes');
 const deleteTripRoute = require('./routes/deleteTripRoute')
 const googleRoute = require('./routes/googleRoute');
 const userProfileRoutes = require('./routes/userProfileRoutes');
+const editTripRoutes = require('./routes/editTripRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 8000;
@@ -36,6 +37,7 @@ app.use('/api', newTripRoutes); // Use the link http://localhost:8000/api/images
 app.use('/api', googleRoute); // Use the link http://localhost:8000/api/google-maps-key
 app.use('/api', deleteTripRoute); //Use the link http://localhost:8000/api/trips/:tripID
 app.use('/api', userProfileRoutes); //Use the link http://localhost:8000/api/user/:userID
+app.use('/api', editTripRoutes);
 
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

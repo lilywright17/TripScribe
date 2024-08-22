@@ -63,7 +63,7 @@ function AppContent() {
           title="Add Trip" /> : <Navigate to="/" replace />}   
       /> 
       <Route 
-        path="/edittrip" 
+        path="/edittrip/:tripID" 
         element={isAuthenticated ? <PageWithNavbar 
           component={<EditTrip />} 
           title="Edit Trip" /> : <Navigate to="/" replace />}   

@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Card } from "../../components/card/card.jsx";
 import { useNavigate } from "react-router-dom";
 import './map.css';
-import editButtonImage from "./images/edit_button.png"
 import {
   APIProvider,
   Map,
@@ -112,7 +111,6 @@ export const MapPage = () => {
                 endDate={formatDate(trip.endDate)}
                 imageUrl={trip.image[0]}
                 description={trip.description}
-                editButton={editButtonImage}
                 onEdit={() => handleEdit(trip)}
 				        onClick={() => handleTripDetails(trip)}
               />

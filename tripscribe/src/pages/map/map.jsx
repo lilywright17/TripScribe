@@ -166,7 +166,7 @@ export const MapPage = () => {
       <Map
         mapId={mapId}
         defaultZoom={13}
-        center={userLocation || { lat: -33.860664, lng: 151.208138 }}
+        center={userLocation || { lat: 51.507351, lng: -0.127758 }}
         onClick={handleMapClick} 
       >{/* Render a Marker for each location */}
   {mapLoaded && tripsArray.map((trip) => (

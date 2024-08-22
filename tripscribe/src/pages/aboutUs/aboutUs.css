@@ -77,3 +77,10 @@
     padding-bottom: 150px; 
     padding-inline: 20px;
 }
+
+.aboutUsText li {
+    list-style-type: none;
+    margin-bottom: 16px;
+    color: #476a6f;
+    font-weight: bold;
+}

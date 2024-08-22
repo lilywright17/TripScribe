@@ -38,7 +38,8 @@ export const MapPage = () => {
             latitude: parseFloat(trip.latitude),
       longitude: parseFloat(trip.longitude),
             tripID: Number(trip.tripID) // Ensure tripID is a number
-          }));
+          }))
+          .filter(trip => !isNaN(trip.latitude) && !isNaN(trip.longitude));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
           console.log('Trip Data:', tripData);
         } else if (response.status === 204) {

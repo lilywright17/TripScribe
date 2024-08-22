@@ -5,6 +5,8 @@ import groupImage from '../register/Group 2.png';
 import { Button } from '../../components/button/button.jsx';
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { loginRedux } from '../../features/userRedux';
 import './login.css';
 
 
@@ -18,6 +20,8 @@ export const LogIn = ({ checkAuth }) => {
     const [isSubmitting, setIsSubmitting] = useState(false); 
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
 
      // added for Redux work
      const userRedux = useSelector((state)=>
@@ -78,6 +82,8 @@ export const LogIn = ({ checkAuth }) => {
             }
 
             setLoginFailure(false);
+
+            dispatch(loginRedux({name:'Tripscriber'}));
 
             navigate('/mytrips');
         } catch (error) {

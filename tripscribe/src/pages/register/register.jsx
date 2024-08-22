@@ -65,7 +65,7 @@ export const Register = () => {
 
     const handleOK = () => {
         //Redux work 
-        dispatch(loginRedux({name:'Tripscriber'}));
+        dispatch(loginRedux({name:'Registered User'}));
         navigate('/');
 
     }

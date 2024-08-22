@@ -79,6 +79,7 @@ export const UserProfileView = () => {
             <div className='formContainer'>
               <div className='inputColumn'>
               <h1>Hello {userRedux?.name || getFirstName(userProfile?.fullname || 'Guest')}!</h1>
+              <h2>Welcome {getFirstName(userProfile?.fullname || 'Guest')}</h2>
                 <Input id= 'fullNameUserProfile' labelText='Full Name'  value={userProfile?.fullname} readOnly={true} />                
                 <Input id= 'emailUserProfileView' labelText='Email'  value={userProfile?.email} readOnly={true}  />
                 <Input id= 'passwordUserProfileView' labelText='Password'  value={'********'} readOnly={true}  />    

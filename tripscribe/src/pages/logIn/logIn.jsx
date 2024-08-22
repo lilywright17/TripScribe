@@ -100,17 +100,6 @@ export const LogIn = ({ checkAuth }) => {
 
     return (
         <div className="login">
-            <div className="side-box">
-                <div className='to-register-container'>
-                    <div className="new-here-text">New here?</div>
-                    <div className='to-register-text'>Start your journey!</div>
-                        <SecondaryButton
-                            text = "REGISTER"
-                            handleClick={toRegister}
-                        />   
-                </div>
-                <img src={groupImage} alt="Group" />
-            </div>
             
             <div className={`main-box login-animation ${isLoginVisible ? 'visible' : 'hidden'}`}>
                 <div className='login-container'>
@@ -148,8 +137,31 @@ export const LogIn = ({ checkAuth }) => {
                             type='submit'
                             disabled={!validateForm() || isSubmitting} // Disable if form is invalid or submitting
                         />
+                        
                     </div>
+                    <div className='click-to'>
+                        <p onClick={toRegister}>Click here to register</p>
+                    </div>
+                    
                 </form>
+            </div>
+
+            <div className="side-box">
+                <div className='to-register-container'>
+                    <div className="new-here-text">New here?</div>
+                    <div className='to-register-text'>
+                        <h2>TRIPSCRIBE</h2> Start your digital journey
+                    </div>
+                        <SecondaryButton
+                            text = "REGISTER"
+                            handleClick={toRegister}
+                        />
+                    <div>
+                        <img src={groupImage} alt="Group" className='group-image'/>  
+                    </div>
+
+                </div>
+                
             </div>
         </div>
     );

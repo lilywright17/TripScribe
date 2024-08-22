@@ -50,7 +50,7 @@
 
 /* Media query for tablets and small desktops */
 @media (max-width: 1024px) {
-    .formContainer {
+    .editTripForm {
         gap: 40px; 
     }
 }

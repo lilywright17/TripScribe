@@ -35,7 +35,9 @@ export const ResponsiveFooter = () => {
         value={value}
         onChange={handleChange}
       >
-        <Box sx={{ display: 'flex', alignItems: 'center'}}> 
+        <Box 
+          sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer'}}
+          onClick={()=> handleChange(null, 'about')}> 
           <InfoIcon 
             fontSize={isLargeScreen ? 'medium' : 'small'} 
             style={{ marginLeft: '8px', color: 'white' }} /> 

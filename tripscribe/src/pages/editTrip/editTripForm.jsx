@@ -16,8 +16,6 @@ export const EditTripForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [images, setImages] = useState([]);
-  const maxLength = 500;
-  const navigate = useNavigate();
   const { tripID: paramTripID } = useParams();
   const tripID = Number(paramTripID);
   const [tripData, setTripData] = useState({
@@ -27,8 +25,9 @@ export const EditTripForm = () => {
     endDate: "",
     description: "",
   });
-  // Used for troubleshooting to fix the passing of tripID in the FE
-  console.log("tripID (from params):", tripID, "Type:", typeof tripID);
+  const maxLength = 500;
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
@@ -43,7 +42,6 @@ export const EditTripForm = () => {
             },
           }
         );
-        console.log("API Response:", response.data);
         setTripData({
           country: response.data.country,
           city: response.data.city,
@@ -95,11 +93,8 @@ export const EditTripForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Logging form submission
-    console.log("Form submit triggered");
-    // Attach the Cloudinary image URLs to the data object
-    const photoUrls = images.map(image => image.url);
-    //console.log("Image URLs:", images.map(image => image.url)); // Debugging log
+    // Attaching image URLs
+    const photoUrls = images.map((image) => image.url);
 
     // Form validation logic - checking for empty input fields
     const newErrors = {};
@@ -147,7 +142,6 @@ export const EditTripForm = () => {
           },
         }
       );
-      console.log("Trip data submitted");
       // Display an alert "Successful editing message"
       setSuccessMessage(
         `The trip "${tripData.country}, ${tripData.city}" was successfully updated!`
@@ -156,7 +150,6 @@ export const EditTripForm = () => {
       setImages([]);
       // Wait 2 sec (2000 milliseconds) before navigating to TripDetails after the alert
       setTimeout(() => {
-        console.log("navigating to tripdetails page");
         navigate(`/tripdetails/${tripID}`);
       }, 2000);
     } catch (error) {
@@ -180,7 +173,6 @@ export const EditTripForm = () => {
             className={errors.country ? "input-error" : ""}
           />
           {errors.country && <div className="error">{errors.country}</div>}
-
           <Input
             labelText="City/Town"
             inputType="text"
@@ -199,7 +191,6 @@ export const EditTripForm = () => {
             onChange={handleInputChange}
             className={errors.startDate ? "input-error" : ""}
           />
-
           <Input
             labelText="End Date"
             inputType="date"
@@ -210,45 +201,51 @@ export const EditTripForm = () => {
           />
           {errors.date && <div className="error">{errors.date}</div>}
         </div>
-
-        <div className="editTripDescriptionContainer">
-          <label htmlFor="description">Description</label>
-          <textarea
-            className={`editTripTextDescription ${
-              errors.description ? "input-error" : ""
-            }`}
-            id="description"
-            name="description"
-            rows="8"
-            cols="50"
-            placeholder="You can edit your trip details here..."
-            maxLength={maxLength}
-            value={tripData.description}
-            onChange={handleDescriptionChange}
-          ></textarea>
-          {errors.description && (
-            <div className="error">{errors.description}</div>
-          )}
-          <div className="characterCount">
-            {descriptionLength}/{maxLength} characters
+        <div className="editTripContent">
+          <div className="editTripDescriptionContainer">
+            <label htmlFor="description">Description</label>
+            <textarea
+              className={`editTripTextDescription ${
+                errors.description ? "input-error" : ""
+              }`}
+              id="description"
+              name="description"
+              rows="9"
+              cols="50"
+              placeholder="You can edit your trip details here..."
+              maxLength={maxLength}
+              value={tripData.description}
+              onChange={handleDescriptionChange}
+            ></textarea>
+            {errors.description && (
+              <div className="error">{errors.description}</div>
+            )}
+            <div className="characterCount">
+              {descriptionLength}/{maxLength} characters
+            </div>
+          </div>
+          <div className="addImg">
+            <p className="editPhotosTag">Edit your photos</p>
+            <AddTripImgUpload
+              inputType="file"
+              images={images}
+              setImages={setImages}
+              multiple
+            />
           </div>
         </div>
-
-        <p className="editPhotosTag">Edit your photos</p>
-
-        <AddTripImgUpload
-          inputType="file"
-          images={images}
-          setImages={setImages}
-          multiple
-        />
         <div className="editTripButtonContainer">
           <SecondaryButton
             text="GO BACK"
             icon={<ArrowLeft size={20} />}
             handleClick={handleSecondaryButtonClick}
+            style={{ borderRadius: "30px" }}
           />
-          <Button text="SAVE MY CHANGES" type="submit" />
+          <Button
+            text="SAVE MY CHANGES"
+            type="submit"
+            style={{ borderRadius: "30px" }}
+          />
         </div>
       </form>
       {successMessage && (

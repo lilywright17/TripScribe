@@ -1,7 +1,7 @@
 /* Existing CSS */
 .register {
     display: flex;
-
+    overflow: hidden;
     height: 100vh;
     background-color: #92C7CF;
 
@@ -13,7 +13,6 @@
     padding-right: 16vw;
     height: 100%;
     box-shadow: -1px 0 5px;
-
     flex: 1;
 }
 
@@ -62,7 +61,7 @@
     margin: auto;
 }
 
-.form-group {
+.register form-group {
     margin-bottom: 15px;
 }
 

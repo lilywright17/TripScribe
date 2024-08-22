@@ -22,10 +22,10 @@ const pageLinks = {
   'Add Trip': '/addtrip',
   'Map View': '/map',
 };
-const settings = ['Profile', 'Logout'];
+const settings = ['Profile'];
 const settingsLinks = {
   'Profile': '/userprofile',
-  'Logout': '/',
+  //'Logout': '/',
 };
 
 export const ResponsiveNavbar = () => {

@@ -101,7 +101,7 @@ export const TripDetails = () => {
 
   // Conditional rendering to avoid accessing properties of a null object
   if (!trip) {
-    return <div>Loading Trip Details...</div>;
+    return <div><h1 className="loading">Loading Trip Details...</h1></div>;
   }
 
   return (

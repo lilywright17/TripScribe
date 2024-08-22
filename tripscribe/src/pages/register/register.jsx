@@ -65,7 +65,7 @@ export const Register = () => {
 
     const handleOK = () => {
         //Redux work 
-        dispatch(loginRedux({name:'Tripscriber'}));
+        dispatch(loginRedux({name:'Registered User'}));
         navigate('/');
 
     }
@@ -161,6 +161,10 @@ export const Register = () => {
                                 disagreeBtnText="CANCEL"
                             />  
                         </button>
+
+                        <div className='click-to'>
+                            <p onClick={toLogin}>Click here to log in</p>
+                        </div>
                     </form>
                 </div>
             </div>

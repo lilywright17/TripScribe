@@ -1,1 +1,1 @@
-../node_modules/react-refresh/runtime.js
+/node_modules/react-refresh/runtime.js

@@ -1,10 +1,9 @@
 /* Img Uploader */
 .cardImgUpload {
     overflow: hidden;
-    width: 100%;
+    width: 90%;
     max-width: 800px; 
-    margin-bottom: 20px; 
-    padding: 10px;
+    padding: 8px;
     box-sizing: border-box;
 }
 
@@ -36,7 +35,7 @@
     height: 28px;
 }
 .cardImgUpload .dragArea{
-    height: 150px;
+    height: 190px;
     border-radius: 5px;
     border: 2px dashed #92C7CF;
     color: #92C7CF;
@@ -48,7 +47,7 @@
     align-items: center;
     user-select: none;
     -webkit-user-select: none;
-    margin-top: 10px;
+    margin-top: 16px;
 }
 
 .cardImgUpload .dragArea .visible{

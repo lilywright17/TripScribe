@@ -15,18 +15,50 @@
     width: 100%;
 }
 
+.editTripContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
 .editTripDescriptionContainer {
+    padding-top: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 800px;
-    width: 100%;
+    width: 60%;
 }
 
 .editTripDescriptionContainer label {
+    margin-top: 0px;
     margin-bottom: 5px;
     color: #476a6f;
     font-weight: bold;
+}
+
+.addImg {
+    width: 40%; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    gap: 0; 
+    padding: 0; 
+}
+
+.addImg .editPhotosTag {
+    margin: 0; 
+    line-height: 1; 
+}
+
+.addImg > * {
+    margin: 0; 
+    padding: 0; 
 }
 
 .text-description {
@@ -42,7 +74,78 @@
 
 .editTripButtonContainer {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     padding: 32px;
     padding-bottom: 5%;
+    gap: 750px; 
+    
+}
+@media (max-width: 1024px) {
+    .editTripButtonContainer {
+        gap: 440px;
+    }
+    .editTripContent {
+        flex-direction: column; 
+        gap: 20px;
+    }
+
+    .editTripDescriptionContainer, .addImg {
+        width: 100%; 
+    }
+    .editTripButtonContainer button {
+        font-size: 20px; 
+    }
+    .editTripButtonContainer SecondaryButton{
+        height: 50px;
+        width: 100%;
+    }
+    .editTripButtonContainer Button {
+        height: 50px;
+        width: 100%;
+    }
+}
+@media (max-width: 820px) {
+    .editTripButtonContainer {
+        gap: 24px;
+    }
+    .editTripContent {
+        flex-direction: column; 
+        gap: 20px;
+    }
+
+    .editTripDescriptionContainer, .addImg {
+        width: 100%; 
+    }
+    .editTripButtonContainer button {
+        font-size: 14px; 
+    }
+    .editTripButtonContainer SecondaryButton{
+        height: 50px;
+        width: 100%;
+    }
+    .editTripButtonContainer Button {
+        height: 50px;
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    .editTripButtonContainer {
+        gap: 10px; 
+    }
+
+    .editTripButtonContainer SecondaryButton{
+        font-size: 12px;
+        height: 50px;
+        width: 100%;
+    }
+    .editTripButtonContainer Button {
+        font-size: 12px;
+        height: 50px;
+        width: 100%;
+    }
+}
+.editTripTitle{
+    color: #476a6f;
+    font-weight: bold;
+    font-size: 30px;
 }

@@ -89,9 +89,10 @@ export const TripDetails = () => {
     console.log("Cancel button!");
   };
 
-  const handleEdit = () => {
-    console.log("Edit!");
-    navigate(`/edittrip?tripID=${tripID}`);
+  const handleEdit = (tripID) => {
+    console.log("Navigating to Edit Trip with ID: ", tripID);
+    navigate(`/edittrip/${tripID}`);
+    //navigate(`/edittrip?tripID=${tripID}`);
   };
 
   const handleGoBack = () => {
@@ -105,6 +106,7 @@ export const TripDetails = () => {
   }
 
   return (
+    <>
     <div className="trip-details">
       <div className="title-container">
         <div className="title">
@@ -115,7 +117,7 @@ export const TripDetails = () => {
             className="edit-button"
             src={editButtonImage}
             alt="Edit button"
-            onClick={handleEdit}
+            onClick={() => handleEdit(tripID)}
           />
         </div>
         <p className="dates">
@@ -165,6 +167,7 @@ export const TripDetails = () => {
           }}
         />
       </div>
+      </div>
       {successMessage && (
         <Stack sx={{ width: '100%' }} spacing={2}
           message={successMessage}
@@ -194,6 +197,7 @@ export const TripDetails = () => {
           </Alert>
         </Stack>
       )}
-    </div>
+    
+    </>
   );
 };

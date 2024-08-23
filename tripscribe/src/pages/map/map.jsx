@@ -2,7 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Card } from "../../components/card/card.jsx";
 import { useNavigate } from "react-router-dom";
 import './map.css';
-import editButtonImage from "./images/edit_button.png"
 import {
   APIProvider,
   Map,
@@ -111,9 +110,8 @@ export const MapPage = () => {
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.image[0]}
+                imageUrl={trip.image && trip.image.length > 0 ? trip.image[0] : null}
                 description={trip.description}
-                editButton={editButtonImage}
                 onEdit={() => handleEdit(trip)}
 				        onClick={() => handleTripDetails(trip)}
               />
@@ -167,7 +165,7 @@ export const MapPage = () => {
       <Map
         mapId={mapId}
         defaultZoom={13}
-        center={userLocation || { lat: -33.860664, lng: 151.208138 }}
+        center={userLocation || { lat: 51.507351, lng: -0.127758 }}
         onClick={handleMapClick} 
       >{/* Render a Marker for each location */}
   {mapLoaded && tripsArray.map((trip) => (

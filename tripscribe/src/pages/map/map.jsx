@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Card } from "../../components/card/card.jsx";
 import { useNavigate } from "react-router-dom";
 import './map.css';
@@ -65,7 +65,7 @@ export const MapPage = () => {
   const [activeMarker, setActiveMarker] = useState(null);
   // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
 
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const centerRef = useRef({ lat: 51.507351, lng: -0.127758 });
 
   const [apiKey, setApiKey] = useState(null);
   const [tripsArray, setTripsArray] = useState([]);
@@ -121,6 +121,7 @@ export const MapPage = () => {
           (position) => {
             const { latitude, longitude } = position.coords;
             setUserLocation({ lat: latitude, lng: longitude });
+            centerRef.current = { lat: latitude, lng: longitude };
             },
           (error) => {
             console.error("Error getting user location:", error);
@@ -153,16 +154,16 @@ export const MapPage = () => {
    return (
   <APIProvider
     apiKey={apiKey}
-    onLoad={() => setMapLoaded(true)} 
+    // onLoad={() => setMapLoaded(true)} 
   >
     <div className="map-div">
       <Map
         mapId={mapId}
         defaultZoom={13}
-        center={userLocation || { lat: 51.507351, lng: -0.127758 }}
+        defaultCenter={centerRef.current}
         onClick={handleMapClick} 
       >{/* Render a Marker for each location */}
-  {mapLoaded && tripsArray.map((trip) => (
+  {tripsArray.map((trip) => (
             <MarkerWithInfoWindow
               key={trip.tripID}
               trip={trip}

@@ -160,7 +160,7 @@ export const MapPage = () => {
       <Map
         mapId={mapId}
         defaultZoom={13}
-        defaultCenter={centerRef.current}
+        center={userLocation || centerRef.current}
         onClick={handleMapClick} 
       >{/* Render a Marker for each location */}
   {tripsArray.map((trip) => (

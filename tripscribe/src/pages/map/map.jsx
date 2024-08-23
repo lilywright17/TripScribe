@@ -79,16 +79,11 @@ export const MapPage = () => {
       setActiveMarker(null);
   }, []);
 
-  // Function to navigate to the edit page when we click the edit button
-   const handleEdit = (trip) => {
-    navigate("/edittrip", { state: { trip } });
-  };
-
-  // Viewtrip handler
-	const handleTripDetails = (trip) => {
-    console.log('Trip Details');
-    navigate("/tripdetails", { state: { country: trip.country, city: trip.city,startDate:trip.startDate,endDate: trip.endDate, images: trip.image || [], description: trip.description }});
-  };
+ // TripDetails navigation handler
+ const handleTripDetails = (tripID) => {
+  console.log('Trip Details');
+  navigate(`/tripdetails/${tripID}`); 
+};
 
   // Creating the infowindow and marker as one component, with the infowindow only showing when the marker is clicked
    const MarkerWithInfoWindow = ({ trip, isActive, onClick }) => {
@@ -110,10 +105,9 @@ export const MapPage = () => {
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.image && trip.image.length > 0 ? trip.image[0] : null}
+                imageUrl={trip.photos[0]?.url}
                 description={trip.description}
-                onEdit={() => handleEdit(trip)}
-				        onClick={() => handleTripDetails(trip)}
+				        onClick={() => handleTripDetails(trip.tripID)}
               />
           </InfoWindow>
         )}

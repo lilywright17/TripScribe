@@ -1,10 +1,9 @@
 import  React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './searchInput.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 export const SearchInput = ({ handleKeyDown, onChange, searchQuery }) => {
-
 	return (
 		<div className="search-container">
             <input 

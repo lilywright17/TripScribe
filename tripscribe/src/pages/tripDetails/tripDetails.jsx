@@ -3,23 +3,20 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PhotoCarousel } from "../../components/carousel/carousel.jsx";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
-import { ArrowLeft } from "@phosphor-icons/react";
 import { PopDialog } from "../../components/dialog/dialog.jsx";
 import DeleteIcon from "@mui/icons-material/Delete";
-import editButtonImage from "./edit_button.png";
 import Alert from "@mui/material/Alert";
 import { Stack } from "@mui/material";
 import Box from "@mui/material/Box";
+import { ArrowLeft } from "@phosphor-icons/react";
+import editButtonImage from "./edit_button.png";
 import './tripDetails.css';
 
 export const TripDetails = () => {
   const navigate = useNavigate();
   const { tripID: paramTripID } = useParams();
-  const tripID = Number(paramTripID); // Convert tripID to number if necessary
+  const tripID = Number(paramTripID); 
   
-  // Used for troubleshooting to fix the passing of tripID in the FE
-  console.log("tripID (from params):", tripID, "Type:", typeof tripID);
-
   const [trip, setTrip] = useState(null);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -38,7 +35,6 @@ export const TripDetails = () => {
             },
           }
         );
-        console.log("API Response:", response.data);
         setTrip(response.data);
       } catch (error) {
         console.error("Error fetching trip details:", error);
@@ -68,12 +64,10 @@ export const TripDetails = () => {
           Authorization: `Bearer ${sessionStorage.getItem("token")}`,
         },
       });
-      // Display an alert "Successful deletion"
       setSuccessMessage(
         `The trip "${trip.country}, ${trip.city}" was successfully deleted!`
       );
 
-      // Wait 2 sec (2000 milliseconds) before navigating to MyTrips after the alert
       setTimeout(() => {
         navigate("/mytrips", { replace: true });
       }, 2000);
@@ -86,13 +80,10 @@ export const TripDetails = () => {
 
   const handleCancel = () => {
     setDialogOpen(false);
-    console.log("Cancel button!");
   };
 
   const handleEdit = (tripID) => {
-    console.log("Navigating to Edit Trip with ID: ", tripID);
     navigate(`/edittrip/${tripID}`);
-    //navigate(`/edittrip?tripID=${tripID}`);
   };
 
   const handleGoBack = () => {
@@ -100,7 +91,6 @@ export const TripDetails = () => {
     navigate("/mytrips");
   };
 
-  // Conditional rendering to avoid accessing properties of a null object
   if (!trip) {
     return <div><h1 className="loading">Loading Trip Details...</h1></div>;
   }

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
+import axios from 'axios';
 import { Input } from '../../components/input/input';
 import { Button } from '../../components/button/button';
 import { SecondaryButton } from '../../components/secondaryButton/secondaryButton';
 import { AddTripImgUpload } from '../../components/uploadImages/addTripImgUpload';
 import { ArrowLeft } from '@phosphor-icons/react';
-import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
 import './addTripForm.css';
@@ -14,11 +14,11 @@ import './addTripForm.css';
 export const AddTripForm = () => {
     const [descriptionLength, setDescriptionLength] = useState(0);
     const [errors, setErrors] = useState({});
-    const [successMessage, setSuccessMessage] = useState(null); // State to hold success message
-    const [errorMessage, setErrorMessage] = useState(null); // State to hold error message
-    const [images, setImages] = useState([]); // State to hold images
+    const [successMessage, setSuccessMessage] = useState(null); 
+    const [errorMessage, setErrorMessage] = useState(null); 
+    const [images, setImages] = useState([]); 
     const maxLength = 500;
-    const navigate = useNavigate(); // Initialize the useNavigate hook
+    const navigate = useNavigate(); 
     const [formValues, setFormValues] = useState({
         country: '',
         city: '',
@@ -32,7 +32,6 @@ export const AddTripForm = () => {
 
         try {
             const decoded = jwtDecode(token);
-            console.log("Decoded token:", decoded); // Debugging log
             return decoded.userID;
         } catch (error) {
             console.error('Error decoding token:', error);
@@ -57,28 +56,22 @@ export const AddTripForm = () => {
         const formData = new FormData(e.target);
         const data = {};
 
-        // Capture values from the form and map to the data object
         formData.forEach((value, key) => {
             data[key] = value;
         });
 
-        // Attach the Cloudinary image URLs to the data object
         data.imgUrls = images.map(image => image.url);
-        //console.log("Image URLs:", images.map(image => image.url)); // Debugging log
 
-        // Map startDate and endDate to the correct field names for the backend
         data.date_from = data.startDate;
         data.date_to = data.endDate;
         delete data.startDate;
         delete data.endDate;
 
-        // Add the userID to the trip data
         const userID = getUserIdFromToken();
         if (userID) {
             data.userID = userID;
         }
 
-        // Validation logic
         const newErrors = {};
         const startDate = new Date(data.date_from);
         const endDate = new Date(data.date_to);
@@ -110,7 +103,7 @@ export const AddTripForm = () => {
             const token = sessionStorage.getItem('token');
             
             const decoded = jwtDecode(token);
-            console.log('Token expires at:', new Date(decoded.exp * 1000)); // Token expiration
+            console.log('Token expires at:', new Date(decoded.exp * 1000)); 
             
             await axios.post('http://localhost:8000/api/addtrip', data, {
                 headers: { 
@@ -138,8 +131,6 @@ export const AddTripForm = () => {
             console.error('Error submitting trip data:', error);
             setErrorMessage(error.response?.data?.error || "There was a problem saving your trip. Please try again.");
         }
-    
-        console.log(data);// Debugging log
     };
 
     const handleSecondaryButtonClick = () => {
@@ -223,7 +214,10 @@ export const AddTripForm = () => {
                 <div className='buttonContainer'>
                     <SecondaryButton 
                         text='MY TRIPS' 
-                        icon={<ArrowLeft size={24} weight='bold' padding='' />} 
+                        icon={<ArrowLeft size={24} 
+                        weight='bold' 
+                        padding='' 
+                    />} 
                         handleClick={handleSecondaryButtonClick} 
                         style={{ borderRadius: "30px"}}
                     />

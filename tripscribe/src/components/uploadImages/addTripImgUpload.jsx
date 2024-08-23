@@ -1,17 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { jwtDecode } from 'jwt-decode';
-import { UploadSimple } from '@phosphor-icons/react';
 import axios from 'axios';
 import imageCompression from 'browser-image-compression';
-import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import { UploadSimple } from '@phosphor-icons/react';
 import './addTripImgUpload.css';
 
 export const AddTripImgUpload = ({ images, setImages }) => {
     const [isDragging, setIsDragging] = useState(false);
     const [error, setError] = useState("");
-    const [uploadProgress, setUploadProgress] = useState(0); // State to track upload progress
-    const [isUploading, setIsUploading] = useState(false); // State to track if uploading
+    const [uploadProgress, setUploadProgress] = useState(0); 
+    const [isUploading, setIsUploading] = useState(false); 
     const fileInputRef = useRef(null); 
 
     const selectFiles = () => {
@@ -25,12 +25,11 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
     const getUserIdFromToken = () => {
         const token = sessionStorage.getItem('token');
-        //console.log('Retrieved Token:', token); // Debugging token retrieval
+
         if (!token) return null;
 
         try {
             const decoded = jwtDecode(token);
-            //console.log('Decoded Token:', decoded); // Debugging token decoding
             return decoded.userID;  
         } catch (error) {
             console.error('Error decoding token:', error);
@@ -51,14 +50,14 @@ export const AddTripImgUpload = ({ images, setImages }) => {
         }
 
         const userID = getUserIdFromToken(); 
-        console.log('User ID:', userID); // Debug log
+
         if (!userID) {
             setError('Unable to retrieve user information. Please log in again.');
             return;
         }
 
         setIsUploading(true);
-        setUploadProgress(0); // Reset progress 
+        setUploadProgress(0); 
 
         const uploadPromises = Array.from(files).map(async (file, index) => {
             const compressedFile = await compressImage(file);
@@ -67,7 +66,6 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
             const uploadedImage = await uploadImage(base64, token, userID, file.name);
 
-            // Update progress
             setUploadProgress(((index + 1) / files.length) * 100);
 
             return uploadedImage;
@@ -82,14 +80,14 @@ export const AddTripImgUpload = ({ images, setImages }) => {
             console.error('Error uploading images:', error);
             setError("Error uploading images. Please try again.");
         } finally {
-            setIsUploading(false); // Hide progress bar after upload
+            setIsUploading(false); 
         }
     };
 
     const compressImage = async (file) => {
         const options = {
             maxSizeMB: 1,
-            maxWidthOrHeight: 1920, // Set max width/height
+            maxWidthOrHeight: 1920, 
             useWebWorker: true,
         };
         try {
@@ -104,7 +102,7 @@ export const AddTripImgUpload = ({ images, setImages }) => {
 
     const processFile = async (file) => {
         const fileType = file.type.split('/')[1].toLowerCase();
-        const fileSize = file.size / 1024 / 1024; // size in MB
+        const fileSize = file.size / 1024 / 1024; 
 
         if (!['jpeg', 'png'].includes(fileType)) {
             setError('Only JPEG and PNG formats are allowed.');

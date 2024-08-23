@@ -1,10 +1,9 @@
 const { getTrips, getTripByID } = require('../controllers/tripController');
 const db = require('../config/db'); 
-// Mocking the database
+
 jest.mock('../config/db'); 
 
 describe('Trip Controller Unit Tests', () => {
-  // Provided some mock data for testing
   const mockTrips = [
     {
       tripID: 1,
@@ -18,7 +17,7 @@ describe('Trip Controller Unit Tests', () => {
       ],
     },
   ];
-  // Empty array to simulate when the user does not have trips
+
   const mockNoTrips = [];
 
   const req = {
@@ -38,14 +37,11 @@ describe('Trip Controller Unit Tests', () => {
     jest.spyOn(console, 'error').mockImplementation(() => {});
   });
 
-  // Clearing the mock after each test
   afterEach(() => {
     jest.clearAllMocks();
   });
 
-  // Tests for the 'getTrips' Controller logic
   describe('getTrips', () => {
-    // When the Query returns all the trips 'res.status(200)'
     it('Returning all the trips for the user', async () => {
       db.query.mockResolvedValueOnce([mockTrips]);
 
@@ -55,7 +51,6 @@ describe('Trip Controller Unit Tests', () => {
       expect(res.json).toHaveBeenCalledWith(mockTrips);
     });
 
-    // When the user has no trips 'res.status(204)'
     it('Return 204 - user has no trips', async () => {
         db.query.mockResolvedValueOnce([mockNoTrips]);
     
@@ -66,7 +61,6 @@ describe('Trip Controller Unit Tests', () => {
         expect(res.end).toHaveBeenCalled(); 
     });
 
-    // When the error occurs trying to fetch the data 'res.status(500)'
     it('Return 500 - server error occurs', async () => {
       db.query.mockRejectedValueOnce(new Error('Database error'));
 
@@ -77,9 +71,7 @@ describe('Trip Controller Unit Tests', () => {
     });
   });
 
-  // Tests for the 'getTripByID' Controller logic
   describe('getTripByID', () => {
-    // When the Query returns the trip by tripID 'res.status(200)'
     it('Returns the specified trip by tripID', async () => {
       db.query.mockResolvedValueOnce([mockTrips]);
 
@@ -89,7 +81,6 @@ describe('Trip Controller Unit Tests', () => {
       expect(res.json).toHaveBeenCalledWith(mockTrips[0]);
     });
 
-    // When the trip doesn't exist 'res.status(404)'
     it('Return 404 when the trip does not exist', async () => {
         db.query.mockResolvedValueOnce([[]]); 
       
@@ -99,7 +90,6 @@ describe('Trip Controller Unit Tests', () => {
         expect(res.json).toHaveBeenCalledWith({ message: 'Trip was not found!' });
     });
 
-    // When the error occurs trying to fetch the trip data 'res.status(500)'
     it('Return 500 when an error occurs', async () => {
       db.query.mockRejectedValueOnce(new Error('Database error'));
 

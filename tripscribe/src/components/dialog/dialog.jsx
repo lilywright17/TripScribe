@@ -1,12 +1,11 @@
+import { Button } from "../button/button";
+import { SecondaryButton } from "../secondaryButton/secondaryButton";
 import { DialogActions, DialogContent } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
-import { Button } from "../button/button";
-import { SecondaryButton } from "../secondaryButton/secondaryButton";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 
-// Dialog is a type of Modal component
 export const PopDialog = ({
   open,
   handleClose,
@@ -17,7 +16,7 @@ export const PopDialog = ({
   disagreeBtnText,
 }) => {
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("sm")); // The Dialog will take up the entire screen when Screen size is small
+  const fullScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <div className="dialog">
@@ -68,7 +67,3 @@ export const PopDialog = ({
     </div>
   );
 };
-
-//Use {title} to set up title name for the Modal
-//Use {hadleClose} to handle the closing of the modal
-//Use {content} to ask the user for decision question for example

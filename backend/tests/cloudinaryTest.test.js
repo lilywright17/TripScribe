@@ -1,12 +1,11 @@
 require('dotenv').config(); 
 const cloudinary = require('cloudinary').v2;
 
-// Mocking specific methods to test cloudinnary upload and receive secure_url
 jest.mock('cloudinary', () => {
   const originalCloudinary = jest.requireActual('cloudinary');
   return {
       v2: {
-          ...originalCloudinary.v2,  // Keep all original methods
+          ...originalCloudinary.v2,  
           uploader: {
               upload: jest.fn((path, options) => {
                   if (path === 'path/to/nonexistent/file.jpeg') {

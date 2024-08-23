@@ -32,7 +32,6 @@ describe('addNewTrip Controller', () => {
             send: jest.fn(),
         };
 
-        // Mock database connection and methods
         connection = {
             query: jest.fn(),
             beginTransaction: jest.fn().mockResolvedValue(),
@@ -49,13 +48,13 @@ describe('addNewTrip Controller', () => {
     });
 
     const mockDBInsertTrip = () => {
-        connection.query.mockResolvedValueOnce([{ insertId: 1 }]); // Mock tripID return
+        connection.query.mockResolvedValueOnce([{ insertId: 1 }]); 
     };
 
     const mockDBInsertTripAndPhotos = () => {
         connection.query
-            .mockResolvedValueOnce([{ insertId: 1 }]) // Mock tripID return
-            .mockResolvedValue({}); // Mock photo inserts (covers all photo inserts)
+            .mockResolvedValueOnce([{ insertId: 1 }]) 
+            .mockResolvedValue({}); 
     };
 
     describe('Successful Scenarios', () => {
@@ -87,17 +86,15 @@ describe('addNewTrip Controller', () => {
 
     describe('Error Handling Scenarios', () => {
         test('should handle database error when adding a new trip', async () => {
-            // Mock the db.query to reject with an error
+ 
             connection.query.mockRejectedValueOnce(new Error('Database error'));
         
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
         
             await addNewTrip(req, res);
         
-            // Assert that db.rollback was called due to the error
             expect(connection.rollback).toHaveBeenCalled();
         
-            // Assert that the correct status and error response were sent
             expect(res.status).toHaveBeenCalledWith(500);
             expect(res.json).toHaveBeenCalledWith({ error: 'Failed to add trip' });
         
@@ -105,7 +102,7 @@ describe('addNewTrip Controller', () => {
         });
 
         test('should return 401 if user is not authenticated', async () => {
-            req.user = null; // Simulate no user being authenticated
+            req.user = null; 
 
             await addNewTrip(req, res);
 

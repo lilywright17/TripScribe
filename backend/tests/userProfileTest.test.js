@@ -1,12 +1,10 @@
 const { getUserProfile } = require('../controllers/userProfileController');
 const db = require('../config/db');
 
-// Mocking the db query
 jest.mock('../config/db', () => ({
   query: jest.fn(),
 }));
 
-// Mocking the helper function getUserById
 const { getUserById } = require('../controllers/userProfileController');
 
 describe('getUserProfile', () => {
@@ -23,7 +21,6 @@ describe('getUserProfile', () => {
     jest.clearAllMocks();
   });
 
-  // Test when the user is found successfully, making sure that the controller did return a '404'
   it('should return user data when user is found', async () => {
     const mockUser = { userID: 1, fullname: 'Ada Lovelace', username: 'adalovelace', email: 'ada.lovelace@gmail.com' };
     
@@ -35,7 +32,6 @@ describe('getUserProfile', () => {
     expect(res.json).toHaveBeenCalledWith(mockUser);
   });
 
-  // Testing when the user is not found
   it('should return 404 when user is not found', async () => {
     db.query.mockResolvedValueOnce([[]]);
 
@@ -45,7 +41,6 @@ describe('getUserProfile', () => {
     expect(res.json).toHaveBeenCalledWith({ message: 'User not found' });
   });
 
-  // Testing when a server error occurs
   it('should return 500 when there is a server error', async () => {
     const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
   

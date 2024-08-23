@@ -1,3 +1,5 @@
+-- DROP DATABASE IF EXIST tripscribeDB; 
+
 CREATE DATABASE tripscribeDB;
 USE tripscribeDB;
 

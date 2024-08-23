@@ -24,9 +24,9 @@ const registerUser = async (req, res) => {
             });
         }
 
-        const saltRounds = 10; // This is needed for the hashing of the password
+        const saltRounds = 10; 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
-        // Inserts the entry in the database
+
         const result = await db.query(
             'INSERT INTO Users (fullname, username, email, pword_hash) VALUES (?, ?, ?, ?)',
             [fullname, username, email, hashedPassword]
@@ -56,11 +56,7 @@ const loginUser = async (req, res) => {
     };
 
     try {
-        // Query to get the user by email
         const [results] = await db.query('SELECT * FROM Users WHERE email = ?', [email]);
-
-        // Log the results to check the output
-        //console.log('Database query results:', results);
 
         // Check if user exists
         if (results.length === 0) {
@@ -76,20 +72,14 @@ const loginUser = async (req, res) => {
             return res.status(401).json(invalidMsg);
         }
 
-        // Prepare JWT payload with userID and email
         const payload = { userID: user.userID, email: user.email };
-        
-        // Logging payload for debugging
-        console.log('JWT Payload:', payload);
-        
-        // Generate JWT token
+                
         const token = jwt.sign(
             payload,
             jwtConfig.secret,
             { expiresIn: jwtConfig.expiresIn }
         );
 
-        // Send response with token and user info
         res.status(200).json({
             success: true,
             message: 'Login successful',

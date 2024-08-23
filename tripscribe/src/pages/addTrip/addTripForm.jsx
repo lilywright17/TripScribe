@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
-import { Input } from "../../components/input/input";
-import { Button } from "../../components/button/button";
-import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
-import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
+import { Input } from '../../components/input/input';
+import { Button } from '../../components/button/button';
+import { SecondaryButton } from '../../components/secondaryButton/secondaryButton';
+import { AddTripImgUpload } from '../../components/uploadImages/addTripImgUpload';
 import { ArrowLeft } from '@phosphor-icons/react';
 import axios from 'axios';
 import Alert from '@mui/material/Alert';
 import Stack from '@mui/material/Stack';
-import "./addTrip.css";
+import './addTripForm.css';
 
 export const AddTripForm = () => {
     const [descriptionLength, setDescriptionLength] = useState(0);
@@ -145,20 +145,19 @@ export const AddTripForm = () => {
     const handleSecondaryButtonClick = () => {
         navigate("/mytrips");
     };
-
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <div className='addTripContainer'>
-                    <AddTripImgUpload 
-                        inputType='file'
-                        images={images} 
-                        setImages={setImages} 
-                        multiple 
-                    />
-                    <div className='addTripForm'>
-                        <div className="formContainer">
-                            <div className="inputColumn">
+        <form onSubmit={handleSubmit}>
+            <div className='addTripBox'>
+                <AddTripImgUpload 
+                    inputType='file'
+                    images={images} 
+                    setImages={setImages} 
+                    multiple 
+                />
+                <div className='addTripForm'>
+                    <div className="formContainer">
+                        <div className="inputColumn">
+                            <div className='locationColumn'>
                                 <Input 
                                     labelText="Country" 
                                     inputType="text" 
@@ -180,7 +179,8 @@ export const AddTripForm = () => {
                                     onChange={handleInputChange}
                                 />
                                 {errors.city && <div className="error">{errors.city}</div>}
-                                
+                            </div>
+                            <div className='datesColumn'>
                                 <Input 
                                     labelText="Start Date" 
                                     inputType="date" 
@@ -200,7 +200,6 @@ export const AddTripForm = () => {
                                 />
                                 {errors.date && <div className="error">{errors.date}</div>}
                             </div>
-                            
                             <div className="textAreaContainer">
                                 <label htmlFor="description">Description</label>
                                 <textarea 
@@ -213,47 +212,50 @@ export const AddTripForm = () => {
                                     maxLength={maxLength}
                                     onChange={handleDescriptionChange}
                                 ></textarea>
-                                {errors.description && <div className="error">{errors.description}</div>}
-                                <div className="characterCount">
-                                    {descriptionLength}/{maxLength} characters
-                                </div>
+                            {errors.description && <div className="error">{errors.description}</div>}
+                            <div className="characterCount">
+                                {descriptionLength}/{maxLength} characters
                             </div>
                         </div>
-                    </div>
-                    <div className="buttonContainer">
-                        <SecondaryButton 
-                            text="MY TRIPS" 
-                            icon={<ArrowLeft size={24} weight='bold' padding='' />} 
-                            handleClick={handleSecondaryButtonClick} 
-                        />
-                        <Button text="SAVE MY TRIP" type="submit" />
+                        </div>
                     </div>
                 </div>
-            </form>
-            {successMessage && (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                    <Alert 
-                        variant="filled" 
-                        severity="success" 
-                        onClose={() => setSuccessMessage(null)}
-                        sx={{ fontSize: '1.25rem' }}
-                    >
-                        {successMessage}
-                    </Alert>
-                </Stack>
-            )}
-            {errorMessage && (
-                <Stack sx={{ width: '100%' }} spacing={2}>
-                    <Alert 
-                        variant="filled" 
-                        severity="error" 
-                        onClose={() => setErrorMessage(null)}
-                        sx={{ fontSize: '1.25rem' }}
-                    >
-                        {errorMessage}
-                    </Alert>
-                </Stack>
-            )}
-        </>
+                <div className='buttonContainer'>
+                    <SecondaryButton 
+                        text='MY TRIPS' 
+                        icon={<ArrowLeft size={24} weight='bold' padding='' />} 
+                        handleClick={handleSecondaryButtonClick} 
+                    />
+                    <Button 
+                        text='SAVE MY TRIP' 
+                        type='submit' 
+                    />
+                </div>
+                {successMessage && (
+                    <Stack sx={{ width: '50%' }} spacing={2}>
+                        <Alert 
+                            variant="filled" 
+                            severity="success" 
+                            onClose={() => setSuccessMessage(null)}
+                            sx={{ fontSize: '1.25rem' }}
+                        >
+                            {successMessage}
+                        </Alert>
+                    </Stack>
+                )}
+                {errorMessage && (
+                    <Stack sx={{ width: '50%' }} spacing={2}>
+                        <Alert 
+                            variant="filled" 
+                            severity="error" 
+                            onClose={() => setErrorMessage(null)}
+                            sx={{ fontSize: '1.25rem' }}
+                        >
+                            {errorMessage}
+                        </Alert>
+                    </Stack>
+                )}
+            </div>     
+        </form>
     );
 };

@@ -86,11 +86,11 @@ export const UserProfileView = () => {
                 <Button text="LOG OUT" onClick={handleLogOut} />
               </div>
             </div>    
-          </div>
+        </div>
         <div className='userProfileLeftSection'>
             <div className='userProfileIllustration'>
-                <img src={Standing} alt="Standing Illustration" />
-                <img src={Humaaan} alt="Humaaan Illustration" />
+                <img src={Standing} alt='Standing Illustration' />
+                <img src={Humaaan} alt='Humaaan Illustration' />
             </div>
         </div>
       </div>

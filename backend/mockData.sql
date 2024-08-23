@@ -6,7 +6,7 @@ VALUES
 (1, 'Ada Lovelace', 'adalovelace', 'ada.lovelace@gmail.com', '$2b$10$A/FfTkuxVxuuzobymwpNCOzDLsctzpX3HN0KSmlOFKgjmF5YoLp9W'),
 (2, 'Rosalind Franklin', 'rosalindf', 'rosalind.franklin@gmail.com', '$2b$10$6sub3KkksQrBdy2VjpBTF.qK6F8XzsEhpqxXCV4kno.3s0L1To02W'),
 (3, 'Lise Meitner', 'lisemeitner', 'lise.meitner@gmail.com', '$2y$10$T9zXnRZb.xS4G6HGi21O6ujm8IaUM5K4/1T/QF2bqW1aUIRbMqTAJ'),
-(4,	'Carmen Sandiego', 'carmenJK0101', 'th4les.vic.jkm@gmail.com', '$2b$10$URSNfNyaCimQwnNssm65MuXDeNbyd74XoG4HW6sqN3SIC9VIeOrQC'),
+(4,	'Victoria Test', 'victoriatest01', 'th4les.vic.jkm@gmail.com', '$2b$10$URSNfNyaCimQwnNssm65MuXDeNbyd74XoG4HW6sqN3SIC9VIeOrQC'),
 (5, 'Lily', 'lily93', 'lilywright93@gmail.com', '$2b$10$Qw859hFvbPC0fUCKeYWxFu/giGrgJIItxZAXX.GMzzOAbZgrd5oYq');
 
 INSERT INTO Trips (tripID, userID, city, country, description, date_from, date_to)
@@ -28,23 +28,14 @@ VALUES
 (8, 3, 'Stockholm', 'Sweden', 'Received an honorary doctorate.', '2024-03-15 12:00:00', '2024-03-20 15:00:00'),
 (9, 3, 'Vienna', 'Austria', 'Presented research on nuclear fission.', '2024-05-10 09:00:00', '2024-05-14 16:00:00'),
 
--- Trips for Carmen Sandiego
+-- Trips for Victoria Test
 (10, 4,	'Tokyo', 'Japan',	'Immersing myself in the unique blend of tradition and modernity, from ancient temples to futuristic districts.', '2024-06-15 00:00:00', '2024-08-22 00:00:00'),
 (11, 4, 'Reykjavik', 'Iceland', 'Experiencing the magic of the Northern Lights, soaking in hot springs, and exploring stunning volcanic landscapes.', '2024-07-19 00:00:00', '2024-08-01 00:00:00'),
 (12, 4, 'Sydney', 'Australia', 'Soaking up the sun on Bondi Beach, followed by a harbor cruise and indulging in fresh seafood along the coastline.', '2024-01-12 00:00:00', '2024-10-19 00:00:00'),
 (13, 4, 'Rio de Janeiro', 'Brazil', 'Enjoying the vibrant culture of Carnival, lounging on Copacabana Beach, and taking in the stunning views from Sugarloaf Mountain.', '2024-03-10 00:00:00', '2024-08-29 00:00:00'),
 (14, 4, 'Bilbao', 'Spain', 'Exploring the rich Basque culture, visiting the iconic Guggenheim Museum, and enjoying pintxos in the old town.', '2024-08-01 00:00:00', '2024-09-07 00:00:00'),
 (15, 4, 'Vancuver', 'Canada', 'Exploring the breathtaking landscapes of the Pacific Northwest, with hikes in the mountains and visits to vibrant local markets.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
-(49, 4, 'Viena', 'Austria', 'Vienna, exudes charm with its grand palaces, historic squares, and vibrant cultural scene. The majestic Schönbrunn Palace and the opulent Hofburg reflect its royal past, while the Vienna State Opera and Musikverein celebrate its musical heritage. Stroll through the elegant streets of the Ringstrasse, savor coffee and pastries in traditional cafes, and explore the artistic treasures of the Belvedere and Kunsthistorisches Museum.' , '2024-04-01 00:00:00', '2024-10-07 00:00:00'),
-(50, 4, 'Yorkshire', 'England', 'Explore Yorkshire, where history and nature converge in stunning harmony. Start in York, with its medieval streets and the majestic York Minster. Wander the picturesque Shambles and ancient city walls. Venture into the Yorkshire Dales for breathtaking landscapes, with rolling hills and waterfalls like Aysgarth Falls. Yorkshire offers a perfect blend of culture, history, and natural beauty.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
-(51, 4, 'Saint-Tropez', 'France', 'Arriving in Saint-Tropez, the allure of the French Riviera instantly captivates. The vibrant marina, lined with luxurious yachts and pastel-hued buildings, sets the scene for a perfect getaway. Wandering through the cobblestone streets of La Ponche, the historic heart of the town, reveals charming boutiques and cafes. The sun-drenched beaches, particularly Pampelonne, offer a serene escape, while the lively market at Place des Lices brims with local flavors and artisanal treasures', '2024-05-01 00:00:00', '2024-05-07 00:00:00'),
-(52, 4, 'Cologne', 'Germany', 'Arriving in Cologne, the majestic spires of the Cologne Cathedral dominate the skyline, welcoming us to this historic city. Strolling along the Rhine River, we take in the blend of medieval charm and modern vibrancy. The Altstadt, with its narrow, cobbled streets and colorful houses, invites exploration. We pause at a local café to enjoy a Kölsch beer, immersing ourselves in the lively atmosphere. The city’s rich history and warm, welcoming vibe make Cologne an unforgettable experience.', '2024-02-01 00:00:00', '2024-05-07 00:00:00'),
-(53, 4, 'London', 'England', 'Arriving in London, iconic landmarks greet us at every turn—Big Ben, the Tower Bridge, and the London Eye standing tall against the skyline. Walking through the bustling streets of Covent Garden and along the Thames, the blend of historic grandeur and modern energy is palpable. We explore the charm of Westminster, the art at the Tate Modern, and indulge in afternoon tea. Vibrant culture, rich history, and dynamic atmosphere make it an exhilarating experience', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
-(54, 4, 'Lyon', 'France', 'Arriving in Lyon, Renaissance charm and modern vibrancy is immediately captivating. We wander through the traboules of Vieux Lyon, discovering hidden passageways and historic architecture. The view from Fourvière Hill offers a stunning panorama of the city. We indulge in the culinary delights of the famous bouchons, savoring rich gastronomic heritage. With its beautiful riverfronts, lively markets, and cultural richness, Lyon leaves a lasting impression.', '2024-04-01 00:00:00', '2024-09-07 00:00:00'),
-(55, 4, 'Madrid', 'Spain', 'Arriving in Madrid lively energy is instantly felt. We stroll through the grand avenues, where historic architecture meets modern vibrancy. The Plaza Mayor buzzes with life, while the Royal Palace impresses with its opulence. We explore the artistic treasures of the Prado Museum and relax in the serene Retiro Park. As night falls, tapas bars come alive, offering a taste of rich culinary scene.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
-
-
--- Trips for Lily testing map page
+-- Trips for Lily
 (16, 5, 'Marrakech', 'Morocco', 'Exploring the vibrant souks, tasting exotic spices, and experiencing the rich history of this ancient city.', '2024-09-10 00:00:00', '2024-09-20 00:00:00'),
 (17, 5, 'Cairo', 'Egypt', 'Standing in awe of the Pyramids of Giza, cruising the Nile, and discovering ancient Egyptian history.', '2024-10-01 00:00:00', '2024-10-15 00:00:00'),
 (18, 5, 'Kyoto', 'Japan', 'Wandering through serene temples, admiring the beauty of cherry blossoms, and soaking in traditional hot springs.', '2024-11-05 00:00:00', '2024-11-20 00:00:00'),
@@ -78,24 +69,7 @@ VALUES
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text )
 VALUES 
- 
--- Photos for Ada Lovelace's trips
-(19, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825894/samples/man-on-a-street.jpg', NULL),
-(20, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/landscapes/nature-mountains.jpg', NULL),
-(21, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/people/bicycle.jpg', NULL),
-(22, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/architecture-signs.jpg', NULL),
-(23, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/sheep.jpg', NULL),
-(24, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/girl-urban-view.jpg', NULL),
-(25, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910781/pexels-abdel-rahman-abu-baker-958112-1963081_skytxw.jpg', NULL),
-(26, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
-(27, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL),
-(28, 4, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
-(29, 4, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
-(30, 5, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample.jpg', NULL),
-(31, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
-(32, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL),
-
--- Photos for userID=4 Carmen Sandiego // tripID= 10,11,13,14,15,28,29,30,31,32,33,35
+-- Photos for userID=4 // tripID= 10, 11, 13, 14, 15
 (1, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898930/hsp9umyioxxlkvcnmmux.png', NULL),
 (2, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898933/cwqdgzlvml95zmntkqzj.png', NULL),
 (3, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898932/kbg7xrtiwtybtensfmnk.png', NULL),
@@ -113,99 +87,88 @@ VALUES
 (15, 14, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723900905/nwikftoiyd8fqudgr22u.png', NULL),
 (16, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/rzmzljarevcl7xtlo0sz.jpg', NULL),
 (17, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/sjcgq1ogr1sjtk73fapk.jpg', NULL),
-(18, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/yedhvmb3houezptoojs8.jpg', NULL), 
-(43, 49, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/kxyf79poyzknqml0bt8r.jpg', NULL),
-(44, 49, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/hexkmk5rufwodll5hf8a.jpg', NULL),
-(45, 49, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/idfgm7p5k02yc639exwp.jpg', NULL),
-(46, 49, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/fogttznokpi1ljg3zqgq.jpg', NULL),
-(47, 50, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359147/uw6a3idggbihh9pk3q2m.jpg', NULL),
-(48, 50, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359146/svnrecdf2afzyujds9cq.jpg', NULL),
-(49, 50, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359146/cecpoeefncppx6lgxdwy.jpg', NULL),
-(50, 50, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359146/ouucniqt9nulmtoxonli.jpg', NULL),
-(51, 51, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359523/qmtdakcutez0lznkgaa5.jpg', NULL),
-(52, 51, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359530/rxdqqjeqi9yjfp45yopp.jpg', NULL),
-(53, 51, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359519/ylvjfkkgdrdmxq5vfbyr.jpg', NULL),
-(54, 51, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359518/adiarvj51byc3ixs8vxu.jpg', NULL),
-(55, 52, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/oci9lx9uadjdwv03chzr.jpg', NULL),
-(56, 52, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/llxyfmy9pcepyeovdwdm.jpg', NULL),
-(57, 52, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/xy3trwuwob2zhp8nb2cp.jpg', NULL),
-(58, 52, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/utfspcy1eyu8yeppwyu9.jpg', NULL),
-(59, 53, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/muejssv6szoez9j4phay.jpg', NULL),
-(60, 53, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/hjb3c7rakn0ftnjcinpv.jpg', NULL),
-(61, 53, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/eavwkrbcdyt1zxbdilyt.jpg', NULL),
-(62, 53, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/kuazjb0jad6dji3yuytf.jpg', NULL),
-(63, 54, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403142/qkxwtoimeu4shldtqfnp.jpg', NULL),
-(64, 54, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403143/ti3ifjfxqkjthkxnkowq.jpg', NULL),
-(65, 54, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403142/efdqyxmvi37wyvlyd6tr.jpg', NULL),
-(66, 54, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403142/jigei6skkm5dvqclabdr.jpg', NULL),
-(70, 55, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/jiisxigq8ovsaagfzcpi.jpg', NULL),
-(71, 55, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/vicfumjhvb2dzexqbll7.jpg', NULL),
-(72, 55, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/w5z6jmlanpma5u41bpap.jpg', NULL),
-(73, 55, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/hbpcz79dpw3lhlqwokbo.jpg', NULL);
+(18, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/yedhvmb3houezptoojs8.jpg', NULL);
+
+
+INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text)
+VALUES 
+-- Photos for Ada Lovelace's trips
+(19, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825894/samples/man-on-a-street.jpg', NULL),
+(20, 1, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/landscapes/nature-mountains.jpg', NULL),
+(21, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825887/samples/people/bicycle.jpg', NULL),
+(22, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/architecture-signs.jpg', NULL),
+(23, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/sheep.jpg', NULL),
+(24, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825886/samples/landscapes/girl-urban-view.jpg', NULL),
+(25, 2, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
+(26, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910781/pexels-abdel-rahman-abu-baker-958112-1963081_skytxw.jpg', NULL),
+(27, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
+(28, 3, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL),
+(29, 4, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
+(30, 5, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample.jpg', NULL),
+(31, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
+(32, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL),
 
 -- Lily's account
--- (33, 16, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400182/Screenshot_2024-08-23_at_09.02.58_gerjn5.png', NULL),
--- (34, 16, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400195/Screenshot_2024-08-23_at_09.03.11_uytua0.png', NULL),
--- (35, 17, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400243/Screenshot_2024-08-23_at_09.03.59_ifrbfo.png', NULL),
--- (36, 17, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400278/Screenshot_2024-08-23_at_09.04.34_xlaesg.png', NULL),
--- (37, 18, 5, '', NULL),
--- (38, 18, 5, '', NULL),
--- (39, 19, 5, '', NULL),
--- (40, 19, 5, '', NULL),
--- (41, 23, 5, '', NULL),
--- (42, 23, 5, '', NULL),
--- (43, 24, 5, '', NULL),
--- (44, 24, 5, '', NULL),
--- (45, 25, 5, '', NULL),
--- (46, 25, 5, '', NULL),
--- (47, 26, 5, '', NULL),
--- (48, 26, 5, '', NULL),
--- (49, 27, 5, '', NULL),
--- (50, 27, 5, '', NULL),
--- (51, 28, 5, '', NULL),
--- (52, 28, 5, '', NULL),
--- (53, 29, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724397783/Screenshot_2024-08-23_at_08.22.58_zt82rv.png', NULL),
--- (54, 29, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400118/Screenshot_2024-08-23_at_09.01.51_ybuxn2.png', NULL),
--- (55, 30, 5, '', NULL),
--- (56, 30, 5, '', NULL),
--- (57, 31, 5, '', NULL),
--- (58, 31, 5, '', NULL),
--- (59, 32, 5, '', NULL),
--- (60, 32, 5, '', NULL),
--- (61, 33, 5, '', NULL),
--- (62, 33, 5, '', NULL),
--- (63, 34, 5, '', NULL),
--- (64, 34, 5, '', NULL),
--- (65, 35, 5, '', NULL),
--- (66, 35, 5, '', NULL),
--- (67, 36, 5, '', NULL),
--- (68, 36, 5, '', NULL),
--- (69, 37, 5, '', NULL),
--- (70, 37, 5, '', NULL),
--- (71, 38, 5, '', NULL),
--- (72, 38, 5, '', NULL),
--- (73, 39, 5, '', NULL),
--- (74, 39, 5, '', NULL),
--- (75, 40, 5, '', NULL),
--- (76, 40, 5, '', NULL),
--- (77, 41, 5, '', NULL),
--- (78, 41, 5, '', NULL),
--- (79, 42, 5, '', NULL),
--- (80, 42, 5, '', NULL),
--- (81, 43, 5, '', NULL),
--- (82, 43, 5, '', NULL),
--- (83, 44, 5, '', NULL),
--- (84, 44, 5, '', NULL),
--- (85, 45, 5, '', NULL),
--- (86, 45, 5, '', NULL),
--- (87, 46, 5, '', NULL),
--- (88, 46, 5, '', NULL),
--- (89, 47, 5, '', NULL),
--- (90, 47, 5, '', NULL),
--- (91, 48, 5, '', NULL),
--- (92, 48, 5, '', NULL);
-
-
+(33, 16, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400182/Screenshot_2024-08-23_at_09.02.58_gerjn5.png', 'Exploring the vibrant souks of Marrakech'),
+(34, 16, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400195/Screenshot_2024-08-23_at_09.03.11_uytua0.png', 'Tasting exotic spices in Marrakech'),
+(35, 17, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400243/Screenshot_2024-08-23_at_09.03.59_ifrbfo.png', 'Pyramids of Giza in Cairo'),
+(36, 17, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400278/Screenshot_2024-08-23_at_09.04.34_xlaesg.png', 'Cruising the Nile in Cairo'),
+(37, 18, 5, '', 'Cherry blossoms in Kyoto'),
+(38, 18, 5, '', 'Traditional hot springs in Kyoto'),
+(39, 19, 5, '', 'Alfama views in Lisbon'),
+(40, 19, 5, '', 'Pastel de nata in Lisbon'),
+(41, 23, 5, '', 'Table Mountain views in Cape Town'),
+(42, 23, 5, '', 'Vibrant neighborhoods in Cape Town'),
+(43, 24, 5, '', 'Adventure sports in Queenstown'),
+(44, 24, 5, '', 'Breathtaking landscapes in Queenstown'),
+(45, 25, 5, '', 'White-washed buildings in Santorini'),
+(46, 25, 5, '', 'Sunsets over the caldera in Santorini'),
+(47, 26, 5, '', 'Northern Lights in Reykjavik'),
+(48, 26, 5, '', 'Volcanic landscapes in Reykjavik'),
+(49, 27, 5, '', 'Colosseum in Rome'),
+(50, 27, 5, '', 'Vatican City art in Rome'),
+(51, 28, 5, '', 'Old Quarter streets in Hanoi'),
+(52, 28, 5, '', 'Cruising Ha Long Bay in Hanoi'),
+(53, 29, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724397783/Screenshot_2024-08-23_at_08.22.58_zt82rv.png', 'Sydney Opera House'),
+(54, 29, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400118/Screenshot_2024-08-23_at_09.01.51_ybuxn2.png', 'Bondi Beach in Sydney'),
+(55, 30, 5, '', 'Inca citadel of Machu Picchu'),
+(56, 30, 5, '', 'Sacred Valley in Machu Picchu'),
+(57, 31, 5, '', 'Dancing tango in Buenos Aires'),
+(58, 31, 5, '', 'La Boca neighborhood in Buenos Aires'),
+(59, 32, 5, '', 'Blue Mosque in Istanbul'),
+(60, 32, 5, '', 'Grand Bazaar in Istanbul'),
+(61, 33, 5, '', 'Treasury in Petra'),
+(62, 33, 5, '', 'Monastery hike in Petra'),
+(63, 34, 5, '', 'Canadian Rockies in Banff'),
+(64, 34, 5, '', 'Banff National Park hike'),
+(65, 35, 5, '', 'Gaudi’s architecture in Barcelona'),
+(66, 35, 5, '', 'Tapas and sangria in Barcelona'),
+(67, 36, 5, '', 'Burj Khalifa in Dubai'),
+(68, 36, 5, '', 'Desert landscape in Dubai'),
+(69, 37, 5, '', 'Red Square in Moscow'),
+(70, 37, 5, '', 'Kremlin in Moscow'),
+(71, 38, 5, '', 'Beautiful beaches in Bali'),
+(72, 38, 5, '', 'Ancient temples in Bali'),
+(73, 39, 5, '', 'Historic castles in Edinburgh'),
+(74, 39, 5, '', 'Medieval Old Town in Edinburgh'),
+(75, 40, 5, '', 'Cobblestone streets in Bruges'),
+(76, 40, 5, '', 'Canal boat tour in Bruges'),
+(77, 41, 5, '', 'Berlin Wall'),
+(78, 41, 5, '', 'Brandenburg Gate in Berlin'),
+(79, 42, 5, '', 'Eiffel Tower in Paris'),
+(80, 42, 5, '', 'Louvre Museum in Paris'),
+(81, 43, 5, '', 'Nyhavn in Copenhagen'),
+(82, 43, 5, '', 'Tivoli Gardens in Copenhagen'),
+(83, 44, 5, '', 'Danube River in Budapest'),
+(84, 44, 5, '', 'Buda Castle in Budapest'),
+(85, 45, 5, '', 'Viking Ship Museum in Oslo'),
+(86, 45, 5, '', 'Opera House in Oslo'),
+(87, 46, 5, '', 'Royal Castle in Warsaw'),
+(88, 46, 5, '', 'Historic Old Town in Warsaw'),
+(89, 47, 5, '', 'British Museum in London'),
+(90, 47, 5, '', 'Buckingham Palace in London'),
+(91, 48, 5, '', 'Guinness Storehouse in Dublin'),
+(92, 48, 5, '', 'Temple Bar in Dublin');
 -- SELECT * FROM Photos;
 -- DELETE FROM Photos;
 
@@ -239,11 +202,6 @@ VALUES
 ('Kyoto', 35.011636, 135.768029),
 ('Cape Town', -33.924870, 18.424055),
 ('Queenstown', -45.031162, 168.662643),
-('Yorkshire', 53.959965, -1.087297),
-('Saint-Tropez', 43.2672, 6.6407),
-('Cologne', 50.937531, 6.960279),
-('London', 51.507351, -0.127758),
-('Lyon', 45.764043, 4.835659);
 ('Hanoi', 21.028511, 105.804817),
 ('Machu Picchu', -13.163068, -72.545128),
 ('Buenos Aires', -34.603722, -58.381592),
@@ -263,7 +221,6 @@ VALUES
 ('London', 51.507351, -0.127758),
 ('Dublin', 53.349805, -6.26031),
 ('Bruges', 51.209348, 3.224700);
-
 
 INSERT INTO Trip_Location (tripID, locationID)
 VALUES
@@ -286,20 +243,13 @@ VALUES
 (9, (SELECT locationID FROM Locations WHERE name = 'Vienna')),
 
 
--- For Carmen Sandiego Test
+-- For Victoria Test
 (10, (SELECT locationID FROM Locations WHERE name = 'Tokyo')),
 (11, (SELECT locationID FROM Locations WHERE name = 'Reykjavik')),
 (12, (SELECT locationID FROM Locations WHERE name = 'Sydney')),
 (13, (SELECT locationID FROM Locations WHERE name = 'Rio de Janeiro')),
 (14, (SELECT locationID FROM Locations WHERE name = 'Bilbao')),
 (15, (SELECT locationID FROM Locations WHERE name = 'Vancouver')),
-(49, (SELECT locationID FROM Locations WHERE name = 'Viena')),
-(50, (SELECT locationID FROM Locations WHERE name = 'Yorkshire')),
-(51, (SELECT locationID FROM Locations WHERE name = 'Saint-Tropez')),
-(52, (SELECT locationID FROM Locations WHERE name = 'Cologne')),
-(53, (SELECT locationID FROM Locations WHERE name = 'London')),
-(54, (SELECT locationID FROM Locations WHERE name = 'Lyon')),
-(55, (SELECT locationID FROM Locations WHERE name = 'Madrid')),
 
 -- For Lily's test
 (16, (SELECT locationID FROM Locations WHERE name = 'Marrakech')), 
@@ -332,5 +282,3 @@ VALUES
 (46, (SELECT locationID FROM Locations WHERE name = 'Warsaw')), 
 (47, (SELECT locationID FROM Locations WHERE name = 'London')), 
 (48, (SELECT locationID FROM Locations WHERE name = 'Dublin'));
-
-    

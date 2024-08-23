@@ -5,15 +5,14 @@ import { LogIn } from './pages/logIn/logIn';
 import { Register } from './pages/register/register';
 import { MyTrips } from './pages/myTrips/myTrips';
 import { AddTrip } from './pages/addTrip/addTrip';
-import { EditTrip } from './pages/editTrip/editTrip';
-import { UserProfile } from './pages/userProfile/userProfile';
-import { MapPage } from './pages/map/map';
 import { TripDetails } from './pages/tripDetails/tripDetails.jsx';
+import { EditTrip } from './pages/editTrip/editTrip';
+import { MapPage } from './pages/map/map';
+import { UserProfile } from './pages/userProfile/userProfile';
 import { AboutUs } from './pages/aboutUs/aboutUs';
 import { ResponsiveFooter } from './components/footer/responsiveFooter';
 import { ResponsiveNavbar } from './components/responsiveNavbar/responsiveNavbar';
 import { HelmetTitle } from './hoc/withTitle.jsx';
-
 import './App.css';
 
 function App() {
@@ -28,7 +27,7 @@ function App() {
 }
 
 function AppContent() {
-  const { isAuthenticated } = useContext(AuthContext); // Use AuthContext to track authentication state
+  const { isAuthenticated } = useContext(AuthContext);
 
   return (
     <Routes>

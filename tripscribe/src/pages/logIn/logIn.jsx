@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import groupImage from '../register/Group 2.png';
-import { Button } from '../../components/button/button.jsx';
-import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../features/userRedux';
+import axios from 'axios';
+import { Button } from '../../components/button/button.jsx';
+import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
+import groupImage from '../register/Group 2.png';
 import './login.css';
 
 
 export const LogIn = ({ checkAuth }) => {
-    // React hooks
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loginFailure, setLoginFailure] = useState(false);
@@ -23,16 +23,13 @@ export const LogIn = ({ checkAuth }) => {
 
     const dispatch = useDispatch();
 
-     // added for Redux work
      const userRedux = useSelector((state)=>
         state.userRedux.value);
 
-    // Triggers animation when login page loads
     useEffect(() => {
         setIsLoginVisible(true);
     }, []);
 
-    // Clear error when user starts typing again
     useEffect(() => {
         if (loginFailure) {
             setLoginFailure(false);
@@ -50,7 +47,6 @@ export const LogIn = ({ checkAuth }) => {
         );
     };
 
-    //Handle API submission
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -61,22 +57,16 @@ export const LogIn = ({ checkAuth }) => {
             });
 
             const { token, user } = response.data;
-            // Acquiring the userID from the response
+
             const userID = user?.id; 
-            console.log("userID is:", userID);
 
             if (!userID) {
                 throw new Error('User ID not found in response');
             }
 
-            // Store the token in SessionStorage
             sessionStorage.setItem('token', token);
             sessionStorage.setItem('userID', userID);
 
-            // Immediately check if the token is set
-            console.log('Token set in sessionStorage:', sessionStorage.getItem('token'));
-
-            // Call the checkAuth function passed from App.js
             if (checkAuth) {
                 checkAuth();
             }
@@ -135,7 +125,7 @@ export const LogIn = ({ checkAuth }) => {
                             className='button-submit'
                             text='LOG IN'
                             type='submit'
-                            disabled={!validateForm() || isSubmitting} // Disable if form is invalid or submitting
+                            disabled={!validateForm() || isSubmitting}
                         />
                         
                     </div>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -10,7 +11,6 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link } from 'react-router-dom';
 import WorkOutlineIcon from '@mui/icons-material/WorkOutline'; 
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import MapIcon from '@mui/icons-material/Map'; 
@@ -25,7 +25,6 @@ const pageLinks = {
 const settings = ['Profile'];
 const settingsLinks = {
   'Profile': '/userprofile',
-  //'Logout': '/',
 };
 
 export const ResponsiveNavbar = () => {
@@ -70,8 +69,12 @@ export const ResponsiveNavbar = () => {
             >
               TRIPSCRIBE
             </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+            <Box 
+              sx={{ 
+                flexGrow: 1, 
+                display: { xs: 'flex', md: 'none' } 
+                }}
+            >
               <IconButton
                 size="large"
                 aria-label="navigation menu"
@@ -101,15 +104,25 @@ export const ResponsiveNavbar = () => {
                 }}
               >
                 {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu} component={Link} to={pageLinks[page]}>
-                    <Typography textAlign="center" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                  <MenuItem 
+                    key={page} 
+                    onClick={handleCloseNavMenu} 
+                    component={Link} 
+                    to={pageLinks[page]}
+                  >
+                    <Typography 
+                      textAlign="center" 
+                      sx={{ 
+                        textDecoration: 'none', 
+                        color: 'inherit' 
+                      }}
+                    >
                       {page}
                     </Typography>
                   </MenuItem>
                 ))}
               </Menu>
             </Box>
-
             <Typography
               variant="h5"
               noWrap
@@ -128,7 +141,13 @@ export const ResponsiveNavbar = () => {
             >
               TRIPSCRIBE
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, alignItems: 'center' }}>
+            <Box 
+              sx={{ 
+                flexGrow: 1, 
+                display: { xs: 'none', md: 'flex' }, 
+                alignItems: 'center' 
+                }}
+            >
               {pages.map((page) => (
                 <Button
                   key={page}
@@ -145,25 +164,58 @@ export const ResponsiveNavbar = () => {
                   }}
                 >
                   {page === 'My Trips' && (
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box 
+                      sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center' 
+                      }}
+                    >
                       <WorkOutlineIcon sx={{ mr: 1 }} />
-                      <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          color: 'inherit', 
+                          fontSize: '1.2rem' 
+                          }}
+                      >
                         {page}
                       </Typography>
                     </Box>
                   )}
                   {page === 'Add Trip' && (
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box 
+                      sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center' 
+                        }}
+                    >
                       <AddBoxIcon sx={{ mr: 1 }} />
-                      <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          color: 'inherit', 
+                          fontSize: '1.2rem' 
+                        }}
+                      >
                         {page}
                       </Typography>
                     </Box>
                   )}
                   {page === 'Map View' && (
-                    <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                    <Box 
+                      sx={{ 
+                        display: 'flex', 
+                        alignItems: 'center' 
+                        }}
+                    >
                       <MapIcon sx={{ mr: 1 }} />
-                      <Typography variant="body1" sx={{ color: 'inherit', fontSize: '1.2rem' }}>
+                      <Typography 
+                        variant="body1" 
+                        sx={{ 
+                          color: 'inherit', 
+                          fontSize: '1.2rem' 
+                          }}
+                      >
                         {page}
                       </Typography>
                     </Box>
@@ -195,8 +247,16 @@ export const ResponsiveNavbar = () => {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu} component={Link} to={settingsLinks[setting]}>
-                    <Typography textAlign="center" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                  <MenuItem 
+                    key={setting} 
+                    onClick={handleCloseUserMenu} 
+                    component={Link} 
+                    to={settingsLinks[setting]}
+                  >
+                    <Typography 
+                      textAlign="center" 
+                      sx={{ textDecoration: 'none', color: 'inherit' }}
+                    >
                       {setting}
                     </Typography>
                   </MenuItem>
@@ -206,7 +266,6 @@ export const ResponsiveNavbar = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      {/* Placeholder div to prevent content from being hidden under the fixed navbar */}
       <div style={{ marginTop: '64px' }}></div>
     </>
   );

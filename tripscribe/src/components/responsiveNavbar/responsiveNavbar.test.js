@@ -1,10 +1,9 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { fireEvent } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
-import ResponsiveNavbar from './ResponsiveNavbar';
+import ResponsiveNavbar from './responsiveNavbar';
 
-// Check if the TRIPSCRIBE title is present
 test('renders the navbar with TRIPSCRIBE text', () => {
   render(
     <Router>
@@ -13,10 +12,10 @@ test('renders the navbar with TRIPSCRIBE text', () => {
   );
 
   const titleElement = screen.getAllByText(/TRIPSCRIBE/i);
-  expect(titleElement.length).toBeGreaterThan(0); // Appears in both mobile and desktop views
+  expect(titleElement.length).toBeGreaterThan(0);
 });
 
-// Check if navigation links are present
+
 test('renders the navbar with navigation links', () => {
   render(
     <Router>
@@ -24,7 +23,6 @@ test('renders the navbar with navigation links', () => {
     </Router>
   );
 
-  // Check if navigation links are present
   const addTripLink = screen.getAllByText(/Add Trip/i);
   expect(addTripLink.length).toBeGreaterThan(0); // Appears in both mobile and desktop views
 
@@ -35,7 +33,6 @@ test('renders the navbar with navigation links', () => {
   expect(mapViewLink.length).toBeGreaterThan(0); // Appears in both mobile and desktop views
 });
 
-// Use fireEvent to simulate a click event on the TripScribe title
 test('clicking on the TRIPSCRIBE title navigates to the My Trips page', () => {
   render(
     <Router>
@@ -43,11 +40,9 @@ test('clicking on the TRIPSCRIBE title navigates to the My Trips page', () => {
     </Router>
   );
 
-  // Click on the TRIPSCRIBE title
   const titleElement = screen.getAllByText(/TRIPSCRIBE/i);
   fireEvent.click(titleElement[0]);
 
-  // Check if the URL changes to the My Trips page
   expect(window.location.pathname).toBe('/mytrips');
 });
 

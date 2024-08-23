@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import axios from 'axios';  // Import axios
-import './register.css';
 import { useNavigate } from 'react-router-dom';
-import groupImage from './Group 2.png';
-import { PopDialog } from '../../components/dialog/dialog';
 import { useDispatch } from 'react-redux';
 import { loginRedux } from '../../features/userRedux';
+import axios from 'axios'; 
+import { PopDialog } from '../../components/dialog/dialog';
+import groupImage from './Group 2.png'; 
+import './register.css';
 
 export const Register = () => {
     const [fullname, setfullname] = useState('');
@@ -18,7 +18,7 @@ export const Register = () => {
     const [emailExists, setEmailExists] = useState(false);
 
     const navigate = useNavigate();
-    //Redux work
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -53,8 +53,6 @@ export const Register = () => {
                 setEmailExists(false);
                 setRegistered(true);
 
-
-                // Clear token if accidentally stored
                 sessionStorage.removeItem('token');
             }
         } catch (error) {
@@ -64,7 +62,7 @@ export const Register = () => {
     }, [fullname, username, email, password, confirmPassword]);
 
     const handleOK = () => {
-        //Redux work 
+        
         dispatch(loginRedux({name:'Registered User'}));
         navigate('/');
 

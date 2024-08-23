@@ -1,12 +1,10 @@
 const db = require("../config/db");
 
-// Controller to edit country, city, description, date_from, date_to fields and deleting/adding more images
+// Controller to edit 
 const editTripByID = async (req, res) => {
   const { tripID } = req.params;
   const userID = req.user.userID;
   const { country, city, description, date_from, date_to, photos } = req.body;
-
-  console.log("Received data:", req.body);
 
   if (!country || !city || !description || !date_from || !date_to) {
     return res.status(400).json({ message: "All fields are required" });

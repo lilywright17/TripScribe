@@ -9,7 +9,6 @@ test('renders card component correctly with country, city passed by props', () =
 }
 );
 
-// test to see if image is rendered correctly
 test('renders card component correctly with image passed by props', () => {
     const tree = renderer.create(<Card image="https://www.example.com/image.jpg" />).toJSON();
     expect(tree).toMatchSnapshot();

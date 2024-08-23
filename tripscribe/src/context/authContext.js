@@ -1,23 +1,23 @@
 import React, { createContext, useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Snackbar from '@mui/material/Snackbar';
 import Alert from '@mui/material/Alert';
 
-// Create the AuthContext
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // State to track authentication
+    const [isAuthenticated, setIsAuthenticated] = useState(false); 
     const [openSnackbar, setOpenSnackbar] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
         if (token) {
-            setIsAuthenticated(true); // Set initial authentication state based on token
+            setIsAuthenticated(true); 
         } else {
-            setIsAuthenticated(false); // Ensure the user is marked as not authenticated if no token
+            setIsAuthenticated(false); 
         }
 
         const interceptor = axios.interceptors.response.use(
@@ -26,20 +26,15 @@ export const AuthProvider = ({ children }) => {
                 const status = error.response ? error.response.status : null;
     
                 if (status === 401 || status === 403) {
-                    if (isAuthenticated) { // Only trigger logout and snackbar if user was authenticated
-                        console.log('Token expired or invalid - triggering logout'); // Debugging Log 
+                    if (isAuthenticated) {
 
-                        // Clear token from sessionStorage
                         sessionStorage.removeItem('token');
-                        setIsAuthenticated(false); // Update authentication state
+                        setIsAuthenticated(false); 
 
-                        setOpenSnackbar(true); // Trigger the snackbar
-                        console.log('Snackbar triggered'); // Debugging Log
+                        setOpenSnackbar(true); 
 
-                        // Redirect to login after a slight delay
                         setTimeout(() => {
                             navigate('/', { replace: true });
-                            console.log('Navigation to login initiated'); // Debugging Log
                         }, 100); 
                     }
                 }

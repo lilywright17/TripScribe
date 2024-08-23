@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 import { Input } from "../../components/input/input";
 import { Button } from "../../components/button/button";
 import { SecondaryButton } from "../../components/secondaryButton/secondaryButton";
-import { ArrowLeft } from "@phosphor-icons/react";
 import { AddTripImgUpload } from "../../components/uploadImages/addTripImgUpload";
-import "./editTrip.css";
-import Alert from "@mui/material/Alert";
 import { Stack } from "@mui/material";
-import axios from "axios";
+import Alert from "@mui/material/Alert";
+import { ArrowLeft } from "@phosphor-icons/react";
+import "./editTrip.css";
 
 export const EditTripForm = () => {
   const [descriptionLength, setDescriptionLength] = useState(0);
@@ -93,10 +93,8 @@ export const EditTripForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Attaching image URLs
     const photoUrls = images.map((image) => image.url);
 
-    // Form validation logic - checking for empty input fields
     const newErrors = {};
     const startDate = new Date(tripData.startDate);
     const endDate = new Date(tripData.endDate);
@@ -123,13 +121,12 @@ export const EditTripForm = () => {
     try {
       const token = sessionStorage.getItem("token");
 
-      // Map the frontend fields to backend expected fields
       const requestData = {
         country: tripData.country,
         city: tripData.city,
         description: tripData.description,
-        date_from: tripData.startDate, // Renamed from startDate to date_from
-        date_to: tripData.endDate, // Renamed from endDate to date_to
+        date_from: tripData.startDate, 
+        date_to: tripData.endDate, 
         photos: photoUrls,
       };
       await axios.put(
@@ -142,13 +139,13 @@ export const EditTripForm = () => {
           },
         }
       );
-      // Display an alert "Successful editing message"
+
       setSuccessMessage(
         `The trip "${tripData.country}, ${tripData.city}" was successfully updated!`
       );
 
       setImages([]);
-      // Wait 2 sec (2000 milliseconds) before navigating to TripDetails after the alert
+      
       setTimeout(() => {
         navigate(`/tripdetails/${tripID}`);
       }, 2000);

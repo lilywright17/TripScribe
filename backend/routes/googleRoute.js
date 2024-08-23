@@ -9,4 +9,4 @@ router.get('/google-maps-key', (req, res) => {
   res.json({ apiKey });
 });
 
-module.exports = router; // Export the router
+module.exports = router; 

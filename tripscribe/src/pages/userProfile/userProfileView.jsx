@@ -1,12 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Input } from "../../components/input/input";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { logoutRedux } from '../../features/userRedux';
-import axios from 'axios';
-//import { Button } from "@mui/material";
-import { Button }  from '../../components/button/button'
 import { AuthContext } from "../../context/authContext";
+import axios from 'axios';
+import { Input } from "../../components/input/input";
+import { Button }  from '../../components/button/button'
 import Standing from "./Standing.svg";
 import Humaaan from "./Humaaan.svg";
 import './userProfile.css';
@@ -15,18 +14,13 @@ export const UserProfileView = () => {
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
 
-
-  // added for Redux work
   const userRedux = useSelector((state)=>
     state.userRedux.value);
 
-  // Acquiring the UserID from the sessionStorage
   const userID = sessionStorage.getItem("userID");
 
-  // Redux work
   const dispatch = useDispatch();
 
-  // Access setIsAuthenticated from AuthContext
   const { setIsAuthenticated } = useContext(AuthContext);
 
   useEffect(() => {
@@ -41,8 +35,7 @@ export const UserProfileView = () => {
               },
             }
           );
-          // Logging response from BE
-          console.log("API Response:", response.data); 
+ 
           setUserProfile(response.data);
         }else {
           setError('User ID is missing');
@@ -56,16 +49,14 @@ export const UserProfileView = () => {
     getUserProfile();
   }, [userID]);
 
-  // Get the User's first name from fullname 
   const getFirstName = (fullname) => fullname.split(' ')[0];
 
-  // Function to handle logout
   const handleLogOut = () => {
-    sessionStorage.removeItem('userID'); // Remove token from sessionStorage
-    sessionStorage.removeItem('token'); // Remove token from sessionStorage
+    sessionStorage.removeItem('userID'); 
+    sessionStorage.removeItem('token'); 
     setIsAuthenticated(false);
-    console.log('Token removed!') // Update authentication state to false
-    dispatch(logoutRedux()); // Dispatch logout action for Redux 
+    console.log('Token removed!') 
+    dispatch(logoutRedux()); 
   };
 
   if (error) {
@@ -80,9 +71,24 @@ export const UserProfileView = () => {
               <div className='inputColumn'>
               <h1>Hello {userRedux?.name || getFirstName(userProfile?.fullname || 'Guest')}!</h1>
               <h2>Welcome {getFirstName(userProfile?.fullname || 'Guest')}</h2>
-                <Input id= 'fullNameUserProfile' labelText='Full Name'  value={userProfile?.fullname} readOnly={true} />                
-                <Input id= 'emailUserProfileView' labelText='Email'  value={userProfile?.email} readOnly={true}  />
-                <Input id= 'passwordUserProfileView' labelText='Password'  value={'********'} readOnly={true}  />    
+                <Input 
+                  id= 'fullNameUserProfile' 
+                  labelText='Full Name'  
+                  value={userProfile?.fullname} 
+                  readOnly={true} 
+                />                
+                <Input 
+                  id= 'emailUserProfileView' 
+                  labelText='Email'  
+                  value={userProfile?.email} 
+                  readOnly={true}  
+                />
+                <Input 
+                  id= 'passwordUserProfileView' 
+                  labelText='Password'  
+                  value={'********'} 
+                  readOnly={true}  
+                />    
                 <Button text="LOG OUT" onClick={handleLogOut} />
               </div>
             </div>    

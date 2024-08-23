@@ -11,7 +11,6 @@ const deleteTrip = async(req,res) => {
 
     try {
 
-        // Checking if the trip exists and belongs to the user [Authorization]
         const [tripResult] = await db.query(
             `SELECT * FROM Trips WHERE tripID = ? AND userID = ?`,
             [tripID, userID]
@@ -36,7 +35,6 @@ const deleteTrip = async(req,res) => {
          res.status(200).json({ message: 'Successfully deleted Trip and Photos!' });
 
     } catch (error) {
-            // If there is an error, rollback the transaction
             await db.query('ROLLBACK');
     
             console.error('Error deleting trip:', error);

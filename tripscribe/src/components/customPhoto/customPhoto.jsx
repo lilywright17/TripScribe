@@ -1,17 +1,14 @@
 import { Paper } from "@mui/material";
 import { useTheme, useMediaQuery } from "@mui/material";
 
-// Defining a custom photo component to display images
 export const CustomPhoto = ({ url }) => {
-  // Accessing theme for responsive design
   const theme = useTheme();
-  // Media queries to determine screen size
+
   const isSm = useMediaQuery(theme.breakpoints.down("sm"));
   const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
-  // Determine the size of the CustomPhoto based on screen size using ternary logic
-   const photoWidth = isSm ? '100%' : isMd ? '80%' : '60%';
-   const photoHeight = isSm ? "200px" : isMd ? "260px" : "320px";
+  const photoWidth = isSm ? '100%' : isMd ? '80%' : '60%';
+  const photoHeight = isSm ? "200px" : isMd ? "260px" : "320px";
 
   return (
     <Paper
@@ -33,7 +30,6 @@ export const CustomPhoto = ({ url }) => {
           objectFit: "cover",
           borderRadius: "12px",
           height: photoHeight,
-          objectFit: "cover",
           display: "block",
         }}
       />

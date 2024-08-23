@@ -4,7 +4,6 @@ import Standing4 from './Standing4.svg'
 import './addTrip.css'
 
 export const AddTrip = () => { 
-
     return (
         <>
             <div className='addTripPageContainer'>

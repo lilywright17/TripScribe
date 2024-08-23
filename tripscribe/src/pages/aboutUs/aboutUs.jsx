@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Unstable_Grid2';
 import { styled } from '@mui/material/styles';
-import { Helmet } from 'react-helmet';
 import './aboutUs.css';
 
 
@@ -93,54 +92,77 @@ const usData = [
 export const AboutUs = () => {
   return (
     <>
-        <Helmet>
-            <title>TripScribe - About Us</title>
-        </Helmet>
       <div className="aboutUs">
         <h1 className="aboutUsTitle">About Us</h1>
         <h2>Welcome to TRIPSCRIBE - Your new travel diary app! </h2>
         <p className="aboutUsText">
           <p>The Tripscribe application is designed to provide users with a personalised and organised way to 
-          document and visualise their travel experiences.</p>
+          document and visualise their travel experiences.
+          </p>
           <p>To access the app's features, users must first register and log in. 
-          The application includes several key features that allow users to manage their travel records effectively:</p>
-          
+          The application includes several key features that allow users to manage their travel records effectively:
+          </p>
           <ul>
             <li>Trip Management -  The app allows users to view, edit, and delete their trips, 
-                making it easy to manage their travel history!</li>
-            <li>Map View - provides a visual representation of all the locations users have visited.</li>
-            <li>User Profile - view your profile details, including their name and email address.</li>
+                making it easy to manage their travel history!
+            </li>
+            <li>Map View - provides a visual representation of all the locations users have visited.
+            </li>
+            <li>User Profile - view your profile details, including their name and email address.
+            </li>
           </ul>
           <br></br>
-          <p>Here's a little info about each member of our development team!</p>
+          <p>Here's a little info about each member of our development team!
+          </p>
         </p>
       </div>
-      <Box sx={{ flexGrow: 1 }} className="aboutUsContainer">
-      <Grid container spacing={6} alignItems="stretch">
-    {usData.map((user) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={user.id}>
-            <Item className="userCard">
-                <img
-                    className="teamMemberImage"
-                    src={user.imageUrl}
-                    alt={`photo of ${user.firstName}`}
-                />
-                <h2>{user.emoji} {user.firstName}</h2>
-                <h3>{user.lastName}</h3>
-                <p>{user.info}</p>
-                <div className="socialsContainer">
-                    <a href={user.linkedInUrl} target="_blank" rel="noopener noreferrer">
-                        <img className="linkedInIcon" src={linkedInLogo} alt="LinkedIn" />
-                    </a>
-                    <a href={user.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <img className="githubIcon" src={githubLogo} alt="GitHub" />
-                    </a>
-                </div>
-            </Item>
+    <Box 
+        sx={{ flexGrow: 1 }} 
+        className="aboutUsContainer"
+    >
+        <Grid 
+        container spacing={6} 
+        alignItems="stretch"
+        >
+        {usData.map((user) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={user.id}>
+                <Item className="userCard">
+                    <img
+                        className="teamMemberImage"
+                        src={user.imageUrl}
+                        alt={`photo of ${user.firstName}`}
+                    />
+                    <h2>{user.emoji} {user.firstName}</h2>
+                    <h3>{user.lastName}</h3>
+                    <p>{user.info}</p>
+                    <div className="socialsContainer">
+                        <a 
+                            href={user.linkedInUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <img 
+                                className="linkedInIcon" 
+                                src={linkedInLogo} 
+                                alt="LinkedIn" 
+                            />
+                        </a>
+                        <a 
+                            href={user.githubUrl} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <img 
+                            className="githubIcon" 
+                            src={githubLogo} 
+                            alt="GitHub" 
+                        />
+                        </a>
+                    </div>
+                </Item>
+            </Grid>
+        ))}
         </Grid>
-    ))}
-</Grid>
-
     </Box>
     </>
   );

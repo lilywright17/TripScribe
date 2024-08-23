@@ -1,11 +1,9 @@
-
-
 .addTripPageContainer {
     display: flex;
     flex-direction: row; 
     min-height: 100vh; 
     align-items: flex-start; 
-    justify-content: center; /* Space between the form and the illustration */
+    justify-content: center; 
     padding: 8x; 
     margin: auto; 
 }

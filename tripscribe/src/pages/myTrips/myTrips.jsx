@@ -7,10 +7,11 @@ import { DatePick } from "../../components/datepicker/datepicker.jsx";
 import { Filter } from "../../components/filter/filter.jsx";
 import { SearchInput } from "../../components/searchInput/searchInput.jsx";
 import { Button } from "../../components/button/button.jsx";
+import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
+import { Grid, Box } from "@mui/material";
 import Standing from "./images/Standing.png";
 import "./myTrips.css";
-import { Grid, Box } from "@mui/material";
-import { SecondaryButton } from "../../components/secondaryButton/secondaryButton.jsx";
+
 
 export const MyTrips = () => {
   const [rangeDate, setRangeDate] = useState([null, null]);
@@ -23,10 +24,8 @@ export const MyTrips = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // added for Redux work
   const userRedux = useSelector((state) => state.userRedux.value);
 
-  // Using Axios to get the data from the back-end
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -42,7 +41,7 @@ export const MyTrips = () => {
           if (response.status === 200) {
             const tripData = response.data.map((trip) => ({
               ...trip,
-              tripID: Number(trip.tripID), // Ensure tripID is a number
+              tripID: Number(trip.tripID),
             }));
             setTripsArray(Array.isArray(tripData) ? tripData : []);
           } else if (response.status === 204) {
@@ -53,7 +52,7 @@ export const MyTrips = () => {
         } catch (error) {
           console.error("Error fetching trips:", error);
         } finally {
-          setLoading(false); // Set loading to false after data is fetched
+          setLoading(false); 
         }
       };
 
@@ -61,20 +60,17 @@ export const MyTrips = () => {
     }
   }, []);
 
-  // Formatting the dates
   const formatDate = (date) => {
     date = new Date(date);
     return `${date.getDate() + 1}/${date.getMonth() + 1}/${date.getFullYear()}`;
   };
 
-  // Checking if the user presses 'Enter' to execute the Search
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       executeSearch();
     }
   };
 
-  //Filters the tripArray to match the user search entry to the trip's description
   const executeSearch = () => {
     const results = tripsArray.filter((trip) => {
       const matchesSearchQuery =
@@ -89,7 +85,7 @@ export const MyTrips = () => {
   };
 
   const countries = [...new Set(tripsArray.map((trip) => trip.country))];
-  //Only the cities from the selected county will be displayed
+
   const cities = selectedCountry
     ? [
         ...new Set(
@@ -100,7 +96,6 @@ export const MyTrips = () => {
       ]
     : [...new Set(tripsArray.map((trip) => trip.city))];
 
-  // Logic to combine and apply the filters
   const filteredTrips = tripsArray.filter((trip) => {
     const tripStart = new Date(trip.startDate);
     const tripEnd = new Date(trip.endDate);
@@ -113,38 +108,32 @@ export const MyTrips = () => {
     return matchesDateRange && matchesCountry && matchesCity;
   });
 
-  //handling the selection of the country
   const handleSelectCountry = (country) => {
     setSelectedCountry(country);
     setSelectedCity("");
   };
 
-  //handling the selection of the city
   const handleSelectCity = (city) => {
     setSelectedCity(city);
   };
 
-  // To clear the filters
   const clearFilters = () => {
     setRangeDate([null, null]);
     setSelectedCountry("");
     setSelectedCity("");
   };
-  // Checking if the filter is applied
+
   const isFilterApplied =
     startDate || endDate || selectedCountry || selectedCity;
 
-  // AddTrip handler navigates to AddTrip page
   const handleAddTrip = () => {
     navigate("/addtrip");
   };
 
-  // TripDetails handler
   const handleTripDetails = (tripID) => {
-    navigate(`/tripdetails/${tripID}`); // Ensure tripID is passed directly
+    navigate(`/tripdetails/${tripID}`); 
   };
 
-  // To determine which will be rendered to the screen - If there is no 'searchResult' then the filteredTrips will be rendered
   const tripsToRender =
     searchResults.length > 0 ? searchResults : filteredTrips;
 
@@ -266,8 +255,8 @@ export const MyTrips = () => {
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.photos[0]?.url} // Handling missing photos for a trip
-                description={trip.description.substring(0, 250)} // Limit text length
+                imageUrl={trip.photos[0]?.url} 
+                description={trip.description.substring(0, 250)} 
                 onClick={() => handleTripDetails(trip.tripID)}
               />
             ))}

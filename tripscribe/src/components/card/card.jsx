@@ -11,7 +11,7 @@ export const Card = ({
   onClick,
 }) => {
   const handleCardClick = () => {
-    onClick(); // Trigger the navigation to TripDetails page
+    onClick(); 
   };
 
   return (

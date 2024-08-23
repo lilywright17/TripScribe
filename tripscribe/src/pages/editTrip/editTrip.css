@@ -128,6 +128,7 @@
         width: 100%;
     }
 }
+
 @media (max-width: 480px) {
     .editTripButtonContainer {
         gap: 10px; 

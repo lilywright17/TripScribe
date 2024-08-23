@@ -12,10 +12,8 @@ test('sets the correct page title', () => {
 test('renders all team members an img', () => {
   render(<AboutUs />);
   const teamMembers = screen.getAllByRole('img', { name: /photo of/i });
-  expect(teamMembers).toHaveLength(7); // Assumes there are 7 members in `usData`
+  expect(teamMembers).toHaveLength(7); 
 });
-
-
 
 test('renders social media icons', () => {
   render(<AboutUs />);

@@ -1,9 +1,9 @@
 .buttonSecondary{
-    display: flex;  /* Flexbox for alignment */
+    display: flex;
     flex: 1 0 0;
     flex-shrink: 0;
-    align-items: center;  /* Center items vertically */
-    justify-content: center;  /* Center items horizontally */
+    align-items: center;  
+    justify-content: center; 
     align-self: stretch;
     text-align: center;
     font-family: inherit;

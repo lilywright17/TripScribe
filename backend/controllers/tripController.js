@@ -1,16 +1,10 @@
 const db = require('../config/db');
 
-// the trip related functions that interact with the database goes here
+// Controller My Trip page 
 const getTrips = async (req, res) => {
-    console.log('getTrips function called');
-    // get the UserID from the JWT token
     const userID = req.user.userID; 
 
-    console.log('Fetching trips for userID:', userID);
-
     try {
-        // JSON_OBJECT to combine photoID, secure_url, and alt_text into a JSON object for each photo
-        // JSON_ARRAYAGG used to combine the objects into a single JSON array(all the photos will be associated with a particular trip.)
         const [result] = await db.query(
             `
             SELECT 
@@ -34,9 +28,8 @@ const getTrips = async (req, res) => {
             [userID]
         );
 
-        // To handle the case where no trips are found
         if (result.length === 0) {
-            return res.status(204).end(); // No content, but no need for a message
+            return res.status(204).end(); 
         }
         
         res.status(200).json(result);
@@ -46,11 +39,11 @@ const getTrips = async (req, res) => {
     }
 };
 
+// Controller Trip Details
 const getTripByID = async(req, res) => {
     const { tripID } = req.params;
     const userID = req.user.userID;
     try {
-        
         const [result] = await db.query(
             `
             SELECT 
@@ -67,18 +60,16 @@ const getTripByID = async(req, res) => {
             `,
             [tripID, userID]
         );
-        // In case no trips are found
+
         if (result.length === 0) {
             return res.status(404).json({ message: 'Trip was not found!' });
         }
         
-        console.log("UserId is:", userID, "TripId is:",tripID)
         res.status(200).json(result[0]);
     } catch (error) {
         console.error('Error fetching trips:', error);
         res.status(500).json({ error: 'An error occurred while fetching trips' });
     }
-
 }
 
 module.exports = { getTrips, getTripByID };

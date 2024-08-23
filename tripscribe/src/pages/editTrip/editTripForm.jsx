@@ -239,12 +239,12 @@ export const EditTripForm = () => {
             text="GO BACK"
             icon={<ArrowLeft size={20} />}
             handleClick={handleSecondaryButtonClick}
-            style={{ borderRadius: "30px" }}
+            style={{ borderRadius: "30px"}}
           />
           <Button
             text="SAVE MY CHANGES"
             type="submit"
-            style={{ borderRadius: "30px" }}
+            style={{ borderRadius: "30px"}}
           />
         </div>
       </form>

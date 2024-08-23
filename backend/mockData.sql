@@ -56,8 +56,16 @@ VALUES
 (36, 5, 'Dubai', 'United Arab Emirates', 'Experiencing modern luxury, visiting the Burj Khalifa, and exploring the vast desert landscape.', '2025-04-05 00:00:00', '2025-04-15 00:00:00'),
 (37, 5, 'Moscow', 'Russia', 'Exploring the Red Square, visiting the Kremlin, and experiencing the culture of this historic city.', '2025-04-20 00:00:00', '2025-04-30 00:00:00'),
 (38, 5, 'Bali', 'Indonesia', 'Relaxing on beautiful beaches, visiting ancient temples, and immersing in the island’s rich culture.', '2025-05-05 00:00:00', '2025-05-15 00:00:00'),
-(39, 5, 'Edinburgh', 'Scotland', 'Exploring historic castles, strolling through the medieval Old Town, and experiencing the local whisky culture.', '2025-05-20 00:00:00', '2025-05-30 00:00:00');
-
+(39, 5, 'Edinburgh', 'Scotland', 'Exploring historic castles, strolling through the medieval Old Town, and experiencing the local whisky culture.', '2025-05-20 00:00:00', '2025-05-30 00:00:00'),
+(40, 5, 'Bruges', 'Belgium', 'Wandering through cobblestone streets, exploring medieval architecture, taking a canal boat tour, and savoring Belgian chocolates and waffles.', '2024-09-25 00:00:00', '2024-10-05 00:00:00'),
+(41, 5, 'Berlin', 'Germany', 'Exploring the Berlin Wall, visiting the Brandenburg Gate, and experiencing the vibrant culture of the city.', '2025-06-01 00:00:00', '2025-06-10 00:00:00'),
+(42, 5, 'Paris', 'France', 'Visiting the Eiffel Tower, exploring the Louvre, and enjoying the romantic atmosphere of the city.', '2025-06-15 00:00:00', '2025-06-25 00:00:00'),
+(43, 5, 'Copenhagen', 'Denmark', 'Exploring the historic Nyhavn, visiting Tivoli Gardens, and enjoying the city’s charming canals.', '2025-07-01 00:00:00', '2025-07-10 00:00:00'),
+(44, 5, 'Budapest', 'Hungary', 'Strolling along the Danube River, visiting Buda Castle, and enjoying the city’s famous thermal baths.', '2025-07-15 00:00:00', '2025-07-25 00:00:00'),
+(45, 5, 'Oslo', 'Norway', 'Exploring the Viking Ship Museum, visiting the Opera House, and enjoying the beautiful fjords.', '2025-08-01 00:00:00', '2025-08-10 00:00:00'),
+(46, 5, 'Warsaw', 'Poland', 'Visiting the Royal Castle, exploring the historic Old Town, and learning about the city’s rich history.', '2025-08-15 00:00:00', '2025-08-25 00:00:00'),
+(47, 5, 'London', 'United Kingdom', 'Exploring the British Museum, visiting Buckingham Palace, and enjoying the city’s iconic landmarks.', '2025-09-01 00:00:00', '2025-09-10 00:00:00'),
+(48, 5, 'Dublin', 'Ireland', 'Visiting the Guinness Storehouse, exploring Trinity College, and enjoying the lively atmosphere of Temple Bar.', '2025-09-15 00:00:00', '2025-09-25 00:00:00');
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text )
 VALUES 
@@ -98,11 +106,73 @@ VALUES
 (29, 4, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825885/samples/people/kitchen-bar.jpg', NULL),
 (30, 5, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample.jpg', NULL),
 (31, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723825895/cld-sample-3.jpg', NULL),
-(32, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL);
+(32, 6, 1, 'https://res.cloudinary.com/danpcw54r/image/upload/v1723910803/pexels-lichtberlin-19166326_wl2ltx.jpg', NULL),
 
+-- Lily's account
+(33, 16, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400182/Screenshot_2024-08-23_at_09.02.58_gerjn5.png', 'Exploring the vibrant souks of Marrakech'),
+(34, 16, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400195/Screenshot_2024-08-23_at_09.03.11_uytua0.png', 'Tasting exotic spices in Marrakech'),
+(35, 17, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400243/Screenshot_2024-08-23_at_09.03.59_ifrbfo.png', 'Pyramids of Giza in Cairo'),
+(36, 17, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400278/Screenshot_2024-08-23_at_09.04.34_xlaesg.png', 'Cruising the Nile in Cairo'),
+(37, 18, 5, '', 'Cherry blossoms in Kyoto'),
+(38, 18, 5, '', 'Traditional hot springs in Kyoto'),
+(39, 19, 5, '', 'Alfama views in Lisbon'),
+(40, 19, 5, '', 'Pastel de nata in Lisbon'),
+(41, 23, 5, '', 'Table Mountain views in Cape Town'),
+(42, 23, 5, '', 'Vibrant neighborhoods in Cape Town'),
+(43, 24, 5, '', 'Adventure sports in Queenstown'),
+(44, 24, 5, '', 'Breathtaking landscapes in Queenstown'),
+(45, 25, 5, '', 'White-washed buildings in Santorini'),
+(46, 25, 5, '', 'Sunsets over the caldera in Santorini'),
+(47, 26, 5, '', 'Northern Lights in Reykjavik'),
+(48, 26, 5, '', 'Volcanic landscapes in Reykjavik'),
+(49, 27, 5, '', 'Colosseum in Rome'),
+(50, 27, 5, '', 'Vatican City art in Rome'),
+(51, 28, 5, '', 'Old Quarter streets in Hanoi'),
+(52, 28, 5, '', 'Cruising Ha Long Bay in Hanoi'),
+(53, 29, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724397783/Screenshot_2024-08-23_at_08.22.58_zt82rv.png', 'Sydney Opera House'),
+(54, 29, 5, 'https://res.cloudinary.com/dskoouoik/image/upload/v1724400118/Screenshot_2024-08-23_at_09.01.51_ybuxn2.png', 'Bondi Beach in Sydney'),
+(55, 30, 5, '', 'Inca citadel of Machu Picchu'),
+(56, 30, 5, '', 'Sacred Valley in Machu Picchu'),
+(57, 31, 5, '', 'Dancing tango in Buenos Aires'),
+(58, 31, 5, '', 'La Boca neighborhood in Buenos Aires'),
+(59, 32, 5, '', 'Blue Mosque in Istanbul'),
+(60, 32, 5, '', 'Grand Bazaar in Istanbul'),
+(61, 33, 5, '', 'Treasury in Petra'),
+(62, 33, 5, '', 'Monastery hike in Petra'),
+(63, 34, 5, '', 'Canadian Rockies in Banff'),
+(64, 34, 5, '', 'Banff National Park hike'),
+(65, 35, 5, '', 'Gaudi’s architecture in Barcelona'),
+(66, 35, 5, '', 'Tapas and sangria in Barcelona'),
+(67, 36, 5, '', 'Burj Khalifa in Dubai'),
+(68, 36, 5, '', 'Desert landscape in Dubai'),
+(69, 37, 5, '', 'Red Square in Moscow'),
+(70, 37, 5, '', 'Kremlin in Moscow'),
+(71, 38, 5, '', 'Beautiful beaches in Bali'),
+(72, 38, 5, '', 'Ancient temples in Bali'),
+(73, 39, 5, '', 'Historic castles in Edinburgh'),
+(74, 39, 5, '', 'Medieval Old Town in Edinburgh'),
+(75, 40, 5, '', 'Cobblestone streets in Bruges'),
+(76, 40, 5, '', 'Canal boat tour in Bruges'),
+(77, 41, 5, '', 'Berlin Wall'),
+(78, 41, 5, '', 'Brandenburg Gate in Berlin'),
+(79, 42, 5, '', 'Eiffel Tower in Paris'),
+(80, 42, 5, '', 'Louvre Museum in Paris'),
+(81, 43, 5, '', 'Nyhavn in Copenhagen'),
+(82, 43, 5, '', 'Tivoli Gardens in Copenhagen'),
+(83, 44, 5, '', 'Danube River in Budapest'),
+(84, 44, 5, '', 'Buda Castle in Budapest'),
+(85, 45, 5, '', 'Viking Ship Museum in Oslo'),
+(86, 45, 5, '', 'Opera House in Oslo'),
+(87, 46, 5, '', 'Royal Castle in Warsaw'),
+(88, 46, 5, '', 'Historic Old Town in Warsaw'),
+(89, 47, 5, '', 'British Museum in London'),
+(90, 47, 5, '', 'Buckingham Palace in London'),
+(91, 48, 5, '', 'Guinness Storehouse in Dublin'),
+(92, 48, 5, '', 'Temple Bar in Dublin');
 -- SELECT * FROM Photos;
 -- DELETE FROM Photos;
 
+SELECT * FROM trips;
 -- For testing purposes 
 -- select * from Users;
 -- SET SQL_SAFE_UPDATES = 0;
@@ -131,7 +201,26 @@ VALUES
 ('Cairo', 30.044420, 31.235712),
 ('Kyoto', 35.011636, 135.768029),
 ('Cape Town', -33.924870, 18.424055),
-('Queenstown', -45.031162, 168.662643);
+('Queenstown', -45.031162, 168.662643),
+('Hanoi', 21.028511, 105.804817),
+('Machu Picchu', -13.163068, -72.545128),
+('Buenos Aires', -34.603722, -58.381592),
+('Petra', 30.328459, 35.444363),
+('Banff', 51.178364, -115.570769),
+('Barcelona', 41.385064, 2.173404),
+('Dubai', 25.276987, 55.296249),
+('Moscow', 55.755825, 37.617298),
+('Bali', -8.409518, 115.188919),
+('Edinburgh', 55.953251, -3.188267),
+('Santorini', 36.393156, 25.461509),
+('Paris', 48.856613, 2.352222),
+('Copenhagen', 55.676098, 12.568337),
+('Budapest', 47.497913, 19.040236),
+('Oslo', 59.913868, 10.752245),
+('Warsaw', 52.229676, 21.012229),
+('London', 51.507351, -0.127758),
+('Dublin', 53.349805, -6.26031),
+('Bruges', 51.209348, 3.224700);
 
 INSERT INTO Trip_Location (tripID, locationID)
 VALUES
@@ -168,6 +257,30 @@ VALUES
 (18, (SELECT locationID FROM Locations WHERE name = 'Kyoto')), 
 (19, (SELECT locationID FROM Locations WHERE name = 'Lisbon')), 
 (23, (SELECT locationID FROM Locations WHERE name = 'Cape Town')),
-(24, (SELECT locationID FROM Locations WHERE name = 'Queenstown'));
-    
+(24, (SELECT locationID FROM Locations WHERE name = 'Queenstown')),
+(25, (SELECT locationID FROM Locations WHERE name = 'Santorini')), 
+(26, (SELECT locationID FROM Locations WHERE name = 'Reykjavik')), 
+(27, (SELECT locationID FROM Locations WHERE name = 'Rome')), 
+(28, (SELECT locationID FROM Locations WHERE name = 'Hanoi')), 
+(29, (SELECT locationID FROM Locations WHERE name = 'Sydney')), 
+(30, (SELECT locationID FROM Locations WHERE name = 'Machu Picchu')), 
+(31, (SELECT locationID FROM Locations WHERE name = 'Buenos Aires')), 
+(32, (SELECT locationID FROM Locations WHERE name = 'Istanbul')), 
+(33, (SELECT locationID FROM Locations WHERE name = 'Petra')), 
+(34, (SELECT locationID FROM Locations WHERE name = 'Banff')), 
+(35, (SELECT locationID FROM Locations WHERE name = 'Barcelona')), 
+(36, (SELECT locationID FROM Locations WHERE name = 'Dubai')), 
+(37, (SELECT locationID FROM Locations WHERE name = 'Moscow')), 
+(38, (SELECT locationID FROM Locations WHERE name = 'Bali')), 
+(39, (SELECT locationID FROM Locations WHERE name = 'Edinburgh')),
+(40, (SELECT locationID FROM Locations WHERE name = 'Bruges')), 
+(41, (SELECT locationID FROM Locations WHERE name = 'Berlin')), 
+(42, (SELECT locationID FROM Locations WHERE name = 'Paris')), 
+(43, (SELECT locationID FROM Locations WHERE name = 'Copenhagen')), 
+(44, (SELECT locationID FROM Locations WHERE name = 'Budapest')), 
+(45, (SELECT locationID FROM Locations WHERE name = 'Oslo')), 
+(46, (SELECT locationID FROM Locations WHERE name = 'Warsaw')), 
+(47, (SELECT locationID FROM Locations WHERE name = 'London')), 
+(48, (SELECT locationID FROM Locations WHERE name = 'Dublin'));
+
     

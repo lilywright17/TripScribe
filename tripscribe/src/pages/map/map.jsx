@@ -110,7 +110,7 @@ export const MapPage = () => {
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.image && trip.image.length > 0 ? trip.image[0] : null}
+                imageUrl={trip.photos[0]?.url}
                 description={trip.description}
                 onEdit={() => handleEdit(trip)}
 				        onClick={() => handleTripDetails(trip)}

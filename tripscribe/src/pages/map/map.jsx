@@ -58,7 +58,6 @@ export const MapPage = () => {
   // State to keep track of the currently active marker
   const [activeMarker, setActiveMarker] = useState(null);
   // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
-  const [isGeolocationSet, setIsGeolocationSet] = useState(false);
 
   const [center, setCenter] = useState({ lat: 51.507351, lng: -0.127758 }); 
 
@@ -114,16 +113,13 @@ export const MapPage = () => {
           (position) => {
             const { latitude, longitude } = position.coords;
             setCenter({ lat: latitude, lng: longitude });
-			setIsGeolocationSet(true);
             },
           (error) => {
             console.error("Error getting user location:", error);
-			setIsGeolocationSet(true)
             }
           );
       } else {
         console.error("Geolocation is not supported by this browser.");
-		setIsGeolocationSet(true);
         }
       }, []);
 
@@ -156,7 +152,6 @@ export const MapPage = () => {
         defaultZoom={13}
         defaultCenter={center}
         onClick={handleMapClick} 
-		gestureHandling={"greedy"}
       >{/* Render a Marker for each location */}
   {tripsArray.map((trip) => (
             <MarkerWithInfoWindow

@@ -54,13 +54,11 @@ export const MapPage = () => {
 
   // define navigate so that we can navigate to different pages on clicking
   const navigate = useNavigate();
-
-  // State for setting the user location
-  const [userLocation, setUserLocation] = useState(null);
-
+ 
   // State to keep track of the currently active marker
   const [activeMarker, setActiveMarker] = useState(null);
   // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
+  const [isGeolocationSet, setIsGeolocationSet] = useState(false);
 
   const [center, setCenter] = useState({ lat: 51.507351, lng: -0.127758 }); 
 
@@ -116,14 +114,16 @@ export const MapPage = () => {
           (position) => {
             const { latitude, longitude } = position.coords;
             setCenter({ lat: latitude, lng: longitude });
-            console.log(center)
+			setIsGeolocationSet(true);
             },
           (error) => {
             console.error("Error getting user location:", error);
+			setIsGeolocationSet(true)
             }
           );
       } else {
         console.error("Geolocation is not supported by this browser.");
+		setIsGeolocationSet(true);
         }
       }, []);
 
@@ -131,6 +131,7 @@ export const MapPage = () => {
         const loadApiKey = async () => {
           try {
             const key = await fetchApiKey();
+
             setApiKey(key);
           } catch (error) {
             console.error('Failed to load API key:', error);
@@ -150,11 +151,12 @@ export const MapPage = () => {
     // onLoad={() => setMapLoaded(true)} 
   >
     <div className="map-div">
-      <Map
+	<Map
         mapId={mapId}
         defaultZoom={13}
         defaultCenter={center}
         onClick={handleMapClick} 
+		gestureHandling={"greedy"}
       >{/* Render a Marker for each location */}
   {tripsArray.map((trip) => (
             <MarkerWithInfoWindow
@@ -162,6 +164,7 @@ export const MapPage = () => {
               trip={trip}
               isActive={activeMarker === trip}
              onClick={handleMarkerClick}
+			 disableDefaultUI
             />
           ))}
 </Map>

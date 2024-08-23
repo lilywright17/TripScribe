@@ -106,6 +106,7 @@ export const TripDetails = () => {
   }
 
   return (
+    <>
     <div className="trip-details">
       <div className="title-container">
         <div className="title">
@@ -166,6 +167,7 @@ export const TripDetails = () => {
           }}
         />
       </div>
+      </div>
       {successMessage && (
         <Stack sx={{ width: '100%' }} spacing={2}
           message={successMessage}
@@ -195,6 +197,7 @@ export const TripDetails = () => {
           </Alert>
         </Stack>
       )}
-    </div>
+    
+    </>
   );
 };

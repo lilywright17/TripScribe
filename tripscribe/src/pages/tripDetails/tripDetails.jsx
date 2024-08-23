@@ -89,9 +89,10 @@ export const TripDetails = () => {
     console.log("Cancel button!");
   };
 
-  const handleEdit = () => {
-    console.log("Edit!");
-    navigate(`/edittrip?tripID=${tripID}`);
+  const handleEdit = (tripID) => {
+    console.log("Navigating to Edit Trip with ID: ", tripID);
+    navigate(`/edittrip/${tripID}`);
+    //navigate(`/edittrip?tripID=${tripID}`);
   };
 
   const handleGoBack = () => {
@@ -115,7 +116,7 @@ export const TripDetails = () => {
             className="edit-button"
             src={editButtonImage}
             alt="Edit button"
-            onClick={handleEdit}
+            onClick={() => handleEdit(tripID)}
           />
         </div>
         <p className="dates">

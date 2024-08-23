@@ -22,7 +22,6 @@ const formatDate = (date) => {
 export const MapPage = () => {
 
   useEffect(() => {
-    console.log('useEffect running');
     const getTrips = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/trips", {
@@ -41,7 +40,6 @@ export const MapPage = () => {
           }))
           .filter(trip => !isNaN(trip.latitude) && !isNaN(trip.longitude));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
-          console.log('Trip Data:', tripData);
         } else if (response.status === 204) {
           setTripsArray([]);
         } else {
@@ -54,7 +52,6 @@ export const MapPage = () => {
     getTrips();
   }, []);
 
-  console.log('MapPage component is rendering');
   // define navigate so that we can navigate to different pages on clicking
   const navigate = useNavigate();
 
@@ -65,7 +62,7 @@ export const MapPage = () => {
   const [activeMarker, setActiveMarker] = useState(null);
   // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
 
-  const centerRef = useRef({ lat: 51.507351, lng: -0.127758 });
+  const [center, setCenter] = useState({ lat: 51.507351, lng: -0.127758 }); 
 
   const [apiKey, setApiKey] = useState(null);
   const [tripsArray, setTripsArray] = useState([]);
@@ -81,13 +78,11 @@ export const MapPage = () => {
 
  // TripDetails navigation handler
  const handleTripDetails = (tripID) => {
-  console.log('Trip Details');
   navigate(`/tripdetails/${tripID}`); 
 };
 
   // Creating the infowindow and marker as one component, with the infowindow only showing when the marker is clicked
    const MarkerWithInfoWindow = ({ trip, isActive, onClick }) => {
-    console.log('Rendering MarkerWithInfoWindow with trip:', trip);
     const [markerRef, marker] = useAdvancedMarkerRef();
   
     return (
@@ -120,8 +115,8 @@ export const MapPage = () => {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            setUserLocation({ lat: latitude, lng: longitude });
-            centerRef.current = { lat: latitude, lng: longitude };
+            setCenter({ lat: latitude, lng: longitude });
+            console.log(center)
             },
           (error) => {
             console.error("Error getting user location:", error);
@@ -134,10 +129,8 @@ export const MapPage = () => {
 
       useEffect(() => {
         const loadApiKey = async () => {
-          console.log('Attempting to load API key...');
           try {
             const key = await fetchApiKey();
-            console.log('API key loaded successfully');
             setApiKey(key);
           } catch (error) {
             console.error('Failed to load API key:', error);
@@ -160,7 +153,7 @@ export const MapPage = () => {
       <Map
         mapId={mapId}
         defaultZoom={13}
-        defaultCenter={userLocation ||centerRef.current}
+        defaultCenter={center}
         onClick={handleMapClick} 
       >{/* Render a Marker for each location */}
   {tripsArray.map((trip) => (

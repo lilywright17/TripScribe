@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Card } from "../../components/card/card.jsx";
 import { useNavigate } from "react-router-dom";
 import './map.css';
-import editButtonImage from "./images/edit_button.png"
 import {
   APIProvider,
   Map,
@@ -39,7 +38,8 @@ export const MapPage = () => {
             latitude: parseFloat(trip.latitude),
       longitude: parseFloat(trip.longitude),
             tripID: Number(trip.tripID) // Ensure tripID is a number
-          }));
+          }))
+          .filter(trip => !isNaN(trip.latitude) && !isNaN(trip.longitude));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
           console.log('Trip Data:', tripData);
         } else if (response.status === 204) {
@@ -65,7 +65,7 @@ export const MapPage = () => {
   const [activeMarker, setActiveMarker] = useState(null);
   // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
 
-  const [mapLoaded, setMapLoaded] = useState(false);
+  const centerRef = useRef({ lat: 51.507351, lng: -0.127758 });
 
   const [apiKey, setApiKey] = useState(null);
   const [tripsArray, setTripsArray] = useState([]);
@@ -79,16 +79,11 @@ export const MapPage = () => {
       setActiveMarker(null);
   }, []);
 
-  // Function to navigate to the edit page when we click the edit button
-   const handleEdit = (trip) => {
-    navigate("/edittrip", { state: { trip } });
-  };
-
-  // Viewtrip handler
-	const handleTripDetails = (trip) => {
-    console.log('Trip Details');
-    navigate("/tripdetails", { state: { country: trip.country, city: trip.city,startDate:trip.startDate,endDate: trip.endDate, images: trip.image || [], description: trip.description }});
-  };
+ // TripDetails navigation handler
+ const handleTripDetails = (tripID) => {
+  console.log('Trip Details');
+  navigate(`/tripdetails/${tripID}`); 
+};
 
   // Creating the infowindow and marker as one component, with the infowindow only showing when the marker is clicked
    const MarkerWithInfoWindow = ({ trip, isActive, onClick }) => {
@@ -110,11 +105,9 @@ export const MapPage = () => {
                 country={trip.country}
                 startDate={formatDate(trip.startDate)}
                 endDate={formatDate(trip.endDate)}
-                imageUrl={trip.image[0]}
+                imageUrl={trip.photos[0]?.url}
                 description={trip.description}
-                editButton={editButtonImage}
-                onEdit={() => handleEdit(trip)}
-				        onClick={() => handleTripDetails(trip)}
+				        onClick={() => handleTripDetails(trip.tripID)}
               />
           </InfoWindow>
         )}
@@ -128,6 +121,7 @@ export const MapPage = () => {
           (position) => {
             const { latitude, longitude } = position.coords;
             setUserLocation({ lat: latitude, lng: longitude });
+            centerRef.current = { lat: latitude, lng: longitude };
             },
           (error) => {
             console.error("Error getting user location:", error);
@@ -160,16 +154,16 @@ export const MapPage = () => {
    return (
   <APIProvider
     apiKey={apiKey}
-    onLoad={() => setMapLoaded(true)} 
+    // onLoad={() => setMapLoaded(true)} 
   >
     <div className="map-div">
       <Map
         mapId={mapId}
         defaultZoom={13}
-        center={userLocation || { lat: -33.860664, lng: 151.208138 }}
+        defaultCenter={userLocation ||centerRef.current}
         onClick={handleMapClick} 
       >{/* Render a Marker for each location */}
-  {mapLoaded && tripsArray.map((trip) => (
+  {tripsArray.map((trip) => (
             <MarkerWithInfoWindow
               key={trip.tripID}
               trip={trip}

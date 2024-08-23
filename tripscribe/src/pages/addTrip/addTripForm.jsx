@@ -225,10 +225,12 @@ export const AddTripForm = () => {
                         text='MY TRIPS' 
                         icon={<ArrowLeft size={24} weight='bold' padding='' />} 
                         handleClick={handleSecondaryButtonClick} 
+                        style={{ borderRadius: "30px"}}
                     />
                     <Button 
                         text='SAVE MY TRIP' 
                         type='submit' 
+                        style={{ borderRadius: "30px"}}
                     />
                 </div>
                 {successMessage && (

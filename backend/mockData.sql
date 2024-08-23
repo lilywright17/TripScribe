@@ -6,7 +6,7 @@ VALUES
 (1, 'Ada Lovelace', 'adalovelace', 'ada.lovelace@gmail.com', '$2b$10$A/FfTkuxVxuuzobymwpNCOzDLsctzpX3HN0KSmlOFKgjmF5YoLp9W'),
 (2, 'Rosalind Franklin', 'rosalindf', 'rosalind.franklin@gmail.com', '$2b$10$6sub3KkksQrBdy2VjpBTF.qK6F8XzsEhpqxXCV4kno.3s0L1To02W'),
 (3, 'Lise Meitner', 'lisemeitner', 'lise.meitner@gmail.com', '$2y$10$T9zXnRZb.xS4G6HGi21O6ujm8IaUM5K4/1T/QF2bqW1aUIRbMqTAJ'),
-(4,	'Victoria Test', 'victoriatest01', 'th4les.vic.jkm@gmail.com', '$2b$10$URSNfNyaCimQwnNssm65MuXDeNbyd74XoG4HW6sqN3SIC9VIeOrQC'),
+(4,	'Carmen Sandiego', 'carmenJK0101', 'carmen.sandiegoJK@gmail.com', '$2b$10$URSNfNyaCimQwnNssm65MuXDeNbyd74XoG4HW6sqN3SIC9VIeOrQC'),
 (5, 'Lily', 'lily93', 'lilywright93@gmail.com', '$2b$10$Qw859hFvbPC0fUCKeYWxFu/giGrgJIItxZAXX.GMzzOAbZgrd5oYq');
 
 INSERT INTO Trips (tripID, userID, city, country, description, date_from, date_to)
@@ -35,6 +35,15 @@ VALUES
 (13, 4, 'Rio de Janeiro', 'Brazil', 'Enjoying the vibrant culture of Carnival, lounging on Copacabana Beach, and taking in the stunning views from Sugarloaf Mountain.', '2024-03-10 00:00:00', '2024-08-29 00:00:00'),
 (14, 4, 'Bilbao', 'Spain', 'Exploring the rich Basque culture, visiting the iconic Guggenheim Museum, and enjoying pintxos in the old town.', '2024-08-01 00:00:00', '2024-09-07 00:00:00'),
 (15, 4, 'Vancuver', 'Canada', 'Exploring the breathtaking landscapes of the Pacific Northwest, with hikes in the mountains and visits to vibrant local markets.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
+(28, 4, 'Viena', 'Austria', 'Vienna, exudes charm with its grand palaces, historic squares, and vibrant cultural scene. The majestic Schönbrunn Palace and the opulent Hofburg reflect its royal past, while the Vienna State Opera and Musikverein celebrate its musical heritage. Stroll through the elegant streets of the Ringstrasse, savor coffee and pastries in traditional cafes, and explore the artistic treasures of the Belvedere and Kunsthistorisches Museum.' , '2024-04-01 00:00:00', '2024-10-07 00:00:00'),
+(29, 4, 'Yorkshire', 'England', 'Explore Yorkshire, where history and nature converge in stunning harmony. Start in York, with its medieval streets and the majestic York Minster. Wander the picturesque Shambles and ancient city walls. Venture into the Yorkshire Dales for breathtaking landscapes, with rolling hills and waterfalls like Aysgarth Falls. Yorkshire offers a perfect blend of culture, history, and natural beauty.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
+(30, 4, 'Saint-Tropez', 'France', 'Arriving in Saint-Tropez, the allure of the French Riviera instantly captivates. The vibrant marina, lined with luxurious yachts and pastel-hued buildings, sets the scene for a perfect getaway. Wandering through the cobblestone streets of La Ponche, the historic heart of the town, reveals charming boutiques and cafes. The sun-drenched beaches, particularly Pampelonne, offer a serene escape, while the lively market at Place des Lices brims with local flavors and artisanal treasures', '2024-05-01 00:00:00', '2024-05-07 00:00:00'),
+(31, 4, 'Cologne', 'Germany', 'Arriving in Cologne, the majestic spires of the Cologne Cathedral dominate the skyline, welcoming us to this historic city. Strolling along the Rhine River, we take in the blend of medieval charm and modern vibrancy. The Altstadt, with its narrow, cobbled streets and colorful houses, invites exploration. We pause at a local café to enjoy a Kölsch beer, immersing ourselves in the lively atmosphere. The city’s rich history and warm, welcoming vibe make Cologne an unforgettable experience.', '2024-02-01 00:00:00', '2024-05-07 00:00:00'),
+(32, 4, 'London', 'England', 'Arriving in London, iconic landmarks greet us at every turn—Big Ben, the Tower Bridge, and the London Eye standing tall against the skyline. Walking through the bustling streets of Covent Garden and along the Thames, the blend of historic grandeur and modern energy is palpable. We explore the charm of Westminster, the art at the Tate Modern, and indulge in afternoon tea. Vibrant culture, rich history, and dynamic atmosphere make it an exhilarating experience', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
+(33, 4, 'Lyon', 'France', 'Arriving in Lyon, Renaissance charm and modern vibrancy is immediately captivating. We wander through the traboules of Vieux Lyon, discovering hidden passageways and historic architecture. The view from Fourvière Hill offers a stunning panorama of the city. We indulge in the culinary delights of the famous bouchons, savoring rich gastronomic heritage. With its beautiful riverfronts, lively markets, and cultural richness, Lyon leaves a lasting impression.', '2024-04-01 00:00:00', '2024-09-07 00:00:00'),
+(35, 4, 'Madrid', 'Spain', 'Arriving in Madrid lively energy is instantly felt. We stroll through the grand avenues, where historic architecture meets modern vibrancy. The Plaza Mayor buzzes with life, while the Royal Palace impresses with its opulence. We explore the artistic treasures of the Prado Museum and relax in the serene Retiro Park. As night falls, tapas bars come alive, offering a taste of rich culinary scene.', '2024-07-01 00:00:00', '2024-10-07 00:00:00'),
+
+
 -- Trips for Lily testing map page
 (16, 5, 'Marrakech', 'Morocco', 'Exploring the vibrant souks, tasting exotic spices, and experiencing the rich history of this ancient city.', '2024-09-10 00:00:00', '2024-09-20 00:00:00'),
 (17, 5, 'Cairo', 'Egypt', 'Standing in awe of the Pyramids of Giza, cruising the Nile, and discovering ancient Egyptian history.', '2024-10-01 00:00:00', '2024-10-15 00:00:00'),
@@ -46,7 +55,7 @@ VALUES
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text )
 VALUES 
--- Photos for userID=4 // tripID= 10, 11, 13, 14, 15
+-- Photos for userID=4 Carmen Sandiego // tripID= 10,11,13,14,15,28,29,30,31,32,33,35
 (1, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898930/hsp9umyioxxlkvcnmmux.png', NULL),
 (2, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898933/cwqdgzlvml95zmntkqzj.png', NULL),
 (3, 10, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723898932/kbg7xrtiwtybtensfmnk.png', NULL),
@@ -64,7 +73,35 @@ VALUES
 (15, 14, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723900905/nwikftoiyd8fqudgr22u.png', NULL),
 (16, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/rzmzljarevcl7xtlo0sz.jpg', NULL),
 (17, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/sjcgq1ogr1sjtk73fapk.jpg', NULL),
-(18, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/yedhvmb3houezptoojs8.jpg', NULL);
+(18, 15, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1723902764/yedhvmb3houezptoojs8.jpg', NULL), 
+(43, 28, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/kxyf79poyzknqml0bt8r.jpg', NULL),
+(44, 28, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/hexkmk5rufwodll5hf8a.jpg', NULL),
+(45, 28, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/idfgm7p5k02yc639exwp.jpg', NULL),
+(46, 28, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724358389/fogttznokpi1ljg3zqgq.jpg', NULL),
+(47, 29, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359147/uw6a3idggbihh9pk3q2m.jpg', NULL),
+(48, 29, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359146/svnrecdf2afzyujds9cq.jpg', NULL),
+(49, 29, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359146/cecpoeefncppx6lgxdwy.jpg', NULL),
+(50, 29, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359146/ouucniqt9nulmtoxonli.jpg', NULL),
+(51, 30, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359523/qmtdakcutez0lznkgaa5.jpg', NULL),
+(52, 30, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359530/rxdqqjeqi9yjfp45yopp.jpg', NULL),
+(53, 30, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359519/ylvjfkkgdrdmxq5vfbyr.jpg', NULL),
+(54, 30, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724359518/adiarvj51byc3ixs8vxu.jpg', NULL),
+(55, 31, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/oci9lx9uadjdwv03chzr.jpg', NULL),
+(56, 31, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/llxyfmy9pcepyeovdwdm.jpg', NULL),
+(57, 31, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/xy3trwuwob2zhp8nb2cp.jpg', NULL),
+(58, 31, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724401940/utfspcy1eyu8yeppwyu9.jpg', NULL),
+(59, 32, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/muejssv6szoez9j4phay.jpg', NULL),
+(60, 32, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/hjb3c7rakn0ftnjcinpv.jpg', NULL),
+(61, 32, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/eavwkrbcdyt1zxbdilyt.jpg', NULL),
+(62, 32, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724402296/kuazjb0jad6dji3yuytf.jpg', NULL),
+(63, 33, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403142/qkxwtoimeu4shldtqfnp.jpg', NULL),
+(64, 33, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403143/ti3ifjfxqkjthkxnkowq.jpg', NULL),
+(65, 33, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403142/efdqyxmvi37wyvlyd6tr.jpg', NULL),
+(66, 33, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724403142/jigei6skkm5dvqclabdr.jpg', NULL),
+(70, 35, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/jiisxigq8ovsaagfzcpi.jpg', NULL),
+(71, 35, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/vicfumjhvb2dzexqbll7.jpg', NULL),
+(72, 35, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/w5z6jmlanpma5u41bpap.jpg', NULL),
+(73, 35, 4, 'https://res.cloudinary.com/cfgvicteam5/image/upload/v1724404556/hbpcz79dpw3lhlqwokbo.jpg', NULL);
 
 
 INSERT INTO Photos (photoID, tripID, userID, secure_url, alt_text)
@@ -116,7 +153,12 @@ VALUES
 ('Cairo', 30.044420, 31.235712),
 ('Kyoto', 35.011636, 135.768029),
 ('Cape Town', -33.924870, 18.424055),
-('Queenstown', -45.031162, 168.662643);
+('Queenstown', -45.031162, 168.662643),
+('Yorkshire', 53.959965, -1.087297),
+('Saint-Tropez', 43.2672, 6.6407),
+('Cologne', 50.937531, 6.960279),
+('London', 51.507351, -0.127758),
+('Lyon', 45.764043, 4.835659);
 
 INSERT INTO Trip_Location (tripID, locationID)
 VALUES
@@ -139,13 +181,20 @@ VALUES
 (9, (SELECT locationID FROM Locations WHERE name = 'Vienna')),
 
 
--- For Victoria Test
+-- For Carmen Sandiego Test
 (10, (SELECT locationID FROM Locations WHERE name = 'Tokyo')),
 (11, (SELECT locationID FROM Locations WHERE name = 'Reykjavik')),
 (12, (SELECT locationID FROM Locations WHERE name = 'Sydney')),
 (13, (SELECT locationID FROM Locations WHERE name = 'Rio de Janeiro')),
 (14, (SELECT locationID FROM Locations WHERE name = 'Bilbao')),
 (15, (SELECT locationID FROM Locations WHERE name = 'Vancouver')),
+(28, (SELECT locationID FROM Locations WHERE name = 'Viena')),
+(29, (SELECT locationID FROM Locations WHERE name = 'Yorkshire')),
+(30, (SELECT locationID FROM Locations WHERE name = 'Saint-Tropez')),
+(31, (SELECT locationID FROM Locations WHERE name = 'Cologne')),
+(32, (SELECT locationID FROM Locations WHERE name = 'London')),
+(33, (SELECT locationID FROM Locations WHERE name = 'Lyon')),
+(35, (SELECT locationID FROM Locations WHERE name = 'Madrid')),
 
 -- For Lily's test
 (16, (SELECT locationID FROM Locations WHERE name = 'Marrakech')), 

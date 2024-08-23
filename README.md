@@ -1,6 +1,10 @@
 # Team 5's Travel Diary app project 
 
-## Prerequisites  
+## Prerequisites 
+
+- Node.js and npm installed on your machine.
+- MySQL server installed and running.
+
 ## Installation
 1. **Clone the Repository**
 
@@ -12,6 +16,8 @@
 
     ```bash
     npm install 
+    ```
+    You can use nodemon 
 
     ```bash
     npm install nodemon dotenv 
@@ -19,32 +25,42 @@
 
 3. **Set Up the Environment Variables**
 
-    Create a `.env` file in the [] of the project based on the `.env.EXAMPLE` file. This file should contain your MySQL credentials.
+    Create a `.env` file in the backend folder based on the `.env.EXAMPLE` file. This file should contain these credentials
 
     ```env
-    host=localhost
-    user=root
-    password=password
-    database=database
-    port=5000
-    ```
-    Create a `.env` file in the [] of the project based on the `.env.EXAMPLE` file. This file should contain your Cloudinary env credentials.
+        #Database credentials
+        host=db.localhost
+        user=root
+        password=db.passowrd
+        database=db.name
 
-    ```cloudinary preset
-    REACT_APP_CLOUDINARY_CLOUD_NAME=cloudname
-    REACT_APP_CLOUDINARY_UPLOAD_PRESET=uploadpreset
-    ```
+        #Server configuration
+        PORT=5000
+
+        #JWT credential
+        JWT_SECRET=paste_your_secret_key_here
+
+        #Cloudinary credentials
+        CLOUDINARY_CLOUD_NAME=cloudname
+        CLOUDINARY_UPLOAD_PRESET=uploadpreset
+        CLOUDINARY_API_KEY=apikey
+        CLOUDINARY_API_SECRET=apisecret
+
+        #Google API Key
+        GOOGLE_KEY=api_key
 
 4. **Set Up the Database**
 
-    Ensure your MySQL server is running and execute the SQL script to create the [] database and tables. You can use a MySQL client like MySQL Workbench.
+    Ensure your MySQL server is running and execute the SQL script to create the `tripscribeDB.sql` database and tables. You can use a MySQL client like MySQL Workbench.
 
     ```sql
-    CREATE DATABASE [];
-    USE [];
+    CREATE DATABASE tripscribeDB;
+    USE tripscribeDB;
 
     -- Include the rest of your SQL script here to create tables and insert data.
     ```
+
+    If you want to run data from users that we create you can use the `mockData.sql` These 
 
 ## Running the project 
 1. **Start the Server**

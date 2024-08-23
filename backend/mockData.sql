@@ -282,5 +282,3 @@ VALUES
 (46, (SELECT locationID FROM Locations WHERE name = 'Warsaw')), 
 (47, (SELECT locationID FROM Locations WHERE name = 'London')), 
 (48, (SELECT locationID FROM Locations WHERE name = 'Dublin'));
-
-    

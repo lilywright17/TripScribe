@@ -1,119 +1,32 @@
-.addTripContainer{
-    width: 100%;
-    max-width: 800px; 
-    margin: 0 auto; 
-    padding: 0 20px; 
+
+
+.addTripPageContainer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    
+    flex-direction: row; 
+    min-height: 100vh; 
+    align-items: flex-start; 
+    justify-content: center; /* Space between the form and the illustration */
+    padding: 8x; 
+    margin: auto; 
 }
-.addTripForm {
+
+.addTripContainer {
+    flex: 3; 
     display: flex;
+    align-items: flex-start;
     justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    padding: 20px;
+    padding-right: 40px; 
 }
 
-.formContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px; /* Adjust the gap between the columns as needed */
-    width: 100%;
-    max-width: 800px; /* Set max width similar to cardImgUpload */
-    height: auto; /* Adjust height based on content */
-}
-
-.inputColumn {
+.addTripIllustration {
+    flex: 1; 
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-
+    align-items: center;
+    justify-content: center;
 }
 
-.textAreaContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-}
-
-.textAreaContainer label {
-    margin-bottom: 5px;
-    color: #476a6f;
-    font-weight: 600;
-    padding-left: 8px;
-    padding-bottom: 8px;
-}
-
-.text-description {
-    font-family: inherit;
-    border-radius: 10px;
-    border: 0.5px solid #eae9e9;
-    background: rgba(221, 221, 221, 0.60); 
-    height: 80%;
-    padding-left: 8px; 
-    padding-top: 8px;
-    flex-shrink: 0;
-}
-
-.text-description::placeholder {
-    font-family: inherit;
-    font-size: 14px;
-    text-align: left;
-    padding: 8px; 
-    color: rgba(0, 0, 0, 0.5); 
-}
-
-.characterCount {
-    color: rgba(0, 0, 0, 0.5); 
-    font-size: 12px; 
-    font-family: inherit;
-    padding-left: 8px;
-    margin-top: 5px; 
-    font-style: italic; 
-    text-align: right;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.buttonContainer {
-    display: flex;
-    width: 100%; /* Ensure the container takes up the full width */
-    box-sizing: border-box; /* Include padding in the width calculation */
-    justify-content: space-between;
-    padding: 32px;
-    padding-bottom: 150px;
-}
-
-
-/* Media query for tablets and small desktops */
-@media (max-width: 1024px) {
-    .formContainer {
-        gap: 40px; 
-    }
-}
-
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    .formContainer {
-        grid-template-columns: 1fr; /* Stack columns on top of each other */
-        gap: 20px; 
-    }
-
-    .cardImgUpload {
-        margin-bottom: 20px; 
-    }
-}
-
-/* Media query for very small devices */
-@media (max-width: 480px) {
-    .formContainer, .cardImgUpload {
-        padding: 0 10px; 
-    }
-
-    .formContainer {
-        gap: 10px; 
-    }
+.addTripIllustration img {
+    max-width: 100%;
+    height: auto;
+    padding-top: 100px;
 }

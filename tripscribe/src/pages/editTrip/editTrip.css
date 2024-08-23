@@ -144,3 +144,8 @@
         width: 100%;
     }
 }
+.editTripTitle{
+    color: #476a6f;
+    font-weight: bold;
+    font-size: 30px;
+}

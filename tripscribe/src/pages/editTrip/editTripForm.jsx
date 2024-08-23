@@ -162,7 +162,7 @@ export const EditTripForm = () => {
     <>
       <form className="editTripForm" onSubmit={handleSubmit}>
         <div className="EditTripInputBoxes">
-          <h2 className="editTripTitle">Edit your trip</h2>
+          <h2 className="editTripTitle">Edit Your Trip</h2>
           <Input
             labelText="Country"
             inputType="text"

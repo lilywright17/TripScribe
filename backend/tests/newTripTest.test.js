@@ -90,10 +90,8 @@ describe('addNewTrip Controller', () => {
             // Mock the db.query to reject with an error
             connection.query.mockRejectedValueOnce(new Error('Database error'));
         
-            // Spy on console.error to prevent actual logging during tests
             const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
         
-            // Execute the function under test
             await addNewTrip(req, res);
         
             // Assert that db.rollback was called due to the error
@@ -103,7 +101,6 @@ describe('addNewTrip Controller', () => {
             expect(res.status).toHaveBeenCalledWith(500);
             expect(res.json).toHaveBeenCalledWith({ error: 'Failed to add trip' });
         
-            // Restore the original console.error implementation
             consoleSpy.mockRestore();
         });
 

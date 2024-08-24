@@ -20,9 +20,14 @@ const formatDate = (date) => {
 };
 
 export const MapPage = () => {
-
+	
+	const navigate = useNavigate();
+	const [activeMarker, setActiveMarker] = useState(null);
+	const [center, setCenter] = useState({ lat: 51.507351, lng: -0.127758 }); 
+	const [apiKey, setApiKey] = useState(null);
+	const [tripsArray, setTripsArray] = useState([]);
+	
   useEffect(() => {
-    console.log('useEffect running');
     const getTrips = async () => {
       try {
         const response = await axios.get("http://localhost:8000/api/trips", {
@@ -41,7 +46,6 @@ export const MapPage = () => {
           }))
           .filter(trip => !isNaN(trip.latitude) && !isNaN(trip.longitude));
           setTripsArray(Array.isArray(tripData) ? tripData : []);
-          console.log('Trip Data:', tripData);
         } else if (response.status === 204) {
           setTripsArray([]);
         } else {
@@ -54,40 +58,21 @@ export const MapPage = () => {
     getTrips();
   }, []);
 
-  console.log('MapPage component is rendering');
-  // define navigate so that we can navigate to different pages on clicking
-  const navigate = useNavigate();
+  	// Function to bring up trip details in an info window when marker is clicked
+  	const handleMarkerClick = (trip) => {
+    	setActiveMarker(trip);
+  	};
 
-  // State for setting the user location
-  const [userLocation, setUserLocation] = useState(null);
+	// Function to close info windows when the map is clicked
+  	const handleMapClick = useCallback((event) => {
+      	setActiveMarker(null);
+  	}, []);
 
-  // State to keep track of the currently active marker
-  const [activeMarker, setActiveMarker] = useState(null);
-  // Had some issues with markers not loading, so set them to be executed only when map is loaded - setting the state of the map loading
+ 	const handleTripDetails = (tripID) => {
+  		navigate(`/tripdetails/${tripID}`); 
+	};
 
-  const centerRef = useRef({ lat: 51.507351, lng: -0.127758 });
-
-  const [apiKey, setApiKey] = useState(null);
-  const [tripsArray, setTripsArray] = useState([]);
-
-  const handleMarkerClick = (trip) => {
-    setActiveMarker(trip);
-  };
-
-  // Function to handle map click - so that we can click off of an info window by clicking the map
-  const handleMapClick = useCallback((event) => {
-      setActiveMarker(null);
-  }, []);
-
- // TripDetails navigation handler
- const handleTripDetails = (tripID) => {
-  console.log('Trip Details');
-  navigate(`/tripdetails/${tripID}`); 
-};
-
-  // Creating the infowindow and marker as one component, with the infowindow only showing when the marker is clicked
    const MarkerWithInfoWindow = ({ trip, isActive, onClick }) => {
-    console.log('Rendering MarkerWithInfoWindow with trip:', trip);
     const [markerRef, marker] = useAdvancedMarkerRef();
   
     return (
@@ -114,14 +99,13 @@ export const MapPage = () => {
       </>
     );
   };
-    // Ask for the user's location
+
     useEffect(() => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            setUserLocation({ lat: latitude, lng: longitude });
-            centerRef.current = { lat: latitude, lng: longitude };
+            setCenter({ lat: latitude, lng: longitude });
             },
           (error) => {
             console.error("Error getting user location:", error);
@@ -134,10 +118,9 @@ export const MapPage = () => {
 
       useEffect(() => {
         const loadApiKey = async () => {
-          console.log('Attempting to load API key...');
           try {
             const key = await fetchApiKey();
-            console.log('API key loaded successfully');
+
             setApiKey(key);
           } catch (error) {
             console.error('Failed to load API key:', error);
@@ -146,33 +129,30 @@ export const MapPage = () => {
         loadApiKey();
       }, []);
 
-      // Only render the map when API key is loaded - this was the cause of the map failing to load before
   if (!apiKey) {
     return <div>Loading map...</div>;
   }
 
    return (
-  <APIProvider
-    apiKey={apiKey}
-    // onLoad={() => setMapLoaded(true)} 
-  >
-    <div className="map-div">
-      <Map
-        mapId={mapId}
-        defaultZoom={13}
-        defaultCenter={userLocation ||centerRef.current}
-        onClick={handleMapClick} 
-      >{/* Render a Marker for each location */}
-  {tripsArray.map((trip) => (
-            <MarkerWithInfoWindow
-              key={trip.tripID}
-              trip={trip}
-              isActive={activeMarker === trip}
-             onClick={handleMarkerClick}
-            />
-          ))}
-</Map>
+  		<APIProvider
+    		apiKey={apiKey}
+  			>
+    	<div className="map-div">
+			<Map>
+        		mapId={mapId}
+        		defaultZoom={13}
+        		defaultCenter={center}
+        		onClick={handleMapClick} 
+  				{tripsArray.map((trip) => (
+            		<MarkerWithInfoWindow
+              			key={trip.tripID}
+             			trip={trip}
+             	 		isActive={activeMarker === trip}
+             			onClick={handleMarkerClick}
+            			/>
+          					))}
+				</Map>
 
-    </div>
-  </APIProvider>
-)};
+    		</div>
+  			</APIProvider>
+				)};

@@ -1,0 +1,60 @@
+.userProfilePage{
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+  }
+  
+  .userProfileViewForm,
+  .userProfileLeftSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .userProfileLeftSection {
+    background-color: #92C7CF;
+  }
+  
+  .formContainer{
+    width: 80%;
+    max-width: 600px;
+    background-color: #FFFFFF;
+    padding: 20px;
+  }
+  
+  .inputColumn{
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inputColumn{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .buttonContainer{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .userProfileIllustration img{
+    max-width: 100%;
+    height: auto;
+    margin: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .userProfilePage {
+      flex-direction: column;
+    }
+  
+    .formContainer {
+      width: 90%;
+      margin: 20px 0;
+    }
+  }
+  

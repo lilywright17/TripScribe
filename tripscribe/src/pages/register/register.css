@@ -1,0 +1,209 @@
+.register {
+    display: flex;
+    overflow: hidden;
+    height: 100vh;
+    background-color: #92C7CF;
+
+}
+
+.register-box {
+    background-color: white;
+    padding-left: 16vw;
+    padding-right: 16vw;
+    height: 100%;
+    box-shadow: -1px 0 5px;
+    flex: 1;
+}
+
+@keyframes slideInReg {
+    from {
+        transform: translateX(-100%);
+    } 
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutReg {
+    from {
+        transform: translateX(0);
+    } 
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.register-animation {
+    transform: translateX(-100%);
+}
+
+.register-animation.visible {
+    animation: slideInReg 1s forwards;
+}
+
+.register-animation.hidden {
+    animation: slideOutReg 1s forwards;
+}
+
+.register-container {
+    text-align: center;
+}
+
+.register h1 {
+    align-self: center;
+}
+
+.register form {
+    margin-top: 10%;
+    flex-direction: column;
+    width: 300px;
+    margin: auto;
+}
+
+.register form-group {
+    margin-bottom: 15px;
+}
+
+.register label {
+    margin-left: 10px;
+    font-family: inherit;
+    font-size: small;
+    display: block;
+    text-align: left;
+}
+
+.register input {
+    width: 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #DDDD;
+    border: none;
+}
+
+
+.register-btn {
+    margin-top: 10%;
+    border: none;
+    width: 50%;
+    padding: 15px;
+    background-color: #476A6F;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+.register-btn:hover {
+    background-color: white;
+    color: #476a6f;
+    border: 5px solid #476a6f;
+    cursor: pointer;
+
+}
+
+.register-btn:disabled {
+    opacity: 50%;
+}
+
+.register .terms {
+    margin-top: 20px;
+    font-family: inherit;
+    font-size: small;
+    color: black;
+    text-align: center;
+}
+
+.register .terms a {
+    color: blue;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register .terms a:hover {
+    color: #92C7CF;
+}
+
+.login-box {
+
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    position: relative;
+    height: 100%;
+    padding: 20px;
+
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; 
+    position: relative;
+}
+
+.one-of-us-text, .slogan-text {
+    margin: 0;
+    padding: 5px;
+    text-align: left; 
+}
+
+.one-of-us-text {
+    font-family: inherit;
+    font-size: xx-large;
+    font-weight: bold;
+    color: #000000;
+}
+
+.slogan-text {
+    font-family: inherit;
+    font-size: large;
+    color: #000000;
+    margin-bottom: 90px;
+}
+
+.back-to-login {
+    align-self: center; 
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: #ffffff;
+    color: #476a6f;
+    border: 3px solid #476a6f;
+    border-radius: 20px;
+    font-size: large;
+    padding-inline: 20px;
+    width: 120px;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    margin-bottom: 30%;
+}
+
+.back-to-login:hover {
+    background-color: #476a6f;
+    color: white;
+    border: 5px solid #476a6f;
+    cursor: pointer;
+}
+
+.group-image {
+    max-width: 100%;
+    height: auto;
+    align-self: center; 
+
+}
+
+.register-successful {
+    position: absolute;
+}
+
+.error-text {
+    text-align: center;
+    color: red;
+    font-style: italic;
+}

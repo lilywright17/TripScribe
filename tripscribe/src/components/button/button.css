@@ -1,31 +1,43 @@
-.buttonPrimary{
-    font-weight: bold;
-    background-color: #476a6f;
-    color: white;
-    border: 5px solid #476a6f;
-    border-radius: 20px;
+.buttonPrimary {
+    display: flex;  
+    flex: 1 0 0;
+    flex-shrink: 0;
+    align-items: center;  
+    justify-content: center;  
+    align-self: stretch;
+    text-align: center;
+    font-family: inherit;
     font-size: large;
-    padding-inline: 20px;
-    width: 250px;
-    font-family: Arial, Helvetica, sans-serif;
-    /* replace above with google font */ 
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    background-color: #476a6f;
+    line-height: 142.857%;
+    color:#FFF;
+    border: none;
+    padding: 15px;
+    border-radius: 20px;
+    gap: 9px;
+    cursor: pointer;
+
 }
 
-.buttonPrimary:hover{
-    background-color: white;
+.buttonPrimary:hover {
+    background-color: #92C7CF;
     color: #476a6f;
-    border: 5px solid #476a6f;
-    border-radius: 20px;
-    font-size: large;
     cursor: pointer; 
 }
 
-.buttonPrimary:active{
-    background-color: #476a6f;
+.buttonPrimary:active {
+    background-color: #283c40;
     color: white;
-    border: 5px solid #476a6f;
-    border-radius: 20px;
-    font-size: large;
-    font-family: Arial, Helvetica, sans-serif;
-    /* replace above with google font */ 
+    transition: 0.05s;
+    
 }
+
+.button-icon {
+    margin-right: 8px;  
+    display: flex;
+    align-items: center;
+}
+

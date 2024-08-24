@@ -1,0 +1,30 @@
+.addTripPageContainer {
+    display: flex;
+    flex-direction: row; 
+    min-height: 100vh; 
+    align-items: flex-start; 
+    justify-content: center; 
+    padding: 8x; 
+    margin: auto; 
+}
+
+.addTripContainer {
+    flex: 3; 
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-right: 40px; 
+}
+
+.addTripIllustration {
+    flex: 1; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addTripIllustration img {
+    max-width: 100%;
+    height: auto;
+    padding-top: 100px;
+}

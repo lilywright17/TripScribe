@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders button component correctly with buttonText passed by props 1`] = `
+<div>
+  <button
+    buttonText="Back"
+    className="buttonPrimary "
+  />
+</div>
+`;

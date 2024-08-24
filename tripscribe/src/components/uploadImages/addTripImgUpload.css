@@ -1,0 +1,110 @@
+.cardImgUpload {
+    overflow: hidden;
+    width: 90%;
+    max-width: 800px; 
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.cardImgUpload p {
+    font-weight: bold;
+    color: #0086fe;
+}
+
+.cardImgUpload button{
+    outline: 0;
+    border: 0;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 8px 13px;
+    width: 100%;
+    background: #476A6F;
+}
+
+.cardImgUpload .dragArea .iconArea{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+}
+
+.iconArea {
+    width: 28px;
+    height: 28px;
+}
+.cardImgUpload .dragArea{
+    height: 190px;
+    border-radius: 5px;
+    border: 2px dashed #92C7CF;
+    color: #92C7CF;
+    font-size: 16px;
+    background: #f4f3f9;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    -webkit-user-select: none;
+    margin-top: 16px;
+}
+
+.cardImgUpload .dragArea .visible{
+    font-size: 18px;
+}
+
+.cardImgUpload .selectImg{
+    color: #0086fe;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.cardImgUpload .selectImg:hover{
+    opacity: 0.6;
+}
+
+.cardImgUpload .containerImg{
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+
+.cardImgUpload .containerImg .image{
+    width: 75px;
+    margin-right: 5px;
+    height: 75px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.cardImgUpload .containerImg .image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+.cardImgUpload .containerImg .image span{
+    position: absolute;
+    top: -2px;
+    right: 9px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.cardImgUpload input, 
+.cardImgUpload .dragArea .on-drop, 
+.cardImgUpload .dragArea.dragOver .visible{
+    display: none;
+}
+
+.deleteImg{
+    z-index: 999;
+    color: #0086fe;
+}

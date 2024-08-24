@@ -1,15 +1,74 @@
 .labelAndInputDiv{
     display: flex;
     flex-direction: column;
+    border: none;
     margin: 10px;
     align-items: flex-start;
     color: #476a6f;
-    font-weight: bold;
+    font-weight: 600;
+    
+}
+.labelText {
+    padding-left: 8px;
+    padding-bottom: 8px;
 }
 
 .inputField{
-    border-radius: 20px;
-    width: 250px;
+    border-radius: 10px;
+    border: 0.5px solid #eae9e9; 
+    background: rgba(221, 221, 221, 0.60);
     padding: 8px;
     margin: 2px;
+    width: 300px;
+    height: 30px;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.inputField::placeholder {
+    font-family: inherit;
+    text-align: left;
+    padding-left: 8px; 
+    color: rgba(0, 0, 0, 0.5); 
+}
+
+.error {
+    color: red; 
+    text-align: left; 
+    font-size: 12px; 
+    margin-top: 4px; 
+}
+
+.input-error {
+    border-color: red !important;
+    border-radius: 10px; 
+    text-align: left;
+}
+
+.inputField::placeholder,
+input[type="date"]::-webkit-input-placeholder,
+input[type="date"]::-moz-placeholder,
+input[type="date"]:-ms-input-placeholder,
+input[type="date"]::-ms-input-placeholder,
+input[type="date"]::placeholder {
+    font-family: inherit;
+    text-align: left;
+    padding-left: 8px; 
+    color: rgba(0, 0, 0, 0.5); 
+}
+
+input[type="date"] {
+    border-radius: 10px;
+    border: 0.5px solid #eae9e9; 
+    background: rgba(221, 221, 221, 0.60);
+    padding: 8px;
+    margin: 2px;
+    width: 300px;
+    height: 30px;
+    flex-shrink: 0;
+    text-align: left;
+}
+
+input[type="date"].input-error {
+    border-color: red !important; 
 }

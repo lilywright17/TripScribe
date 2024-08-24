@@ -1,0 +1,145 @@
+.login {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+    background-color: #92C7CF;
+    flex-direction: row-reverse;
+}
+
+.side-box {
+    position: relative;
+    overflow: hidden;
+    width: 55%;
+    height: 100%;
+}
+
+.main-box {
+    min-height: 100%;
+    background-color: white;
+    padding-right: 16vw;
+    padding-left: 16vw;
+    box-shadow: -1px 0 5px;
+    right: 0;
+    position: relative;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    } to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    } to {
+    transform: translateX(100%);
+    }
+}
+
+.login-animation {
+    transform: translateX(100%);
+}
+
+.login-animation.visible {
+    animation: slideIn 1s forwards;
+}
+
+.login-animation.hidden {
+    animation: slideOut 1s forwards; 
+}
+
+.to-register-container  {
+    align-items: center;
+    margin-top: 15vh;
+    margin-left: 10vh;
+}
+
+.login-container {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 20vh;
+}
+
+.new-here-text {
+    font-family: inherit;
+    font-size: xx-large; 
+    font-weight: bold;
+    color: #000000;
+}
+
+.to-register-text {
+    font-family: inherit;
+    font-size: large; 
+    color: #000000;
+    margin-top: 15px;
+    margin-left: 50px;
+    margin-bottom: 15px;
+}
+
+.to-register-text h2 {
+    font-family: inherit;
+    font-style: normal;
+    margin-left: -20px;
+}
+
+.h-signin {
+    align-self: center;
+}
+
+.form-submit {
+    margin-top: 15px;
+    flex-direction: column;
+    width: 300px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.label-input {
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-family: inherit;
+    font-size: small;
+}
+
+.login .button-container {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.click-to {
+    text-align: center;
+}
+
+.click-to p {
+    font-size: large;
+    text-decoration: underline;
+    color: #92C7CF;
+    filter: brightness(50%);
+    cursor: pointer;
+}
+
+.click-to p:hover {
+    color: #92C7CF;
+    filter: brightness(100%);
+}
+
+.input {
+    width : 100%;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    background-color: #DDDD;
+    border: none;
+}
+
+.login button:disabled {
+    opacity: 50%;
+}

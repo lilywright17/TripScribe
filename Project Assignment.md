@@ -2,8 +2,8 @@
 
 |  | |  |  |
 |----------|----------|----------|----------|
- |🧁 Katie Williams |💎 Krystal Lake |🌸 Lily Wright  | Marta Walters  |
-| 🐣Mediha Mustafova | Precious Joveres | 🎃 Victoria Proaño  |
+ |🧁 Katie Williams |💎 Krystal Lake |🌸 Lily Wright  |🐙 Marta Walters  |
+|🐣 Mediha Mustafova |🤠 Precious Joveres |🎃 Victoria Proaño  |
 
 
 ## PART 1 - Project Details
@@ -42,13 +42,13 @@ In the tables below, you can see the allocation of roles and tasks.
 |----------|----------|----------|----------|----------|----------|----------|----------|
 |**Project definition**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 |**Taking Minutes**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
-|**Scrum Master**|☑️|-|-|☑️|-|-|-|
-|**Trello board manager**|-|-|-|-|☑️|-|-|
-|**Sprint Planning & Review & Restrospective**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
+|**Scrum Master**|☑️|-|-|-|-|-|-|
+|**Sprint Planning & Review**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 |**Figma Wireframe**|☑️|-|-|-|☑️|-|☑️|
-|**User stories- Backlog**|-|-|-|-|-|-|☑️|
+|**User stories- Backlog**|-|-|-|-|☑️|-|☑️|
+|**README file**|-|-|-|-|☑️|-|☑️|
 |**Compilation of Proj. Assignment**|-|☑️|-|-|-|-|☑️|
-|**Compilation of Proj. Documentation**|-|☑️|☑️|-|-|-|-|
+|**Compilation of Proj. Documentation**|☑️|☑️|-|-|☑️|-|☑️|
 |**Compilation of Proj.  Presentation**|☑️|-|-|-|-|-|-|
 
 * #### Release/QA management Cycle- roles & tasks
@@ -57,22 +57,33 @@ In the tables below, you can see the allocation of roles and tasks.
 |----------|----------|----------|----------|----------|----------|----------|----------|
 |**GitHub Repo creation & organisation**|-|-|☑️|-|-|-|-|
 |**Compilation of README.md**|-|☑️|-|-|-|-|-|
-|**PR Reviewers**    |-|-|☑️|-|-|☑️|☑️|
+|**PR Reviewers**    |☑️|-|☑️|-|☑️|☑️|☑️|
 |**Testing**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 
-* #### Development task commitment To Be Confirmed (TBC) - subject to change during development
+* #### Development task commitment UPDATED
 
 |  | Katie Williams | Krystal Lake | Lily Wright | Marta Walters | Mediha Mustafova | Precious Joveres | Victoria Proaño |
 |----------|----------|----------|----------|----------|----------|----------|----------|
 |**Database design & Creation**|-|-|-|-|-|☑️|-|
-|**Authentication: Login & Register Page**|-|☑️|-|-|-|☑️|-|
-|**My Trip page: grid view-edit cards**|-|-|☑️|-|☑️|-|-|
-|**My Trip page: Sorting Feature & Search Bar**|-|-|☑️|-|☑️|-|-|
+|**Data retrieval BE-FE**|-|-|-|-|☑️|☑️|☑️|
+|**Authentication: Login & Register Page FE-BE**|-|-|-|-|☑️|☑️|☑️|
+|**Authentication: Register Page FE**|-|☑️|-|-|-|-|-|
 |**Add My Trip page: Form & Image Upload**|☑️|-|-|-|-|-|☑️|
-|**Map View page: (+permissions) Pin trips-view on the map**|-|-|☑️|-|-|-|-|
-|**User Profile Page**|-|-|-|-|-|-|☑️|
+|**Add My Trip page: CloudinaryAPI integration**|-|-|-|-|-|-|☑️|
+|**My Trip page: Grid view cards FE-BE**|-|-|☑️|-|☑️|-|-|
+|**My Trip page: Sorting Feature & Search Bar**|-|-|☑️|-|☑️|-|-|
+|**Trip Details page: View**|-|-|-|-|☑️|-|-|
+|**Trip Details page: Edit FE**|-|-|-|☑️|☑️|-|-|
+|**Trip Details page: Edit BE**|-|-|-|-|☑️|-|-|
+|**Map View page: GoogleAPI**|-|-|☑️|-|-|-|-|
+|**User Profile Page**|-|-|-|-|☑️|-|☑️|
 |**About Us page**|☑️|-|-|-|-|-|-|
-|**Reusable Components: Navigation Bar, Footer, Buttons, Cards, Input fields**|☑️|- |-|☑️|-|-|-|
+|**Reusable Components: Navigation Bar**|☑️|- |-||-|-|-|
+|**Reusable Components: Buttons, Input fields**|☑️|- |-||-|-|☑️|
+|**Reusable Components: Uploader img**|-|- |-|-|-|-|☑️|
+|**Reusable Components: Card trips, Filters, Search bar**|-|-|☑️|-|☑️|-|-|
+|**Reusable Components: Carousel img, Modal dialog**|-|- |-|-|☑️|-|-|
+|**Reusable Components: Footer**|-|-|-|☑️|☑️|-|-|
 
 Using the [Calendar Power-up in Trello](https://trello.com/b/ZP7TrUPB/cfg-degree-fullstack-summer24/calendar/2024/08), each team member can view pending and upcoming tasks along with clearly defined deadlines. Figure 1 shows a screenshot of the Calendar View.
 

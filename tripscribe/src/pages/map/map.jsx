@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Card } from "../../components/card/card.jsx";
 import { useNavigate } from "react-router-dom";
 import './map.css';
@@ -127,32 +127,30 @@ export const MapPage = () => {
           }
         };
         loadApiKey();
-      }, []);
+      				}, []);
 
   if (!apiKey) {
     return <div>Loading map...</div>;
   }
 
-   return (
-  		<APIProvider
-    		apiKey={apiKey}
-  			>
-    	<div className="map-div">
-			<Map>
-        		mapId={mapId}
-        		defaultZoom={13}
-        		defaultCenter={center}
-        		onClick={handleMapClick} 
-  				{tripsArray.map((trip) => (
-            		<MarkerWithInfoWindow
-              			key={trip.tripID}
-             			trip={trip}
-             	 		isActive={activeMarker === trip}
-             			onClick={handleMarkerClick}
-            			/>
-          					))}
-				</Map>
-
-    		</div>
-  			</APIProvider>
-				)};
+  return (
+    <APIProvider apiKey={apiKey}>
+      <div className="map-div">
+        <Map
+          mapId={mapId}
+          defaultZoom={13}
+          defaultCenter={center}
+          onClick={handleMapClick}
+        >
+          {tripsArray.map((trip) => (
+            <MarkerWithInfoWindow
+              key={trip.tripID}
+              trip={trip}
+              isActive={activeMarker === trip}
+              onClick={handleMarkerClick}
+            />
+          ))}
+        </Map>
+      </div>
+    </APIProvider>
+  )};

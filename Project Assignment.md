@@ -40,50 +40,51 @@ In the tables below, you can see the allocation of roles and tasks.
 
 |  | Katie Williams | Krystal Lake | Lily Wright | Marta Walters | Mediha Mustafova | Precious Joveres | Victoria Proaño |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-|**Project definition**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
+|**Project Definition**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 |**Taking Minutes**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
-|**Scrum Master**|☑️|-|-|-|-|-|-|
+|**Team Facilitators**|☑️|-|-|☑️|-|-|-|
+|**Trello's Facilitators**|-|-|-|-|☑️|-|☑️|
 |**Sprint Planning & Review**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 |**Figma Wireframe**|☑️|-|-|-|☑️|-|☑️|
-|**User stories- Backlog**|-|-|-|-|☑️|-|☑️|
-|**README file**|-|-|-|-|☑️|-|☑️|
+|**User stories- Backlog**|-|-|-|-|-|-|☑️|
 |**Compilation of Proj. Assignment**|-|☑️|-|-|-|-|☑️|
-|**Compilation of Proj. Documentation**|☑️|☑️|-|-|☑️|-|☑️|
+|**Compilation of Proj. Documentation**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 |**Compilation of Proj.  Presentation**|☑️|-|-|-|-|-|-|
 
-* #### Release/QA management Cycle- roles & tasks
+* #### Github- roles & tasks
 
 |  | Katie Williams | Krystal Lake | Lily Wright | Marta Walters | Mediha Mustafova | Precious Joveres | Victoria Proaño |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-|**GitHub Repo creation & organisation**|-|-|☑️|-|-|-|-|
-|**Compilation of README.md**|-|☑️|-|-|-|-|-|
-|**PR Reviewers**    |☑️|-|☑️|-|☑️|☑️|☑️|
-|**Testing**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
+|**GitHub Repo Creation & Organisation**|☑️|-|☑️|-|-|-|-|
+|**PR Reviewers**    |☑️|☑️|☑️|☑️|☑️|☑️|☑️|
+|**Compilation of README file**|-|-|-|-|☑️|-|☑️|
 
-* #### Development task commitment UPDATED
+* #### Development Task Commitment UPDATED
 
 |  | Katie Williams | Krystal Lake | Lily Wright | Marta Walters | Mediha Mustafova | Precious Joveres | Victoria Proaño |
 |----------|----------|----------|----------|----------|----------|----------|----------|
-|**Database design & Creation**|-|-|-|-|-|☑️|-|
-|**Data retrieval BE-FE**|-|-|-|-|☑️|☑️|☑️|
+|**Database Design & Creation**|-|-|-|-|-|☑️|-|
 |**Authentication: Login & Register Page FE-BE**|-|-|-|-|☑️|☑️|☑️|
-|**Authentication: Register Page FE**|-|☑️|-|-|-|-|-|
-|**Add My Trip page: Form & Image Upload**|☑️|-|-|-|-|-|☑️|
-|**Add My Trip page: CloudinaryAPI integration**|-|-|-|-|-|-|☑️|
-|**My Trip page: Grid view cards FE-BE**|-|-|☑️|-|☑️|-|-|
-|**My Trip page: Sorting Feature & Search Bar**|-|-|☑️|-|☑️|-|-|
-|**Trip Details page: View**|-|-|-|-|☑️|-|-|
-|**Trip Details page: Edit FE**|-|-|-|☑️|☑️|-|-|
-|**Trip Details page: Edit BE**|-|-|-|-|☑️|-|-|
-|**Map View page: GoogleAPI**|-|-|☑️|-|-|-|-|
-|**User Profile Page**|-|-|-|-|☑️|-|☑️|
-|**About Us page**|☑️|-|-|-|-|-|-|
+|**Register FE**|-|☑️|-|-|-|☑️|-|
+|**Add My Trip: Form & Image Upload**|☑️|-|-|-|-|-|☑️|
+|**Add My Trip: Cloudinary API integration**|-|-|-|-|-|-|☑️|
+|**My Trip Page: Data Retrieval for Grid View Cards**|-|-|-|-|☑️|-|-|
+|**My Trip: Grid View, Filters & Search Bar**|-|-|☑️|-|☑️|-|-|
+|**Trip Details: View**|-|-|-|-|☑️|-|-|
+|**Trip Details: Edit FE**|-|-|-|☑️|☑️|-|-|
+|**Trip Details: Edit BE**|-|-|-|-|☑️|-|-|
+|**Map View: GoogleMaps API**|-|-|☑️|-|-|-|-|
+|**User Profile**|-|-|-|-|☑️|-|☑️|
+|**About Us**|☑️|-|-|-|-|-|-|
+|**Redux implementation**|☑️|-|-|☑️|-|-|☑️|
+|**Unit tests**|☑️|-|-|-|☑️|-|☑️|
+|**Functional testing**|☑️|☑️|☑️|☑️|☑️|☑️|☑️|
 |**Reusable Components: Navigation Bar**|☑️|- |-||-|-|-|
-|**Reusable Components: Buttons, Input fields**|☑️|- |-||-|-|☑️|
+|**Reusable Components: Buttons, Input Fields**|☑️|- |-||-|-|☑️|
 |**Reusable Components: Uploader img**|-|- |-|-|-|-|☑️|
-|**Reusable Components: Card trips, Filters, Search bar**|-|-|☑️|-|☑️|-|-|
-|**Reusable Components: Carousel img, Modal dialog**|-|- |-|-|☑️|-|-|
-|**Reusable Components: Footer**|-|-|-|☑️|☑️|-|-|
+|**Reusable Components: Card trips, Filters, Search Bar**|-|-|☑️|-|☑️|-|-|
+|**Reusable Components: Carousel img, Modal Dialog**|-|- |-|-|☑️|-|-|
+|**Reusable Components: Footer**|☑️|-|-|☑️|-|-|-|
 
 Using the [Calendar Power-up in Trello](https://trello.com/b/ZP7TrUPB/cfg-degree-fullstack-summer24/calendar/2024/08), each team member can view pending and upcoming tasks along with clearly defined deadlines. Figure 1 shows a screenshot of the Calendar View.
 

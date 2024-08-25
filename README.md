@@ -100,6 +100,7 @@ Then replace the `api_key` in your  `.env` file.
     Ensure your MySQL server is running and execute the SQL script to create the `tripscribeDB.sql` database and tables. You can use a MySQL client like MySQL Workbench or DBeaver.
 
     ```sql
+    -- DROP DATABASE IF EXIST tripscribeDB; 
     CREATE DATABASE tripscribeDB;
     USE tripscribeDB;
 
@@ -108,13 +109,11 @@ Then replace the `api_key` in your  `.env` file.
 
     Open the Workbench/DBeaver, open the `tripscribedb.sql` file (located in the `/backend` folder) and run the SQL script. This step is required to create the database. Then open the  `mockData.sql` and run the SQL script - this step will create some mock data to see the functionality of the app.
     
-    If you want to run data from users that we create you can use the `mockData.sql` 
+    If you want to use the data we've created for users, you can run the `mockData.sql` file.
 
-    ```
-    ### ADA LOVELACE CREDENTIALS
-        email: 
-        pwd:
-
+    ``` 
+        email: lilywright93@gmail.com
+        pwd: Hello321!
     ``` 
 
 ## Running the project 
@@ -134,7 +133,7 @@ npm start
 This will start the Express server and listen on port `8000`. You should see a message indicating the server is running.
 
 ```bash
-Listening: http://localhost:8000
+Server is running on http://localhost:8000
 ```
 
 2. **Open the User Interface**
@@ -173,20 +172,30 @@ Sensitive Information in Environment Variables:
 
 - Credentials, API keys, and other sensitive information are stored in environment variables in the .env file, rather than being hardcoded in the codebase. This helps protect sensitive data from unauthorized access.
 
+For more detailed information about Tripscribe's features, please take a look at the documentation.
+
+### Demo users workflow video
+Below, you can find demo videos showcasing the process of registering a new user and the login workflow, including filter search and map navigation.
+
+* [Register- new user](https://drive.google.com/file/d/1bhModsoLg7kwvHV1x-tHp2zSBhSmcCKo/view?usp=drive_link) Create a trip, edit and delete
+
+* [Login- Lily's user](https://drive.google.com/file/d/1xRsF3n9TFqg__Qp8HLEr-F2cM8lcJvE3/view?usp=drive_link) - Filters, search and map navigation
+
 
 ### Accessibility
 
-We prioritized creating an inclusive app by following best practices for a user-friendly interface, guided by Nielsen's design principles. Key accessibility features include descriptive alt-text for images and strong color contrast for readability, especially for users with visual impairments. After a 92% Lighthouse accessibility audit, we made improvements like adding descriptive page titles and a keyboard-accessible navigation bar to enhance accessibility.
+We prioritised creating an inclusive app by following best practices for a user-friendly interface, guided by Nielsen's design principles. Key accessibility features include descriptive alt-text for images and strong colour contrast for readability, especially for users with visual impairments. After a 92% Lighthouse accessibility audit, we made improvements like adding descriptive page titles and a keyboard-accessible navigation bar to enhance accessibility.
 
-Color Palette: We chose calming shades of green, ideal for a travel diary app. Greens evoke nature and exploration, while blue-greens are widely liked, gender-neutral, and easy on the eyes. The dark green (#476a6f) contrasts well with white for readability, and the predominantly white background keeps user-uploaded images as the focal point.
-
-**[Figma-MVP TravelScribe](https://www.figma.com/design/1NMuILlUhbKr1rhzCM0Lol/Our-Travel-Diary-App?node-id=0-1&t=yXA9hvILT9kdZKje-1)**
-[INCLUDE FLOW DEMO RUNNING THE APP-DRIVE store video]
+Colour Palette: We chose calming shades of green, ideal for a travel diary app. Greens evoke nature and exploration, while blue-greens are widely liked, gender-neutral, and easy on the eyes. The dark green (#476a6f) contrasts well with white for readability, and the predominantly white background keeps user-uploaded images as the focal point.
 
 ![Wireframe Figma](./tripscribe/public/img/2024-08-02%2012_33_20-.png)
 
-## License / Contact 
+## License
 
-License TBD
+This project is not licensed for use, distribution, or modification by others.
 
-### Contact 
+### Important Notice
+
+- **All rights reserved.** No part of this project may be reproduced, distributed, or transmitted in any form or by any means without the prior written permission of the author(s).
+- The source code and any associated materials (including documentation, images, and other assets) are intended for personal or internal use only.
+- This project is for educational or internal purposes and is not intended for public distribution or external use.
